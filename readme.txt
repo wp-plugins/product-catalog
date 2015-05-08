@@ -32,9 +32,9 @@ General Options for pro users you can find on the left panel under catalog plugi
 
 ### Catalogs: from here you can add products into catalog. Admin page includes:
 
-*   Main image of the product
+*   Main image of the product Catalog
 *   Additional images (thumbnails)
-*   Title on product
+*   Title on product catalog
 *   Description
 *   Price
 *   Discount Price
@@ -90,7 +90,7 @@ Now you can set your Product Catalog options, images and use our Product Catalog
 == Changelog ==
 
 = 1.0.2 =
-*  Add Plugin.
+*  Add Plugin product catalog.
 
 
 ==Wordpress Adding a Product Catalog==
