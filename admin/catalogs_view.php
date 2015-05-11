@@ -64,7 +64,7 @@ function html_showcatalogs( $rows,  $pageNav,$sort,$cat_row){
 	<div id="poststuff">
 		<div id="catalogs-list-page">
 			<form method="post"  onkeypress="doNothing()" action="admin.php?page=catalogs_huge_it_catalog" id="admin_form" name="admin_form">
-			<h2>Huge-IT Catalogs
+			<h2>Catalogs
 				<a onclick="window.location.href='admin.php?page=catalogs_huge_it_catalog&task=add_cat'" class="add-new-h2" >Add New Catalog</a>
 			</h2>
 			<?php
@@ -890,7 +890,7 @@ jQuery(document).ready(function($){
 						</li>
                                                 
                                                 <li>
-							<label for="huge_it_portfolio_name">Catalog name</label>
+							<label for="huge_it_catalog_name">Catalog name</label>
 							<input type = "text" name="name" id="huge_it_catalog_name" value="<?php echo esc_html(stripslashes($row->name));?>" onkeyup = "name_changeRight(this)">
 						</li>
                                                 

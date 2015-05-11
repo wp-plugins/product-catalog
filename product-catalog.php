@@ -4,7 +4,7 @@
 Plugin Name: Huge IT Product Catalog
 Plugin URI: http://huge-it.com/product-catalog
 Description: Let us introduce our Huge-IT Product Catalog incomparable plugin. To begin with, why do we need this plugin and what are the advantages.
-Version: 1.0.2
+Version: 1.0.3
 Author: http://huge-it.com/
 License: GNU/GPLv3 http://www.gnu.org/licenses/gpl-3.0.html
 */
@@ -21,7 +21,7 @@ function add_my_custom_button_for_catalog($context) {
 
   $title = 'Select Huge IT Slider to insert into post';
 
-  $context .= '<a class="button thickbox" title="Select Catalog to insert into post"    href="?page=catalogs_huge_it_catalog&task=catalog_add_shortcode_popup&TB_iframe=1&width=400&inlineId='.$container_id.'">
+  $context .= '<a class="button thickbox" title="Select Catalog To Insert Into Post"    href="?page=catalogs_huge_it_catalog&task=catalog_add_shortcode_popup&TB_iframe=1&width=400&inlineId='.$container_id.'">
 		<span class="wp-media-buttons-icon" style="background: url('.$img.'); background-repeat: no-repeat; background-position: left bottom;"></span>
 	Add Catalog
 	</a>';
@@ -519,8 +519,8 @@ class Huge_it_catalog_Widget extends WP_Widget {
 	public function __construct() {
 		parent::__construct(
 	 		'Huge_it_catalog_Widget', 
-			'Huge IT catalog', 
-			array( 'description' => __( 'Huge IT catalog', 'huge_it_catalog' ), ) 
+			'Huge IT Catalog', 
+			array( 'description' => __( 'Huge IT Catalog', 'huge_it_catalog' ), ) 
 		);
 	}
 
@@ -1498,7 +1498,7 @@ CREATE TABLE IF NOT EXISTS `" . $wpdb->prefix . "huge_it_catalog_albums` (
 //('ht_catalog_zoom_lens_size_fix', 'Zoom easing', 'Zoom easing', 'false'),
 //('ht_catalog_zoom_lens_height', 'Zoom easing', 'Zoom easing', '100'),
 //('ht_catalog_zoom_lens_width', 'Zoom easing', 'Zoom easing', '100'),
-//('ht_catalog_zoom_tint', 'Zoom Tint', 'Zoom Tint', 'true'),
+//('ht_catalog_zoom_tint', 'Zoom Tint', 'Zoom Tint', 'false'),
 //('ht_catalog_zoom_tint_colour', 'Zoom Tint Color', 'Zoom Tint Color', '#fff'),
 //('ht_catalog_zoom_tint_opacity', 'Zoom Tint Opacity', 'Zoom Tint Opacity', '40'),
 //('ht_catalog_zoom_tint_fadein', 'Zoom Tint Fadein Speed', 'Zoom Tint Fadein Speed', '200'),
@@ -1537,12 +1537,12 @@ INSERT INTO
 (7, 'Michael Kors', '9', '<p>Michael Kors Dylan Navy Dial Rose Goldtone Navy Silicone Strap Mens Watch. New with tags: A brand-new, unused, and unworn item (including handmade items) in the original packaging (such as the original box or bag) and/or with the original tags attached.</p>', '".plugins_url("Front_images/projects/12.jpg", __FILE__).";".plugins_url("Front_images/projects/12.1.jpg", __FILE__).";".plugins_url("Front_images/projects/12.2.jpg", __FILE__).";".plugins_url("Front_images/projects/12.3.jpg", __FILE__).";', 'http://huge-it.com/fields/order-website-maintenance/', 'image', 'on', 3, 1, NULL, '150', '120','@@Condition@A brand-new, unused@@Brand@Michael Kors@@Features@Chronograph@@Age@Modern (2000-present)@@Movement@Quartz@@Display@Analog@@Band Material@Silicone@@Gender@Men@@Color@Rose Goldtone'),
 (8, 'Michael Kors', '9', '<p>Michael Kors Dylan Navy Dial Rose Goldtone Navy Silicone Strap Mens Watch . New with tags: A brand-new, unused, and unworn item (including handmade items) in the original packaging (such as the original box or bag) and/or with the original tags attached</p>', '".plugins_url("Front_images/projects/13.jpg", __FILE__).";".plugins_url("Front_images/projects/13.1.jpg", __FILE__).";".plugins_url("Front_images/projects/13.2.jpg", __FILE__).";".plugins_url("Front_images/projects/13.3.jpg", __FILE__).";', 'http://huge-it.com/fields/order-website-maintenance/', 'image', 'on', 3, 1, NULL, '150', '120','@@Condition@A brand-new, unused@@Brand@Michael Kors@@Features@Chronograph@@Age@Modern (2000-present)@@Movement@Quartz@@Display@Analog@@Band Material@Blue Silicone@@Gender@Men@@Color@Black Dial Blue Silicone'),
 (9, 'Nixon Chronicle', '9', '<p>Michael Kors Dylan Chronograph Black Dial Blue Silicone Mens. New with tags: A brand-new, unused, and unworn item (including handmade items) in the original packaging (such as the original box or bag) and/or with the original tags attached.</p>', '".plugins_url("Front_images/projects/14.jpg", __FILE__).";".plugins_url("Front_images/projects/14.1.jpg", __FILE__).";".plugins_url("Front_images/projects/14.2.jpg", __FILE__).";".plugins_url("Front_images/projects/14.3.jpg", __FILE__).";', 'http://huge-it.com/fields/order-website-maintenance/', 'image', 'on', 3, 1, NULL, '150', '120','@@Condition@A brand-new, unused@@Brand@Nixon@@Features@Date@@Age@Modern (2000-present)@@Movement@Quartz@@Display@Analog@@Band Material@Brown Leather@@Gender@Men@@Color@Silver'),
-(10, 'Michael Kors', '9', '<p>Michael Kors Dylan Chronograph Black Dial Red Silicone Mens. New with tags: A brand-new, unused, and unworn item (including handmade items) in the original packaging (such as the original box or bag) and/or with the original tags attached</p>', '".plugins_url("Front_images/projects/15.jpg", __FILE__).";".plugins_url("Front_images/projects/15.1.jpg", __FILE__).";".plugins_url("Front_images/projects/14.2.jpg", __FILE__).";', 'http://huge-it.com/fields/order-website-maintenance/', 'image', 'on', 3, 1, NULL, '150', '120','@@Condition@A brand-new, unused@@Brand@Michael Kors@@Features@Date@@Age@Modern (2000-present)@@Movement@Quartz@@Display@Analog@@Band Material@Red Silicone@@Gender@Men@@Color@Black'),
+(10, 'Michael Kors', '9', '<p>Michael Kors Dylan Chronograph Black Dial Red Silicone Mens. New with tags: A brand-new, unused, and unworn item (including handmade items) in the original packaging (such as the original box or bag) and/or with the original tags attached</p>', '".plugins_url("Front_images/projects/15.jpg", __FILE__).";".plugins_url("Front_images/projects/15.1.jpg", __FILE__).";".plugins_url("Front_images/projects/15.2.jpg", __FILE__).";', 'http://huge-it.com/fields/order-website-maintenance/', 'image', 'on', 3, 1, NULL, '150', '120','@@Condition@A brand-new, unused@@Brand@Michael Kors@@Features@Date@@Age@Modern (2000-present)@@Movement@Quartz@@Display@Analog@@Band Material@Red Silicone@@Gender@Men@@Color@Black'),
 (11, 'Nixon Chronicle', '9', '<p>Victorinox Chrono Calssic XLS Brown Dial Brown Leather Mens Watch. New with tags: A brand-new, unused, and unworn item (including handmade items) in the original packaging (such as the original box or bag) and/or with the original tags attached.</p>', '".plugins_url("Front_images/projects/16.jpg", __FILE__).";".plugins_url("Front_images/projects/16.1.jpg", __FILE__).";".plugins_url("Front_images/projects/16.2.jpg", __FILE__).";".plugins_url("Front_images/projects/16.3.jpg", __FILE__).";', 'http://huge-it.com/fields/order-website-maintenance/', 'image', 'on', 3, 1, NULL, '150', '120','@@Condition@A brand-new, unused@@Brand@Michael Kors@@Features@Chronograph@@Age@Modern (2000-present)@@Movement@Quartz@@Display@Analog@@Band Material@Stainless@@Gender@Women@@Color@Brown'),
 (12, 'Nixon Chronicle', '9', '<p>Michael Kors Ritz Chronograph Gold-Tone Ladies WatchNew with tags: A brand-new, unused, and unworn item (including handmade items) in the original packaging (such as the original box or bag) and/or with the original tags attached.</p>', '".plugins_url("Front_images/projects/19.jpg", __FILE__).";".plugins_url("Front_images/projects/19.1.jpg", __FILE__).";".plugins_url("Front_images/projects/19.2.jpg", __FILE__).";".plugins_url("Front_images/projects/19.3.jpg", __FILE__).";', 'http://huge-it.com/fields/order-website-maintenance/', 'image', 'on', 3, 1, NULL, '150', '120','@@Condition@A brand-new, unused@@Brand@Nixon@@Features@Date@@Age@Modern (2000-present)@@Movement@Quartz@@Display@Analog@@Band Material@Brown Leather@@Gender@Men@@Color@Gold'),
 (13, 'Nixon Chronicle', '9', '<p>Nixon Chronicle Black PVD Stainless Steel Mens Watch. New with tags: A brand-new, unused, and unworn item (including handmade items) in the original packaging (such as the original box or bag) and/or with the original tags attached.</p>', '".plugins_url("Front_images/projects/17.jpg", __FILE__).";".plugins_url("Front_images/projects/17.1.jpg", __FILE__).";".plugins_url("Front_images/projects/17.2.jpg", __FILE__).";".plugins_url("Front_images/projects/17.3.jpg", __FILE__).";', 'http://huge-it.com/fields/order-website-maintenance/', 'image', 'on', 3, 1, NULL, '150', '120','@@Condition@A brand-new, unused@@Brand@Nixon@@Features@Date@@Age@Modern (2000-present)@@Movement@Quartz@@Display@Analog@@Band Material@Leather@@Gender@Men@@Color@Black'),
 (14, 'Nixon Chronicle', '9', '<p>Michael Kors Runway Gold Dial Pink and Gold Leather Ladies Dress Watch. New with tags: A brand-new, unused, and unworn item (including handmade items) in the original packaging (such as the original box or bag) and/or with the original tags attached.</p>', '".plugins_url("Front_images/projects/18.jpg", __FILE__).";".plugins_url("Front_images/projects/18.1.jpg", __FILE__).";".plugins_url("Front_images/projects/18.2.jpg", __FILE__).";".plugins_url("Front_images/projects/18.3.jpg", __FILE__).";', 'http://huge-it.com/fields/order-website-maintenance/', 'image', 'on', 3, 1, NULL, '150', '120','@@Condition@A brand-new, unused@@Brand@Nixon@@Features@Date@@Age@Modern (2000-present)@@Movement@Quartz@@Display@Analog@@Band Material@Leather@@Gender@Women@@Color@Gold'),
-(15, 'Victorinox', '9', '<p>Victorinox Swiss Army Leather Officers Grey Dial Mens Watch. New with tags: A brand-new, unused, and unworn item (including handmade items) in the original packaging (such as the original box or bag) and/or with the original tags attached. </p>', '".plugins_url("Front_images/projects/11.jpg", __FILE__).";".plugins_url("Front_images/projects/11.1.jpg", __FILE__).";".plugins_url("Front_images/projects/11.2.jpg", __FILE__).";".plugins_url("Front_images/projects/11.3.jpg", __FILE__).";', 'http://huge-it.com/fields/order-website-maintenance/', 'image', 'on', 3, 1, NULL, '150', '120','@@Condition@A brand-new, unused@@Brand@Victorinox@@Features@Day & Date@@Age@Modern (2000-present)@@Movement@Quartz@@Display@Analog@@Band Material@Leather@@Gender@Men@@Color@black')";
+(15, 'Victorinox', '9', '<p>Victorinox Swiss Army Leather Officers Grey Dial Mens Watch. New with tags: A brand-new, unused, and unworn item (including handmade items) in the original packaging (such as the original box or bag) and/or with the original tags attached. </p>', '".plugins_url("Front_images/projects/11.jpg", __FILE__).";".plugins_url("Front_images/projects/11.1.jpg", __FILE__).";".plugins_url("Front_images/projects/11.3.jpg", __FILE__).";', 'http://huge-it.com/fields/order-website-maintenance/', 'image', 'on', 3, 1, NULL, '150', '120','@@Condition@A brand-new, unused@@Brand@Victorinox@@Features@Day & Date@@Age@Modern (2000-present)@@Movement@Quartz@@Display@Analog@@Band Material@Leather@@Gender@Men@@Color@black')";
 
 
 
@@ -1766,7 +1766,7 @@ jQuery(document).ready(function() {
 </script>
 
 <div id="huge_it_catalog" style="">
-  <h3>Select Catalog or Catalogs From Catalog Stand to insert into post</h3>
+  <h3>Select Catalogs Or Products From Catalog To Insert Into Post</h3>
   <?php 
   	global $wpdb;
 	    $query="SELECT * FROM ".$wpdb->prefix."huge_it_catalogs order by id ASC";

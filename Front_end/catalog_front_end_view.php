@@ -691,7 +691,7 @@ $paramssld["ht_view6_filtering_float"] = "none";
         margin: 0px 10px 0px 0px;
         border-radius: 5px;
         color: #EFEFEF;
-        background: #DEDEDE;
+        background: #E22828;
 }
 
 .wd-catalog-panel_<?php echo $catalogID; ?> .price-block_<?php echo $catalogID; ?>> .old-price-block {
@@ -895,7 +895,7 @@ $paramssld["ht_view6_filtering_float"] = "none";
 <?php if($paramssld["ht_view0_sorting_float"] == "left" && $paramssld["ht_view0_filtering_float"] == "right" ||
          $paramssld["ht_view0_sorting_float"] == "right" && $paramssld["ht_view0_filtering_float"] == "left")
        { echo "margin: 0px auto;"; }
-       if((($paramssld["ht_view0_filtering_float"] == "left" || $paramssld["ht_view0_filtering_float"] == "right" && $paramssld["ht_view0_sorting_float"] == "top") || ($paramssld["ht_view0_sorting_float"] == "left" || $paramssld["ht_view0_sorting_float"] == "right" && $paramssld["ht_view0_filting_float"] == "top")) && $portfolioShowFiltering == "on" && $portfolioShowSorting == "on")
+       if((($paramssld["ht_view0_filtering_float"] == "left" || $paramssld["ht_view0_filtering_float"] == "right" && $paramssld["ht_view0_sorting_float"] == "top") || ($paramssld["ht_view0_sorting_float"] == "left" || $paramssld["ht_view0_sorting_float"] == "right" && $paramssld["ht_view0_filting_float"] == "top")) && $catalogShowFiltering == "on" && $catalogShowSorting == "on")
        {
 ?>
         width: <?php echo $width_middle; ?> !important;
@@ -1344,7 +1344,7 @@ var defaultBlockWidth=<?php echo $paramssld['ht_view0_block_width']; ?>;
         margin: 0px 10px 0px 0px;
         border-radius: 5px;
         color: #EFEFEF;
-        background: #DEDEDE;
+        background: #E22828;
 }
 
 .wd-catalog-panel_<?php echo $catalogID; ?> .price-block_<?php echo $catalogID; ?> .old-price-block {
@@ -1547,7 +1547,7 @@ var defaultBlockWidth=<?php echo $paramssld['ht_view0_block_width']; ?>;
 <?php // if($paramssld["ht_view1_sorting_float"] == "left" && $paramssld["ht_view1_filtering_float"] == "right" ||
 //         $paramssld["ht_view1_sorting_float"] == "right" && $paramssld["ht_view1_filtering_float"] == "left")
 //       { echo "margin: 0px auto;"; }
-//       if((($paramssld["ht_view1_filtering_float"] == "left" || $paramssld["ht_view1_filtering_float"] == "right" && $paramssld["ht_view1_sorting_float"] == "top") || ($paramssld["ht_view1_sorting_float"] == "left" || $paramssld["ht_view1_sorting_float"] == "right" && $paramssld["ht_view1_filting_float"] == "top")) && $portfolioShowFiltering == "on" && $portfolioShowSorting == "on")
+//       if((($paramssld["ht_view1_filtering_float"] == "left" || $paramssld["ht_view1_filtering_float"] == "right" && $paramssld["ht_view1_sorting_float"] == "top") || ($paramssld["ht_view1_sorting_float"] == "left" || $paramssld["ht_view1_sorting_float"] == "right" && $paramssld["ht_view1_filting_float"] == "top")) && $catalogShowFiltering == "on" && $catalogShowSorting == "on")
 //       {
 ?>
     /*width: <?php echo $width_middle; ?> !important;*/
@@ -2351,7 +2351,7 @@ var defaultBlockHeight=<?php echo $paramssld['ht_view2_element_height']; ?>;
         margin: 0px 10px 0px 0px;
         border-radius: 5px;
         color: #EFEFEF;
-        background: #DEDEDE;
+        background: #E22828;
 }
 
 #huge_it_catalog_popup_list_<?php echo $catalogID; ?> .popup-wrapper_<?php echo $catalogID; ?> .right-block .old-price-block {
@@ -2618,7 +2618,7 @@ var defaultBlockHeight=<?php echo $paramssld['ht_view2_element_height']; ?>;
 <?php if($paramssld["ht_view2_sorting_float"] == "left" && $paramssld["ht_view2_filtering_float"] == "right" ||
          $paramssld["ht_view2_sorting_float"] == "right" && $paramssld["ht_view2_filtering_float"] == "left")
        { echo "margin: 0px auto;"; }
-       if((($paramssld["ht_view2_filtering_float"] == "left" || $paramssld["ht_view2_filtering_float"] == "right" && $paramssld["ht_view2_sorting_float"] == "top") || ($paramssld["ht_view2_sorting_float"] == "left" || $paramssld["ht_view2_sorting_float"] == "right" && $paramssld["ht_view2_filting_float"] == "top")) && $portfolioShowFiltering == "on" && $portfolioShowSorting == "on")
+       if((($paramssld["ht_view2_filtering_float"] == "left" || $paramssld["ht_view2_filtering_float"] == "right" && $paramssld["ht_view2_sorting_float"] == "top") || ($paramssld["ht_view2_sorting_float"] == "left" || $paramssld["ht_view2_sorting_float"] == "right" && $paramssld["ht_view2_filting_float"] == "top")) && $catalogShowFiltering == "on" && $catalogShowSorting == "on")
        {
 ?>
         width: <?php echo $width_middle; ?> !important;
@@ -2935,7 +2935,7 @@ var defaultBlockHeight=<?php echo $paramssld['ht_view2_element_height']; ?>;
         margin: 0px 10px 0px 0px;
         border-radius: 5px;
         color: #EFEFEF;
-        background: #DEDEDE;
+        background: #E22828;
 }
 
 .element_<?php echo $catalogID; ?> div.right-block .old-price-block {
@@ -3123,7 +3123,7 @@ var defaultBlockHeight=<?php echo $paramssld['ht_view2_element_height']; ?>;
         { ?>
             margin-left: 21%;
             <?php } 
-            if((($paramssld["ht_view3_filtering_float"] == "left" || $paramssld["ht_view3_filtering_float"] == "right" && $paramssld["ht_view3_sorting_float"] == "top") || ($paramssld["ht_view3_sorting_float"] == "left" || $paramssld["ht_view3_sorting_float"] == "right" && $paramssld["ht_view3_filting_float"] == "top")) && $portfolioShowFiltering == "on" && $portfolioShowSorting == "on")
+            if((($paramssld["ht_view3_filtering_float"] == "left" || $paramssld["ht_view3_filtering_float"] == "right" && $paramssld["ht_view3_sorting_float"] == "top") || ($paramssld["ht_view3_sorting_float"] == "left" || $paramssld["ht_view3_sorting_float"] == "right" && $paramssld["ht_view3_filting_float"] == "top")) && $catalogShowFiltering == "on" && $catalogShowSorting == "on")
                  { ?>
                   width: <?php echo $width_middle; ?> !important;
            <?php } ?>
@@ -3612,7 +3612,7 @@ jQuery(function(){
         margin: 0px 10px 0px 0px;
         border-radius: 5px;
         color: #EFEFEF;
-        background: #DEDEDE;
+        background: #E22828;
 }
 
 #main-slider_<?php echo $catalogID; ?> .slider-content-wrapper .right-block .old-price-block {
@@ -4412,6 +4412,11 @@ $paramssld2["ht_view3_allow_zooming"] = "on";
 
 /*######RIGHT BLOCK########*/
 
+.huge_it_catalog_single_product_page .rating-and-share-blocks {
+	font-size:<?php echo $paramssld['ht_single_product_rating_font_size']; ?>px !important;
+	color:#<?php echo $paramssld['ht_single_product_rating_font_color']; ?> !important;
+}
+
 .huge_it_catalog_single_product_page div.right-block {
 	position:relative;
 	float:left;
@@ -4505,9 +4510,7 @@ $paramssld2["ht_view3_allow_zooming"] = "on";
 	margin:0px 10px 0px 0px;
 	padding:0px;
 	font-weight:normal;
-	font-size:<?php echo $paramssld['ht_single_product_rating_font_size']; ?>px;
-	color:#<?php echo $paramssld['ht_single_product_rating_font_color']; ?>;
-	float:left;
+        float:left;
         padding: 2% 0px;
 }
 
@@ -4581,16 +4584,28 @@ $paramssld2["ht_view3_allow_zooming"] = "on";
 
 .huge_it_catalog_single_product_page .right-block .share_buttons_block ul li a {
 	display:block;
-	width: 18px;
-	height: 18px;
+	width: 20px;
+	height: 20px;
+        padding: 0 !important;
+        margin: 0 !important;
 	cursor:pointer;
 	text-indent:-9999px !important;
 	background-image:url('<?php echo  plugins_url( '../images/share.buttons.png', __FILE__ ); ?>');
 }
 
-.huge_it_catalog_single_product_page .right-block .share_buttons_block ul li.facebook a {background-position:left top; border: 1px solid #ccc; border-radius: 3px; }
+.huge_it_catalog_single_product_page .right-block .share_buttons_block ul li.twitter {
+	width: 20px;
+        border-right: 1px solid #ccc;
+        overflow: hidden;
+        height: 20px;
+        border-radius: 4px;
+	background-image:url('<?php echo  plugins_url( '../images/share.buttons.png', __FILE__ ); ?>');
+}
+
+
+.huge_it_catalog_single_product_page .right-block .share_buttons_block ul li.facebook a {background-position:left top; border: 1px solid #ccc; border-radius: 3px;width:20px !important;height:20px !important; }
 .huge_it_catalog_single_product_page .right-block .share_buttons_block ul li.twitter a {background-position:-20px top;}
-.huge_it_catalog_single_product_page .right-block .share_buttons_block ul li.pinterest a {background-position:-43px top; border: 1px solid #ccc; border-radius: 3px;}
+.huge_it_catalog_single_product_page .right-block .share_buttons_block ul li.pinterest a {background-position:-43px top; border: 1px solid #ccc; border-radius: 3px;width:20px !important;height:20px !important;}
 .huge_it_catalog_single_product_page .right-block .share_buttons_block ul li.mail a {background-position:right top;}
 
 .huge_it_catalog_single_product_page .order_button {
@@ -4776,8 +4791,8 @@ $paramssld2["ht_view3_allow_zooming"] = "on";
         display: block;
         width: 29%;
         height: 27px;
-        margin: 0px 0% 10px 0px;
-        padding: 3px 0px 0px 1%;
+        margin: 0px 0% 10px 0px !important;
+        padding: 3px 0px 0px 1% !important;
         background: url('<?php echo  plugins_url( '../images/params.bg.png', __FILE__ ); ?>') left top repeat-x;
 }
 
@@ -5218,14 +5233,14 @@ $paramssld2["ht_view3_allow_zooming"] = "on";
                                             <a href="mailto:Insert%20Link?subject=I%20wanted%20to%20share%20this%20post%20with%20you%20from%20<?php bloginfo('name'); ?>&body=<?php the_permalink(); ?>" >Share via Email</a>
                                         </li>-->
 					<li class="facebook"><a href=""  target="_blank" onclick="javascript:void window.open('<?php echo "https://www.facebook.com/sharer/sharer.php?u=".$myPageLink.""; ?>','1410949501326','width=700,height=500,toolbar=0,menubar=0,location=0,status=1,scrollbars=1,resizable=1,left=0,top=0');return false;">Facebook</a></li>
-					<li class="twitter" style="width: 20px;">
+					<li class="twitter" style="">
                                             
                                             <!--<a href="https://twitter.com/share" class="twitter-share-button" data-dnt="true" data-count="none" data-via="twitterdev" onclick="window.twttr=(function(d,s,id){var js,fjs=d.getElementsByTagName(s)[0],t=window.twttr||{};if(d.getElementById(id))return;js=d.createElement(s);js.id=id;js.src='https://platform.twitter.com/widgets.js';fjs.parentNode.insertBefore(js,fjs);t._e=[];t.ready=function(f){t._e.push(f);};return t;}(document,'script','twitter-wjs'));"> Tweet</a>-->
                                             
                                             <a class="twitter-share-button" href="https://twitter.com/share" data-count="none" data-size="small" >Tweet</a>
                                          <!--<a href="#"  target="_blank" onclick="javascript:void window.open('<?php // echo "https://twitter.com/intent/tweet?url=".$myPageLink."&text=".$pageTitle ?>','1410949501326','width=700,height=500,toolbar=0,menubar=0,location=0,status=1,scrollbars=1,resizable=1,left=0,top=0');location.href='<?php echo myPageLink; ?>'; return false;">Twitter</a></li>-->
-					<li class="pinterest">
-                                            <a href="#" target="_blank" onclick="javascript:void window.open('http://www.pinterest.com/pin/create/button/?url=<?php echo $myPageLink; ?>&media=<?php echo $pintimage[0]; ?>&description=<?php echo $pageTitle; ?>','1410949501326','width=700,height=500,toolbar=0,menubar=0,location=0,status=1,scrollbars=1,resizable=1,left=0,top=0');return false;">Pinterest</a>
+					<li class="pinterest" style="width: 20px; height: 20px;">
+                                            <a  style="width: 20px; height: 20px;" href="#" target="_blank" onclick="javascript:void window.open('http://www.pinterest.com/pin/create/button/?url=<?php echo $myPageLink; ?>&media=<?php echo $pintimage[0]; ?>&description=<?php echo $pageTitle; ?>','1410949501326','width=700,height=500,toolbar=0,menubar=0,location=0,status=1,scrollbars=1,resizable=1,left=0,top=0');return false;">Pinterest</a>
                                         </li>
 				</ul>
                             </div>
@@ -5325,6 +5340,7 @@ $paramssld2["ht_view3_allow_zooming"] = "on";
                       <li id="catalog-view-options-1_<?php echo $productArray->id; ?>"  <?php if($paramssld["ht_single_product_show_parameters"] == 'off'){ echo "class='active'"; } ?>>
                           <h4 style="display: none;" class="title_for_mobile">Comments</h4>
                           <div class="reviews-block"><?php
+                           if(!empty($reviewsArray)){
                               if($reviewsArray[0]->id == ""){
                                       echo "<br>no comments";
                               }
@@ -5333,8 +5349,11 @@ $paramssld2["ht_view3_allow_zooming"] = "on";
                                             <div class="review">
                                                <?php if($review->spam == 0) echo "<p style='font-weight: bold;' >".$review->name."</p><p>".$review->content."</p>"; ?>
                                             </div>
-                       <?php          }
-                             } ?>
+                       <?php 
+                                      }
+                                  }
+                              }
+                       ?>
 
                           </div>
                           <div class = "write-rate-block">
@@ -6432,7 +6451,7 @@ $paramssld["ht_view0_togglebutton_style"] = "dark";
 <?php if($paramssld["ht_view0_sorting_float"] == "left" && $paramssld["ht_view0_filtering_float"] == "right" ||
          $paramssld["ht_view0_sorting_float"] == "right" && $paramssld["ht_view0_filtering_float"] == "left")
        { echo "margin: 0px auto;"; }
-       if((($paramssld["ht_view0_filtering_float"] == "left" || $paramssld["ht_view0_filtering_float"] == "right" && $paramssld["ht_view0_sorting_float"] == "top") || ($paramssld["ht_view0_sorting_float"] == "left" || $paramssld["ht_view0_sorting_float"] == "right" && $paramssld["ht_view0_filting_float"] == "top")) && $portfolioShowFiltering == "on" && $portfolioShowSorting == "on")
+       if((($paramssld["ht_view0_filtering_float"] == "left" || $paramssld["ht_view0_filtering_float"] == "right" && $paramssld["ht_view0_sorting_float"] == "top") || ($paramssld["ht_view0_sorting_float"] == "left" || $paramssld["ht_view0_sorting_float"] == "right" && $paramssld["ht_view0_filting_float"] == "top")) && $catalogShowFiltering == "on" && $catalogShowSorting == "on")
        {
 ?>
         width: <?php echo $width_middle; ?> !important;
@@ -7028,7 +7047,7 @@ var defaultBlockWidth=<?php echo $paramssld['ht_view0_block_width']; ?>;
 <?php if($paramssld["ht_view1_sorting_float"] == "left" && $paramssld["ht_view1_filtering_float"] == "right" ||
          $paramssld["ht_view1_sorting_float"] == "right" && $paramssld["ht_view1_filtering_float"] == "left")
        { echo "margin: 0px auto;"; }
-       if((($paramssld["ht_view1_filtering_float"] == "left" || $paramssld["ht_view1_filtering_float"] == "right" && $paramssld["ht_view1_sorting_float"] == "top") || ($paramssld["ht_view1_sorting_float"] == "left" || $paramssld["ht_view1_sorting_float"] == "right" && $paramssld["ht_view1_filting_float"] == "top")) && $portfolioShowFiltering == "on" && $portfolioShowSorting == "on")
+       if((($paramssld["ht_view1_filtering_float"] == "left" || $paramssld["ht_view1_filtering_float"] == "right" && $paramssld["ht_view1_sorting_float"] == "top") || ($paramssld["ht_view1_sorting_float"] == "left" || $paramssld["ht_view1_sorting_float"] == "right" && $paramssld["ht_view1_filting_float"] == "top")) && $catalogShowFiltering == "on" && $catalogShowSorting == "on")
        {
 ?>
     width: <?php echo $width_middle; ?> !important;
@@ -8029,7 +8048,7 @@ var defaultBlockHeight=<?php echo $paramssld['ht_view2_element_height']; ?>;
 <?php if($paramssld["ht_view2_sorting_float"] == "left" && $paramssld["ht_view2_filtering_float"] == "right" ||
          $paramssld["ht_view2_sorting_float"] == "right" && $paramssld["ht_view2_filtering_float"] == "left")
        { echo "margin: 0px auto;"; }
-       if((($paramssld["ht_view2_filtering_float"] == "left" || $paramssld["ht_view2_filtering_float"] == "right" && $paramssld["ht_view2_sorting_float"] == "top") || ($paramssld["ht_view2_sorting_float"] == "left" || $paramssld["ht_view2_sorting_float"] == "right" && $paramssld["ht_view2_filting_float"] == "top")) && $portfolioShowFiltering == "on" && $portfolioShowSorting == "on")
+       if((($paramssld["ht_view2_filtering_float"] == "left" || $paramssld["ht_view2_filtering_float"] == "right" && $paramssld["ht_view2_sorting_float"] == "top") || ($paramssld["ht_view2_sorting_float"] == "left" || $paramssld["ht_view2_sorting_float"] == "right" && $paramssld["ht_view2_filting_float"] == "top")) && $catalogShowFiltering == "on" && $catalogShowSorting == "on")
        {
 ?>
         width: <?php echo $width_middle; ?> !important;
@@ -8454,7 +8473,7 @@ var defaultBlockHeight=<?php echo $paramssld['ht_view2_element_height']; ?>;
         { ?>
             margin-left: 21%;
             <?php } 
-            if((($paramssld["ht_view3_filtering_float"] == "left" || $paramssld["ht_view3_filtering_float"] == "right" && $paramssld["ht_view3_sorting_float"] == "top") || ($paramssld["ht_view3_sorting_float"] == "left" || $paramssld["ht_view3_sorting_float"] == "right" && $paramssld["ht_view3_filting_float"] == "top")) && $portfolioShowFiltering == "on" && $portfolioShowSorting == "on")
+            if((($paramssld["ht_view3_filtering_float"] == "left" || $paramssld["ht_view3_filtering_float"] == "right" && $paramssld["ht_view3_sorting_float"] == "top") || ($paramssld["ht_view3_sorting_float"] == "left" || $paramssld["ht_view3_sorting_float"] == "right" && $paramssld["ht_view3_filting_float"] == "top")) && $catalogShowFiltering == "on" && $catalogShowSorting == "on")
                  { ?>
                   width: <?php echo $width_middle; ?> !important;
            <?php } ?>

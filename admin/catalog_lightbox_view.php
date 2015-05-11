@@ -120,7 +120,7 @@ jQuery(window).load(function(){
                 </div>
     <div id="post-body-content" class="catalog-options">            
            <div style="margin-left: -20px;" id="poststuff">
-<div id="post-body-content" class="portfolio-options">
+<div id="post-body-content" class="catalog-options">
 			<img style="width: 100%;" src="<?php echo $path_site2; ?>/options-3.jpg">
 		</div>			
 		</div>	

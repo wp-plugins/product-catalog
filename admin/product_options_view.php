@@ -30,7 +30,7 @@ function html_show_product_options($param_values){  //  var_dump($param_values);
 
 		<div id="post-body-content" class="catalog-options">
 <div style="margin-left: -20px;" id="poststuff">
-<div id="post-body-content" class="portfolio-options">
+<div id="post-body-content" class="catalog-options">
 			<img style="width: 100%;" src="<?php echo $path_site2; ?>/options-2.jpg">
 		</div>			
 		</div>			
