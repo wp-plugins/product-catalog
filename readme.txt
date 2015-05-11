@@ -1,7 +1,7 @@
 === Product Catalog ===
 Contributors: Huge-IT
 Donate link: http://huge-it.com/product-catalog/
-Tags: catalog, product reviews, catalogs, blog catalog, online store, product tabs, catalogue, products, vote, wp catalog, WP Catalogue, directory, product portfolio, product catalog, shopping cart, product catalogue, store, product feed, digital goods, listing, list, collection, product, attributes, display products, inventory, list products, product gallery, products catalog, catalog of goods,
+Tags: catalog, product reviews, catalogs, blog catalog, online store, product tabs, catalogue, products, vote, wp catalog, WP Catalogue, directory, product portfolio, product catalog, shopping cart, product catalogue, store, product feed, digital goods, listing, list, collection, product, attributes, display products, inventory, list products, product gallery, products catalog, catalog of goods, e-commerce, commerce, ecommerce, shop, shopping, wordpress ecommerce,
 Requires at least: 3.0.1
 Tested up to: 4.2.2
 Stable tag: 1.0.2
@@ -14,6 +14,8 @@ Let us introduce our Huge-IT Product Catalog incomparable plugin. To begin with,
 
 ### Wordpress Product Catalog
 
+* [Wordpress Product Catalog](http://huge-it.com/product-catalog/)
+
 Let us introduce our Huge-IT Product Catalog incomparable plugin. To begin with, why do we need this plugin and what are the advantages.
 The plugin is made for demonstration, sale, advertisements for your products. Imagine a stand with a variety of catalogs with a specific product category. To imagine is not difficult, to use is even easier.
 
@@ -21,11 +23,11 @@ You have the possibility to add an unlimited number of products, every product c
 
 Huge-IT Product Catalog license provides you with a high level of customization in relation to almost all aspects of the catalog: from the background color and size of the text inside the cell of the product to the number of products in the series and the number of comments on the product page. Order of the products can be changed with easy drug&drop function. In admin page you can find custom fields containing certain product characteristics, such as price or color, moreover,  you can add more fields. The whole catalog where all your products are collected, can be demonstrated with 5 beautiful views, they are:
 
-*   Block Toggle Up-Down
-*   Full-Height Blocks
-*   Content Popup
-*   Full-With Blocks
-*   Content Slide
+*   Block Toggle Up-Down - Product Catalog
+*   Full-Height Blocks - Product Catalog
+*   Content Popup - Product Catalog
+*   Full-With Blocks - Product Catalog
+*   Content Slide - Product Catalog
 
 Choose a cover image for your catalog and it’s done.
 General Options for pro users you can find on the left panel under catalog plugin. There are:
@@ -48,16 +50,15 @@ Plugin includes two kind of shortcodes. The short one is for posts&pages, the lo
 
 ### 5 View Options - Product Catalog
 
-Block Toggle Up-Down. This view will demonstrate the product catalog main image in similar boxes with title, and little arrow next to it, as you press the arrow opens vertical tape, which consists of additional images, description and other parameters about product, and “View Product” button. Pressing on that button you will get to product catalog main page. All images open with Lightbox
+Block Toggle Up-Down. This view will demonstrate the product catalog main image in similar boxes with title, and little arrow next to it, as you press the arrow opens vertical tape, which consists of additional images, description and other parameters about product, and “View Product” button. Pressing on that button you will get to product catalog main page. All images open with Lightbox.
 
-Full-Height Blocks. Opened vertical tape, with large main image, additional images, text, information about product catalog and “View Product” button. Pressing on that button you will get to product catalog main page.  All images open with Lightbox
+Full-Height Blocks. Opened vertical tape, with large main image, additional images, text, information about product catalog and “View Product” button. Pressing on that button you will get to product catalog main page.  All images open with Lightbox.
 
 Catalog / Content Popup. In closed position it is fixed boxes with cover/mail image and title, as you click on image, opens popup with larger main and additional images in it, title, description and other information about the product next to it, also “View Product” button. Pressing on that button you will get to product catalog main page.
 
 Full-With Blocks. Main image with tiny additional images under it, all of them can be opened with Lightbox. Next to the images you can find title, description, product information and  “View Product” button. Pressing on that button you will get to product catalog main page.
 
 Content Slider. Slider with main image with tiny additional images under it, all of them can be opened with Lightbox. Next to the images you can find title, description, product information and  “View Product” button. Pressing on that button you will get to product catalog main page. Slide the content manually by pressing on arrows.
-
 
 Upgrade to [WordPress Product Catalog Pro](http://huge-it.com/product-catalog) to Customizable Styles and Colors.
 
