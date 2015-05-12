@@ -4,7 +4,7 @@
 Plugin Name: Huge IT Product Catalog
 Plugin URI: http://huge-it.com/product-catalog
 Description: Let us introduce our Huge-IT Product Catalog incomparable plugin. To begin with, why do we need this plugin and what are the advantages.
-Version: 1.0.3
+Version: 1.0.4
 Author: http://huge-it.com/
 License: GNU/GPLv3 http://www.gnu.org/licenses/gpl-3.0.html
 */
@@ -603,9 +603,9 @@ function register_Huge_it_catalog_Widget() {
 }
 
 
-add_action('wp_ajax_my_action', 'my_action_callback');
+add_action('wp_ajax_my_action', 'huge_it_catalog_my_action_callback');
 
-function my_action_callback() {
+function huge_it_catalog_my_action_callback() {
     global $wpdb; // this is how you get access to the database
     if($_POST["post"] == "delanyreviews"){
         $reviews_for_delete =  $_POST['reviews_for_delete'];
