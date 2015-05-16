@@ -8,6 +8,7 @@
 //}
 
 function zoom_start(){
+//    alert(allowZooming);
     if(allowZooming == "on"){
         if(catalogZoomType == "window"){
             jQuery(for_zoom).elevateZoom({

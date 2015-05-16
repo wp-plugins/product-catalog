@@ -4,7 +4,7 @@
 Plugin Name: Huge IT Product Catalog
 Plugin URI: http://huge-it.com/product-catalog
 Description: Let us introduce our Huge-IT Product Catalog incomparable plugin. To begin with, why do we need this plugin and what are the advantages.
-Version: 1.0.4
+Version: 1.0.5
 Author: http://huge-it.com/
 License: GNU/GPLv3 http://www.gnu.org/licenses/gpl-3.0.html
 */
@@ -19,7 +19,7 @@ function add_my_custom_button_for_catalog($context) {
   $img = plugins_url( '/images/huge_it_catalog_logo_shortcode.png' , __FILE__ );
   $container_id = 'huge_it_catalog';
 
-  $title = 'Select Huge IT Slider to insert into post';
+  $title = 'Select Catalog IT Slider To insert Into Post';
 
   $context .= '<a class="button thickbox" title="Select Catalog To Insert Into Post"    href="?page=catalogs_huge_it_catalog&task=catalog_add_shortcode_popup&TB_iframe=1&width=400&inlineId='.$container_id.'">
 		<span class="wp-media-buttons-icon" style="background: url('.$img.'); background-repeat: no-repeat; background-position: left bottom;"></span>
@@ -492,12 +492,11 @@ function huge_it_catalog_products_page(){
     wp_enqueue_script('param_block2', plugins_url("elements/jscolor/jscolor.js", __FILE__));
 //    wp_enqueue_script('colorbox..js', plugins_url("js/jquery.colorbox.js", __FILE__));
 //    wp_enqueue_script('colorbox..js', plugins_url("js/jquery.colorbox.js", __FILE__));
-//    if (isset($_GET['task'])){
-//        if ($_GET['task'] == 'save'){
-//            save_styles_options();
-//            show_product_options();
-//        }
-//    }
+    if (isset($_GET['task'])){
+        if ($_GET['task'] == 'save'){
+            save_styles_options();
+        }
+    }
     show_product_options();
     
 }
@@ -575,7 +574,7 @@ class Huge_it_catalog_Widget extends WP_Widget {
 					<label for="<?php echo $this->get_field_id( 'title' ); ?>"><?php _e( 'Title:' ); ?></label> 
 					<input class="widefat" id="<?php echo $this->get_field_id( 'title' ); ?>" name="<?php echo $this->get_field_name( 'title' ); ?>" type="text" value="<?php echo esc_attr( $title ); ?>" />
 				</p>
-				<label for="<?php echo $this->get_field_id('catalog_id'); ?>"><?php _e('Select catalog:', 'huge_it_catalog'); ?></label> 
+				<label for="<?php echo $this->get_field_id('catalog_id'); ?>"><?php _e('Select Catalog:', 'huge_it_catalog'); ?></label> 
 				<select id="<?php echo $this->get_field_id('catalog_id'); ?>" name="<?php echo $this->get_field_name('catalog_id'); ?>">
 				
 				<?php
@@ -760,10 +759,10 @@ function huge_it_catalog_my_action_callback() {
        }
     }
 }
-    add_action('wp_ajax_my_action', 'my_action_callback_frontend');
-    add_action('wp_ajax_nopriv_my_action', 'my_action_callback_frontend' );
+    add_action('wp_ajax_my_action', 'huge_it_catalog_my_action_callback_frontend');
+    add_action('wp_ajax_nopriv_my_action', 'huge_it_catalog_my_action_callback_frontend' );
 
-function my_action_callback_frontend() {
+function huge_it_catalog_my_action_callback_frontend() {
     global $wpdb; // this is how you get access to the database
     
         if($_POST["post"] == "applyproductcommentfromuser"){
@@ -1032,6 +1031,19 @@ CREATE TABLE IF NOT EXISTS `" . $wpdb->prefix . "huge_it_catalog_asc_seller`(
   PRIMARY KEY (`id`)
 ) ENGINE=MyISAM  DEFAULT CHARSET=latin1 AUTO_INCREMENT=8 ";
     
+    
+//    $sql_huge_it_catalog_reviews = "
+//CREATE TABLE IF NOT EXISTS `" . $wpdb->prefix . "huge_it_catalog_reviews` (
+//  `id` int(11) unsigned NOT NULL AUTO_INCREMENT,
+//  `name` text CHARACTER SET utf8 NOT NULL,
+//  `content` text CHARACTER SET utf8 NOT NULL,
+//  `product_id` int(11),
+//  `spam` int(11),
+//  `ip` text CHARACTER SET utf8 NOT NULL,
+//  
+//  PRIMARY KEY (`id`)
+//) ENGINE=MyISAM  DEFAULT CHARSET=latin1 AUTO_INCREMENT=8 ";
+    
 $sql_huge_it_catalog_albums = "
 CREATE TABLE IF NOT EXISTS `" . $wpdb->prefix . "huge_it_catalog_albums` (
   `id` int(11) unsigned NOT NULL AUTO_INCREMENT,
@@ -1042,7 +1054,7 @@ CREATE TABLE IF NOT EXISTS `" . $wpdb->prefix . "huge_it_catalog_albums` (
 ) ENGINE=MyISAM  DEFAULT CHARSET=latin1 AUTO_INCREMENT=8 ";
     
     
-
+//
 //    $table_name = $wpdb->prefix . "huge_it_catalog_params";
 //    $sql_1 = <<<query1
 //INSERT INTO `$table_name` (`name`, `title`,`description`, `value`) VALUES
@@ -1070,7 +1082,7 @@ CREATE TABLE IF NOT EXISTS `" . $wpdb->prefix . "huge_it_catalog_albums` (
 //('ht_view0_element_border_color', 'Element Border Color', 'Element Border Color', 'D0D0D0'),
 //('ht_view0_element_background_color', 'Element Background Color', 'Element Background Color', 'f7f7f7'),
 //('ht_view0_block_width', 'Block Width', 'Block Width', '275'),
-//('ht_view0_block_height', 'Block Height', 'Block Height', '160'),
+//('ht_view0_block_height', 'Block Height', 'Block Height', '320'),
 //
 //
 ///*############################## VIEW 1 #####################################*/
@@ -1135,7 +1147,7 @@ CREATE TABLE IF NOT EXISTS `" . $wpdb->prefix . "huge_it_catalog_albums` (
 //('ht_view2_element_border_color', 'Element Border Color', 'Element Border Color', 'dedede'),
 //('ht_view2_element_background_color', 'Element Background Color', 'Element Background Color', 'f9f9f9'),
 //('ht_view2_element_width', 'Block Width', 'Block Width', '275'),
-//('ht_view2_element_height', 'Block Height', 'Block Height', '160'),
+//('ht_view2_element_height', 'Block Height', 'Block Height', '320'),
 //
 //
 ///*############################## VIEW 3 Fullwidth #####################################*/
@@ -1488,7 +1500,7 @@ CREATE TABLE IF NOT EXISTS `" . $wpdb->prefix . "huge_it_catalog_albums` (
 //('ht_catalog_zoom_window_fadeout', 'Zoom Window Lens Size', 'Zoom Window Lens Size', '200'),
 //('ht_catalog_zoom_lens_fadein', 'Zoom Lens Fadein', 'Zoom Lens Fadein', '200'),
 //('ht_catalog_zoom_lens_fadeout', 'Zoom Lens Fadeout', 'Zoom Lens Fadeout', '200'),
-//('ht_catalog_zoom_lens_hide', 'Zoom Lens Hide', 'Zoom Lens Hide', 'true'),
+//('ht_catalog_zoom_lens_hide', 'Zoom Lens Hide', 'Zoom Lens Hide', 'false'),
 //('ht_catalog_zoom_lens_shape', 'ZoomLens Shape', 'Zoom Lens Shape', 'square'),
 //('ht_catalog_zoom_lens_color', 'Zoom Lens Color', 'Zoom Lens Color', '#fff'),
 //('ht_catalog_zoom_lens_opacity', 'Zoom Window Lens Opacity', 'Zoom Lens Opacity', '40'),
@@ -1504,8 +1516,17 @@ CREATE TABLE IF NOT EXISTS `" . $wpdb->prefix . "huge_it_catalog_albums` (
 //('ht_catalog_zoom_tint_fadein', 'Zoom Tint Fadein Speed', 'Zoom Tint Fadein Speed', '200'),
 //('ht_catalog_zoom_tint_fadeout', 'Zoom Tint Fadeout Speed', 'Zoom Tint Fadeout Speed', '200'),
 //('ht_view3_allow_lightbox', 'View Mode', 'View Mode', 'on'),
-//('ht_catalog_zoom_thumbs_zoom', 'Allow Thumbs Zoom', 'Allow Thumbs Zoom', 'off'),
-//('ht_view3_allow_zooming', 'View Mode', 'View Mode', 'on');
+//('ht_view3_allow_zooming', 'View Mode', 'View Mode', 'on'), 
+//
+///*('ht_view0_allow_lightbox', 'View Mode', 'View Mode', 'on'),
+//('ht_view1_allow_lightbox', 'View Mode', 'View Mode', 'on'),
+//('ht_view2_allow_lightbox', 'View Mode', 'View Mode', 'on'),
+//('ht_view5_allow_lightbox', 'View Mode', 'View Mode', 'on'),
+//('ht_view0_allow_zooming', 'View Mode', 'View Mode', 'on'),
+//('ht_view1_allow_zooming', 'View Mode', 'View Mode', 'on'),
+//('ht_view2_allow_zooming', 'View Mode', 'View Mode', 'on'),
+//('ht_view5_allow_zooming', 'View Mode', 'View Mode', 'on'),*/
+//('ht_catalog_zoom_thumbs_zoom', 'Allow Thumbs Zoom', 'Allow Thumbs Zoom', 'off');
 //
 //query1;
     
@@ -1527,22 +1548,22 @@ query7;
 INSERT INTO 
 
 `" . $table_name . "` (`id`, `name`, `catalog_id`, `description`, `image_url`, `sl_url`, `sl_type`, `link_target`, `ordering`, `published`, `published_in_sl_width`, `price`, `market_price`, `parameters`) VALUES
-(1, 'Nokia Lumia 521', '8', '<p>Lorem ipsum dolor sit amet, consectetur adipisicing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat. Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur. </p><p>Excepteur sint occaecat cupidatat non proident, sunt in culpa qui officia deserunt mollit anim id est laborum.</p>', '".plugins_url("Front_images/projects/1.jpg", __FILE__).";".plugins_url("Front_images/projects/1.1.jpg", __FILE__).";".plugins_url("Front_images/projects/1.2.jpg", __FILE__).";', 'http://huge-it.com/fields/order-website-maintenance/', 'image', 'on', 0, 1, NULL, '100', '150','@@Condition@A new, unused item with absolutely no signs.@@Brand@Nokia@@Model@Lumia 521@@Color@White@@Included In Purchase@Phone, Battery, Battery Door, Charger,@@Features@3G Data Capable, 4G Data Capable@@Storage Capacity@8GB'),
-(2, 'New Sony XPERIA Z3 D6653 QuadCore', '8', '<ul><li>lorem ipsumdolor sit amet</li><li>lorem ipsum dolor sit amet</li></ul><p>Excepteur sint occaecat cupidatat non proident, sunt in culpa qui officia deserunt mollit anim id est laborum.</p>', '".plugins_url("Front_images/projects/5.jpg", __FILE__).";".plugins_url("Front_images/projects/5.1.jpg", __FILE__).";".plugins_url("Front_images/projects/5.2.jpg", __FILE__).";', 'http://huge-it.com/fields/order-website-maintenance/', 'image', 'on', 1, 1, NULL, '10', '15','@@Condition@New: A brand-new, unused, unopened@@Brand@Sony@@Model@Xperia Z3 D6653@@Color@@Included In Purchase@@Features@3G Data Capable, Bluetooth Enabled@@Storage Capacity@16GB'),
-(3, 'Nexus', '8', '<h6>Lorem Ipsum </h6><p>Lorem ipsum dolor sit amet, consectetur adipisicing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat. Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur. </p><p>Excepteur sint occaecat cupidatat non proident, sunt in culpa qui officia deserunt mollit anim id est laborum.</p><ul><li>lorem ipsum</li><li>dolor sit amet</li><li>lorem ipsum</li><li>dolor sit amet</li></ul>', '".plugins_url("Front_images/projects/3.jpg", __FILE__).";".plugins_url("Front_images/projects/3.1.jpg", __FILE__).";".plugins_url("Front_images/projects/3.2.jpg", __FILE__).";', 'http://huge-it.com/fields/order-website-maintenance/', 'image', 'on', 2, 1, NULL, '300', '150','@@Condition@New: A brand-new, unused, unopened.@@Brand@Samsung@@Model@ATIV SE@@Color@Silver@@Included In Purchase@Phone, Battery, Battery Door, USB Charger@@Features@3G Data Capable, 4G Data Capable@@Storage Capacity@16GB'),
-(4, 'Nokia X', '8', '<p>Lorem ipsum dolor sit amet, consectetur adipisicing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat. Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur. </p><h7>Dolor sit amet</h7><p>Excepteur sint occaecat cupidatat non proident, sunt in culpa qui officia deserunt mollit anim id est laborum.</p>', '".plugins_url("Front_images/projects/4.jpg", __FILE__).";".plugins_url("Front_images/projects/4.1.jpg", __FILE__).";".plugins_url("Front_images/projects/4.2.jpg", __FILE__).";".plugins_url("Front_images/projects/4.3.jpg", __FILE__).";', 'http://huge-it.com/fields/order-website-maintenance/', 'image', 'on', 3, 1, NULL, '150', '120','@@Condition@New: A brand-new, unused, unopened@@Brand@Nokia@@Model@Nokia X@@Color@Black@@Included In Purchase@Phone, Battery, Battery Door, Charger, @@Features@Wi-Fi Capable, GPS, Bluetooth Enabled@@Storage Capacity@4GB'),
-(5, 'HTC Rhyme', '8', '<ul><li>lorem ipsumdolor sit amet</li><li>lorem ipsum dolor sit amet</li></ul><p>Excepteur sint occaecat cupidatat non proident, sunt in culpa qui officia deserunt mollit anim id est laborum.</p>', '".plugins_url("Front_images/projects/9.jpg", __FILE__).";".plugins_url("Front_images/projects/9.1.jpg", __FILE__).";".plugins_url("Front_images/projects/9.2.jpg", __FILE__).";', 'http://huge-it.com/fields/order-website-maintenance/', 'image', 'on', 1, 1, NULL, '10', '15','@@Condition@New: A brand-new, unused, unopened@@Brand@Sony Ericsson@@Model@ TXT Pro CK15A@@Color@Black@@Included In Purchase@@Features@Bluetooth Enabled, Global Ready, Internet Browser.@@Storage Capacity@100MB'),
-(6, 'BlackBerry Curve 9720', '8', '<ul><li>lorem ipsumdolor sit amet</li><li>lorem ipsum dolor sit amet</li></ul><p>Excepteur sint occaecat cupidatat non proident, sunt in culpa qui officia deserunt mollit anim id est laborum.</p>', '".plugins_url("Front_images/projects/10.jpg", __FILE__).";".plugins_url("Front_images/projects/10.1.jpg", __FILE__).";".plugins_url("Front_images/projects/9.2.jpg", __FILE__).";', 'http://huge-it.com/fields/order-website-maintenance/', 'image', 'on', 1, 1, NULL, '10', '15','@@Condition@New: A brand-new, unused, unopened@@Brand@BlackBerry@@Model@9720@@Color@Purple@@Included In Purchase@@Features@3G Data Capable, Bluetooth Enabled, Global Ready.@@Storage Capacity@512 MB'),
+(1, 'Nokia Lumia 521', '8', '<p>Lorem ipsum dolor sit amet, consectetur adipisicing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat. Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur. </p><p>Excepteur sint occaecat cupidatat non proident, sunt in culpa qui officia deserunt mollit anim id est laborum.</p>', '".plugins_url("Front_images/projects/1.jpg", __FILE__).";".plugins_url("Front_images/projects/1.1.jpg", __FILE__).";".plugins_url("Front_images/projects/1.2.jpg", __FILE__).";', 'http://huge-it.com/fields/order-website-maintenance/', 'image', 'on', 0, 1, NULL, '$100', '$50','@@Condition@A new, unused item with absolutely no signs.@@Brand@Nokia@@Model@Lumia 521@@Color@White@@Included In Purchase@Phone, Battery, Battery Door, Charger,@@Features@3G Data Capable, 4G Data Capable@@Storage Capacity@8GB'),
+(2, 'New Sony XPERIA Z3 D6653 QuadCore', '8', '<ul><li>lorem ipsumdolor sit amet</li><li>lorem ipsum dolor sit amet</li></ul><p>Excepteur sint occaecat cupidatat non proident, sunt in culpa qui officia deserunt mollit anim id est laborum.</p>', '".plugins_url("Front_images/projects/5.jpg", __FILE__).";".plugins_url("Front_images/projects/5.1.jpg", __FILE__).";".plugins_url("Front_images/projects/5.2.jpg", __FILE__).";', 'http://huge-it.com/fields/order-website-maintenance/', 'image', 'on', 1, 1, NULL, '$20', '$15','@@Condition@New: A brand-new, unused, unopened@@Brand@Sony@@Model@Xperia Z3 D6653@@Color@@Included In Purchase@@Features@3G Data Capable, Bluetooth Enabled@@Storage Capacity@16GB'),
+(3, 'Nexus', '8', '<h6>Lorem Ipsum </h6><p>Lorem ipsum dolor sit amet, consectetur adipisicing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat. Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur. </p><p>Excepteur sint occaecat cupidatat non proident, sunt in culpa qui officia deserunt mollit anim id est laborum.</p><ul><li>lorem ipsum</li><li>dolor sit amet</li><li>lorem ipsum</li><li>dolor sit amet</li></ul>', '".plugins_url("Front_images/projects/3.jpg", __FILE__).";".plugins_url("Front_images/projects/3.1.jpg", __FILE__).";".plugins_url("Front_images/projects/3.2.jpg", __FILE__).";', 'http://huge-it.com/fields/order-website-maintenance/', 'image', 'on', 2, 1, NULL, '$300', '$150','@@Condition@New: A brand-new, unused, unopened.@@Brand@Samsung@@Model@ATIV SE@@Color@Silver@@Included In Purchase@Phone, Battery, Battery Door, USB Charger@@Features@3G Data Capable, 4G Data Capable@@Storage Capacity@16GB'),
+(4, 'Nokia X', '8', '<p>Lorem ipsum dolor sit amet, consectetur adipisicing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat. Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur. </p><h7>Dolor sit amet</h7><p>Excepteur sint occaecat cupidatat non proident, sunt in culpa qui officia deserunt mollit anim id est laborum.</p>', '".plugins_url("Front_images/projects/4.jpg", __FILE__).";".plugins_url("Front_images/projects/4.1.jpg", __FILE__).";".plugins_url("Front_images/projects/4.2.jpg", __FILE__).";".plugins_url("Front_images/projects/4.3.jpg", __FILE__).";', 'http://huge-it.com/fields/order-website-maintenance/', 'image', 'on', 3, 1, NULL, '$150', '$120','@@Condition@New: A brand-new, unused, unopened@@Brand@Nokia@@Model@Nokia X@@Color@Black@@Included In Purchase@Phone, Battery, Battery Door, Charger, @@Features@Wi-Fi Capable, GPS, Bluetooth Enabled@@Storage Capacity@4GB'),
+(5, 'HTC Rhyme', '8', '<ul><li>lorem ipsumdolor sit amet</li><li>lorem ipsum dolor sit amet</li></ul><p>Excepteur sint occaecat cupidatat non proident, sunt in culpa qui officia deserunt mollit anim id est laborum.</p>', '".plugins_url("Front_images/projects/9.jpg", __FILE__).";".plugins_url("Front_images/projects/9.1.jpg", __FILE__).";".plugins_url("Front_images/projects/9.2.jpg", __FILE__).";', 'http://huge-it.com/fields/order-website-maintenance/', 'image', 'on', 1, 1, NULL, '$30', '$15','@@Condition@New: A brand-new, unused, unopened@@Brand@Sony Ericsson@@Model@ TXT Pro CK15A@@Color@Black@@Included In Purchase@@Features@Bluetooth Enabled, Global Ready, Internet Browser.@@Storage Capacity@100MB'),
+(6, 'BlackBerry Curve 9720', '8', '<ul><li>lorem ipsumdolor sit amet</li><li>lorem ipsum dolor sit amet</li></ul><p>Excepteur sint occaecat cupidatat non proident, sunt in culpa qui officia deserunt mollit anim id est laborum.</p>', '".plugins_url("Front_images/projects/10.jpg", __FILE__).";".plugins_url("Front_images/projects/10.1.jpg", __FILE__).";".plugins_url("Front_images/projects/9.2.jpg", __FILE__).";', 'http://huge-it.com/fields/order-website-maintenance/', 'image', 'on', 1, 1, NULL, '$45', '$15','@@Condition@New: A brand-new, unused, unopened@@Brand@BlackBerry@@Model@9720@@Color@Purple@@Included In Purchase@@Features@3G Data Capable, Bluetooth Enabled, Global Ready.@@Storage Capacity@512 MB'),
 
-(7, 'Michael Kors', '9', '<p>Michael Kors Dylan Navy Dial Rose Goldtone Navy Silicone Strap Mens Watch. New with tags: A brand-new, unused, and unworn item (including handmade items) in the original packaging (such as the original box or bag) and/or with the original tags attached.</p>', '".plugins_url("Front_images/projects/12.jpg", __FILE__).";".plugins_url("Front_images/projects/12.1.jpg", __FILE__).";".plugins_url("Front_images/projects/12.2.jpg", __FILE__).";".plugins_url("Front_images/projects/12.3.jpg", __FILE__).";', 'http://huge-it.com/fields/order-website-maintenance/', 'image', 'on', 3, 1, NULL, '150', '120','@@Condition@A brand-new, unused@@Brand@Michael Kors@@Features@Chronograph@@Age@Modern (2000-present)@@Movement@Quartz@@Display@Analog@@Band Material@Silicone@@Gender@Men@@Color@Rose Goldtone'),
-(8, 'Michael Kors', '9', '<p>Michael Kors Dylan Navy Dial Rose Goldtone Navy Silicone Strap Mens Watch . New with tags: A brand-new, unused, and unworn item (including handmade items) in the original packaging (such as the original box or bag) and/or with the original tags attached</p>', '".plugins_url("Front_images/projects/13.jpg", __FILE__).";".plugins_url("Front_images/projects/13.1.jpg", __FILE__).";".plugins_url("Front_images/projects/13.2.jpg", __FILE__).";".plugins_url("Front_images/projects/13.3.jpg", __FILE__).";', 'http://huge-it.com/fields/order-website-maintenance/', 'image', 'on', 3, 1, NULL, '150', '120','@@Condition@A brand-new, unused@@Brand@Michael Kors@@Features@Chronograph@@Age@Modern (2000-present)@@Movement@Quartz@@Display@Analog@@Band Material@Blue Silicone@@Gender@Men@@Color@Black Dial Blue Silicone'),
-(9, 'Nixon Chronicle', '9', '<p>Michael Kors Dylan Chronograph Black Dial Blue Silicone Mens. New with tags: A brand-new, unused, and unworn item (including handmade items) in the original packaging (such as the original box or bag) and/or with the original tags attached.</p>', '".plugins_url("Front_images/projects/14.jpg", __FILE__).";".plugins_url("Front_images/projects/14.1.jpg", __FILE__).";".plugins_url("Front_images/projects/14.2.jpg", __FILE__).";".plugins_url("Front_images/projects/14.3.jpg", __FILE__).";', 'http://huge-it.com/fields/order-website-maintenance/', 'image', 'on', 3, 1, NULL, '150', '120','@@Condition@A brand-new, unused@@Brand@Nixon@@Features@Date@@Age@Modern (2000-present)@@Movement@Quartz@@Display@Analog@@Band Material@Brown Leather@@Gender@Men@@Color@Silver'),
-(10, 'Michael Kors', '9', '<p>Michael Kors Dylan Chronograph Black Dial Red Silicone Mens. New with tags: A brand-new, unused, and unworn item (including handmade items) in the original packaging (such as the original box or bag) and/or with the original tags attached</p>', '".plugins_url("Front_images/projects/15.jpg", __FILE__).";".plugins_url("Front_images/projects/15.1.jpg", __FILE__).";".plugins_url("Front_images/projects/15.2.jpg", __FILE__).";', 'http://huge-it.com/fields/order-website-maintenance/', 'image', 'on', 3, 1, NULL, '150', '120','@@Condition@A brand-new, unused@@Brand@Michael Kors@@Features@Date@@Age@Modern (2000-present)@@Movement@Quartz@@Display@Analog@@Band Material@Red Silicone@@Gender@Men@@Color@Black'),
-(11, 'Nixon Chronicle', '9', '<p>Victorinox Chrono Calssic XLS Brown Dial Brown Leather Mens Watch. New with tags: A brand-new, unused, and unworn item (including handmade items) in the original packaging (such as the original box or bag) and/or with the original tags attached.</p>', '".plugins_url("Front_images/projects/16.jpg", __FILE__).";".plugins_url("Front_images/projects/16.1.jpg", __FILE__).";".plugins_url("Front_images/projects/16.2.jpg", __FILE__).";".plugins_url("Front_images/projects/16.3.jpg", __FILE__).";', 'http://huge-it.com/fields/order-website-maintenance/', 'image', 'on', 3, 1, NULL, '150', '120','@@Condition@A brand-new, unused@@Brand@Michael Kors@@Features@Chronograph@@Age@Modern (2000-present)@@Movement@Quartz@@Display@Analog@@Band Material@Stainless@@Gender@Women@@Color@Brown'),
-(12, 'Nixon Chronicle', '9', '<p>Michael Kors Ritz Chronograph Gold-Tone Ladies WatchNew with tags: A brand-new, unused, and unworn item (including handmade items) in the original packaging (such as the original box or bag) and/or with the original tags attached.</p>', '".plugins_url("Front_images/projects/19.jpg", __FILE__).";".plugins_url("Front_images/projects/19.1.jpg", __FILE__).";".plugins_url("Front_images/projects/19.2.jpg", __FILE__).";".plugins_url("Front_images/projects/19.3.jpg", __FILE__).";', 'http://huge-it.com/fields/order-website-maintenance/', 'image', 'on', 3, 1, NULL, '150', '120','@@Condition@A brand-new, unused@@Brand@Nixon@@Features@Date@@Age@Modern (2000-present)@@Movement@Quartz@@Display@Analog@@Band Material@Brown Leather@@Gender@Men@@Color@Gold'),
-(13, 'Nixon Chronicle', '9', '<p>Nixon Chronicle Black PVD Stainless Steel Mens Watch. New with tags: A brand-new, unused, and unworn item (including handmade items) in the original packaging (such as the original box or bag) and/or with the original tags attached.</p>', '".plugins_url("Front_images/projects/17.jpg", __FILE__).";".plugins_url("Front_images/projects/17.1.jpg", __FILE__).";".plugins_url("Front_images/projects/17.2.jpg", __FILE__).";".plugins_url("Front_images/projects/17.3.jpg", __FILE__).";', 'http://huge-it.com/fields/order-website-maintenance/', 'image', 'on', 3, 1, NULL, '150', '120','@@Condition@A brand-new, unused@@Brand@Nixon@@Features@Date@@Age@Modern (2000-present)@@Movement@Quartz@@Display@Analog@@Band Material@Leather@@Gender@Men@@Color@Black'),
-(14, 'Nixon Chronicle', '9', '<p>Michael Kors Runway Gold Dial Pink and Gold Leather Ladies Dress Watch. New with tags: A brand-new, unused, and unworn item (including handmade items) in the original packaging (such as the original box or bag) and/or with the original tags attached.</p>', '".plugins_url("Front_images/projects/18.jpg", __FILE__).";".plugins_url("Front_images/projects/18.1.jpg", __FILE__).";".plugins_url("Front_images/projects/18.2.jpg", __FILE__).";".plugins_url("Front_images/projects/18.3.jpg", __FILE__).";', 'http://huge-it.com/fields/order-website-maintenance/', 'image', 'on', 3, 1, NULL, '150', '120','@@Condition@A brand-new, unused@@Brand@Nixon@@Features@Date@@Age@Modern (2000-present)@@Movement@Quartz@@Display@Analog@@Band Material@Leather@@Gender@Women@@Color@Gold'),
-(15, 'Victorinox', '9', '<p>Victorinox Swiss Army Leather Officers Grey Dial Mens Watch. New with tags: A brand-new, unused, and unworn item (including handmade items) in the original packaging (such as the original box or bag) and/or with the original tags attached. </p>', '".plugins_url("Front_images/projects/11.jpg", __FILE__).";".plugins_url("Front_images/projects/11.1.jpg", __FILE__).";".plugins_url("Front_images/projects/11.3.jpg", __FILE__).";', 'http://huge-it.com/fields/order-website-maintenance/', 'image', 'on', 3, 1, NULL, '150', '120','@@Condition@A brand-new, unused@@Brand@Victorinox@@Features@Day & Date@@Age@Modern (2000-present)@@Movement@Quartz@@Display@Analog@@Band Material@Leather@@Gender@Men@@Color@black')";
+(7, 'Michael Kors', '9', '<p>Michael Kors Dylan Navy Dial Rose Goldtone Navy Silicone Strap Mens Watch. New with tags: A brand-new, unused, and unworn item (including handmade items) in the original packaging (such as the original box or bag) and/or with the original tags attached.</p>', '".plugins_url("Front_images/projects/12.jpg", __FILE__).";".plugins_url("Front_images/projects/12.1.jpg", __FILE__).";".plugins_url("Front_images/projects/12.2.jpg", __FILE__).";".plugins_url("Front_images/projects/12.3.jpg", __FILE__).";', 'http://huge-it.com/fields/order-website-maintenance/', 'image', 'on', 3, 1, NULL, '$150', '$120','@@Condition@A brand-new, unused@@Brand@Michael Kors@@Features@Chronograph@@Age@Modern (2000-present)@@Movement@Quartz@@Display@Analog@@Band Material@Silicone@@Gender@Men@@Color@Rose Goldtone'),
+(8, 'Michael Kors', '9', '<p>Michael Kors Dylan Navy Dial Rose Goldtone Navy Silicone Strap Mens Watch . New with tags: A brand-new, unused, and unworn item (including handmade items) in the original packaging (such as the original box or bag) and/or with the original tags attached</p>', '".plugins_url("Front_images/projects/13.jpg", __FILE__).";".plugins_url("Front_images/projects/13.1.jpg", __FILE__).";".plugins_url("Front_images/projects/13.2.jpg", __FILE__).";".plugins_url("Front_images/projects/13.3.jpg", __FILE__).";', 'http://huge-it.com/fields/order-website-maintenance/', 'image', 'on', 3, 1, NULL, '$160', '$130','@@Condition@A brand-new, unused@@Brand@Michael Kors@@Features@Chronograph@@Age@Modern (2000-present)@@Movement@Quartz@@Display@Analog@@Band Material@Blue Silicone@@Gender@Men@@Color@Black Dial Blue Silicone'),
+(9, 'Nixon Chronicle', '9', '<p>Michael Kors Dylan Chronograph Black Dial Blue Silicone Mens. New with tags: A brand-new, unused, and unworn item (including handmade items) in the original packaging (such as the original box or bag) and/or with the original tags attached.</p>', '".plugins_url("Front_images/projects/14.jpg", __FILE__).";".plugins_url("Front_images/projects/14.1.jpg", __FILE__).";".plugins_url("Front_images/projects/14.2.jpg", __FILE__).";".plugins_url("Front_images/projects/14.3.jpg", __FILE__).";', 'http://huge-it.com/fields/order-website-maintenance/', 'image', 'on', 3, 1, NULL, '$150', '$120','@@Condition@A brand-new, unused@@Brand@Nixon@@Features@Date@@Age@Modern (2000-present)@@Movement@Quartz@@Display@Analog@@Band Material@Brown Leather@@Gender@Men@@Color@Silver'),
+(10, 'Michael Kors', '9', '<p>Michael Kors Dylan Chronograph Black Dial Red Silicone Mens. New with tags: A brand-new, unused, and unworn item (including handmade items) in the original packaging (such as the original box or bag) and/or with the original tags attached</p>', '".plugins_url("Front_images/projects/15.jpg", __FILE__).";".plugins_url("Front_images/projects/15.1.jpg", __FILE__).";".plugins_url("Front_images/projects/15.2.jpg", __FILE__).";', 'http://huge-it.com/fields/order-website-maintenance/', 'image', 'on', 3, 1, NULL, '$150', '$120','@@Condition@A brand-new, unused@@Brand@Michael Kors@@Features@Date@@Age@Modern (2000-present)@@Movement@Quartz@@Display@Analog@@Band Material@Red Silicone@@Gender@Men@@Color@Black'),
+(11, 'Nixon Chronicle', '9', '<p>Victorinox Chrono Calssic XLS Brown Dial Brown Leather Mens Watch. New with tags: A brand-new, unused, and unworn item (including handmade items) in the original packaging (such as the original box or bag) and/or with the original tags attached.</p>', '".plugins_url("Front_images/projects/16.jpg", __FILE__).";".plugins_url("Front_images/projects/16.1.jpg", __FILE__).";".plugins_url("Front_images/projects/16.2.jpg", __FILE__).";".plugins_url("Front_images/projects/16.3.jpg", __FILE__).";', 'http://huge-it.com/fields/order-website-maintenance/', 'image', 'on', 3, 1, NULL, '$170', '$120','@@Condition@A brand-new, unused@@Brand@Michael Kors@@Features@Chronograph@@Age@Modern (2000-present)@@Movement@Quartz@@Display@Analog@@Band Material@Stainless@@Gender@Women@@Color@Brown'),
+(12, 'Nixon Chronicle', '9', '<p>Michael Kors Ritz Chronograph Gold-Tone Ladies WatchNew with tags: A brand-new, unused, and unworn item (including handmade items) in the original packaging (such as the original box or bag) and/or with the original tags attached.</p>', '".plugins_url("Front_images/projects/19.jpg", __FILE__).";".plugins_url("Front_images/projects/19.1.jpg", __FILE__).";".plugins_url("Front_images/projects/19.2.jpg", __FILE__).";".plugins_url("Front_images/projects/19.3.jpg", __FILE__).";', 'http://huge-it.com/fields/order-website-maintenance/', 'image', 'on', 3, 1, NULL, '$1250', '$120','@@Condition@A brand-new, unused@@Brand@Nixon@@Features@Date@@Age@Modern (2000-present)@@Movement@Quartz@@Display@Analog@@Band Material@Brown Leather@@Gender@Men@@Color@Gold'),
+(13, 'Nixon Chronicle', '9', '<p>Nixon Chronicle Black PVD Stainless Steel Mens Watch. New with tags: A brand-new, unused, and unworn item (including handmade items) in the original packaging (such as the original box or bag) and/or with the original tags attached.</p>', '".plugins_url("Front_images/projects/17.jpg", __FILE__).";".plugins_url("Front_images/projects/17.1.jpg", __FILE__).";".plugins_url("Front_images/projects/17.2.jpg", __FILE__).";".plugins_url("Front_images/projects/17.3.jpg", __FILE__).";', 'http://huge-it.com/fields/order-website-maintenance/', 'image', 'on', 3, 1, NULL, '$190', '$120','@@Condition@A brand-new, unused@@Brand@Nixon@@Features@Date@@Age@Modern (2000-present)@@Movement@Quartz@@Display@Analog@@Band Material@Leather@@Gender@Men@@Color@Black'),
+(14, 'Nixon Chronicle', '9', '<p>Michael Kors Runway Gold Dial Pink and Gold Leather Ladies Dress Watch. New with tags: A brand-new, unused, and unworn item (including handmade items) in the original packaging (such as the original box or bag) and/or with the original tags attached.</p>', '".plugins_url("Front_images/projects/18.jpg", __FILE__).";".plugins_url("Front_images/projects/18.1.jpg", __FILE__).";".plugins_url("Front_images/projects/18.2.jpg", __FILE__).";".plugins_url("Front_images/projects/18.3.jpg", __FILE__).";', 'http://huge-it.com/fields/order-website-maintenance/', 'image', 'on', 3, 1, NULL, '$250', '$120','@@Condition@A brand-new, unused@@Brand@Nixon@@Features@Date@@Age@Modern (2000-present)@@Movement@Quartz@@Display@Analog@@Band Material@Leather@@Gender@Women@@Color@Gold'),
+(15, 'Victorinox', '9', '<p>Victorinox Swiss Army Leather Officers Grey Dial Mens Watch. New with tags: A brand-new, unused, and unworn item (including handmade items) in the original packaging (such as the original box or bag) and/or with the original tags attached. </p>', '".plugins_url("Front_images/projects/11.jpg", __FILE__).";".plugins_url("Front_images/projects/11.1.jpg", __FILE__).";".plugins_url("Front_images/projects/11.3.jpg", __FILE__).";', 'http://huge-it.com/fields/order-website-maintenance/', 'image', 'on', 3, 1, NULL, '$155', '$120','@@Condition@A brand-new, unused@@Brand@Victorinox@@Features@Day & Date@@Age@Modern (2000-present)@@Movement@Quartz@@Display@Analog@@Band Material@Leather@@Gender@Men@@Color@black')";
 
 
 
@@ -1552,8 +1573,8 @@ INSERT INTO
     $sql_3 = "
 
 INSERT INTO `$table_name` (`name`, `sl_height`, `sl_width`, `pause_on_hover`, `catalog_list_effects_s`, `description`, `url`, `link_target`, `param`, `sl_position`, `ordering`, `published`, `categories`, `ht_show_sorting`, `ht_show_filtering`,`album_id`) VALUES
-('Smartphones', 375, 600, 'on', '2', 'description1', 'url1', 'link_target1', '1000', 'center', 1, '300', 'Condition,Brand,Model,Color,Included In Purchase,Features,Storage Capacity,', 'off','off','1'),
-('Watches', 375, 600, 'on', '2', 'description2', 'url2', 'link_target2', '1000', 'center', 1, '300', 'Condition,Brand,Features,Age,Movement,Display,Band Material,Gender,Color,', 'off','off','1')";
+('Smartphones', 375, 600, 'on', '1', 'description1', 'url1', 'link_target1', '1000', 'center', 1, '300', 'Condition,Brand,Model,Color,Included In Purchase,Features,Storage Capacity,', 'off','off','1'),
+('Watches', 375, 600, 'on', '1', 'description2', 'url2', 'link_target2', '1000', 'center', 1, '300', 'Condition,Brand,Features,Age,Movement,Display,Band Material,Gender,Color,', 'off','off','1')";
 
 
 
@@ -1642,13 +1663,13 @@ query6;
 //('ht_single_product_thumbs_height', 'Product Thumbs Height', '75'),
 //            
 //('ht_single_product_price_font_size', 'Product Price Font Size', '14'),
-//('ht_single_product_price_font_color', 'Product Price Font Color', 'DEDEDE'),
+//('ht_single_product_price_font_color', 'Product Price Font Color', 'E22828'),
 //('ht_single_product_market_price_font_size', 'Product Market Price Font Size', '14'),
-//('ht_single_product_market_price_font_color', 'Product Market Price Font Color', 'DEDEDE'),
+//('ht_single_product_market_price_font_color', 'Product Market Price Font Color', 'E22828'),
 //('ht_single_product_rating_font_size', 'Product Rating Font Size', '14'),
-//('ht_single_product_rating_font_color', 'Product Rating Font Color', 'DEDEDE'),
+//('ht_single_product_rating_font_color', 'Product Rating Font Color', '000000'),
 //            
-//('ht_single_product_tabs_font_color', 'Zoom Window Type', 'fff'),
+//('ht_single_product_tabs_font_color', 'Zoom Window Type', '000000'),
 //('ht_single_product_tabs_font_hover_color', 'Zoom Window Type', 'fff'),    
 //    
 //('ht_single_product_params_tab_box_background_color', 'Zoom Window Type', 'fff'),
@@ -1664,10 +1685,10 @@ query6;
 //('ht_single_product_comments_content_font_color', 'Zoom Window Type', '000'),
 //('ht_single_product_comments_submit_button_text', 'Zoom Window Type', 'Submit'),
 //('ht_single_product_comments_submit_button_text_font_size', 'Zoom Window Type', '14'),
-//('ht_single_product_comments_submit_button_text_font_color', 'Zoom Window Type', 'dedede'),
-//('ht_single_product_comments_submit_button_text_font_hover_color', 'Zoom Window Type', '00ff00'),
-//('ht_single_product_comments_submit_button_text_background_color', 'Zoom Window Type', '00ff00'),
-//('ht_single_product_comments_submit_button_text_background_hover_olor', 'Zoom Window Type', 'ff0000'),
+//('ht_single_product_comments_submit_button_text_font_color', 'Zoom Window Type', 'ffffff'),
+//('ht_single_product_comments_submit_button_text_font_hover_color', 'Zoom Window Type', 'ffffff'),
+//('ht_single_product_comments_submit_button_text_background_color', 'Zoom Window Type', '4ca6cf'),
+//('ht_single_product_comments_submit_button_text_background_hover_olor', 'Zoom Window Type', '21759b'),
 //
 //('ht_single_product_price_text', 'ht_single_product_price_text', 'Price'),
 //('ht_single_product_market_price_text', 'ht_single_product_market_price_text', 'Discount Price'),
@@ -1687,6 +1708,8 @@ query6;
 //('ht_single_product_invalid_captcha_text', 'ht_single_product_invalid_captcha_text', 'Invalid Captcha');
 //
 //query8;
+    
+
     
     
     
@@ -1730,7 +1753,55 @@ query6;
     }
       
 
-			///////////////////////////update////////////////////////////////////        
+			///////////////////////////UPDATE////////////////////////////////////   
+    
+//    $table_name = $wpdb->prefix . "huge_it_catalog_product_params";
+//    $sql_update_catalog_1 = "INSERT INTO `$table_name` (`name`, `title`, `value`) VALUES
+//    ('ht_single_product_asc_seller_button_text', 'ht_single_product_asc_seller_button_text', 'Contact Seller'),
+//    ('ht_single_product_asc_seller_button_text_size', 'ht_single_product_asc_seller_button_text_size', '18'), 
+//    ('ht_single_product_asc_seller_button_text_color', 'ht_single_product_asc_seller_button_text_color', 'ffffff'),
+//    ('ht_single_product_asc_seller_button_text_hover_color', 'ht_single_product_asc_seller_button_text_hover_color', 'eeeeee'),
+//    ('ht_single_product_asc_seller_button_background_color', 'ht_single_product_asc_seller_button_background_color', 'cccccc'),
+//    ('ht_single_product_asc_seller_button_background_hover_color', 'ht_single_product_asc_seller_button_background_hover_color', 'cfcfcf'),
+//    ('ht_single_product_asc_to_seller_text', 'Asc To Seller Text', 'Asc To Seller'),
+//    ('ht_single_product_asc_seller_popup_background_1', 'ht_single_product_asc_seller_popup_background_1', 'ffffff'),
+//    ('ht_single_product_asc_seller_popup_background_2', 'ht_single_product_asc_seller_popup_background_2', '999999'),
+//    ('ht_single_product_your_mail_text', 'Your E-mail', 'Your E-mail'),
+//    ('ht_single_product_your_phone_text', 'Your Phone', 'Your Phone'),
+//    ('ht_single_product_your_message_text', 'Your Message', 'Your Message'),
+//    ('ht_single_product_asc_seller_popup_button_text', 'ht_single_product_asc_seller_popup_button_text', 'Submit'),
+//    ('ht_single_product_asc_seller_popup_button_text_size', 'ht_single_product_asc_seller_popup_button_text_size', '16'),
+//    ('ht_single_product_asc_seller_popup_button_text_color', 'ht_single_product_asc_seller_popup_button_text_color', '000000'),
+//    ('ht_single_product_asc_seller_popup_button_background_color', 'ht_single_product_asc_seller_popup_button_background_color', 'EEEEEE'),
+//    ('ht_single_product_asc_seller_popup_button_background_hover_color', 'ht_single_product_asc_seller_popup_button_background_hover_color', 'EEEEEE'),
+//    ('ht_single_product_asc_seller_popup_close_style', 'Close Button Style', 'dark')";
+//
+//    $query="SELECT name FROM ".$wpdb->prefix."huge_it_catalog_product_params";
+//    $update_catalog_1=$wpdb->get_results($query);
+//    if(end($update_catalog_1)->name=='ht_single_product_invalid_captcha_text'){
+//            $wpdb->query($sql_update_catalog_1);
+//    };
+    
+    
+//    $table_name = $wpdb->prefix . "huge_it_catalog_params";
+//    $sql_update_catalog_2 = "INSERT INTO `$table_name` (`name`, `title`,`description`, `value`) VALUES
+//    ('ht_view0_allow_lightbox', 'View Mode', 'View Mode', 'on'),
+//    ('ht_view1_allow_lightbox', 'View Mode', 'View Mode', 'on'),
+//    ('ht_view2_allow_lightbox', 'View Mode', 'View Mode', 'on'),
+//    ('ht_view5_allow_lightbox', 'View Mode', 'View Mode', 'on'),
+//    ('ht_view0_allow_zooming', 'View Mode', 'View Mode', 'on'),
+//    ('ht_view1_allow_zooming', 'View Mode', 'View Mode', 'on'),
+//    ('ht_view2_allow_zooming', 'View Mode', 'View Mode', 'on'),
+//    ('ht_view5_allow_zooming', 'View Mode', 'View Mode', 'on')";
+//
+//    $query="SELECT name FROM ".$wpdb->prefix."huge_it_catalog_params";
+//    $update_catalog_2=$wpdb->get_results($query);
+//    if(end($update_catalog_2)->name=='ht_view3_allow_zooming'){
+//            $wpdb->query($sql_update_catalog_2);
+//    };
+    
+    
+    
 }
 
 
@@ -1766,7 +1837,7 @@ jQuery(document).ready(function() {
 </script>
 
 <div id="huge_it_catalog" style="">
-  <h3>Select Catalogs Or Products From Catalog To Insert Into Post</h3>
+  <h3>Select Huge IT Catalogs or Huge IT Products From Catalog To Insert Into Post</h3>
   <?php 
   	global $wpdb;
 	    $query="SELECT * FROM ".$wpdb->prefix."huge_it_catalogs order by id ASC";
@@ -2093,6 +2164,10 @@ h3 {
 	color:#0074a2;
 }
 
+.update-nag{
+    display: none !important;
+}
+
 </style>
     <script type="text/javascript">
                 jQuery(document).ready(function() {
@@ -2283,12 +2358,12 @@ h3 {
 	<div id="huge_it_slider_add_posts" style="">
 		<div id="huge_it_slider_add_posts_wrap">
 			<ul id="slider-posts-tabs">
-				<!--<li><a href="#slider-posts-tabs-content-0">Albums</a></li>-->
-				<li class="active"><a href="#slider-posts-tabs-content-1">Catalogs</a></li>
+				<!--<li  class="active"><a href="#slider-posts-tabs-content-0">Albums</a></li>-->
+				<li class="active" ><a href="#slider-posts-tabs-content-1">Catalogs</a></li>
                                 <li><a href="#slider-posts-tabs-content-2">Products</a></li>
 			</ul>
 			<ul id="slider-posts-tabs-contents">
-<!--				<li id="slider-posts-tabs-content-0"  class="">
+<!--				<li id="slider-posts-tabs-content-0"  class="active">
 					 STATIC POSTS 
 					<div class="control-panel">
                                             <button class='save-slider-options button-primary huge-it-insert-post-button' id='huge-it-insert-post-button-top'>Insert Posts</button>
@@ -2304,11 +2379,11 @@ h3 {
 						<?php
 //                                                var_dump($albumsArray[0]);
 //                                                exit();
-						$strx=1;
-						foreach($albumsArray as $albumKey => $album){
-                                                        $strx++;
-                                                        $hascolor="";
-                                                        if($strx%2==0){$hascolor='class="hascolor"';}
+//						$strx=1;
+//						foreach($albumsArray as $albumKey => $album){
+//                                                        $strx++;
+//                                                        $hascolor="";
+//                                                        if($strx%2==0){$hascolor='class="hascolor"';}
                                                         
 						?>
 							
@@ -2320,7 +2395,7 @@ h3 {
 								<div class="huge-it-posts-list-description"><?php if($catalogsCountsArray[$albumKey]->count == "" || $album->catalog_id == 0) echo 0;else echo $catalogsCountsArray[$albumKey]->count; ?></div>
 							</li>-->
 						<?php
-                                                }
+//                                                }
                                                 ?>
 <!--					</ul>
 					<input id="huge-it-add-posts-params-0" type="hidden" name="popupposts" value="" />

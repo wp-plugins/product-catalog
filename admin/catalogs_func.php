@@ -330,7 +330,7 @@ INSERT INTO
            $rowsld=$wpdb->get_results($query);
 			  
 //	   $query = "SELECT *  from " . $wpdb->prefix . "huge_it_catalog_params ";
-
+//
 //           $rowspar = $wpdb->get_results($query);
 
 //           $paramssld = array();
@@ -523,17 +523,19 @@ function apply_cat($id)
                 $rowim=$wpdb->get_results($query);
 			   
                 foreach ($rowim as $key=>$rowimages){
-
+                    $title = stripslashes($_POST["titleimage".$rowimages->id]);
+                    $description = stripslashes($_POST["im_description".$rowimages->id]);
+                    $parameters = stripslashes($_POST["parameter".$rowimages->id]);
                     $wpdb->query($wpdb->prepare("UPDATE ".$wpdb->prefix."huge_it_catalog_products SET  ordering = '%s'  WHERE ID = %d ", $_POST["order_by_".$rowimages->id.""], $rowimages->id));
 //                    $wpdb->query($wpdb->prepare("UPDATE ".$wpdb->prefix."huge_it_catalog_products SET  link_target = '%s'  WHERE ID = %d ",$_POST["sl_link_target".$rowimages->id.""], $rowimages->id));
 //                    $wpdb->query($wpdb->prepare("UPDATE ".$wpdb->prefix."huge_it_catalog_products SET  sl_url = '%s' WHERE ID = %d ", $_POST["sl_url".$rowimages->id.""], $rowimages->id));
-                    $wpdb->query($wpdb->prepare("UPDATE ".$wpdb->prefix."huge_it_catalog_products SET  name = '%s'  WHERE ID = %d ", $_POST["titleimage".$rowimages->id.""], $rowimages->id));
-                    $wpdb->query($wpdb->prepare("UPDATE ".$wpdb->prefix."huge_it_catalog_products SET  description = '%s'  WHERE ID = %d ", $_POST["im_description".$rowimages->id.""], $rowimages->id));
+                    $wpdb->query($wpdb->prepare("UPDATE ".$wpdb->prefix."huge_it_catalog_products SET  name = '%s'  WHERE ID = %d ", $title, $rowimages->id));
+                    $wpdb->query($wpdb->prepare("UPDATE ".$wpdb->prefix."huge_it_catalog_products SET  description = '%s'  WHERE ID = %d ", $description, $rowimages->id));
                     $wpdb->query($wpdb->prepare("UPDATE ".$wpdb->prefix."huge_it_catalog_products SET  image_url = '%s'  WHERE ID = %d ", $_POST["imagess".$rowimages->id.""], $rowimages->id));
 //                    $wpdb->query($wpdb->prepare("UPDATE ".$wpdb->prefix."huge_it_catalog_products SET  category = '%s'  WHERE ID = %d ", $_POST["category".$rowimages->id.""], $rowimages->id));
                     $wpdb->query($wpdb->prepare("UPDATE ".$wpdb->prefix."huge_it_catalog_products SET  price = '%s'  WHERE ID = %d ", $_POST["price".$rowimages->id.""], $rowimages->id));
                     $wpdb->query($wpdb->prepare("UPDATE ".$wpdb->prefix."huge_it_catalog_products SET  market_price = '%s'  WHERE ID = %d ", $_POST["market_price".$rowimages->id.""], $rowimages->id));
-                    $wpdb->query($wpdb->prepare("UPDATE ".$wpdb->prefix."huge_it_catalog_products SET  parameters = '%s'  WHERE ID = %d ", $_POST["parameter".$rowimages->id.""], $rowimages->id));
+                    $wpdb->query($wpdb->prepare("UPDATE ".$wpdb->prefix."huge_it_catalog_products SET  parameters = '%s'  WHERE ID = %d ", $parameters, $rowimages->id));
                     //$wpdb->query($wpdb->prepare("UPDATE ".$wpdb->prefix."huge_it_catalog_products SET  cat_thumb = '".$_POST["cat_thumb".$rowimages->id.""]."'  WHERE ID = %d ", $rowimages->id));
 
                 }
@@ -559,13 +561,13 @@ if(isset($_POST["catalog_cats"])) {
 
 if (isset($_POST['params'])) {
       $params = $_POST['params'];
-//      foreach ($params as $key => $value) {
-//          $wpdb->update($wpdb->prefix . 'huge_it_catalog_params',
-//              array('value' => $value),
-//              array('name' => $key),
-//              array('%s')
-//          );
-//      }
+      foreach ($params as $key => $value) {
+          $wpdb->update($wpdb->prefix . 'huge_it_catalog_params',
+              array('value' => $value),
+              array('name' => $key),
+              array('%s')
+          );
+      }
      
     }
 	
