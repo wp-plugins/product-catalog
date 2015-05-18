@@ -15,6 +15,7 @@ Let us introduce our Huge-IT Product Catalog incomparable plugin. To begin with,
 ### Wordpress Product Catalog
 
 * [Wordpress Product Catalog](http://huge-it.com/product-catalog/)
+* [Demo Product Catalog](http://huge-it.com/wordpress-plugins-product-catalog-demo/)
 
 Let us introduce our Huge-IT Product Catalog incomparable plugin. To begin with, why do we need this plugin and what are the advantages.
 The plugin is made for demonstration, sale, advertisements for your products. Imagine a stand with a variety of catalogs with a specific product category. To imagine is not difficult, to use is even easier.
@@ -91,6 +92,7 @@ Now you can set your Product Catalog options, images and use our Product Catalog
 1.  [WordPress Product Catalog](http://huge-it.com/product-catalog/) - Blocks Toggle Up/Down
 12.  [WordPress Product Catalog](http://huge-it.com/product-catalog/) - Catalog / Content Popup
 13.  [WordPress Product Catalog](http://huge-it.com/product-catalog/) - Full-Width Block
+13.  [WordPress Product Catalog](http://huge-it.com/product-catalog/) - Content Slider
 
 == Changelog ==
 
