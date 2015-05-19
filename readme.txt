@@ -113,13 +113,13 @@ Now you can set your Product Catalog options, images and use our Product Catalog
 
 **Stage 1 Creation process of Product Catalog **
 
-### Catalogs > Add New Catalog 
+### Catalogs > Add New Catalog - Product Catalog
 
 Add product. Use standard WordPress uploader to add product image. Press “Add New product”. (+) add additional images of the product 
 
-**Title. Add product name **
+**Title. Add product name - Product Catalog**
 
-Price. Give product price 
+Price. Give product price - Product Catalog
 
 Discount Price. Write discount price 
 
@@ -139,11 +139,11 @@ Catalog Thumbnail. You can upload cover image for catalog.
 
 Usage. This section includes two kind of shortcodes, First one need to be inserted into post/page, the second one is for template. 
 
-**Stage 2 Catalog Options **
+**Stage 2 Catalog Options - Product Catalog **
 
 From this section you can make design customization on catalog view. Catalog consists of all products, so catalog view is mostly product initial view. It includes 5 sections. The relevant changes will affect an all catalogs using that specific view option. 
 
-**2.1 Block Toggle Up-Down. **
+**2.1 Block Toggle Up-Down - Product Catalog **
 
 View Types 
 
