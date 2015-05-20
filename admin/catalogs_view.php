@@ -571,13 +571,13 @@ jQuery(document).ready(function($){
                           <?php }
                                 else
                                     if($paramKey == 1){ ?>
-                                        <input type="text" size="" class="firstParam" added="added" val_for_editing="<?php echo $separateParamAndChild; ?>" value="<?php echo $separateParamAndChild; ?>">
+                                        <input type="text" size="" class="firstParam" added="added" val_for_editing="<?php echo str_replace("thisisat", "@", $separateParamAndChild); ?>" value="<?php echo str_replace("thisisat", "@", $separateParamAndChild); ?>">
                                         </li>
                               <?php }
                                     else
                                     { ?>
                                         <li style="">
-                                            <input type="text" size="" class="firstParam" added="added" val_for_editing="<?php echo $separateParamAndChild; ?>" value="<?php echo $separateParamAndChild; ?>">
+                                            <input type="text" size="" class="firstParam" added="added" val_for_editing="<?php echo str_replace("thisisat", "@", $separateParamAndChild); ?>" value="<?php echo str_replace("thisisat", "@", $separateParamAndChild); ?>">
                                         </li>
                                     <?php }
                             }
@@ -671,6 +671,7 @@ jQuery(document).ready(function($){
                                         var hidden_input = jQuery(this).parent().parent().parent().parent().parent().find(".parameters");
                                         var params_input_old_val = jQuery(this).parent().parent().parent().parent().parent().find(".parameters").val();    //    alert(params_hidden_input);
                                         var new_child_val = jQuery(this).val();
+                                            new_child_val = new_child_val.replace(/@/g, 'thisisat');
                                         var params_input_old_val_in_array = params_input_old_val.split("@@");
                                         if(params_input_old_val_in_array[0] == "")
                                             { var new_change_val_index = parseInt(change_val_index) + parseInt(1); }
@@ -1202,7 +1203,7 @@ function html_catalog_reviews(){
 	 <div id="huge_it_view_reviews">
 		<div id="huge_it_view_reviews_wrap">
 			<h2>Product Reviews</h2>
-                        <a class="manager-link button">All Reviews Manager</a>
+                        <a class="manager-link button view_all_reviews">All Reviews Manager</a>
                             <div class="huge_it_prod_reviews_container">
                                 <table>
                                     <tr><th><input type="checkbox" id="check_all_reviews"/></th><th>Name</th><th>Comment</th><th class="del_few_reviews"><a class="">Delete</a></th></tr>

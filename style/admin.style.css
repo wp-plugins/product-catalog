@@ -956,6 +956,12 @@
     margin-right: 0%;
     width: 10%;
 }
+
+#huge_it_view_reviews #huge_it_view_reviews_wrap .view_all_reviews {
+    display: block;
+    width: 19%;
+}
+
 .del_few_reviews {
     cursor: pointer;
 }

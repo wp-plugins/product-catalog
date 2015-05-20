@@ -526,6 +526,7 @@ function apply_cat($id)
                     $title = stripslashes($_POST["titleimage".$rowimages->id]);
                     $description = stripslashes($_POST["im_description".$rowimages->id]);
                     $parameters = stripslashes($_POST["parameter".$rowimages->id]);
+                    $parameters = htmlspecialchars($parameters);
                     $wpdb->query($wpdb->prepare("UPDATE ".$wpdb->prefix."huge_it_catalog_products SET  ordering = '%s'  WHERE ID = %d ", $_POST["order_by_".$rowimages->id.""], $rowimages->id));
 //                    $wpdb->query($wpdb->prepare("UPDATE ".$wpdb->prefix."huge_it_catalog_products SET  link_target = '%s'  WHERE ID = %d ",$_POST["sl_link_target".$rowimages->id.""], $rowimages->id));
 //                    $wpdb->query($wpdb->prepare("UPDATE ".$wpdb->prefix."huge_it_catalog_products SET  sl_url = '%s' WHERE ID = %d ", $_POST["sl_url".$rowimages->id.""], $rowimages->id));

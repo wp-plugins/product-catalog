@@ -4,7 +4,7 @@ Donate link: http://huge-it.com/product-catalog/
 Tags: catalog, product reviews, catalogs, blog catalog, online store, product tabs, catalogue, products, vote, wp catalog, WP Catalogue, directory, product portfolio, product catalog, shopping cart, product catalogue, store, product feed, digital goods, listing, list, collection, product, attributes, display products, inventory, list products, product gallery, products catalog, catalog of goods, e-commerce, commerce, ecommerce, shop, shopping, wordpress ecommerce,
 Requires at least: 3.0.1
 Tested up to: 4.2.2
-Stable tag: 1.0.5
+Stable tag: 1.0.6
 License: GPLv2 or later
 License URI: http://www.gnu.org/licenses/gpl-2.0.html
 
@@ -95,6 +95,9 @@ Now you can set your Product Catalog options, images and use our Product Catalog
 13.  [WordPress Product Catalog](http://huge-it.com/product-catalog/) - Content Slider
 
 == Changelog ==
+
+= 1.0.6 =
+*  Bag fixed product catalog.
 
 = 1.0.5 =
 *  Bag fixed product catalog.

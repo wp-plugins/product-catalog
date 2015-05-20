@@ -361,7 +361,7 @@ $paramssld["ht_view0_allow_zooming"] = "off";
             var lightbox_html = <?php echo $paramssld['light_box_html'];?>;
             var lightbox_photo = <?php echo $paramssld['light_box_photo'];?>;
             var lightbox_width = '<?php if($paramssld['light_box_size_fix'] == 'false'){ echo 'false';} else { echo $paramssld['light_box_width']; } ?>';
-            var lightbox_height = '<?php if($paramssld['light_box_size_fix'] == 'false'){ echo 'false';} else { echo $paramssld['lightbox_height']; } ?>';
+            var lightbox_height = '<?php if($paramssld['light_box_size_fix'] == 'false'){ echo 'false';} else { echo $paramssld['light_box_height']; } ?>';
             var lightbox_innerWidth = '<?php echo $paramssld['light_box_innerwidth'];?>';
             var lightbox_innerHeight = '<?php echo $paramssld['light_box_innerheight'];?>';
             var lightbox_initialWidth = '<?php echo $paramssld['light_box_initialwidth'];?>';
@@ -2318,9 +2318,9 @@ var defaultBlockHeight=<?php echo $paramssld['ht_view2_element_height']; ?>;
 	position:relative;
 	display:block;
 	margin:0px 0px 10px 0px !important;
-	font-size:<?php echo $paramssld["ht_view2_element_title_font_size"];?>px !important;
-	line-height:<?php echo $paramssld["ht_view2_element_title_font_size"]+4;?>px !important;
-	color:#<?php echo $paramssld["ht_view2_element_title_font_color"];?>;
+	font-size:<?php echo $paramssld["ht_view2_popup_title_font_size"];?>px !important;
+	line-height:<?php echo $paramssld["ht_view2_popup_title_font_size"]+4;?>px !important;
+	color:#<?php echo $paramssld["ht_view2_popup_title_font_color"];?>;
 }
 
 #huge_it_catalog_popup_list_<?php echo $catalogID; ?> .popup-wrapper_<?php echo $catalogID; ?> .right-block .description {
@@ -4197,7 +4197,7 @@ $paramssld["ht_view5_allow_lightbox"] = "off";
 		var lightbox_html = <?php echo $paramssld2['light_box_html'];?>;
 		var lightbox_photo = <?php echo $paramssld2['light_box_photo'];?>;
 		var lightbox_width = '<?php if($paramssld2['light_box_size_fix'] == 'false'){ echo 'false';} else { echo $paramssld2['light_box_width']; } ?>';
-		var lightbox_height = '<?php if($paramssld2['light_box_size_fix'] == 'false'){ echo 'false';} else { echo $paramssld2['lightbox_height']; } ?>';
+		var lightbox_height = '<?php if($paramssld2['light_box_size_fix'] == 'false'){ echo 'false';} else { echo $paramssld2['light_box_height']; } ?>';
 		var lightbox_innerWidth = '<?php echo $paramssld2['light_box_innerwidth'];?>';
 		var lightbox_innerHeight = '<?php echo $paramssld2['light_box_innerheight'];?>';
 		var lightbox_initialWidth = '<?php echo $paramssld2['light_box_initialwidth'];?>';
@@ -4439,6 +4439,7 @@ $paramssld["ht_view5_allow_lightbox"] = "off";
 .huge_it_catalog_single_product_page .rating-and-share-blocks {
 	font-size:<?php echo $paramssld['ht_single_product_rating_font_size']; ?>px !important;
 	color:#<?php echo $paramssld['ht_single_product_rating_font_color']; ?> !important;
+        /*padding-bottom: 2% !important;*/
 }
 
 .huge_it_catalog_single_product_page div.right-block {
@@ -4462,6 +4463,8 @@ $paramssld["ht_view5_allow_lightbox"] = "off";
 
 .huge_it_catalog_single_product_page div.right-block > div:last-child {
 	/*background:none;*/
+        display: inline-block;
+        width: 100%;
 }
 
 .huge_it_catalog_single_product_page div.right-block .title-block  {
@@ -4541,8 +4544,8 @@ $paramssld["ht_view5_allow_lightbox"] = "off";
 .huge_it_catalog_single_product_page .rating-block .label {
 	display:block;
 	float:left;
-	height:15px;
-	margin:-3px 5px 0px 0px;
+	line-height:15px;
+	margin-right: 5px;
 }
 
 
@@ -4550,19 +4553,20 @@ $paramssld["ht_view5_allow_lightbox"] = "off";
 	background-image:url(<?php echo plugins_url('../images/stars.png', __FILE__); ?>);
 	background-repeat: no-repeat;
 	background-position: 0px <?php if($rating != 0) echo $rating * (-15); else echo 0; ?>px;
-	height: 15px;
+	line-height: 15px;
+        height: 15px;
 	width: 100px;
-	display: inline-block;
+	display: table;
 	margin: 0px !important;
-    padding: 0px !important;
+        padding: 0px !important;
 }
 
 .huge_it_catalog_single_product_page .right-block .rating-stars li {
     float: left;
     list-style: none;
-    height: 19px;
+    height: 15px;
     width: 19px;
-	margin: 0px !important;
+    margin: 0px !important;
     padding: 0px !important;
 	
 }
@@ -4571,7 +4575,7 @@ $paramssld["ht_view5_allow_lightbox"] = "off";
     display: block;
     opacity: 0;
     height: 19px;
-    width: 19px;
+    width: 16px;
     margin: 0px !important;
     padding: 0px !important;
     cursor:pointer;
@@ -4579,24 +4583,24 @@ $paramssld["ht_view5_allow_lightbox"] = "off";
 
 
 .huge_it_catalog_single_product_page .right-block .share_buttons_block {
-	display:inline-block;
-          padding: 2% 0px;
-          color: #000;
-        /*height: 21px;*/
+	padding: 0px;
+        font-weight: normal;
+        float: left;
+        padding: 2% 0px;
+        height: 21px;
 }
 
 .huge_it_catalog_single_product_page .right-block .share_buttons_block .label {
-	display:block;
-	float:left;
-	height:15px;
-	margin:-3px 5px 0px 0px;
+	display: block;
+        float: left;
+        line-height: 15px;
 }
 
 .huge_it_catalog_single_product_page .right-block .share_buttons_block ul {
-	display:inline-block;
-	margin:0px 0px 0px 10px !important;
-	padding:0px !important;
-	list-style:none !important;
+	display: table;
+        margin: -2px 0px 0px 40px !important;
+        padding: 0px !important;
+        list-style: none !important;
         height: 21px;
 }
 
@@ -4604,6 +4608,7 @@ $paramssld["ht_view5_allow_lightbox"] = "off";
 	float:left;
 	margin:0px 3px 0px 3px;
 }
+
 .huge_it_catalog_single_product_page .right-block .share_buttons_block ul li.mail {margin:0px 7px 0px 0px;}
 
 .huge_it_catalog_single_product_page .right-block .share_buttons_block ul li a {
@@ -4750,6 +4755,7 @@ $paramssld["ht_view5_allow_lightbox"] = "off";
 .huge_it_catalog_view_tabs > li  {
 	float:left;
 	margin:0px 5px 0px 0px;
+        list-style-type: none;
 }
 
 .huge_it_catalog_view_tabs  > li > a,.huge_it_catalog_view_tabs  > li > a:link,.huge_it_catalog_view_tabs  > li > a:visited {
@@ -4796,8 +4802,8 @@ $paramssld["ht_view5_allow_lightbox"] = "off";
 <?php } ?>
 	display:table;
 	margin:0px !important;
-	padding:10px 1% 10px 0% !important;
-	width:98%;
+	padding:10px 0% 10px 0% !important;
+	width: 100%;
 }
 
 .huge_it_catalog_view_tabs_contents > li {
@@ -4934,8 +4940,8 @@ $paramssld["ht_view5_allow_lightbox"] = "off";
 	display:block;
 	float:left;
 	/*margin:10px 1% 25px 1%;*/
-	padding:0px 1% 10px 0%;
-	width:99%;
+	/*padding:0px 1% 10px 0%;*/
+	width: 100%;
 	/*background:#f9f9f9;*/
 }
 .huge_it_catalog_view_tabs_contents > li   div.has-background {background:#fff;}
@@ -5027,6 +5033,11 @@ $paramssld["ht_view5_allow_lightbox"] = "off";
     
 }
 
+.huge_it_catalog_single_product_page .write-rate-block form {
+    margin: 0;
+    padding: 0;
+}
+
 .huge_it_catalog_single_product_page .write-rate-block p {
     margin: 0;
     padding: 0;
@@ -5036,17 +5047,18 @@ $paramssld["ht_view5_allow_lightbox"] = "off";
 	margin: 0%;
         margin-bottom: 10px;
         display: block;
+        width: 100%;
 }
 
 .huge_it_catalog_single_product_page .write-rate-block input,.huge_it_catalog_single_product_page .write-rate-block textarea, .huge_it_catalog_single_product_page .write-rate-block label.rating-label {
 	margin: 0%;
         display: block;
-        width: 99%;
+        width: 100%;
 }
 
 .huge_it_catalog_single_product_page .write-rate-block textarea {
     min-height: 100px;
-    width: 99%;
+    width: 100%;
 }
 
 
@@ -5056,6 +5068,8 @@ $paramssld["ht_view5_allow_lightbox"] = "off";
     background: #<?php echo $paramssld["ht_single_product_comments_submit_button_text_background_color"];?>;
     background-color: #<?php echo $paramssld["ht_single_product_comments_submit_button_text_background_color"];?>;
     border: none;
+    display: block;
+    width: 100%;
 }
 .huge_it_catalog_single_product_page .write-rate-block #comments_submit:hover {
     color: #<?php echo $paramssld["ht_single_product_comments_submit_button_text_font_hover_color"];?>;
@@ -5063,7 +5077,9 @@ $paramssld["ht_view5_allow_lightbox"] = "off";
     border: none;
 }
 
-
+.huge_it_catalog_single_product_page .write-rate-block .empty {
+    border: 1px solid #ff0000;
+}
 
 /*
 .huge_it_catalog_single_product_page .button-block {
@@ -5354,6 +5370,8 @@ $paramssld["ht_view5_allow_lightbox"] = "off";
 //                                                                if(count($separateParamAndChildsInArray == 1)) echo '<li class="value-block"></li>';
                                                         }
                                                         else {
+                                                                $separateParamAndChild = htmlspecialchars_decode($separateParamAndChild);
+                                                                $separateParamAndChild = str_replace("thisisat", "@", $separateParamAndChild);
                                                                 echo '<li class="value-block">'.$separateParamAndChild.'</li>';
                                                         }
                                                 }
@@ -5454,11 +5472,20 @@ jQuery(document).ready(function () {
                 var spam =  jQuery(".huge_it_catalog_spam").val();
                 var product_id =  jQuery(".huge_it_catalog_product_id").val();
                 var captcha_val = jQuery("#captchaInputValue").val();
-                if(comments_name == "" || author_comment == ""){
-                    alert("empty field");
+                if(comments_name == "" || author_comment == "" || captcha_val == ""){
+                    if(comments_name == ""){ jQuery("#comments_name").addClass("empty"); }
+                    else{ jQuery("#comments_name").removeClass("empty"); }
+                    
+                    if(jQuery("#author_comment").val() == ""){ jQuery("#author_comment").addClass("empty"); }
+                    else{ jQuery("#author_comment").removeClass("empty"); }
+                    
+                    if(captcha_val == ""){ jQuery("#captchaInputValue").addClass("empty"); }
+                    else{ jQuery("#captchaInputValue").removeClass("empty"); }
+                    //alert("empty field");
                     return false;
                 }
                 else{
+                    jQuery("#comments_name,#author_comment,#captchaInputValue").removeClass("empty");
 //                   alert(comments_name + " " + author_comment+ " " + ip + " " + spam + " " + product_id);
     //            return false;
                 var data = {
@@ -5985,7 +6012,7 @@ $paramssld["ht_view0_togglebutton_style"] = "dark";
             var lightbox_html = <?php echo $paramssld['light_box_html'];?>;
             var lightbox_photo = <?php echo $paramssld['light_box_photo'];?>;
             var lightbox_width = '<?php if($paramssld['light_box_size_fix'] == 'false'){ echo 'false';} else { echo $paramssld['light_box_width']; } ?>';
-            var lightbox_height = '<?php if($paramssld['light_box_size_fix'] == 'false'){ echo 'false';} else { echo $paramssld['lightbox_height']; } ?>';
+            var lightbox_height = '<?php if($paramssld['light_box_size_fix'] == 'false'){ echo 'false';} else { echo $paramssld['light_box_height']; } ?>';
             var lightbox_innerWidth = '<?php echo $paramssld['light_box_innerwidth'];?>';
             var lightbox_innerHeight = '<?php echo $paramssld['light_box_innerheight'];?>';
             var lightbox_initialWidth = '<?php echo $paramssld['light_box_initialwidth'];?>';
@@ -7822,9 +7849,9 @@ var defaultBlockHeight=<?php echo $paramssld['ht_view2_element_height']; ?>;
 	position:relative;
 	display:block;
 	margin:0px 0px 10px 0px !important;
-	font-size:<?php echo $paramssld["ht_view2_element_title_font_size"];?>px !important;
-	line-height:<?php echo $paramssld["ht_view2_element_title_font_size"]+4;?>px !important;
-	color:#<?php echo $paramssld["ht_view2_element_title_font_color"];?>;
+	font-size:<?php echo $paramssld["ht_view2_element_title_font_sizet"];?>px !important;
+	line-height:<?php echo $paramssld["ht_view2_element_title_font_sizet"]+4;?>px !important;
+	color:#<?php echo $paramssld["ht_view2_popup_title_font_color"];?>;
 }
 
 #album_huge_it_catalog_popup_list_<?php echo $albumID; ?> .album_popup-wrapper_<?php echo $albumID; ?> .right-block .description {
