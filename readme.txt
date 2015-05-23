@@ -94,6 +94,9 @@ Now you can set your Product Catalog options, images and use our Product Catalog
 13.  [WordPress Product Catalog](http://huge-it.com/product-catalog/) - Full-Width Block
 13.  [WordPress Product Catalog](http://huge-it.com/product-catalog/) - Content Slider
 14.  [WordPress Product Catalog](http://huge-it.com/product-catalog/) - Full-Height Blocks
+15.  [WordPress Product Catalog](http://huge-it.com/product-catalog/) - Single Product
+16.  [WordPress Product Catalog](http://huge-it.com/product-catalog/) - Single Product
+17.  [WordPress Product Catalog](http://huge-it.com/product-catalog/) - Single Product
 
 == Changelog ==
 
