@@ -16,6 +16,8 @@ Let us introduce our Huge-IT Product Catalog incomparable plugin. To begin with,
 
 * [Wordpress Product Catalog](http://huge-it.com/product-catalog/)
 * [Demo Product Catalog](http://huge-it.com/wordpress-plugins-product-catalog-demo/)
+* [Demo Product Catalog Admin](http://huge-it.com/wordpress-plugins-product-catalog-demo-admin/)
+* [User Product Catalog Manual](http://huge-it.com/wordpress-plugins-product-catalog-user-manual/)
 
 Let us introduce our Huge-IT Product Catalog incomparable plugin. To begin with, why do we need this plugin and what are the advantages.
 The plugin is made for demonstration, sale, advertisements for your products. Imagine a stand with a variety of catalogs with a specific product category. To imagine is not difficult, to use is even easier.
