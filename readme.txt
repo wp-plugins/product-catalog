@@ -99,6 +99,9 @@ Now you can set your Product Catalog options, images and use our Product Catalog
 15.  [WordPress Product Catalog](http://huge-it.com/product-catalog/) - Single Product
 16.  [WordPress Product Catalog](http://huge-it.com/product-catalog/) - Single Product
 17.  [WordPress Product Catalog](http://huge-it.com/product-catalog/) - Single Product
+3.  [WordPress Product Catalog](http://huge-it.com/product-catalog/) - Product Catalog admin page
+32.  [WordPress Product Catalog](http://huge-it.com/product-catalog/) - Product Catalog admin page
+33.  [WordPress Product Catalog](http://huge-it.com/product-catalog/) - Product Catalog admin page
 
 == Changelog ==
 
