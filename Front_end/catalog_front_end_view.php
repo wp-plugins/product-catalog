@@ -1617,7 +1617,17 @@ var defaultBlockWidth=<?php echo $paramssld['ht_view0_block_width']; ?>;
                                       <div class="image-block_<?php echo $catalogID; ?> for_zoom">
                                               <?php $imgurl=explode(";",$row->image_url); ?>
                                               <?php 	if($row->image_url != ';'){ ?>
-                                              <img id="wd-cl-img<?php echo $key; ?>" src="<?php echo $imgurl[0]; ?>" />
+                                              
+                                                  <?php
+                                                      if($paramssld['ht_view1_show_thumbs']=='off'){ ?>
+                                                          <a href="<?php echo $imgurl[0] ?>" class="catalog_group<?php echo $group_key; ?>">
+                                                              <img id="wd-cl-img<?php echo $key; ?>" src="<?php echo $imgurl[0]; ?>" />
+                                                          </a>
+                                                  <?php }
+                                                      else{ ?>
+                                                            <img id="wd-cl-img<?php echo $key; ?>" src="<?php echo $imgurl[0]; ?>" />
+                                                  <?php } ?>
+                                          
                                               <?php } else { ?>
                                               <img id="wd-cl-img<?php echo $key; ?>" src="images/noimage.png" />
                                               <?php
@@ -4126,6 +4136,25 @@ $paramssld["ht_view2_allow_zooming"] = "off";
 $paramssld["ht_view2_allow_lightbox"] = "on";
 $paramssld["ht_view5_allow_zooming"] = "on";
 $paramssld["ht_view5_allow_lightbox"] = "off";
+$paramssld["ht_single_product_show_asc_seller_button"] = "off";
+$paramssld["ht_single_product_asc_seller_button_text"] = "Contact To Seller";
+$paramssld["ht_single_product_asc_seller_button_text_size"] = "25";
+$paramssld["ht_single_product_asc_seller_button_text_color"] = "ffffff";
+$paramssld["ht_single_product_asc_seller_button_text_hover_color"] = "ffffff";
+$paramssld["ht_single_product_asc_seller_button_background_color"] = "E22828";
+$paramssld["ht_single_product_asc_seller_button_background_hover_color"] = "E22828";
+$paramssld["ht_single_product_asc_to_seller_text"] = "Asc To Seller";
+$paramssld["ht_single_product_asc_seller_popup_background_1"] = "ffffff";
+$paramssld["ht_single_product_asc_seller_popup_background_2"] = "999999";
+$paramssld["ht_single_product_your_mail_text"] = "Your E-mail";
+$paramssld["ht_single_product_your_phone_text"] = "Your Phone";
+$paramssld["ht_single_product_your_message_text"] = "Your Message";
+$paramssld["ht_single_product_asc_seller_popup_button_text"] = "Submit";
+$paramssld["ht_single_product_asc_seller_popup_button_text_size"] = "16";
+$paramssld["ht_single_product_asc_seller_popup_button_text_color"] = "000000";
+$paramssld["ht_single_product_asc_seller_popup_button_background_color"] = "EEEEEE";
+$paramssld["ht_single_product_asc_seller_popup_button_background_hover_color"] = "EEEEEE";
+$paramssld["ht_single_product_asc_seller_popup_close_style"] = "dark";
 
 ?>
 
@@ -4463,7 +4492,7 @@ $paramssld["ht_view5_allow_lightbox"] = "off";
 
 .huge_it_catalog_single_product_page div.right-block > div:last-child {
 	/*background:none;*/
-        display: inline-block;
+        display: block;
         width: 100%;
 }
 
@@ -4637,23 +4666,25 @@ $paramssld["ht_view5_allow_lightbox"] = "off";
 .huge_it_catalog_single_product_page .right-block .share_buttons_block ul li.mail a {background-position:right top;}
 
 .huge_it_catalog_single_product_page .order_button {
-    display: inline-block;
-    margin: 10px;
+/*    display: block;
+    width: 39%;*/
+    margin: 3px 0 5px 0;
 }
 
 .huge_it_catalog_single_product_page .order_button a {
-  width: 100%;
+  display: inline-block;
+  /*width: 100%;*/
   text-decoration: none;
   font-weight: bold;
   margin: 0px;
   padding: 0px;
   font-size: <?php echo $paramssld['ht_single_product_asc_seller_button_text_size']; ?>px;
   padding: 7px 10px 7px 10px;
-  margin: 0px 10px 0px 0px;
   border-radius: 5px;
   color: #<?php echo $paramssld['ht_single_product_asc_seller_button_text_color']; ?>;
   background: #<?php echo $paramssld['ht_single_product_asc_seller_button_background_color']; ?>;
 }
+
 .huge_it_catalog_single_product_page .order_button a:hover {
   color: #<?php echo $paramssld['ht_single_product_asc_seller_button_text_hover_color']; ?>;
   background: #<?php echo $paramssld['ht_single_product_asc_seller_button_background_hover_color']; ?>;
@@ -5219,7 +5250,7 @@ $paramssld["ht_view5_allow_lightbox"] = "off";
                             if($paramssld["ht_single_product_show_price"] == 'on' && $productArray->price != "")
                             {  ?>
                                 <div class="price-block">
-                                    <p>Price :
+                                    <p><?php echo $paramssld["ht_single_product_price_text"]; ?> :
                                         <span class="old-price" <?php if($productArray->market_price == '') { echo "style='text-decoration: none !important;'"; } ?>> <?php echo $productArray->price; ?> </span>
                                         <?php
                                                 if($productArray->market_price != ''){ ?>
@@ -5277,7 +5308,7 @@ $paramssld["ht_view5_allow_lightbox"] = "off";
                         if($paramssld["ht_single_product_show_share_buttons"] == 'on')
                         {  ?>
                             <div class="share_buttons_block">
-				<span class="label">Share:</span>
+				<span class="label"><?php echo $paramssld["ht_single_product_share_text"]; ?> :</span>
 				<ul>
 <!--					<li class="mail">
                                             <a href="mailto:Insert%20Link?subject=I%20wanted%20to%20share%20this%20post%20with%20you%20from%20<?php bloginfo('name'); ?>&body=<?php the_permalink(); ?>" >Share via Email</a>
@@ -5293,33 +5324,41 @@ $paramssld["ht_view5_allow_lightbox"] = "off";
                                             <a style="width: 20px; height: 20px;" href="#" target="_blank" onclick="javascript:void window.open('http://www.pinterest.com/pin/create/button/?url=<?php echo $myPageLink; ?>&media=<?php echo $pintimage[0]; ?>&description=<?php echo $pageTitle; ?>','1410949501326','width=700,height=500,toolbar=0,menubar=0,location=0,status=1,scrollbars=1,resizable=1,left=0,top=0');return false;">Pinterest</a>
                                         </li>
 				</ul>
+                                
                             </div>
+                            <div style="clear: both;" ></div>
+                        </div>
                             
                   <?php } ?>
                                 <?php $product_page_link = get_permalink()."&single_prod_id=$productArray->id&asc_seller"; ?>
-                            <div class="order_button" style="">
-                                <a href="#catalog-order-popup-1" style="display: none;"><span class="label"><?php echo $paramssld['ht_single_product_asc_seller_button_text']; ?></span></a>
-                            </div>
                                 
-                                    <div id="catalog-order-popup-1" class="modalDialog">
-                                        <div>
-                                                <a href="#catalog-order-popup-close" title="Close" class="catalog-order-popup-close">X</a>
-                                                <h2><?php echo $paramssld['ht_single_product_asc_to_seller_text']; ?></h2>
-                                                <label><input type="text" name="asc_seller_name" class="asc_seller_name" placeholder="<?php echo $paramssld["ht_single_product_your_name_text"]; ?>" /></label>
-                                                <label><input type="text" name="asc_seller_mail" class="asc_seller_mail" placeholder="<?php echo $paramssld["ht_single_product_your_mail_text"]; ?>"  /></label>
-                                                <label><input type="text" name="asc_seller_phone" class="asc_seller_phone" placeholder="<?php echo $paramssld["ht_single_product_your_phone_text"]; ?>" /></label>
-                                                <label><input type="text" name="asc_seller_massage" class="asc_seller_massage" placeholder="<?php echo $paramssld["ht_single_product_your_message_text"]; ?>" /></label>
-                                                <label>
-                                                    <input type="text" class="captchaInputValue" placeholder="<?php echo $captchaFirstNum." + ".$captchaSecondNum." = ?"; ?>" autocomplete="off" />
-                                                    <p class="invalid"></p>
-                                                </label>
-                                                <input type="hidden" name="asc_seller_product_id" class="asc_seller_product_id" value="<?php echo $productArray->id; ?>" />
-                                                <input type="hidden" name="asc_seller_spam" class="asc_seller_spam" value="<?php echo $spam; ?>" />
-                                                <input type="hidden" name="asc_seller_ip" class="huge_it_catalog_product_ip" value="<?php echo $_SERVER['SERVER_ADDR']; ?>" />
-                                                <input type="submit" name="order_popup_submit" id="order_popup_submit" value="<?php echo $paramssld["ht_single_product_asc_seller_popup_button_text"];?>" />
+                            <?php
+                                 if($paramssld["ht_single_product_show_asc_seller_button"] == 'on'){ ?>
+                                     <div class="contact-seller-block">
+                                        <div class="order_button" style="">
+                                            <a href="#catalog-order-popup-1" style=""><span class="label"><?php echo $paramssld['ht_single_product_asc_seller_button_text']; ?></span></a>
+                                        </div>
+
+                                        <div id="catalog-order-popup-1" class="modalDialog">
+                                            <div>
+                                                    <a href="#catalog-order-popup-close" title="Close" class="catalog-order-popup-close">X</a>
+                                                    <h2><?php echo $paramssld['ht_single_product_asc_to_seller_text']; ?></h2>
+                                                    <label><input type="text" name="asc_seller_name" class="asc_seller_name" placeholder="<?php echo $paramssld["ht_single_product_your_name_text"]; ?>" /></label>
+                                                    <label><input type="text" name="asc_seller_mail" class="asc_seller_mail" placeholder="<?php echo $paramssld["ht_single_product_your_mail_text"]; ?>"  /></label>
+                                                    <label><input type="text" name="asc_seller_phone" class="asc_seller_phone" placeholder="<?php echo $paramssld["ht_single_product_your_phone_text"]; ?>" /></label>
+                                                    <label><input type="text" name="asc_seller_massage" class="asc_seller_massage" placeholder="<?php echo $paramssld["ht_single_product_your_message_text"]; ?>" /></label>
+                                                    <label>
+                                                        <input type="text" class="captchaInputValue" placeholder="<?php echo $captchaFirstNum." + ".$captchaSecondNum." = ?"; ?>" autocomplete="off" />
+                                                        <p class="invalid"></p>
+                                                    </label>
+                                                    <input type="hidden" name="asc_seller_product_id" class="asc_seller_product_id" value="<?php echo $productArray->id; ?>" />
+                                                    <input type="hidden" name="asc_seller_spam" class="asc_seller_spam" value="<?php echo $spam; ?>" />
+                                                    <input type="hidden" name="asc_seller_ip" class="huge_it_catalog_product_ip" value="<?php echo $_SERVER['SERVER_ADDR']; ?>" />
+                                                    <input type="submit" name="order_popup_submit" id="order_popup_submit" value="<?php echo $paramssld["ht_single_product_asc_seller_popup_button_text"];?>" />
+                                            </div>
                                         </div>
                                     </div>
-                        </div>
+                           <?php } ?>
 			
 		</div>
 		
@@ -5329,14 +5368,14 @@ $paramssld["ht_view5_allow_lightbox"] = "off";
                 <?php if($paramssld["ht_single_product_show_parameters"] == 'on'){ ?>
                     <li class="active" >
                         <a href="#catalog-view-options-0_<?php echo $productArray->id; ?>">
-                            Parameters
+                            <?php echo $paramssld["ht_single_product_parameters_text"]; ?>
                         </a>
                     </li>
                 <?php } ?>
                 <?php if($paramssld["ht_single_product_show_comments"] == 'on'){ ?>
                         <li>
                             <a href="#catalog-view-options-1_<?php echo $productArray->id; ?>">
-                                Comments (<?php echo count($reviewsArray) - count($spamReviewsArray); ?>)
+                                <?php echo $paramssld["ht_single_product_comments_text"]; ?> (<?php echo count($reviewsArray) - count($spamReviewsArray); ?>)
                             </a>
                         </li>
               <?php } ?>
@@ -5650,7 +5689,9 @@ jQuery(document).ready(function () {
            
 });
 </script>
-  
+
+  <?php return ob_get_clean(); ?>
+
 <?php  } ?>
 
 

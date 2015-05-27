@@ -47,7 +47,7 @@ else{ $visible_submitions = "1-50"; } ?>
                         <li class="refrash"><a href="#" onclick="window.location.reload();" >Refrash</a></li>
                 </ul>
                 <div class="page-navigation">
-                        <span class="count"><?php echo $visible_submitions." From ".$submitionsCount[0]->all_count; ?></span>
+                        <span class="count"><?php if($submitionsCount[0]->all_count < 51 ){ echo "1-".$submitionsCount[0]->all_count." From ".$submitionsCount[0]->all_count; } else { echo $visible_submitions." From ".$submitionsCount[0]->all_count; } ?></span>
                         <div class="buttons">
                             <form action="admin.php?page=huge_it_catalog_submitions_page" method="POST">
                                 <a href="#prev" class="prev" value="-1" >Prev</a>
@@ -455,6 +455,10 @@ jQuery( document ).ready(function(){
                                     });
                             }
                         });
+                        var check_all = "#hugeit_messages_page #hugeit_top_controls .select input[name='all']";
+                        if(jQuery(check_all).is(":checked")){
+                            window.location.reload();
+                        }
                     }
                 }
             }
@@ -572,22 +576,14 @@ jQuery( document ).ready(function(){
         
         //         
         
-        jQuery("input[name='check_comments']").click(function(){   //  NOT WORKING
+        jQuery("input[name='check_comments']").click(function(){
             if(jQuery(check_all).is(':checked')){
                 jQuery(check_all).removeAttr("checked");
-            }
-//            if(jQuery(this).is(':checked')){
-////                jQuery(this).removeAttr("checked");
-//                alert("is checked");
-//            }
-//            else{
-////                jQuery(this).attr("checked","checked"); 
-//                alert("is not checked");
-//            }
+           }
         });
         
         
-        jQuery("#the-comment-list tr").click(function(){
+        jQuery("#the-comment-list tr td").click(function(){
             var message_id = jQuery(this).attr("id");
             message_id = message_id.replace("comment-","");
             if(jQuery(this).hasClass("unread")){

@@ -4,7 +4,7 @@
 Plugin Name: Huge IT Product Catalog
 Plugin URI: http://huge-it.com/product-catalog
 Description: Let us introduce our Huge-IT Product Catalog incomparable plugin. To begin with, why do we need this plugin and what are the advantages.
-Version: 1.0.6
+Version: 1.0.7
 Author: http://huge-it.com/
 License: GNU/GPLv3 http://www.gnu.org/licenses/gpl-3.0.html
 */
@@ -229,7 +229,7 @@ function huge_it_catalog_options_panel()
     $Ratings = add_submenu_page('catalogs_huge_it_catalog', 'Ratings Manager', 'Ratings Manager', 'manage_options', 'huge_it_catalog_ratings_page', 'huge_it_catalog_ratings_page');
     $Reviews = add_submenu_page('catalogs_huge_it_catalog', 'Reviews Manager', 'Reviews Manager', 'manage_options', 'huge_it_catalog_reviews_page', 'huge_it_catalog_reviews_page');
     add_submenu_page('catalogs_huge_it_catalog', 'Featured Plugins', 'Featured Plugins', 'manage_options', 'huge_it__catalog_featured_plugins', 'huge_it__catalog_featured_plugins');
-//    $Submitions = add_submenu_page('catalogs_huge_it_catalog', 'Submitions', 'Submitions', 'manage_options', 'huge_it_catalog_submitions_page', 'huge_it_catalog_submitions_page');
+    $Submitions = add_submenu_page('catalogs_huge_it_catalog', 'Submitions', 'Submitions', 'manage_options', 'huge_it_catalog_submitions_page', 'huge_it_catalog_submitions_page');
 
     add_action('admin_print_styles-' . $page_cat, 'huge_it_catalog_admin_script');
     add_action('admin_print_styles-' . $page_option, 'huge_it_catalog_option_admin_script');
@@ -810,23 +810,50 @@ function huge_it_catalog_my_action_callback_frontend() {
     }
     else
         if($_POST["post"] == "applyproductascsellerfromuser"){
-            $name = $_POST["user_name"];
-            $mail = $_POST["user_mail"];
-            $phone = $_POST["user_phone"];
-            $massage = $_POST["user_massage"]." Phone: ".$phone;
-            $product_id = $_POST["user_product_id"];
-            $user_ip = $_POST["user_ip"];
-            $spam = $_POST["user_spam"];
-                $admin_email = get_option( 'admin_email' );
+           if(isset($_POST["user_name"]))       {$name = $_POST["user_name"]; $name = stripslashes($name); $name = htmlspecialchars($name);
+                                                   strip_tags( preg_replace( '/<[^>]*>/', '', preg_replace( '/<script.*<\/[^>]*>/', '', $name ) ) ); }
+            if(isset($_POST["user_mail"]))       { $mail = $_POST["user_mail"]; $mail = stripslashes($mail); $mail = htmlspecialchars($mail);
+                                                   strip_tags( preg_replace( '/<[^>]*>/', '', preg_replace( '/<script.*<\/[^>]*>/', '', $mail ) ) ); }
+            if(isset($_POST["user_phone"]))      { $phone = $_POST["user_phone"]; $phone = stripslashes($phone); $phone = htmlspecialchars($phone);
+                                                   strip_tags( preg_replace( '/<[^>]*>/', '', preg_replace( '/<script.*<\/[^>]*>/', '', $phone ) ) ); }
+            if(isset($_POST["user_massage"]))    { $massage = $_POST["user_massage"];  $massage = stripslashes($massage); $massage = htmlspecialchars($massage);
+                                                   strip_tags( preg_replace( '/<[^>]*>/', '', preg_replace( '/<script.*<\/[^>]*>/', '', $massage ) ) ); }
+            if(isset($_POST["user_ip"]))         { $user_ip = $_POST["user_ip"]; $user_ip = stripslashes($user_ip); $user_ip = htmlspecialchars($user_ip);
+                                                   strip_tags( preg_replace( '/<[^>]*>/', '', preg_replace( '/<script.*<\/[^>]*>/', '', $user_ip ) ) ); }
+            if(isset($_POST["user_product_id"])) { $product_id = $_POST["user_product_id"]; $product_id  = stripslashes($product_id); $product_id  = htmlspecialchars($product_id);
+                                                   strip_tags( preg_replace( '/<[^>]*>/', '', preg_replace( '/<script.*<\/[^>]*>/', '', $product_id ) ) ); }
+            if(isset($_POST["user_spam"]))       { $spam = $_POST["user_spam"]; $spam = stripslashes($spam); $spam = htmlspecialchars($spam);
+                                                   strip_tags( preg_replace( '/<[^>]*>/', '', preg_replace( '/<script.*<\/[^>]*>/', '', $spam ) ) ); }
+            if(isset($_POST["captcha_val"]))     { $captcha_val = $_POST['captcha_val']; $captcha_val = stripslashes($captcha_val); $captcha_val = htmlspecialchars($captcha_val);
+                                                   strip_tags( preg_replace( '/<[^>]*>/', '', preg_replace( '/<script.*<\/[^>]*>/', '', $captcha_val ) ) ); }
+
+
+			    $massage = "<table>
+                                   		<tr>
+                                                	<td width='1000' >
+                                                        	".$massage."
+                                                         </td>
+                                                </tr>
+                                                         <tr><td height='10' ></td></tr>
+                                                         <tr>
+                                                              <td width='1000'><strong>Customer Name: </strong> ".$name." </td>
+                                                         </tr>
+                                                         <tr>
+                                                              <td width='1000'><strong>Phone: </strong>".$phone."</td>
+                                                         </tr>
+                                                         <tr>
+                                                           <td width='1000'><strong>Location: </strong> ".$user_ip." </td>
+                                                         </tr>
+                                        </table>";
+
+
+            $admin_email = get_option( 'admin_email' );
             $date = date("Y/m/d");
             $time = date("h:i");
             $datetime = $date." at ".$time;
             $subject = 'New Message From Customer';
-            $headers = 'From: '.$mail.' <'.$mail.'>' . "\r\n";
-            
-//            
-            $spam = $_POST["user_spam"];
-            $captcha_val = $_POST['captcha_val'];
+            $headers[] = 'From: '.$mail.' <'.$mail.'>' . "\r\n";
+	    $headers[] = "Content-type: text/html" ;
             if($spam == 1){
                 $response = array('index' => '1', 'reason' => 'spamer');
                 echo json_encode($response);die();
@@ -849,7 +876,10 @@ function huge_it_catalog_my_action_callback_frontend() {
                             $updateCaptcha = $wpdb->query($wpdb->prepare("UPDATE ".$wpdb->prefix."huge_it_catalog_products  SET published_in_sl_width = '%s'", $captcha12));
 //                            if($updateCaptcha){
 
-                                $send = wp_mail( "aram.hovhannisyan8@mail.ru", $subject, $massage, $headers );
+                                $massageUser = 'Dear Customer,Your Message Was Sent To Seller,Please Wait To Response';
+                                $userSubject = 'Your Message Was Sent To Seller';
+                                $headersUser = 'From: Seller <Seller>' . "\r\n";
+                                $responseToUser = wp_mail( $mail, $userSubject, $massageUser, $headersUser );
                                 
                                 $response = array('index' => '1', 'captcha1' => $captcha1, 'captcha2' => $captcha2, 'reason' => 'allOk');
                                 echo json_encode($response);
@@ -1611,22 +1641,22 @@ query5;
     
     
     
-    $table_name = $wpdb->prefix . "huge_it_catalog_asc_seller";
-
-
-    $sql_9= <<<query9
-INSERT INTO `$table_name` (`user_name`, `user_email`, `user_phone`, `user_massage`, `user_ip`, `date`, `spam`, `read_or_not`, `product_id`) VALUES
-
-('user_name', 'Great user_email', 'user_phone', 'user_massage', 'ip', 'date', '0', '1', '1'),
-('user_name', 'Great user_email', 'user_phone', 'user_massage', 'ip', 'date', '0', '0', '2'),
-('user_name', 'Great user_email', 'user_phone', 'user_massage', 'ip', 'date', '1', '1', '3'),
-('user_name', 'Great user_email', 'user_phone', 'user_massage', 'ip', 'date', '0', '0', '4'),
-('user_name', 'Great user_email', 'user_phone', 'user_massage', 'ip', 'date', '1', '1', '5'),
-('user_name', 'Great user_email', 'user_phone', 'user_massage', 'ip', 'date', '1', '0', '6'),
-('user_name', 'Great user_email', 'user_phone', 'user_massage', 'ip', 'date', '0', '1', '7'),
-('user_name', 'Great user_email', 'user_phone', 'user_massage', 'ip', 'date', '0', '0', '8');
-
-query9;
+//    $table_name = $wpdb->prefix . "huge_it_catalog_asc_seller";
+//
+//
+//    $sql_9= <<<query9
+//INSERT INTO `$table_name` (`user_name`, `user_email`, `user_phone`, `user_massage`, `user_ip`, `date`, `spam`, `read_or_not`, `product_id`) VALUES
+//
+//('user_name', 'Great user_email', 'user_phone', 'user_massage', 'ip', 'date', '0', '1', '1'),
+//('user_name', 'Great user_email', 'user_phone', 'user_massage', 'ip', 'date', '0', '0', '2'),
+//('user_name', 'Great user_email', 'user_phone', 'user_massage', 'ip', 'date', '1', '1', '3'),
+//('user_name', 'Great user_email', 'user_phone', 'user_massage', 'ip', 'date', '0', '0', '4'),
+//('user_name', 'Great user_email', 'user_phone', 'user_massage', 'ip', 'date', '1', '1', '5'),
+//('user_name', 'Great user_email', 'user_phone', 'user_massage', 'ip', 'date', '1', '0', '6'),
+//('user_name', 'Great user_email', 'user_phone', 'user_massage', 'ip', 'date', '0', '1', '7'),
+//('user_name', 'Great user_email', 'user_phone', 'user_massage', 'ip', 'date', '0', '0', '8');
+//
+//query9;
     
     
     
@@ -1748,40 +1778,12 @@ query6;
 //    if (!$wpdb->get_var("select count(*) from " . $wpdb->prefix . "huge_it_catalog_product_params")) {
 //        $wpdb->query($sql_8);
 //    }
-    if (!$wpdb->get_var("select count(*) from " . $wpdb->prefix . "huge_it_catalog_asc_seller")) {
-        $wpdb->query($sql_9);
-    }
+//    if (!$wpdb->get_var("select count(*) from " . $wpdb->prefix . "huge_it_catalog_asc_seller")) {
+//        $wpdb->query($sql_9);
+//    }
       
 
 			///////////////////////////UPDATE////////////////////////////////////   
-    
-//    $table_name = $wpdb->prefix . "huge_it_catalog_product_params";
-//    $sql_update_catalog_1 = "INSERT INTO `$table_name` (`name`, `title`, `value`) VALUES
-//    ('ht_single_product_asc_seller_button_text', 'ht_single_product_asc_seller_button_text', 'Contact Seller'),
-//    ('ht_single_product_asc_seller_button_text_size', 'ht_single_product_asc_seller_button_text_size', '18'), 
-//    ('ht_single_product_asc_seller_button_text_color', 'ht_single_product_asc_seller_button_text_color', 'ffffff'),
-//    ('ht_single_product_asc_seller_button_text_hover_color', 'ht_single_product_asc_seller_button_text_hover_color', 'eeeeee'),
-//    ('ht_single_product_asc_seller_button_background_color', 'ht_single_product_asc_seller_button_background_color', 'cccccc'),
-//    ('ht_single_product_asc_seller_button_background_hover_color', 'ht_single_product_asc_seller_button_background_hover_color', 'cfcfcf'),
-//    ('ht_single_product_asc_to_seller_text', 'Asc To Seller Text', 'Asc To Seller'),
-//    ('ht_single_product_asc_seller_popup_background_1', 'ht_single_product_asc_seller_popup_background_1', 'ffffff'),
-//    ('ht_single_product_asc_seller_popup_background_2', 'ht_single_product_asc_seller_popup_background_2', '999999'),
-//    ('ht_single_product_your_mail_text', 'Your E-mail', 'Your E-mail'),
-//    ('ht_single_product_your_phone_text', 'Your Phone', 'Your Phone'),
-//    ('ht_single_product_your_message_text', 'Your Message', 'Your Message'),
-//    ('ht_single_product_asc_seller_popup_button_text', 'ht_single_product_asc_seller_popup_button_text', 'Submit'),
-//    ('ht_single_product_asc_seller_popup_button_text_size', 'ht_single_product_asc_seller_popup_button_text_size', '16'),
-//    ('ht_single_product_asc_seller_popup_button_text_color', 'ht_single_product_asc_seller_popup_button_text_color', '000000'),
-//    ('ht_single_product_asc_seller_popup_button_background_color', 'ht_single_product_asc_seller_popup_button_background_color', 'EEEEEE'),
-//    ('ht_single_product_asc_seller_popup_button_background_hover_color', 'ht_single_product_asc_seller_popup_button_background_hover_color', 'EEEEEE'),
-//    ('ht_single_product_asc_seller_popup_close_style', 'Close Button Style', 'dark')";
-//
-//    $query="SELECT name FROM ".$wpdb->prefix."huge_it_catalog_product_params";
-//    $update_catalog_1=$wpdb->get_results($query);
-//    if(end($update_catalog_1)->name=='ht_single_product_invalid_captcha_text'){
-//            $wpdb->query($sql_update_catalog_1);
-//    };
-    
     
 //    $table_name = $wpdb->prefix . "huge_it_catalog_params";
 //    $sql_update_catalog_2 = "INSERT INTO `$table_name` (`name`, `title`,`description`, `value`) VALUES
