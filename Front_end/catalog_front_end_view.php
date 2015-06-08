@@ -18,277 +18,278 @@ function front_end_catalog($images, $paramssld, $catalog)
 
         global $wpdb;
         
-$paramssld["ht_view0_border_width"] = "0";
-$paramssld["ht_view0_togglebutton_style"] = "dark";
-$paramssld["ht_view0_show_separator_lines"] = "on";
-$paramssld["ht_view0_linkbutton_text"] = "View Product";
-$paramssld["ht_view0_show_linkbutton"] = "on";
-$paramssld["ht_view0_linkbutton_background_hover_color"] = "df2e1b";
-$paramssld["ht_view0_linkbutton_background_color"] = "e74c3c";
-$paramssld["ht_view0_linkbutton_font_hover_color"] = "ffffff";
-$paramssld["ht_view0_linkbutton_color"] = "ffffff";
-$paramssld["ht_view0_linkbutton_font_size"] = "14";
-$paramssld["ht_view0_description_color"] = "5b5b5b";
-$paramssld["ht_view0_description_font_size"] = "14";
-$paramssld["ht_view0_show_description"] = "on";
-$paramssld["ht_view0_thumbs_width"] = "75";
-$paramssld["ht_view0_thumbs_position"] = "before";
-$paramssld["ht_view0_show_thumbs"] = "on";
-$paramssld["ht_view0_title_font_size"] = "15";
-$paramssld["ht_view0_title_font_color"] = "555555";
-$paramssld["ht_view0_element_border_width"] = "1";
-$paramssld["ht_view0_element_border_color"] = "D0D0D0";
-$paramssld["ht_view0_element_background_color"] = "f7f7f7";
-$paramssld["ht_view0_block_width"] = "275";
-$paramssld["ht_view0_block_height"] = "275";
+        
+        $paramssld["ht_view0_border_width"] = "0";
+        $paramssld["ht_view0_togglebutton_style"] = "dark";
+        $paramssld["ht_view0_show_separator_lines"] = "on";
+        $paramssld["ht_view0_linkbutton_text"] = "View Product";
+        $paramssld["ht_view0_show_linkbutton"] = "on";
+        $paramssld["ht_view0_linkbutton_background_hover_color"] = "df2e1b";
+        $paramssld["ht_view0_linkbutton_background_color"] = "e74c3c";
+        $paramssld["ht_view0_linkbutton_font_hover_color"] = "ffffff";
+        $paramssld["ht_view0_linkbutton_color"] = "ffffff";
+        $paramssld["ht_view0_linkbutton_font_size"] = "14";
+        $paramssld["ht_view0_description_color"] = "5b5b5b";
+        $paramssld["ht_view0_description_font_size"] = "14";
+        $paramssld["ht_view0_show_description"] = "on";
+        $paramssld["ht_view0_thumbs_width"] = "75";
+        $paramssld["ht_view0_thumbs_position"] = "before";
+        $paramssld["ht_view0_show_thumbs"] = "on";
+        $paramssld["ht_view0_title_font_size"] = "15";
+        $paramssld["ht_view0_title_font_color"] = "555555";
+        $paramssld["ht_view0_element_border_width"] = "1";
+        $paramssld["ht_view0_element_border_color"] = "D0D0D0";
+        $paramssld["ht_view0_element_background_color"] = "f7f7f7";
+        $paramssld["ht_view0_block_width"] = "275";
+        $paramssld["ht_view0_block_height"] = "275";
 
-$paramssld["ht_view1_show_separator_lines"] = "on";
-$paramssld["ht_view1_linkbutton_text"] = "View Product";
-$paramssld["ht_view1_show_linkbutton"] = "on";
-$paramssld["ht_view1_linkbutton_background_hover_color"] = "df2e1b";
-$paramssld["ht_view1_linkbutton_background_color"] = "e74c3c";
-$paramssld["ht_view1_linkbutton_font_hover_color"] = "ffffff";
-$paramssld["ht_view1_linkbutton_color"] = "ffffff";
-$paramssld["ht_view1_linkbutton_font_size"] = "14";
-$paramssld["ht_view1_description_color"] = "5b5b5b";
-$paramssld["ht_view1_description_font_size"] = "14";
-$paramssld["ht_view1_show_description"] = "on";
-$paramssld["ht_view1_thumbs_width"] = "75";
-$paramssld["ht_view1_thumbs_position"] = "before";
-$paramssld["ht_view1_show_thumbs"] = "on";
-$paramssld["ht_view1_title_font_size"] = "15";
-$paramssld["ht_view1_title_font_color"] = "555555";
-$paramssld["ht_view1_element_border_width"] = "1";
-$paramssld["ht_view1_element_border_color"] = "D0D0D0";
-$paramssld["ht_view1_element_background_color"] = "f7f7f7";
-$paramssld["ht_view1_block_width"] = "275";
-$paramssld["ht_view2_element_linkbutton_text"] = "View Product";
-$paramssld["ht_view2_element_show_linkbutton"] = "on";
-$paramssld["ht_view2_element_linkbutton_color"] = "ffffff";
-$paramssld["ht_view2_element_linkbutton_font_size"] = "14";
-$paramssld["ht_view2_element_linkbutton_background_color"] = "2ea2cd";
-$paramssld["ht_view2_show_popup_linkbutton"] = "on";
-$paramssld["ht_view2_popup_linkbutton_text"] = "View Product";
-$paramssld["ht_view2_popup_linkbutton_background_hover_color"] = "0074a2";
-$paramssld["ht_view2_popup_linkbutton_background_color"] = "2ea2cd";
-$paramssld["ht_view2_popup_linkbutton_font_hover_color"] = "ffffff";
-$paramssld["ht_view2_popup_linkbutton_color"] = "ffffff";
-$paramssld["ht_view2_popup_linkbutton_font_size"] = "14";
-$paramssld["ht_view2_description_color"] = "222222";
-$paramssld["ht_view2_description_font_size"] = "14";
-$paramssld["ht_view2_show_description"] = "on";
-$paramssld["ht_view2_thumbs_width"] = "75";
-$paramssld["ht_view2_thumbs_height"] = "75";
-$paramssld["ht_view2_thumbs_position"] = "before";
-$paramssld["ht_view2_show_thumbs"] = "on";
-$paramssld["ht_view2_popup_background_color"] = "FFFFFF";
-$paramssld["ht_view2_popup_overlay_color"] = "000000";
-$paramssld["ht_view2_popup_overlay_transparency_color"] = "70";
-$paramssld["ht_view2_popup_closebutton_style"] = "dark";
-$paramssld["ht_view2_show_separator_lines"] = "on";
-$paramssld["ht_view2_show_popup_title"] = "on";
-$paramssld["ht_view2_element_title_font_size"] = "18";
-$paramssld["ht_view2_element_title_font_color"] = "222222";
-$paramssld["ht_view2_popup_title_font_size"] = "18";
-$paramssld["ht_view2_popup_title_font_color"] = "222222";
-$paramssld["ht_view2_element_overlay_color"] = "FFFFFF";
-$paramssld["ht_view2_element_overlay_transparency"] = "70";
-$paramssld["ht_view2_zoombutton_style"] = "light";
-$paramssld["ht_view2_element_border_width"] = "1";
-$paramssld["ht_view2_element_border_color"] = "dedede";
-$paramssld["ht_view2_element_background_color"] = "f9f9f9";
-$paramssld["ht_view2_element_width"] = "275";
-$paramssld["ht_view2_element_height"] = "275";
+        $paramssld["ht_view1_show_separator_lines"] = "on";
+        $paramssld["ht_view1_linkbutton_text"] = "View Product";
+        $paramssld["ht_view1_show_linkbutton"] = "on";
+        $paramssld["ht_view1_linkbutton_background_hover_color"] = "df2e1b";
+        $paramssld["ht_view1_linkbutton_background_color"] = "e74c3c";
+        $paramssld["ht_view1_linkbutton_font_hover_color"] = "ffffff";
+        $paramssld["ht_view1_linkbutton_color"] = "ffffff";
+        $paramssld["ht_view1_linkbutton_font_size"] = "14";
+        $paramssld["ht_view1_description_color"] = "5b5b5b";
+        $paramssld["ht_view1_description_font_size"] = "14";
+        $paramssld["ht_view1_show_description"] = "on";
+        $paramssld["ht_view1_thumbs_width"] = "75";
+        $paramssld["ht_view1_thumbs_position"] = "before";
+        $paramssld["ht_view1_show_thumbs"] = "on";
+        $paramssld["ht_view1_title_font_size"] = "15";
+        $paramssld["ht_view1_title_font_color"] = "555555";
+        $paramssld["ht_view1_element_border_width"] = "1";
+        $paramssld["ht_view1_element_border_color"] = "D0D0D0";
+        $paramssld["ht_view1_element_background_color"] = "f7f7f7";
+        $paramssld["ht_view1_block_width"] = "275";
+        $paramssld["ht_view2_element_linkbutton_text"] = "View Product";
+        $paramssld["ht_view2_element_show_linkbutton"] = "on";
+        $paramssld["ht_view2_element_linkbutton_color"] = "ffffff";
+        $paramssld["ht_view2_element_linkbutton_font_size"] = "14";
+        $paramssld["ht_view2_element_linkbutton_background_color"] = "2ea2cd";
+        $paramssld["ht_view2_show_popup_linkbutton"] = "on";
+        $paramssld["ht_view2_popup_linkbutton_text"] = "View Product";
+        $paramssld["ht_view2_popup_linkbutton_background_hover_color"] = "0074a2";
+        $paramssld["ht_view2_popup_linkbutton_background_color"] = "2ea2cd";
+        $paramssld["ht_view2_popup_linkbutton_font_hover_color"] = "ffffff";
+        $paramssld["ht_view2_popup_linkbutton_color"] = "ffffff";
+        $paramssld["ht_view2_popup_linkbutton_font_size"] = "14";
+        $paramssld["ht_view2_description_color"] = "222222";
+        $paramssld["ht_view2_description_font_size"] = "14";
+        $paramssld["ht_view2_show_description"] = "on";
+        $paramssld["ht_view2_thumbs_width"] = "75";
+        $paramssld["ht_view2_thumbs_height"] = "75";
+        $paramssld["ht_view2_thumbs_position"] = "before";
+        $paramssld["ht_view2_show_thumbs"] = "on";
+        $paramssld["ht_view2_popup_background_color"] = "FFFFFF";
+        $paramssld["ht_view2_popup_overlay_color"] = "000000";
+        $paramssld["ht_view2_popup_overlay_transparency_color"] = "70";
+        $paramssld["ht_view2_popup_closebutton_style"] = "dark";
+        $paramssld["ht_view2_show_separator_lines"] = "on";
+        $paramssld["ht_view2_show_popup_title"] = "on";
+        $paramssld["ht_view2_element_title_font_size"] = "18";
+        $paramssld["ht_view2_element_title_font_color"] = "222222";
+        $paramssld["ht_view2_popup_title_font_size"] = "18";
+        $paramssld["ht_view2_popup_title_font_color"] = "222222";
+        $paramssld["ht_view2_element_overlay_color"] = "FFFFFF";
+        $paramssld["ht_view2_element_overlay_transparency"] = "70";
+        $paramssld["ht_view2_zoombutton_style"] = "light";
+        $paramssld["ht_view2_element_border_width"] = "1";
+        $paramssld["ht_view2_element_border_color"] = "dedede";
+        $paramssld["ht_view2_element_background_color"] = "f9f9f9";
+        $paramssld["ht_view2_element_width"] = "275";
+        $paramssld["ht_view2_element_height"] = "275";
 
-$paramssld["ht_view3_show_separator_lines"] = "on";
-$paramssld["ht_view3_linkbutton_text"] = "View Product";
-$paramssld["ht_view3_show_linkbutton"] = "on";
-$paramssld["ht_view3_linkbutton_background_hover_color"] = "0074a2";
-$paramssld["ht_view3_linkbutton_background_color"] = "2ea2cd";
-$paramssld["ht_view3_linkbutton_font_hover_color"] = "ffffff";
-$paramssld["ht_view3_linkbutton_color"] = "ffffff";
-$paramssld["ht_view3_linkbutton_font_size"] = "14";
-$paramssld["ht_view3_description_color"] = "555555";
-$paramssld["ht_view3_description_font_size"] = "14";
-$paramssld["ht_view3_show_description"] = "on";
-$paramssld["ht_view3_thumbs_width"] = "75";
-$paramssld["ht_view3_thumbs_height"] = "75";
-$paramssld["ht_view3_show_thumbs"] = "on";
-$paramssld["ht_view3_title_font_size"] = "18";
-$paramssld["ht_view3_title_font_color"] = "0074a2";
-$paramssld["ht_view3_mainimage_width"] = "240";
-$paramssld["ht_view3_element_border_width"] = "1";
-$paramssld["ht_view3_element_border_color"] = "dedede";
-$paramssld["ht_view3_element_background_color"] = "f9f9f9";
+        $paramssld["ht_view3_show_separator_lines"] = "on";
+        $paramssld["ht_view3_linkbutton_text"] = "View Product";
+        $paramssld["ht_view3_show_linkbutton"] = "on";
+        $paramssld["ht_view3_linkbutton_background_hover_color"] = "0074a2";
+        $paramssld["ht_view3_linkbutton_background_color"] = "2ea2cd";
+        $paramssld["ht_view3_linkbutton_font_hover_color"] = "ffffff";
+        $paramssld["ht_view3_linkbutton_color"] = "ffffff";
+        $paramssld["ht_view3_linkbutton_font_size"] = "14";
+        $paramssld["ht_view3_description_color"] = "555555";
+        $paramssld["ht_view3_description_font_size"] = "14";
+        $paramssld["ht_view3_show_description"] = "on";
+        $paramssld["ht_view3_thumbs_width"] = "75";
+        $paramssld["ht_view3_thumbs_height"] = "75";
+        $paramssld["ht_view3_show_thumbs"] = "on";
+        $paramssld["ht_view3_title_font_size"] = "18";
+        $paramssld["ht_view3_title_font_color"] = "0074a2";
+        $paramssld["ht_view3_mainimage_width"] = "240";
+        $paramssld["ht_view3_element_border_width"] = "1";
+        $paramssld["ht_view3_element_border_color"] = "dedede";
+        $paramssld["ht_view3_element_background_color"] = "f9f9f9";
 
-$paramssld["ht_view5_icons_style"] = "dark";
-$paramssld["ht_view5_show_separator_lines"] = "on";
-$paramssld["ht_view5_linkbutton_text"] = "View Product";
-$paramssld["ht_view5_show_linkbutton"] = "on";
-$paramssld["ht_view5_linkbutton_background_hover_color"] = "0074a2";
-$paramssld["ht_view5_linkbutton_background_color"] = "2ea2cd";
-$paramssld["ht_view5_linkbutton_font_hover_color"] = "ffffff";
-$paramssld["ht_view5_linkbutton_color"] = "ffffff";
-$paramssld["ht_view5_linkbutton_font_size"] = "14";
-$paramssld["ht_view5_description_color"] = "555555";
-$paramssld["ht_view5_description_font_size"] = "14";
-$paramssld["ht_view5_show_description"] = "on";
-$paramssld["ht_view5_thumbs_width"] = "75";
-$paramssld["ht_view5_thumbs_height"] = "75";
-$paramssld["ht_view5_show_thumbs"] = "on";
-$paramssld["ht_view5_title_font_size"] = "16";
-$paramssld["ht_view5_title_font_color"] = "0074a2";
-$paramssld["ht_view5_main_image_width"] = "275";
-$paramssld["ht_view5_slider_tabs_font_color"] = "d9d99";
-$paramssld["ht_view5_slider_tabs_background_color"] = "555555";
-$paramssld["ht_view5_slider_background_color"] = "f9f9f9";
+        $paramssld["ht_view5_icons_style"] = "dark";
+        $paramssld["ht_view5_show_separator_lines"] = "on";
+        $paramssld["ht_view5_linkbutton_text"] = "View Product";
+        $paramssld["ht_view5_show_linkbutton"] = "on";
+        $paramssld["ht_view5_linkbutton_background_hover_color"] = "0074a2";
+        $paramssld["ht_view5_linkbutton_background_color"] = "2ea2cd";
+        $paramssld["ht_view5_linkbutton_font_hover_color"] = "ffffff";
+        $paramssld["ht_view5_linkbutton_color"] = "ffffff";
+        $paramssld["ht_view5_linkbutton_font_size"] = "14";
+        $paramssld["ht_view5_description_color"] = "555555";
+        $paramssld["ht_view5_description_font_size"] = "14";
+        $paramssld["ht_view5_show_description"] = "on";
+        $paramssld["ht_view5_thumbs_width"] = "75";
+        $paramssld["ht_view5_thumbs_height"] = "75";
+        $paramssld["ht_view5_show_thumbs"] = "on";
+        $paramssld["ht_view5_title_font_size"] = "16";
+        $paramssld["ht_view5_title_font_color"] = "0074a2";
+        $paramssld["ht_view5_main_image_width"] = "275";
+        $paramssld["ht_view5_slider_tabs_font_color"] = "d9d99";
+        $paramssld["ht_view5_slider_tabs_background_color"] = "555555";
+        $paramssld["ht_view5_slider_background_color"] = "f9f9f9";
 
-$paramssld["ht_view6_title_font_size"] = "16";
-$paramssld["ht_view6_title_font_color"] = "0074A2";
-$paramssld["ht_view6_title_font_hover_color"] = "2EA2CD";
-$paramssld["ht_view6_title_background_color"] = "000000";
-$paramssld["ht_view6_title_background_transparency"] = "80";
-$paramssld["ht_view6_border_radius"] = "3";
-$paramssld["ht_view6_border_width"] = "0";
-$paramssld["ht_view6_border_color"] = "eeeeee";
-$paramssld["ht_view6_width"] = "275";
+        $paramssld["ht_view6_title_font_size"] = "16";
+        $paramssld["ht_view6_title_font_color"] = "0074A2";
+        $paramssld["ht_view6_title_font_hover_color"] = "2EA2CD";
+        $paramssld["ht_view6_title_background_color"] = "000000";
+        $paramssld["ht_view6_title_background_transparency"] = "80";
+        $paramssld["ht_view6_border_radius"] = "3";
+        $paramssld["ht_view6_border_width"] = "0";
+        $paramssld["ht_view6_border_color"] = "eeeeee";
+        $paramssld["ht_view6_width"] = "275";
 
-$paramssld["light_box_size"] = "17";
-$paramssld["light_box_width"] = "500";
-$paramssld["light_box_transition"] = "elastic";
-$paramssld["light_box_speed"] = "800";
-$paramssld["light_box_href"] = "False";
-$paramssld["light_box_title"] = "false";
-$paramssld["light_box_scalephotos"] = "true";
-$paramssld["light_box_rel"] = "false";
-$paramssld["light_box_scrolling"] = "false";
-$paramssld["light_box_opacity"] = "20";
-$paramssld["light_box_open"] = "false";
-$paramssld["light_box_overlayclose"] = "true";
-$paramssld["light_box_esckey"] = "false";
-$paramssld["light_box_arrowkey"] = "false";
-$paramssld["light_box_loop"] = "true";
-$paramssld["light_box_data"] = "false";
-$paramssld["light_box_classname"] = "false";
-$paramssld["light_box_fadeout"] = "300";
-$paramssld["light_box_closebutton"] = "false";
-$paramssld["light_box_current"] = "image";
-$paramssld["light_box_previous"] = "previous";
-$paramssld["light_box_next"] = "next";
-$paramssld["light_box_close"] = "close";
-$paramssld["light_box_iframe"] = "false";
-$paramssld["light_box_inline"] = "false";
-$paramssld["light_box_html"] = "false";
-$paramssld["light_box_photo"] = "false";
-$paramssld["light_box_height"] = "500";
-$paramssld["light_box_innerwidth"] = "false";
-$paramssld["light_box_innerheight"] = "false";
-$paramssld["light_box_initialwidth"] = "300";
-$paramssld["light_box_initialheight"] = "100";
-$paramssld["light_box_maxwidth"] = "768";
-$paramssld["light_box_maxheight"] = "500";
-$paramssld["light_box_slideshow"] = "false";
-$paramssld["light_box_slideshowspeed"] = "2500";
-$paramssld["light_box_slideshowauto"] = "true";
-$paramssld["light_box_slideshowstart"] = "start slideshow";
-$paramssld["light_box_slideshowstop"] = "stop slideshow";
-$paramssld["light_box_fixed"] = "true";
-$paramssld["light_box_top"] = "false";
-$paramssld["light_box_bottom"] = "false";
-$paramssld["light_box_left"] = "false";
-$paramssld["light_box_right"] = "false";
-$paramssld["light_box_reposition"] = "false";
-$paramssld["light_box_retinaimage"] = "true";
-$paramssld["light_box_retinaurl"] = "false";
-$paramssld["light_box_retinasuffix"] = "@2x.$1";
-$paramssld["light_box_returnfocus"] = "true";
-$paramssld["light_box_trapfocus"] = "true";
-$paramssld["light_box_fastiframe"] = "true";
-$paramssld["light_box_preloading"] = "true";
-$paramssld["slider_title_position"] = "5";
-$paramssld["light_box_style"] = "1";
-$paramssld["light_box_size_fix"] = "false";
+        $paramssld["light_box_size"] = "17";
+        $paramssld["light_box_width"] = "500";
+        $paramssld["light_box_transition"] = "elastic";
+        $paramssld["light_box_speed"] = "800";
+        $paramssld["light_box_href"] = "False";
+        $paramssld["light_box_title"] = "false";
+        $paramssld["light_box_scalephotos"] = "true";
+        $paramssld["light_box_rel"] = "false";
+        $paramssld["light_box_scrolling"] = "false";
+        $paramssld["light_box_opacity"] = "20";
+        $paramssld["light_box_open"] = "false";
+        $paramssld["light_box_overlayclose"] = "true";
+        $paramssld["light_box_esckey"] = "false";
+        $paramssld["light_box_arrowkey"] = "false";
+        $paramssld["light_box_loop"] = "true";
+        $paramssld["light_box_data"] = "false";
+        $paramssld["light_box_classname"] = "false";
+        $paramssld["light_box_fadeout"] = "300";
+        $paramssld["light_box_closebutton"] = "false";
+        $paramssld["light_box_current"] = "image";
+        $paramssld["light_box_previous"] = "previous";
+        $paramssld["light_box_next"] = "next";
+        $paramssld["light_box_close"] = "close";
+        $paramssld["light_box_iframe"] = "false";
+        $paramssld["light_box_inline"] = "false";
+        $paramssld["light_box_html"] = "false";
+        $paramssld["light_box_photo"] = "false";
+        $paramssld["light_box_height"] = "500";
+        $paramssld["light_box_innerwidth"] = "false";
+        $paramssld["light_box_innerheight"] = "false";
+        $paramssld["light_box_initialwidth"] = "300";
+        $paramssld["light_box_initialheight"] = "100";
+        $paramssld["light_box_maxwidth"] = "768";
+        $paramssld["light_box_maxheight"] = "500";
+        $paramssld["light_box_slideshow"] = "false";
+        $paramssld["light_box_slideshowspeed"] = "2500";
+        $paramssld["light_box_slideshowauto"] = "true";
+        $paramssld["light_box_slideshowstart"] = "start slideshow";
+        $paramssld["light_box_slideshowstop"] = "stop slideshow";
+        $paramssld["light_box_fixed"] = "true";
+        $paramssld["light_box_top"] = "false";
+        $paramssld["light_box_bottom"] = "false";
+        $paramssld["light_box_left"] = "false";
+        $paramssld["light_box_right"] = "false";
+        $paramssld["light_box_reposition"] = "false";
+        $paramssld["light_box_retinaimage"] = "true";
+        $paramssld["light_box_retinaurl"] = "false";
+        $paramssld["light_box_retinasuffix"] = "@2x.$1";
+        $paramssld["light_box_returnfocus"] = "true";
+        $paramssld["light_box_trapfocus"] = "true";
+        $paramssld["light_box_fastiframe"] = "true";
+        $paramssld["light_box_preloading"] = "true";
+        $paramssld["slider_title_position"] = "5";
+        $paramssld["light_box_style"] = "1";
+        $paramssld["light_box_size_fix"] = "false";
 
-$paramssld["ht_view2_popup_full_width"] = "on";
-$paramssld["ht_view0_price_text"] = "Price";
-$paramssld["ht_view1_price_text"] = "Price";
-$paramssld["ht_view2_price_text"] = "Price";
-$paramssld["ht_view3_price_text"] = "Price";
-$paramssld["ht_view5_price_text"] = "Price";
+        $paramssld["ht_view2_popup_full_width"] = "on";
+        $paramssld["ht_view0_price_text"] = "Price";
+        $paramssld["ht_view1_price_text"] = "Price";
+        $paramssld["ht_view2_price_text"] = "Price";
+        $paramssld["ht_view3_price_text"] = "Price";
+        $paramssld["ht_view5_price_text"] = "Price";
 
-$paramssld["ht_catalog_view0_show_price"] = "on";
-$paramssld["ht_catalog_view0_price_font_size"] = "15";
-$paramssld["ht_catalog_view0_price_font_color"] = "e74c3c";
-$paramssld["ht_catalog_view0_market_price_font_size"] = "15";
-$paramssld["ht_catalog_view0_market_price_font_color"] = "000000";
-$paramssld["ht_catalog_view1_show_price"] = "on";
-$paramssld["ht_catalog_view1_price_font_size"] = "15";
-$paramssld["ht_catalog_view1_price_font_color"] = "e74c3c";
-$paramssld["ht_catalog_view1_market_price_font_size"] = "15";
-$paramssld["ht_catalog_view1_market_price_font_color"] = "000000";
-$paramssld["ht_catalog_view2_show_price"] = "on";
-$paramssld["ht_catalog_view2_price_font_size"] = "15";
-$paramssld["ht_catalog_view2_price_font_color"] = "e74c3c";
-$paramssld["ht_catalog_view2_market_price_font_size"] = "15";
-$paramssld["ht_catalog_view2_market_price_font_color"] = "000000";
-$paramssld["ht_catalog_view3_show_price"] = "on";
-$paramssld["ht_catalog_view3_price_font_size"] = "15";
-$paramssld["ht_catalog_view3_price_font_color"] = "0074a2";
-$paramssld["ht_catalog_view3_market_price_font_size"] = "15";
-$paramssld["ht_catalog_view3_market_price_font_color"] = "000000";
-$paramssld["ht_catalog_view5_show_price"] = "on";
-$paramssld["ht_catalog_view5_price_font_size"] = "15";
-$paramssld["ht_catalog_view5_price_font_color"] = "0074a2";
-$paramssld["ht_catalog_view5_market_price_font_size"] = "15";
-$paramssld["ht_catalog_view5_market_price_font_color"] = "000000";
-$paramssld["ht_catalog_zoom_window_type"] = "window";
-$paramssld["ht_catalog_zoom_window_width"] = "200";
-$paramssld["ht_catalog_zoom_window_height"] = "150";
-$paramssld["ht_catalog_zoom_x_asis"] = "0";
-$paramssld["ht_catalog_zoom_y_asis"] = "0";
-$paramssld["ht_catalog_zoom_window_position"] = "16";
-$paramssld["ht_catalog_zoom_window_border_size"] = "2";
-$paramssld["ht_catalog_zoom_window_border_color"] = "#000";
-$paramssld["ht_catalog_zoom_window_lens_size"] = "200";
-$paramssld["ht_catalog_zoom_window_fadein"] = "200";
-$paramssld["ht_catalog_zoom_window_fadeout"] = "200";
-$paramssld["ht_catalog_zoom_lens_fadein"] = "200";
-$paramssld["ht_catalog_zoom_lens_fadeout"] = "200";
-$paramssld["ht_catalog_zoom_lens_hide"] = "false";
-$paramssld["ht_catalog_zoom_lens_shape"] = "square";
-$paramssld["ht_catalog_zoom_lens_color"] = "#fff";
-$paramssld["ht_catalog_zoom_lens_opacity"] = "40";
-$paramssld["ht_catalog_zoom_cursor"] = "crosshair";
-$paramssld["ht_catalog_zoom_scrollzoom"] = "true";
-$paramssld["ht_catalog_zoom_easing"] = "true";
-$paramssld["ht_catalog_zoom_lens_size_fix"] = "false";
-$paramssld["ht_catalog_zoom_lens_height"] = "100";
-$paramssld["ht_catalog_zoom_lens_width"] = "100";
-$paramssld["ht_catalog_zoom_tint"] = "true";
-$paramssld["ht_catalog_zoom_tint_colour"] = "#fff";
-$paramssld["ht_catalog_zoom_tint_opacity"] = "40";
-$paramssld["ht_catalog_zoom_tint_fadein"] = "200";
-$paramssld["ht_catalog_zoom_tint_fadeout"] = "200";
-$paramssld["ht_view3_allow_lightbox"] = "off";
-$paramssld["ht_catalog_zoom_thumbs_zoom"] = "off";
-$paramssld["ht_view3_allow_zooming"] = "on";
+        $paramssld["ht_catalog_view0_show_price"] = "on";
+        $paramssld["ht_catalog_view0_price_font_size"] = "15";
+        $paramssld["ht_catalog_view0_price_font_color"] = "e74c3c";
+        $paramssld["ht_catalog_view0_market_price_font_size"] = "15";
+        $paramssld["ht_catalog_view0_market_price_font_color"] = "000000";
+        $paramssld["ht_catalog_view1_show_price"] = "on";
+        $paramssld["ht_catalog_view1_price_font_size"] = "15";
+        $paramssld["ht_catalog_view1_price_font_color"] = "e74c3c";
+        $paramssld["ht_catalog_view1_market_price_font_size"] = "15";
+        $paramssld["ht_catalog_view1_market_price_font_color"] = "000000";
+        $paramssld["ht_catalog_view2_show_price"] = "on";
+        $paramssld["ht_catalog_view2_price_font_size"] = "15";
+        $paramssld["ht_catalog_view2_price_font_color"] = "e74c3c";
+        $paramssld["ht_catalog_view2_market_price_font_size"] = "15";
+        $paramssld["ht_catalog_view2_market_price_font_color"] = "000000";
+        $paramssld["ht_catalog_view3_show_price"] = "on";
+        $paramssld["ht_catalog_view3_price_font_size"] = "15";
+        $paramssld["ht_catalog_view3_price_font_color"] = "0074a2";
+        $paramssld["ht_catalog_view3_market_price_font_size"] = "15";
+        $paramssld["ht_catalog_view3_market_price_font_color"] = "000000";
+        $paramssld["ht_catalog_view5_show_price"] = "on";
+        $paramssld["ht_catalog_view5_price_font_size"] = "15";
+        $paramssld["ht_catalog_view5_price_font_color"] = "0074a2";
+        $paramssld["ht_catalog_view5_market_price_font_size"] = "15";
+        $paramssld["ht_catalog_view5_market_price_font_color"] = "000000";
+        $paramssld["ht_catalog_zoom_window_type"] = "window";
+        $paramssld["ht_catalog_zoom_window_width"] = "200";
+        $paramssld["ht_catalog_zoom_window_height"] = "150";
+        $paramssld["ht_catalog_zoom_x_asis"] = "0";
+        $paramssld["ht_catalog_zoom_y_asis"] = "0";
+        $paramssld["ht_catalog_zoom_window_position"] = "16";
+        $paramssld["ht_catalog_zoom_window_border_size"] = "2";
+        $paramssld["ht_catalog_zoom_window_border_color"] = "#000";
+        $paramssld["ht_catalog_zoom_window_lens_size"] = "200";
+        $paramssld["ht_catalog_zoom_window_fadein"] = "200";
+        $paramssld["ht_catalog_zoom_window_fadeout"] = "200";
+        $paramssld["ht_catalog_zoom_lens_fadein"] = "200";
+        $paramssld["ht_catalog_zoom_lens_fadeout"] = "200";
+        $paramssld["ht_catalog_zoom_lens_hide"] = "false";
+        $paramssld["ht_catalog_zoom_lens_shape"] = "square";
+        $paramssld["ht_catalog_zoom_lens_color"] = "#fff";
+        $paramssld["ht_catalog_zoom_lens_opacity"] = "40";
+        $paramssld["ht_catalog_zoom_cursor"] = "crosshair";
+        $paramssld["ht_catalog_zoom_scrollzoom"] = "true";
+        $paramssld["ht_catalog_zoom_easing"] = "true";
+        $paramssld["ht_catalog_zoom_lens_size_fix"] = "false";
+        $paramssld["ht_catalog_zoom_lens_height"] = "100";
+        $paramssld["ht_catalog_zoom_lens_width"] = "100";
+        $paramssld["ht_catalog_zoom_tint"] = "true";
+        $paramssld["ht_catalog_zoom_tint_colour"] = "#fff";
+        $paramssld["ht_catalog_zoom_tint_opacity"] = "40";
+        $paramssld["ht_catalog_zoom_tint_fadein"] = "200";
+        $paramssld["ht_catalog_zoom_tint_fadeout"] = "200";
+        $paramssld["ht_view3_allow_lightbox"] = "off";
+        $paramssld["ht_catalog_zoom_thumbs_zoom"] = "off";
+        $paramssld["ht_view3_allow_zooming"] = "on";
 
-$paramssld["ht_view0_sorting_float"] = "none";
-$paramssld["ht_view1_sorting_float"] = "none";
-$paramssld["ht_view2_sorting_float"] = "none";
-$paramssld["ht_view3_sorting_float"] = "none";
-$paramssld["ht_view4_sorting_float"] = "none";
-$paramssld["ht_view5_sorting_float"] = "none";
-$paramssld["ht_view6_sorting_float"] = "none";
+        $paramssld["ht_view0_sorting_float"] = "none";
+        $paramssld["ht_view1_sorting_float"] = "none";
+        $paramssld["ht_view2_sorting_float"] = "none";
+        $paramssld["ht_view3_sorting_float"] = "none";
+        $paramssld["ht_view4_sorting_float"] = "none";
+        $paramssld["ht_view5_sorting_float"] = "none";
+        $paramssld["ht_view6_sorting_float"] = "none";
 
-$paramssld["ht_view0_filtering_float"] = "none";
-$paramssld["ht_view1_filtering_float"] = "none";
-$paramssld["ht_view2_filtering_float"] = "none";
-$paramssld["ht_view3_filtering_float"] = "none";
-$paramssld["ht_view4_filtering_float"] = "none";
-$paramssld["ht_view5_filtering_float"] = "none";
-$paramssld["ht_view6_filtering_float"] = "none";
-$paramssld["ht_view0_allow_zooming"] = "off";
+        $paramssld["ht_view0_filtering_float"] = "none";
+        $paramssld["ht_view1_filtering_float"] = "none";
+        $paramssld["ht_view2_filtering_float"] = "none";
+        $paramssld["ht_view3_filtering_float"] = "none";
+        $paramssld["ht_view4_filtering_float"] = "none";
+        $paramssld["ht_view5_filtering_float"] = "none";
+        $paramssld["ht_view6_filtering_float"] = "none";
+        $paramssld["ht_view0_allow_zooming"] = "off";
         $paramssld["ht_view0_allow_lightbox"] = "on";
         $paramssld["ht_view1_allow_zooming"] = "off";
         $paramssld["ht_view1_allow_lightbox"] = "on";
@@ -296,6 +297,7 @@ $paramssld["ht_view0_allow_zooming"] = "off";
         $paramssld["ht_view2_allow_lightbox"] = "on";
         $paramssld["ht_view5_allow_zooming"] = "on";
         $paramssld["ht_view5_allow_lightbox"] = "off"; 
+        
         
 ?>
 <script>
@@ -1018,7 +1020,7 @@ $paramssld["ht_view0_allow_zooming"] = "off";
                                   
                                 <?php if($paramssld["ht_catalog_view0_show_price"] == 'on' && $row->price != ""){ ?>
                                           <div class="price-block_<?php echo $catalogID; ?>">
-                                              <span class="old-price-block" ><?php echo $paramssld['ht_view0_price_text']; ?> : <span class="old-price" <?php if($row->market_price == "") { echo "style='text-decoration: none !important;'"; } ?>><?php echo $row->price; ?></span></span>
+                                              <span class="old-price-block" ><?php echo $paramssld['ht_single_product_price_text']; ?> : <span class="old-price" <?php if($row->market_price == "") { echo "style='text-decoration: none !important;'"; } ?>><?php echo $row->price; ?></span></span>
                                               <span class="discont-price-block" ><span class="discont-price" ><?php echo $row->market_price; ?></span></span>
                                           </div>
                                 <?php } ?>
@@ -1029,7 +1031,7 @@ $paramssld["ht_view0_allow_zooming"] = "off";
                                           if (strpos(get_permalink(),'/?') !== false) { $product_page_link = get_permalink()."&single_prod_id=$row->id"; } else { if (strpos(get_permalink(),'/') !== false) { $product_page_link = get_permalink()."?single_prod_id=$row->id"; } else { $product_page_link = get_permalink()."/?single_prod_id=$row->id"; } }
                                           ?>
                                               <div class="button-block">
-                                                      <a href="<?php echo $product_page_link; ?>" <?php if ($row->link_target=="on"){echo 'target="_blank"';}?>><?php echo $paramssld['ht_view0_linkbutton_text']; ?></a>
+                                                      <a href="<?php echo $product_page_link; ?>" <?php if ($row->link_target=="on"){echo 'target="_blank"';}?>><?php echo $paramssld['ht_catalog_general_linkbutton_text']; ?></a>
                                               </div>
                                 <?php } ?>
                               </div>
@@ -1617,20 +1619,26 @@ var defaultBlockWidth=<?php echo $paramssld['ht_view0_block_width']; ?>;
                                       <div class="image-block_<?php echo $catalogID; ?> for_zoom">
                                               <?php $imgurl=explode(";",$row->image_url); ?>
                                               <?php 	if($row->image_url != ';'){ ?>
-                                              
-                                                  <?php
-                                                      if($paramssld['ht_view1_show_thumbs']=='off'){ ?>
-                                                          <a href="<?php echo $imgurl[0] ?>" class="catalog_group<?php echo $group_key; ?>">
-                                                              <img id="wd-cl-img<?php echo $key; ?>" src="<?php echo $imgurl[0]; ?>" />
-                                                          </a>
-                                                  <?php }
-                                                      else{ ?>
-                                                            <img id="wd-cl-img<?php echo $key; ?>" src="<?php echo $imgurl[0]; ?>" />
-                                                  <?php } ?>
                                           
-                                              <?php } else { ?>
-                                              <img id="wd-cl-img<?php echo $key; ?>" src="images/noimage.png" />
-                                              <?php
+                                          
+                                      <?php
+                                            if($paramssld['ht_view1_show_thumbs']=='off'){ ?>
+                                                <a href="<?php echo $imgurl[0] ?>" class="catalog_group<?php echo $group_key; ?>">
+                                                    <img id="wd-cl-img<?php echo $key; ?>" src="<?php echo $imgurl[0]; ?>" />
+                                                </a>
+                                      <?php }
+                                            else{ ?>
+                                                    <img id="wd-cl-img<?php echo $key; ?>" src="<?php echo $imgurl[0]; ?>" />
+                                          <?php } ?>
+                                          
+                                              <!--<img id="wd-cl-img<?php echo $key; ?>" src="<?php echo $imgurl[0]; ?>" />-->
+                                              
+                                              
+                                              
+                                              <?php }
+                                              else { ?>
+                                                <img id="wd-cl-img<?php echo $key; ?>" src="images/noimage.png" />
+                                                <?php
                                               } ?>	
                                       </div>
                                       <div class="title-block_<?php echo $catalogID; ?>">
@@ -1684,7 +1692,7 @@ var defaultBlockWidth=<?php echo $paramssld['ht_view0_block_width']; ?>;
                                       
                                       <?php if($paramssld["ht_catalog_view1_show_price"]=='on' && $row->price != ""){ ?>
                                                 <div class="price-block_<?php echo $catalogID; ?>">
-                                                    <span class="old-price-block" ><?php echo $paramssld['ht_view1_price_text']; ?> : <span class="old-price" <?php if($row->market_price == "") { echo "style='text-decoration: none !important;'"; } ?>><?php echo $row->price; ?></span></span>
+                                                    <span class="old-price-block" ><?php echo $paramssld['ht_single_product_price_text']; ?> : <span class="old-price" <?php if($row->market_price == "") { echo "style='text-decoration: none !important;'"; } ?>><?php echo $row->price; ?></span></span>
                                                     <span class="discont-price-block" ><span class="discont-price" ><?php echo $row->market_price; ?></span></span>
                                                 </div>
                                       <?php } ?>
@@ -1695,7 +1703,7 @@ var defaultBlockWidth=<?php echo $paramssld['ht_view0_block_width']; ?>;
                                           if (strpos(get_permalink(),'/?') !== false) { $product_page_link = get_permalink()."&single_prod_id=$row->id"; } else { $product_page_link = get_permalink()."/?single_prod_id=$row->id"; }
                                           ?>
                                               <div class="button-block">
-                                                      <a href="<?php echo $product_page_link; ?>" <?php if ($row->link_target=="on"){echo 'target="_blank"';}?>><?php echo $paramssld['ht_view1_linkbutton_text']; ?></a>
+                                                      <a href="<?php echo $product_page_link; ?>" <?php if ($row->link_target=="on"){echo 'target="_blank"';}?>><?php echo $paramssld['ht_catalog_general_linkbutton_text']; ?></a>
                                               </div>
                                       <?php } ?>
                               </div>
@@ -2191,9 +2199,9 @@ var defaultBlockHeight=<?php echo $paramssld['ht_view2_element_height']; ?>;
 	overflow: hidden; 
 	white-space:nowrap;
 	font-weight:normal;
-	font-size: <?php echo $paramssld["ht_view2_popup_title_font_size"];?>px !important;
-	line-height: <?php echo $paramssld["ht_view2_popup_title_font_size"]+4;?>px !important;
-	color:#<?php echo $paramssld["ht_view2_popup_title_font_color"];?>;
+	font-size: <?php echo $paramssld["ht_view2_element_title_font_size"];?>px !important;
+	line-height: <?php echo $paramssld["ht_view2_element_title_font_size"]+4;?>px !important;
+	color:#<?php echo $paramssld["ht_view2_element_title_font_color"];?>;
 }
 
 .element_<?php echo $catalogID; ?> .title-block_<?php echo $catalogID; ?> .button-block {
@@ -2720,7 +2728,7 @@ var defaultBlockHeight=<?php echo $paramssld['ht_view2_element_height']; ?>;
                                           $page_link = $_SERVER["SERVER_NAME"].$_SERVER["REQUEST_URI"];
                                           if (strpos(get_permalink(),'/?') !== false) { $product_page_link = get_permalink()."&single_prod_id=$row->id"; } else { $product_page_link = get_permalink()."/?single_prod_id=$row->id"; }
                                           ?>
-                                              <div class="button-block"><a href="<?php echo $product_page_link; ?>" <?php if ($row->link_target=="on"){echo 'target="_blank"';}?> ><?php echo $paramssld["ht_view2_element_linkbutton_text"]; ?></a></div>
+                                              <div class="button-block"><a href="<?php echo $product_page_link; ?>" <?php if ($row->link_target=="on"){echo 'target="_blank"';}?> ><?php echo $paramssld["ht_catalog_general_linkbutton_text"]; ?></a></div>
                                       <?php } ?>
                               </div>
                       </div>	
@@ -2777,7 +2785,7 @@ var defaultBlockHeight=<?php echo $paramssld['ht_view2_element_height']; ?>;
                                         
                                          <?php if($paramssld["ht_catalog_view2_show_price"]=='on' && $row->price != ""){ ?>
                                                    <div class="price-block_<?php echo $catalogID; ?>">
-                                                       <span class="old-price-block" ><?php echo $paramssld['ht_view2_price_text']; ?> : <span class="old-price" <?php if($row->market_price == "") { echo "style='text-decoration: none !important;'"; } ?>><?php echo $row->price; ?></span></span>
+                                                       <span class="old-price-block" ><?php echo $paramssld['ht_single_product_price_text']; ?> : <span class="old-price" <?php if($row->market_price == "") { echo "style='text-decoration: none !important;'"; } ?>><?php echo $row->price; ?></span></span>
                                                        <span class="discont-price-block" ><span class="discont-price" ><?php echo $row->market_price; ?></span></span>
                                                    </div>
                                          <?php } ?>
@@ -2787,7 +2795,7 @@ var defaultBlockHeight=<?php echo $paramssld['ht_view2_element_height']; ?>;
                                                if (strpos(get_permalink(),'/?') !== false) { $product_page_link = get_permalink()."&single_prod_id=$row->id"; } else { $product_page_link = get_permalink()."/?single_prod_id=$row->id"; }
                                        ?>
 						<div class="button-block">
-						<a href="<?php echo $product_page_link; ?>"  <?php if ($row->link_target=="on"){echo 'target="_blank"';}?>><?php echo $paramssld["ht_view2_element_linkbutton_text"]; ?></a>
+						<a href="<?php echo $product_page_link; ?>"  <?php if ($row->link_target=="on"){echo 'target="_blank"';}?>><?php echo $paramssld["ht_catalog_general_linkbutton_text"]; ?></a>
 						</div>
 					<?php } ?>
 					<div style="clear:both;"></div>
@@ -3254,21 +3262,21 @@ var defaultBlockHeight=<?php echo $paramssld['ht_view2_element_height']; ?>;
                                           
                                   <?php if($paramssld["ht_catalog_view3_show_price"]=='on' && $row->price != ""){ ?>
                                             <div class="price-block_<?php echo $catalogID; ?>">
-                                                <span class="old-price-block" ><?php echo $paramssld['ht_view3_price_text']; ?> : <span class="old-price" <?php if($row->market_price == "") { echo "style='text-decoration: none !important;'"; } ?>><?php echo $row->price; ?></span></span>
+                                                <span class="old-price-block" ><?php echo $paramssld['ht_single_product_price_text']; ?> : <span class="old-price" <?php if($row->market_price == "") { echo "style='text-decoration: none !important;'"; } ?>><?php echo $row->price; ?></span></span>
                                                 <span class="discont-price-block" ><span class="discont-price" ><?php echo $row->market_price; ?></span></span>
                                             </div>
                                   <?php } ?>
                                           
                                       <?php
-//                                      if($paramssld["ht_view3_show_linkbutton"] == 'on') {
+                                      if($paramssld["ht_view3_show_linkbutton"] == 'on') {
                                           $page_link = $_SERVER["SERVER_NAME"].$_SERVER["REQUEST_URI"];
                                           if (strpos(get_permalink(),'/?') !== false) { $product_page_link = get_permalink()."&single_prod_id=$row->id"; } else { $product_page_link = get_permalink()."/?single_prod_id=$row->id"; }
                                       ?>
                                           <div class="button-block">
-                                                  <a href="<?php echo $product_page_link; ?>" <?php if ($row->link_target=="on"){ echo 'target="_blank"';}?>><?php echo $paramssld["ht_view3_linkbutton_text"]; ?></a>
+                                                  <a href="<?php echo $product_page_link; ?>" <?php if ($row->link_target=="on"){ echo 'target="_blank"';}?>><?php echo $paramssld["ht_catalog_general_linkbutton_text"]; ?></a>
                                           </div>
                                       <?php 
-//                                      } ?>
+                                      } ?>
                               </div>
                       </div>
 
@@ -3737,7 +3745,7 @@ jQuery(function(){
                                         
                                         <?php if($paramssld["ht_catalog_view5_show_price"]=='on' && $row->price != ""){ ?>
                                                   <div class="price-block_<?php echo $catalogID; ?>">
-                                                      <span class="old-price-block" ><?php echo $paramssld['ht_view5_price_text']; ?> : <span class="old-price" <?php if($row->market_price == "") { echo "style='text-decoration: none !important;'"; } ?> ><?php echo $row->price; ?></span></span>
+                                                      <span class="old-price-block" ><?php echo $paramssld['ht_single_product_price_text']; ?> : <span class="old-price" <?php if($row->market_price == "") { echo "style='text-decoration: none !important;'"; } ?> ><?php echo $row->price; ?></span></span>
                                                       <span class="discont-price-block" ><span class="discont-price" ><?php echo $row->market_price; ?></span></span>
                                                   </div>
                                         <?php } ?>
@@ -3747,7 +3755,7 @@ jQuery(function(){
                                                 if (strpos(get_permalink(),'/?') !== false) { $product_page_link = get_permalink()."&single_prod_id=$row->id"; } else { $product_page_link = get_permalink()."/?single_prod_id=$row->id"; }
                                         ?>
 						<div class="button-block">
-							<a class="" href="<?php echo $product_page_link; ?>"  <?php if ($row->link_target=="on"){echo 'target="_blank"';}?>><?php echo $paramssld["ht_view5_linkbutton_text"]; ?></a>
+							<a class="" href="<?php echo $product_page_link; ?>"  <?php if ($row->link_target=="on"){echo 'target="_blank"';}?>><?php echo $paramssld["ht_catalog_general_linkbutton_text"]; ?></a>
 						</div>
 					<?php } ?>
 				</div>
@@ -3811,9 +3819,8 @@ jQuery(function(){
         
         $adminLink = get_option( 'admin_email' );
 //        		var_dump($adminLink);exit;
-
-
-$paramssld["ht_view0_sorting_float"] = "none";
+        
+        $paramssld["ht_view0_sorting_float"] = "none";
 $paramssld["ht_view1_sorting_float"] = "none";
 $paramssld["ht_view2_sorting_float"] = "none";
 $paramssld["ht_view3_sorting_float"] = "none";
@@ -3858,13 +3865,13 @@ $paramssld["ht_single_product_params_name_font_color"] = "000";
 $paramssld["ht_single_product_params_values_font_color"] = "000";
 $paramssld["ht_single_product_comments_name_font_color"] = "000";
 $paramssld["ht_single_product_comments_content_font_color"] = "000";
-$paramssld["ht_single_product_comments_submit_button_text"] = "Submit";
+//$paramssld["ht_single_product_comments_submit_button_text"] = "Submit";
 $paramssld["ht_single_product_comments_submit_button_text_font_size"] = "14";
 $paramssld["ht_single_product_comments_submit_button_text_font_color"] = "FFFFFF";
 $paramssld["ht_single_product_comments_submit_button_text_font_hover_color"] = "FFFFFF";
 $paramssld["ht_single_product_comments_submit_button_text_background_color"] = "4ca6cf";
 $paramssld["ht_single_product_comments_submit_button_text_background_hover_olor"] = "21759b";
-$paramssld["ht_single_product_price_text"] = "Price";
+//$paramssld["ht_single_product_price_text"] = "Price";
 $paramssld["ht_single_product_market_price_text"] = "Discount Price";
 $paramssld["ht_single_product_comments_text"] = "Comments";
 $paramssld["ht_single_product_parameters_text"] = "Parameters";
@@ -4138,7 +4145,7 @@ $paramssld["ht_view5_allow_zooming"] = "on";
 $paramssld["ht_view5_allow_lightbox"] = "off";
 $paramssld["ht_single_product_show_asc_seller_button"] = "off";
 $paramssld["ht_single_product_asc_seller_button_text"] = "Contact To Seller";
-$paramssld["ht_single_product_asc_seller_button_text_size"] = "25";
+$paramssld["ht_single_product_asc_seller_button_text_size"] = "20";
 $paramssld["ht_single_product_asc_seller_button_text_color"] = "ffffff";
 $paramssld["ht_single_product_asc_seller_button_text_hover_color"] = "ffffff";
 $paramssld["ht_single_product_asc_seller_button_background_color"] = "E22828";
@@ -4149,12 +4156,13 @@ $paramssld["ht_single_product_asc_seller_popup_background_2"] = "999999";
 $paramssld["ht_single_product_your_mail_text"] = "Your E-mail";
 $paramssld["ht_single_product_your_phone_text"] = "Your Phone";
 $paramssld["ht_single_product_your_message_text"] = "Your Message";
-$paramssld["ht_single_product_asc_seller_popup_button_text"] = "Submit";
+//$paramssld["ht_single_product_asc_seller_popup_button_text"] = "Submit";
 $paramssld["ht_single_product_asc_seller_popup_button_text_size"] = "16";
 $paramssld["ht_single_product_asc_seller_popup_button_text_color"] = "000000";
 $paramssld["ht_single_product_asc_seller_popup_button_background_color"] = "EEEEEE";
 $paramssld["ht_single_product_asc_seller_popup_button_background_hover_color"] = "EEEEEE";
 $paramssld["ht_single_product_asc_seller_popup_close_style"] = "dark";
+
 
 ?>
 
@@ -4491,9 +4499,9 @@ $paramssld["ht_single_product_asc_seller_popup_close_style"] = "dark";
 }
 
 .huge_it_catalog_single_product_page div.right-block > div:last-child {
+    display: block;
+    width: 100%;
 	/*background:none;*/
-        display: block;
-        width: 100%;
 }
 
 .huge_it_catalog_single_product_page div.right-block .title-block  {
@@ -4612,7 +4620,8 @@ $paramssld["ht_single_product_asc_seller_popup_close_style"] = "dark";
 
 
 .huge_it_catalog_single_product_page .right-block .share_buttons_block {
-	padding: 0px;
+	/*margin: 0px 10px 0px 0px;*/
+        padding: 0px;
         font-weight: normal;
         float: left;
         padding: 2% 0px;
@@ -4623,6 +4632,7 @@ $paramssld["ht_single_product_asc_seller_popup_close_style"] = "dark";
 	display: block;
         float: left;
         line-height: 15px;
+        /*margin-right: 5px;*/
 }
 
 .huge_it_catalog_single_product_page .right-block .share_buttons_block ul {
@@ -4637,7 +4647,6 @@ $paramssld["ht_single_product_asc_seller_popup_close_style"] = "dark";
 	float:left;
 	margin:0px 3px 0px 3px;
 }
-
 .huge_it_catalog_single_product_page .right-block .share_buttons_block ul li.mail {margin:0px 7px 0px 0px;}
 
 .huge_it_catalog_single_product_page .right-block .share_buttons_block ul li a {
@@ -4834,7 +4843,7 @@ $paramssld["ht_single_product_asc_seller_popup_close_style"] = "dark";
 	display:table;
 	margin:0px !important;
 	padding:10px 0% 10px 0% !important;
-	width: 100%;
+	width:100%;
 }
 
 .huge_it_catalog_view_tabs_contents > li {
@@ -5250,7 +5259,7 @@ $paramssld["ht_single_product_asc_seller_popup_close_style"] = "dark";
                             if($paramssld["ht_single_product_show_price"] == 'on' && $productArray->price != "")
                             {  ?>
                                 <div class="price-block">
-                                    <p><?php echo $paramssld["ht_single_product_price_text"]; ?> :
+                                    <p><?php echo $paramssld2["ht_single_product_price_text"]; ?> :
                                         <span class="old-price" <?php if($productArray->market_price == '') { echo "style='text-decoration: none !important;'"; } ?>> <?php echo $productArray->price; ?> </span>
                                         <?php
                                                 if($productArray->market_price != ''){ ?>
@@ -5273,7 +5282,7 @@ $paramssld["ht_single_product_asc_seller_popup_close_style"] = "dark";
                         {  ?>
                         <div class="rating-and-share-blocks">
                             <div class="rating-block">
-				<span class="label"><?php echo $paramssld["ht_single_product_rating_text"]; ?>:</span>
+				<span class="label"><?php echo $paramssld2["ht_single_product_rating_text"]; ?>:</span>
 				<ul class="rating-stars">
 					<li><input type="radio" name="" value="1"></li>
 					<li><input type="radio" name="" value="2"></li>
@@ -5308,11 +5317,8 @@ $paramssld["ht_single_product_asc_seller_popup_close_style"] = "dark";
                         if($paramssld["ht_single_product_show_share_buttons"] == 'on')
                         {  ?>
                             <div class="share_buttons_block">
-				<span class="label"><?php echo $paramssld["ht_single_product_share_text"]; ?> :</span>
+				<span class="label"><?php echo $paramssld2["ht_single_product_share_text"]; ?>:</span>
 				<ul>
-<!--					<li class="mail">
-                                            <a href="mailto:Insert%20Link?subject=I%20wanted%20to%20share%20this%20post%20with%20you%20from%20<?php bloginfo('name'); ?>&body=<?php the_permalink(); ?>" >Share via Email</a>
-                                        </li>-->
 					<li class="facebook"><a href=""  target="_blank" onclick="javascript:void window.open('<?php echo "https://www.facebook.com/sharer/sharer.php?u=".$myPageLink.""; ?>','1410949501326','width=700,height=500,toolbar=0,menubar=0,location=0,status=1,scrollbars=1,resizable=1,left=0,top=0');return false;">Facebook</a></li>
 					<li class="twitter" style="">
                                             
@@ -5324,29 +5330,29 @@ $paramssld["ht_single_product_asc_seller_popup_close_style"] = "dark";
                                             <a style="width: 20px; height: 20px;" href="#" target="_blank" onclick="javascript:void window.open('http://www.pinterest.com/pin/create/button/?url=<?php echo $myPageLink; ?>&media=<?php echo $pintimage[0]; ?>&description=<?php echo $pageTitle; ?>','1410949501326','width=700,height=500,toolbar=0,menubar=0,location=0,status=1,scrollbars=1,resizable=1,left=0,top=0');return false;">Pinterest</a>
                                         </li>
 				</ul>
-                                
                             </div>
-                            <div style="clear: both;" ></div>
-                        </div>
                             
                   <?php } ?>
                                 <?php $product_page_link = get_permalink()."&single_prod_id=$productArray->id&asc_seller"; ?>
-                                
+                            
+                            
+                            <div style="clear: both;" ></div>
+                        </div>
                             <?php
-                                 if($paramssld["ht_single_product_show_asc_seller_button"] == 'on'){ ?>
+                                 if($paramssld2["ht_single_product_show_asc_seller_button"] == 'on'){ ?>
                                      <div class="contact-seller-block">
                                         <div class="order_button" style="">
-                                            <a href="#catalog-order-popup-1" style=""><span class="label"><?php echo $paramssld['ht_single_product_asc_seller_button_text']; ?></span></a>
+                                            <a href="#catalog-order-popup-1" style=""><span class="label"><?php echo $paramssld2['ht_single_product_asc_seller_button_text']; ?></span></a>
                                         </div>
 
                                         <div id="catalog-order-popup-1" class="modalDialog">
                                             <div>
                                                     <a href="#catalog-order-popup-close" title="Close" class="catalog-order-popup-close">X</a>
-                                                    <h2><?php echo $paramssld['ht_single_product_asc_to_seller_text']; ?></h2>
-                                                    <label><input type="text" name="asc_seller_name" class="asc_seller_name" placeholder="<?php echo $paramssld["ht_single_product_your_name_text"]; ?>" /></label>
-                                                    <label><input type="text" name="asc_seller_mail" class="asc_seller_mail" placeholder="<?php echo $paramssld["ht_single_product_your_mail_text"]; ?>"  /></label>
-                                                    <label><input type="text" name="asc_seller_phone" class="asc_seller_phone" placeholder="<?php echo $paramssld["ht_single_product_your_phone_text"]; ?>" /></label>
-                                                    <label><input type="text" name="asc_seller_massage" class="asc_seller_massage" placeholder="<?php echo $paramssld["ht_single_product_your_message_text"]; ?>" /></label>
+                                                    <h2><?php echo $paramssld2['ht_single_product_asc_to_seller_text']; ?></h2>
+                                                    <label><input type="text" name="asc_seller_name" class="asc_seller_name" placeholder="<?php echo $paramssld2["ht_single_product_your_name_text"]; ?>" /></label>
+                                                    <label><input type="text" name="asc_seller_mail" class="asc_seller_mail" placeholder="<?php echo $paramssld2["ht_single_product_your_mail_text"]; ?>"  /></label>
+                                                    <label><input type="text" name="asc_seller_phone" class="asc_seller_phone" placeholder="<?php echo $paramssld2["ht_single_product_your_phone_text"]; ?>" /></label>
+                                                    <label><input type="text" name="asc_seller_massage" class="asc_seller_massage" placeholder="<?php echo $paramssld2["ht_single_product_your_message_text"]; ?>" /></label>
                                                     <label>
                                                         <input type="text" class="captchaInputValue" placeholder="<?php echo $captchaFirstNum." + ".$captchaSecondNum." = ?"; ?>" autocomplete="off" />
                                                         <p class="invalid"></p>
@@ -5354,12 +5360,11 @@ $paramssld["ht_single_product_asc_seller_popup_close_style"] = "dark";
                                                     <input type="hidden" name="asc_seller_product_id" class="asc_seller_product_id" value="<?php echo $productArray->id; ?>" />
                                                     <input type="hidden" name="asc_seller_spam" class="asc_seller_spam" value="<?php echo $spam; ?>" />
                                                     <input type="hidden" name="asc_seller_ip" class="huge_it_catalog_product_ip" value="<?php echo $_SERVER['SERVER_ADDR']; ?>" />
-                                                    <input type="submit" name="order_popup_submit" id="order_popup_submit" value="<?php echo $paramssld["ht_single_product_asc_seller_popup_button_text"];?>" />
+                                                    <input type="submit" name="order_popup_submit" id="order_popup_submit" value="<?php echo $paramssld2["ht_single_product_asc_seller_popup_button_text"];?>" />
                                             </div>
                                         </div>
                                     </div>
                            <?php } ?>
-			
 		</div>
 		
 		
@@ -5368,14 +5373,14 @@ $paramssld["ht_single_product_asc_seller_popup_close_style"] = "dark";
                 <?php if($paramssld["ht_single_product_show_parameters"] == 'on'){ ?>
                     <li class="active" >
                         <a href="#catalog-view-options-0_<?php echo $productArray->id; ?>">
-                            <?php echo $paramssld["ht_single_product_parameters_text"]; ?>
+                            <?php echo $paramssld2["ht_single_product_parameters_text"]; ?>
                         </a>
                     </li>
                 <?php } ?>
                 <?php if($paramssld["ht_single_product_show_comments"] == 'on'){ ?>
                         <li>
                             <a href="#catalog-view-options-1_<?php echo $productArray->id; ?>">
-                                <?php echo $paramssld["ht_single_product_comments_text"]; ?> (<?php echo count($reviewsArray) - count($spamReviewsArray); ?>)
+                                <?php echo $paramssld2["ht_single_product_comments_text"]; ?> (<?php echo count($reviewsArray) - count($spamReviewsArray); ?>)
                             </a>
                         </li>
               <?php } ?>
@@ -5404,6 +5409,7 @@ $paramssld["ht_single_product_asc_seller_popup_close_style"] = "dark";
                                                     }
                                                 }
                                                 else{
+//                                                        $separateParamAndChild = "&lt;a href=&quot;aaaaa&quot;&gt;";
                                                         if(count($separateParamAndChildsInArray) != ($paramKey + 1)){
                                                                 echo $separateParamAndChild.", ";
 //                                                                if(count($separateParamAndChildsInArray == 1)) echo '<li class="value-block"></li>';
@@ -5411,7 +5417,7 @@ $paramssld["ht_single_product_asc_seller_popup_close_style"] = "dark";
                                                         else {
                                                                 $separateParamAndChild = htmlspecialchars_decode($separateParamAndChild);
                                                                 $separateParamAndChild = str_replace("thisisat", "@", $separateParamAndChild);
-                                                                echo '<li class="value-block">'.$separateParamAndChild.'</li>';
+                                                                echo '<li class="value-block">'.  $separateParamAndChild.'</li>';
                                                         }
                                                 }
                                             }
@@ -5441,21 +5447,21 @@ $paramssld["ht_single_product_asc_seller_popup_close_style"] = "dark";
                             } ?>
 
                           </div>
-                          <div class = "write-rate-block">
+                          <div class="write-rate-block">
                               <form action="<?php echo wp_get_referer(); ?>" method="POST" name="comments-form">
-                                    <label><?php echo $paramssld["ht_single_product_your_name_text"]; ?>: 
-                                        <?php if ($user_level > 9) { ?> <input type="text" name="comments_name" id="comments_name" value="<?php echo ' '.$user_info->user_login; ?>"/> <?php } else { ?>
+                                    <label><?php echo esc_html($paramssld2["ht_single_product_your_name_text"]); ?>: 
+                                        <?php if ($user_level > 9) { ?> <input type="text" name="comments_name" id="comments_name" value="<?php echo ' '.esc_attr($user_info->user_login); ?>"/> <?php } else { ?>
                                         <input type="text" name="comments_name" id="comments_name"/> <?php } ?>
                                     </label>
-                                    <label><?php echo $paramssld["ht_single_product_your_Comment_text"]; ?>:
+                                    <label><?php echo esc_html($paramssld2["ht_single_product_your_Comment_text"]); ?>:
                                         <textarea name="author_comment" id="author_comment" value="" ></textarea>
                                     </label>
                                     <label>
-                                        <?php echo $paramssld["ht_single_product_captcha_text"]; ?>
-                                        <input type="text" id="captchaInputValue" placeholder="<?php echo $captchaFirstNum." + ".$captchaSecondNum." = ?"; ?>" autocomplete="off" />
+                                        <?php echo esc_html($paramssld2["ht_single_product_captcha_text"]); ?>
+                                        <input type="text" id="captchaInputValue" placeholder="<?php echo esc_attr($captchaFirstNum)." + ".esc_attr($captchaSecondNum)." = ?"; ?>" autocomplete="off" />
                                         <p class="invalid"></p>
                                     </label>
-                                    <input type="submit" name="comments_submit" id="comments_submit" value="<?php echo $paramssld["ht_single_product_comments_submit_button_text"];?>" />
+                                    <input type="submit" name="comments_submit" id="comments_submit" value="<?php echo esc_attr($paramssld2["ht_single_product_comments_submit_button_text"]);?>" />
                               </form>
                           </div>
                     </li>
@@ -5512,6 +5518,7 @@ jQuery(document).ready(function () {
                 var product_id =  jQuery(".huge_it_catalog_product_id").val();
                 var captcha_val = jQuery("#captchaInputValue").val();
                 if(comments_name == "" || author_comment == "" || captcha_val == ""){
+//                    alert("empty field");alert(jQuery("#author_comment").val());
                     if(comments_name == ""){ jQuery("#comments_name").addClass("empty"); }
                     else{ jQuery("#comments_name").removeClass("empty"); }
                     
@@ -5520,7 +5527,7 @@ jQuery(document).ready(function () {
                     
                     if(captcha_val == ""){ jQuery("#captchaInputValue").addClass("empty"); }
                     else{ jQuery("#captchaInputValue").removeClass("empty"); }
-                    //alert("empty field");
+                    
                     return false;
                 }
                 else{
@@ -5550,14 +5557,14 @@ jQuery(document).ready(function () {
                         jQuery("#captchaInputValue").parent().find(".invalid").text("");
                     }
                     if(response.index == 2){
-                        jQuery("#captchaInputValue").parent().find(".invalid").text("<?php echo $paramssld["ht_single_product_invalid_captcha_text"]; ?>");
+                        jQuery("#captchaInputValue").parent().find(".invalid").text("<?php echo $paramssld2["ht_single_product_invalid_captcha_text"]; ?>");
                     }
                 });
                 return false;
                 }
 //            }
 //            else{
-//                jQuery("#captchaInputValue").parent().find(".invalid").text("<?php echo $paramssld["ht_single_product_invalid_captcha_text"]; ?>");
+//                jQuery("#captchaInputValue").parent().find(".invalid").text("<?php echo $paramssld2["ht_single_product_invalid_captcha_text"]; ?>");
 ////                alert("invalid");
 //                return false;
 //            }
@@ -5618,14 +5625,14 @@ jQuery(document).ready(function () {
     //                            jQuery(".modalDialog ").find("a.catalog-order-popup-close").click();
                             }
                             if(response.index == 2){
-                                jQuery("#catalog-order-popup-1").find(".invalid").text("<?php echo $paramssld["ht_single_product_invalid_captcha_text"]; ?>");
+                                jQuery("#catalog-order-popup-1").find(".invalid").text("<?php echo $paramssld2["ht_single_product_invalid_captcha_text"]; ?>");
                             }
                         });
                         return false;
                     }
     //            }
     //            else{
-    //                jQuery("#captchaInputValue").parent().find(".invalid").text("<?php echo $paramssld["ht_single_product_invalid_captcha_text"]; ?>");
+    //                jQuery("#captchaInputValue").parent().find(".invalid").text("<?php echo $paramssld2["ht_single_product_invalid_captcha_text"]; ?>");
     ////                alert("invalid");
     //                return false;
     //            }
@@ -5707,7 +5714,7 @@ function album_front_end($paramssld, $catalogsFromAlbumArray)
 //        $catalogShowSorting=$catalog[0]->ht_show_sorting;
 //        $catalogShowFiltering=$catalog[0]->ht_show_filtering;
         
-$paramssld["ht_view0_togglebutton_style"] = "dark";
+        $paramssld["ht_view0_togglebutton_style"] = "dark";
         $paramssld["ht_view0_show_separator_lines"] = "on";
         $paramssld["ht_view0_linkbutton_text"] = "View Product";
         $paramssld["ht_view0_show_linkbutton"] = "on";
@@ -5985,7 +5992,8 @@ $paramssld["ht_view0_togglebutton_style"] = "dark";
         $paramssld["ht_view2_allow_lightbox"] = "on";
         $paramssld["ht_view5_allow_zooming"] = "on";
         $paramssld["ht_view5_allow_lightbox"] = "off";
-
+        
+        
 ?>
 <script>
         var allowZooming = '<?php echo $paramssld['ht_view3_allow_zooming'];?>';
@@ -6663,7 +6671,7 @@ $paramssld["ht_view0_togglebutton_style"] = "dark";
                                           if (strpos(get_permalink(),'/?') !== false) { $product_page_link = get_permalink()."&single_catalog_id=$row->catalog_id"; } else { $product_page_link = get_permalink()."/?single_catalog_id=$row->catalog_id"; }
                                       ?>
                                               <div class="button-block">
-                                                      <a href="<?php echo $product_page_link; ?>" <?php if ($row->link_target=="on"){ echo 'target="_blank"'; }?>><?php echo $paramssld['ht_view0_linkbutton_text']; ?></a>
+                                                      <a href="<?php echo $product_page_link; ?>" <?php if ($row->link_target=="on"){ echo 'target="_blank"'; }?>><?php echo $paramssld['ht_catalog_general_linkbutton_text']; ?></a>
                                               </div>
                                       <?php } ?>
                               </div>
@@ -7256,7 +7264,7 @@ var defaultBlockWidth=<?php echo $paramssld['ht_view0_block_width']; ?>;
                                           if (strpos(get_permalink(),'/?') !== false) { $product_page_link = get_permalink()."&single_catalog_id=$row->catalog_id"; } else { $product_page_link = get_permalink()."/?single_catalog_id=$row->catalog_id"; }
                                       ?>
                                               <div class="button-block">
-                                                      <a href="<?php echo $product_page_link; ?>" <?php if ($row->link_target=="on"){echo 'target="_blank"';}?>><?php echo $paramssld['ht_view1_linkbutton_text']; ?></a>
+                                                      <a href="<?php echo $product_page_link; ?>" <?php if ($row->link_target=="on"){echo 'target="_blank"';}?>><?php echo $paramssld['ht_catalog_general_linkbutton_text']; ?></a>
                                               </div>
                                       <?php } ?>
                               </div>
@@ -7753,9 +7761,9 @@ var defaultBlockHeight=<?php echo $paramssld['ht_view2_element_height']; ?>;
 	overflow: hidden; 
 	white-space:nowrap;
 	font-weight:normal;
-	font-size: <?php echo $paramssld["ht_view2_popup_title_font_size"];?>px !important;
-	line-height: <?php echo $paramssld["ht_view2_popup_title_font_size"]+4;?>px !important;
-	color:#<?php echo $paramssld["ht_view2_popup_title_font_color"];?>;
+	font-size: <?php echo $paramssld["ht_view2_element_title_font_size"];?>px !important;
+	line-height: <?php echo $paramssld["ht_view2_element_title_font_size"]+4; ?>px !important;
+	color:#<?php echo $paramssld["ht_view2_element_title_font_color"];?>;
 }
 
 .album_element_<?php echo $albumID; ?> .album_title-block_<?php echo $albumID; ?> .button-block {
@@ -8241,7 +8249,7 @@ var defaultBlockHeight=<?php echo $paramssld['ht_view2_element_height']; ?>;
                                           ?>
                                               <div class="button-block">
                                                   <a href="<?php echo $product_page_link; ?>" <?php if ($row->link_target=="on"){echo 'target="_blank"';}?> >
-                                                      <?php echo $paramssld["ht_view2_element_linkbutton_text"]; ?>
+                                                      <?php echo $paramssld["ht_catalog_general_linkbutton_text"]; ?>
                                                   </a>
                                               </div>
                                       <?php } ?>
@@ -8287,7 +8295,7 @@ var defaultBlockHeight=<?php echo $paramssld['ht_view2_element_height']; ?>;
                                           $page_link = $_SERVER["SERVER_NAME"].$_SERVER["REQUEST_URI"];
                                           if (strpos(get_permalink(),'/?') !== false) { $product_page_link = get_permalink()."&single_catalog_id=$row->catalog_id"; } else { $product_page_link = get_permalink()."/?single_catalog_id=$row->catalog_id"; }
                                           ?>
-                                              <div class="button-block"><a href="<?php echo $product_page_link; ?>" <?php if ($row->link_target=="on"){echo 'target="_blank"';}?> ><?php echo $paramssld["ht_view2_element_linkbutton_text"]; ?></a></div>
+                                              <div class="button-block"><a href="<?php echo $product_page_link; ?>" <?php if ($row->link_target=="on"){echo 'target="_blank"';}?> ><?php echo $paramssld["ht_catalog_general_linkbutton_text"]; ?></a></div>
                                       <?php } ?>
 					<div style="clear:both;"></div>
 				</div>
@@ -8677,7 +8685,7 @@ var defaultBlockHeight=<?php echo $paramssld['ht_view2_element_height']; ?>;
                                           if (strpos(get_permalink(),'/?') !== false) { $product_page_link = get_permalink()."&single_catalog_id=$row->catalog_id"; } else { $product_page_link = get_permalink()."/?single_catalog_id=$row->catalog_id"; }
                               ?>
                                           <div class="button-block">
-                                                  <a href="<?php echo $product_page_link; ?>" <?php if ($row->link_target=="on"){ echo 'target="_blank"';}?>><?php echo $paramssld["ht_view3_linkbutton_text"]; ?></a>
+                                                  <a href="<?php echo $product_page_link; ?>" <?php if ($row->link_target=="on"){ echo 'target="_blank"';}?>><?php echo $paramssld["ht_catalog_general_linkbutton_text"]; ?></a>
                                           </div>
                               </div>
                       </div>
@@ -9114,7 +9122,7 @@ jQuery(function(){
                                             if (strpos(get_permalink(),'/?') !== false) { $product_page_link = get_permalink()."&single_catalog_id=$row->catalog_id"; } else { $product_page_link = get_permalink()."/?single_catalog_id=$row->catalog_id"; }
                                         ?>
 						<div class="button-block">
-							<a class="" href="<?php echo $product_page_link; ?>"  <?php if ($row->link_target=="on"){echo 'target="_blank"';}?>><?php echo $paramssld["ht_view5_linkbutton_text"]; ?></a>
+							<a class="" href="<?php echo $product_page_link; ?>"  <?php if ($row->link_target=="on"){echo 'target="_blank"';}?>><?php echo $paramssld["ht_catalog_general_linkbutton_text"]; ?></a>
 						</div>
 					<?php } ?>
 				</div>

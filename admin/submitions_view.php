@@ -23,6 +23,27 @@ else{ $visible_submitions = "1-50"; } ?>
 
 <div class="wrap">
     <div id="poststuff">
+        <?php $path_site2 = plugins_url("../images", __FILE__); ?>
+        
+        <div style="float: left;">
+            <div><a href="http://huge-it.com/wordpress-plugins-product-catalog-user-manual/" target="_blank">User Manual</a></div>
+                <div>This section allows you to configure the Product Catalog options. <a href="http://huge-it.com/wordpress-plugins-product-catalog-user-manual/" target="_blank">More...</a></div>
+                <div>This options are disabled in free version. Get full version to customize them. <a href="http://huge-it.com/wordpress-plugins-product-catalog-user-manual/" target="_blank">Get full Version</a></div>
+        </div>
+        <div style="float: right;">
+                <a class="header-logo-text" href="http://huge-it.com/product-catalog/" target="_blank">
+                        <div><img width="250px" src="<?php echo $path_site2; ?>/huge-it1.png" /></div>
+                        <div>Get the full version</div>
+                </a>
+        </div>
+        <div style="clear:both;"></div>
+        <div style="color: #a00; margin-bottom: 15px;">Dear user. Thank you for your interest in our product.
+            Please be known, that this page is for commercial users, and in order to use options from there,
+            you should have pro license. We please you to be understanding. The money we get for pro license
+            is expended on constantly improvements of our plugins, making them more professional useful and effective,
+            as well as for keeping fast support for every user.
+        </div>
+        
         <div id="hugeit_messages_page">
             <div class="search_block">
                 <form action="admin.php?page=huge_it_catalog_submitions_page" method="POST">
@@ -386,7 +407,7 @@ jQuery( document ).ready(function(){
         
         jQuery('#hugeit_messages_page #hugeit_top_controls .controls-list .select select').change(function(){   //   alert(jQuery(this).val());
             var select_val = jQuery(this).val();
-            if(select_val == "all"){    alert(select_val);
+            if(select_val == "all"){    //    alert(select_val);
                 jQuery("#the-comment-list tr").each(function(){
                     jQuery(this).find("input[name='check_comments']").attr("checked","checked");
                 });
@@ -435,30 +456,45 @@ jQuery( document ).ready(function(){
                 }
                 else{
                     if(command == "trash"){                             // IF CLICKED IN TRASH IMAGE
-                        var data = {
+                        jQuery("#huge-catalog-dialog-confirm").css({'font-size' : '15px','display' : 'block'});
+                        jQuery( "#huge-catalog-dialog-confirm" ).dialog({            // ALERTING ARE YOU SURE DIALOG
+                            resizable: false,
+                            height:140,
+                            modal: true,
+                            buttons: {
+                              "Yes Delete All Items": function() {      // ID USER CLICKED YES I SURE
+                                jQuery( this ).dialog( "close" );
+                                var data = {
                                     action: 'my_action',
                                     post: 'deleteanysubmitions',
                                     submitions_for_delete: marked_submitions
-                            };
+                                };
 
-                        jQuery.post(ajaxurl, data, function(response) {    //      alert(response);
-                            if(response == 1) {
-                                var forEach = Function.prototype.call.bind( Array.prototype.forEach );
-                                    forEach( marked_submitions, function( submition_id ) {
-                                        jQuery("#comment-"+submition_id).remove();         // DELETE ALL CHECKED SUBMITIONS FROM FRONT END
-                                    });
-                                    var key_for_background = 0;
-                                    jQuery("#the-comment-list tr").each(function(){        // ADDING NEW BACKGROUNDS
-                                        key_for_background++;
-                                        if(key_for_background%2 == 0){ jQuery(this).addClass('alt'); }
-                                        else{ jQuery(this).removeClass('alt'); }
-                                    });
+                                jQuery.post(ajaxurl, data, function(response) {    //      alert(response);
+                                    if(response == 1) {
+                                        var forEach = Function.prototype.call.bind( Array.prototype.forEach );
+                                            forEach( marked_submitions, function( submition_id ) {
+                                                jQuery("#comment-"+submition_id).remove();         // DELETE ALL CHECKED SUBMITIONS FROM FRONT END
+                                            });
+                                            var key_for_background = 0;
+                                            jQuery("#the-comment-list tr").each(function(){        // ADDING NEW BACKGROUNDS
+                                                key_for_background++;
+                                                if(key_for_background%2 == 0){ jQuery(this).addClass('alt'); }
+                                                else{ jQuery(this).removeClass('alt'); }
+                                            });
+                                    }
+                                });
+//                                var check_all = "#hugeit_messages_page #hugeit_top_controls .select input[name='all']";
+//                                if(jQuery(check_all).is(":checked")){
+                                    window.location.reload();
+//                                }
+                                
+                              },
+                              Cancel: function() {
+                                jQuery( this ).dialog( "close" );
+                              }
                             }
                         });
-                        var check_all = "#hugeit_messages_page #hugeit_top_controls .select input[name='all']";
-                        if(jQuery(check_all).is(":checked")){
-                            window.location.reload();
-                        }
                     }
                 }
             }
@@ -577,23 +613,26 @@ jQuery( document ).ready(function(){
         //         
         
         jQuery("input[name='check_comments']").click(function(){
-            if(jQuery(check_all).is(':checked')){
+           if(jQuery(check_all).is(':checked')){
                 jQuery(check_all).removeAttr("checked");
            }
         });
         
         
         jQuery("#the-comment-list tr td").click(function(){
-            var message_id = jQuery(this).attr("id");
+            var message_id = jQuery(this).parent().attr("id");
             message_id = message_id.replace("comment-","");
-            if(jQuery(this).hasClass("unread")){
-                jQuery(this).removeClass("unread").addClass("read");
+            if(jQuery(this).parent().hasClass("unread")){
+                jQuery(this).parent().removeClass("unread").addClass("read");
             }
             window.location = "admin.php?page=huge_it_catalog_submitions_page&id=" + message_id + "&task=show_message";
 //            alert(message_id);
         });
-                
+        
 });
     
     
 </script>
+<div id="huge-catalog-dialog-confirm" title="Delete Submition(s) ?" style="display: none;">
+  Are You Sure ?
+</div>

@@ -4,7 +4,7 @@
 Plugin Name: Huge IT Product Catalog
 Plugin URI: http://huge-it.com/product-catalog
 Description: Let us introduce our Huge-IT Product Catalog incomparable plugin. To begin with, why do we need this plugin and what are the advantages.
-Version: 1.0.8
+Version: 1.0.9
 Author: http://huge-it.com/
 License: GNU/GPLv3 http://www.gnu.org/licenses/gpl-3.0.html
 */
@@ -220,20 +220,21 @@ add_action('wp_enqueue_scripts', 'catalog_frontend_scripts_and_styles');
 add_action('admin_menu', 'huge_it_catalog_options_panel');
 function huge_it_catalog_options_panel()
 {
-    $page_cat = add_menu_page('Theme page title', 'Huge IT Catalog', 'manage_options', 'catalogs_huge_it_catalog', 'catalogs_huge_it_catalog', plugins_url('images/huge_it_catalogLogoHover -for_menu.png', __FILE__));
-    $catalogs = add_submenu_page('catalogs_huge_it_catalog', 'Catalogs', 'Catalogs', 'manage_options', 'catalogs_huge_it_catalog', 'catalogs_huge_it_catalog');
+    $page_cat = add_menu_page('Theme page title', 'Huge IT Catalog', 'delete_pages', 'catalogs_huge_it_catalog', 'catalogs_huge_it_catalog', plugins_url('images/huge_it_catalogLogoHover -for_menu.png', __FILE__));
+    $catalogs = add_submenu_page('catalogs_huge_it_catalog', 'Catalogs', 'Catalogs', 'delete_pages', 'catalogs_huge_it_catalog', 'catalogs_huge_it_catalog');
 //    $Albums = add_submenu_page('catalogs_huge_it_catalog', 'Catalog Stand', 'Catalog Stand', 'manage_options', 'huge_it_catalog_albums_page', 'huge_it_catalog_albums_page');
+    $Reviews = add_submenu_page('catalogs_huge_it_catalog', 'Reviews Manager', 'Reviews Manager', 'manage_options', 'huge_it_catalog_reviews_page', 'huge_it_catalog_reviews_page');
+    $Ratings = add_submenu_page('catalogs_huge_it_catalog', 'Ratings Manager', 'Ratings Manager', 'manage_options', 'huge_it_catalog_ratings_page', 'huge_it_catalog_ratings_page');
+    $Submitions = add_submenu_page('catalogs_huge_it_catalog', 'Submitions', 'Submitions', 'manage_options', 'huge_it_catalog_submitions_page', 'huge_it_catalog_submitions_page');
+    $general_options = add_submenu_page('catalogs_huge_it_catalog', 'General Options', 'General Options', 'manage_options', 'huge_it_catalog_general_options_page', 'huge_it_catalog_general_options_page');
     $page_option = add_submenu_page('catalogs_huge_it_catalog', 'Catalog Options', 'Catalog Options', 'manage_options', 'Options_catalog_styles', 'Options_catalog_styles');
     $products_options = add_submenu_page('catalogs_huge_it_catalog', 'Products Options', 'Products Options', 'manage_options', 'huge_it_catalog_products_page', 'huge_it_catalog_products_page');
     $lightbox_options = add_submenu_page('catalogs_huge_it_catalog', 'Image View Options', 'Image View Options', 'manage_options', 'Options_catalog_lightbox_styles', 'Options_catalog_lightbox_styles');    
-    $Ratings = add_submenu_page('catalogs_huge_it_catalog', 'Ratings Manager', 'Ratings Manager', 'manage_options', 'huge_it_catalog_ratings_page', 'huge_it_catalog_ratings_page');
-    $Reviews = add_submenu_page('catalogs_huge_it_catalog', 'Reviews Manager', 'Reviews Manager', 'manage_options', 'huge_it_catalog_reviews_page', 'huge_it_catalog_reviews_page');
     add_submenu_page('catalogs_huge_it_catalog', 'Featured Plugins', 'Featured Plugins', 'manage_options', 'huge_it__catalog_featured_plugins', 'huge_it__catalog_featured_plugins');
-    $Submitions = add_submenu_page('catalogs_huge_it_catalog', 'Submitions', 'Submitions', 'manage_options', 'huge_it_catalog_submitions_page', 'huge_it_catalog_submitions_page');
 
     add_action('admin_print_styles-' . $page_cat, 'huge_it_catalog_admin_script');
     add_action('admin_print_styles-' . $page_option, 'huge_it_catalog_option_admin_script');
-//    add_action('admin_print_styles-' . $Albums, 'huge_it_catalog_admin_script');
+    add_action('admin_print_styles-' . $Submitions, 'huge_it_catalog_admin_script');
     add_action('admin_print_styles-' . $lightbox_options, 'huge_it_catalog_option_admin_script');
 }
 
@@ -498,6 +499,19 @@ function huge_it_catalog_products_page(){
         }
     }
     show_product_options();
+    
+}
+
+function huge_it_catalog_general_options_page(){
+    require_once("admin/catalog_general_options_func.php");
+    require_once("admin/catalog_general_options_view.php");
+    
+    if (isset($_GET['task'])){
+        if ($_GET['task'] == 'save'){
+            save_styles_options();
+        }
+    }
+    show_general_options();
     
 }
 
@@ -766,15 +780,20 @@ function huge_it_catalog_my_action_callback_frontend() {
     global $wpdb; // this is how you get access to the database
     
         if($_POST["post"] == "applyproductcommentfromuser"){
-            $comments_name =  $_POST['comments_name'];
-            $author_comment =  $_POST['author_comment'];
-            $spam = $_POST["spam"];
-            $product_id = $_POST["product_id"];
-            $ip = $_POST["ip"];
+//                                                   $comments_name = stripslashes($comments_name);
+//                                                   $comments_name = htmlspecialchars($comments_name);
+//                                                   strip_tags( preg_replace( '/<[^>]*>/', '', preg_replace( '/<script.*<\/[^>]*>/', '', $comments_name ) ) );
+            
+            if(isset($_POST["comments_name"]))   { $comments_name =  $_POST['comments_name'];   $comments_name = sanitize_text_field($comments_name);   }            
+            if(isset($_POST["author_comment"]))  { $author_comment =  $_POST['author_comment']; $author_comment = sanitize_text_field($author_comment); }
+            if(isset($_POST["spam"]))            { $spam = $_POST["spam"];                      $spam = sanitize_text_field($spam);                     }
+            if(isset($_POST["product_id"]))      { $product_id = $_POST["product_id"];          $product_id = sanitize_text_field($product_id);         }
+            if(isset($_POST["ip"]))              { $ip = $_POST["ip"];                          $ip = sanitize_text_field($ip);                         }
+            if(isset($_POST["captcha_val"]))     { $captcha_val = $_POST['captcha_val'];        $captcha_val = sanitize_text_field($captcha_val);       }
+            
             $date = date("Y/m/d");
             $time = date("h:i");
             $datetime = $date." at ".$time;
-            $captcha_val = $_POST['captcha_val'];
             if($spam == 1){
                 $response = array('index' => '1', 'spamer' => 'true');
                 echo json_encode($response);die();
@@ -810,7 +829,7 @@ function huge_it_catalog_my_action_callback_frontend() {
     }
     else
         if($_POST["post"] == "applyproductascsellerfromuser"){
-           if(isset($_POST["user_name"]))       {$name = $_POST["user_name"]; $name = stripslashes($name); $name = htmlspecialchars($name);
+            if(isset($_POST["user_name"]))       { $name = $_POST["user_name"]; $name = stripslashes($name); $name = htmlspecialchars($name);
                                                    strip_tags( preg_replace( '/<[^>]*>/', '', preg_replace( '/<script.*<\/[^>]*>/', '', $name ) ) ); }
             if(isset($_POST["user_mail"]))       { $mail = $_POST["user_mail"]; $mail = stripslashes($mail); $mail = htmlspecialchars($mail);
                                                    strip_tags( preg_replace( '/<[^>]*>/', '', preg_replace( '/<script.*<\/[^>]*>/', '', $mail ) ) ); }
@@ -826,34 +845,44 @@ function huge_it_catalog_my_action_callback_frontend() {
                                                    strip_tags( preg_replace( '/<[^>]*>/', '', preg_replace( '/<script.*<\/[^>]*>/', '', $spam ) ) ); }
             if(isset($_POST["captcha_val"]))     { $captcha_val = $_POST['captcha_val']; $captcha_val = stripslashes($captcha_val); $captcha_val = htmlspecialchars($captcha_val);
                                                    strip_tags( preg_replace( '/<[^>]*>/', '', preg_replace( '/<script.*<\/[^>]*>/', '', $captcha_val ) ) ); }
+                                
+            $getAllParams = $wpdb->get_results("SELECT name,value FROM ".$wpdb->prefix."huge_it_catalog_params");
+            foreach($getAllParams AS $allParams){
+                if($allParams->name == "ht_catalog_general_message_to_user")     { $sendToUser = $allParams->value; }
+                if($allParams->name == "ht_catalog_general_user_subject")        { $userSubject = $allParams->value; }
+                if($allParams->name == "ht_catalog_general_user_message")        { $userMessage = $allParams->value; }
+                if($allParams->name == "ht_catalog_general_message_to_admin")    { $sendToAdmin = $allParams->value; }
+                if($allParams->name == "ht_catalog_general_admin_email")         { $adminEmail = $allParams->value; }
+                if($allParams->name == "ht_catalog_general_admin_email_subject") { $adminSubject = $allParams->value; }
+                if($allParams->name == "ht_catalog_general_admin_email_message") { $sendMessage = $allParams->value; }
+                if($allParams->name == "ht_catalog_general_admin_from_text")     { $from = $allParams->value; }
+            }
 
-
-			    $massage = "<table>
-                                   		<tr>
-                                                	<td width='1000' >
-                                                        	".$massage."
-                                                         </td>
-                                                </tr>
-                                                         <tr><td height='10' ></td></tr>
-                                                         <tr>
-                                                              <td width='1000'><strong>Customer Name: </strong> ".$name." </td>
-                                                         </tr>
-                                                         <tr>
-                                                              <td width='1000'><strong>Phone: </strong>".$phone."</td>
-                                                         </tr>
-                                                         <tr>
-                                                           <td width='1000'><strong>Location: </strong> ".$user_ip." </td>
-                                                         </tr>
-                                        </table>";
-
-
-            $admin_email = get_option( 'admin_email' );
+            $massage = "<table>
+                                <tr>
+                                    <td width='1000' >
+                                            ".$massage."
+                                     </td>
+                                </tr>
+                                <tr><td height='10' ></td></tr>
+                                <tr>
+                                    <td width='1000'><strong>Customer Name: </strong> ".$name." </td>
+                                </tr>
+                                <tr>
+                                    <td width='1000'><strong>Phone: </strong>".$phone."</td>
+                                </tr>
+                                <tr>
+                                    <td width='1000'><strong>Location: </strong> ".$user_ip." </td>
+                                </tr>
+                        </table>";
+		//$sendMessage = preg_replace('/\b{userMessage}\b/', $massage, $sendMessage);
+            $sendMessage = str_ireplace("{userMessage}",$massage,$sendMessage);
             $date = date("Y/m/d");
             $time = date("h:i");
             $datetime = $date." at ".$time;
-            $subject = 'New Message From Customer';
             $headers[] = 'From: '.$mail.' <'.$mail.'>' . "\r\n";
 	    $headers[] = "Content-type: text/html" ;
+            
             if($spam == 1){
                 $response = array('index' => '1', 'reason' => 'spamer');
                 echo json_encode($response);die();
@@ -874,13 +903,17 @@ function huge_it_catalog_my_action_callback_frontend() {
                             $captcha2 = rand(1,9);
                             $captcha12 = $captcha1 + $captcha2;
                             $updateCaptcha = $wpdb->query($wpdb->prepare("UPDATE ".$wpdb->prefix."huge_it_catalog_products  SET published_in_sl_width = '%s'", $captcha12));
+                            
+                            $getAllParams = $wpdb->get_results("SELECT * FROM ".$wpdb->prefix."huge_it_catalog_params");
+                            
 //                            if($updateCaptcha){
-
-                                $massageUser = 'Dear Customer,Your Message Was Sent To Seller,Please Wait To Response';
-                                $userSubject = 'Your Message Was Sent To Seller';
-                                $headersUser = 'From: Seller <Seller>' . "\r\n";
-                                $responseToUser = wp_mail( $mail, $userSubject, $massageUser, $headersUser );
-                                
+                                if($sendToAdmin == "on"){
+                                    $send = wp_mail( $adminEmail, $adminSubject, $sendMessage , $headers );
+                                }
+                                $headersUser = 'From: '.$from.' <'.$from.'>' . "\r\n";
+                                if($sendToAdmin == "on"){
+                                    $responseToUser = wp_mail( $mail, $userSubject, $userMessage, $headersUser );
+                                }
                                 $response = array('index' => '1', 'captcha1' => $captcha1, 'captcha2' => $captcha2, 'reason' => 'allOk');
                                 echo json_encode($response);
                                 die(); // this is required to return a proper result
@@ -947,15 +980,14 @@ function huge_it_catalog_activate()
 /// creating database tables
 
 
-//    $sql_huge_it_catalog_params = "
-//CREATE TABLE IF NOT EXISTS `" . $wpdb->prefix . "huge_it_catalog_params`(
-//  `id` int(11) unsigned NOT NULL AUTO_INCREMENT,
-//  `name` varchar(50) CHARACTER SET utf8 NOT NULL,
-//  `title` varchar(200) CHARACTER SET utf8 NOT NULL,
-//  `description` text CHARACTER SET utf8 NOT NULL,
-//  `value` varchar(200) CHARACTER SET utf8 NOT NULL,
-//  PRIMARY KEY (`id`)
-//) ENGINE=MyISAM  DEFAULT CHARSET=latin1 AUTO_INCREMENT=8 ";
+    $sql_huge_it_catalog_params = "
+CREATE TABLE IF NOT EXISTS `" . $wpdb->prefix . "huge_it_catalog_params`(
+  `id` int(11) unsigned NOT NULL AUTO_INCREMENT,
+  `name` varchar(50) CHARACTER SET utf8 NOT NULL,
+  `title` varchar(200) CHARACTER SET utf8 NOT NULL,
+  `value` varchar(200) CHARACTER SET utf8 NOT NULL,
+  PRIMARY KEY (`id`)
+) ENGINE=MyISAM  DEFAULT CHARSET=latin1 AUTO_INCREMENT=8 ";
     
 //    $sql_huge_it_catalog_product_params = "
 //CREATE TABLE IF NOT EXISTS `" . $wpdb->prefix . "huge_it_catalog_product_params`(
@@ -1084,481 +1116,39 @@ CREATE TABLE IF NOT EXISTS `" . $wpdb->prefix . "huge_it_catalog_albums` (
 ) ENGINE=MyISAM  DEFAULT CHARSET=latin1 AUTO_INCREMENT=8 ";
     
     
-//
-//    $table_name = $wpdb->prefix . "huge_it_catalog_params";
-//    $sql_1 = <<<query1
-//INSERT INTO `$table_name` (`name`, `title`,`description`, `value`) VALUES
-//
-///*############################## VIEW 0 #####################################*/
-//
-//('ht_view0_togglebutton_style', 'Toggle Button Style', 'Toggle Button Style','dark'),
-//('ht_view0_show_separator_lines', 'Show Separator Lines', 'Show Separator Lines','on'),
-//('ht_view0_linkbutton_text', 'Link Button Text', 'Link Button Text', 'View Product'),
-//('ht_view0_show_linkbutton', 'Show Link Button', 'Show Link Button', 'on'),
-//('ht_view0_linkbutton_background_hover_color', 'Link Button Background Hover Color', 'Link Button Background Hover Color', 'df2e1b'),
-//('ht_view0_linkbutton_background_color', 'Link Button Background Color', 'Link Button Background Color', 'e74c3c'),
-//('ht_view0_linkbutton_font_hover_color', 'Link Button Font Hover Color', 'Link Button Font Hover Color', 'ffffff'),
-//('ht_view0_linkbutton_color', 'Link Button Font Color', 'Link Button Font Color', 'ffffff'),
-//('ht_view0_linkbutton_font_size', 'Link Button Font Size', 'Link Button Font Size', '14'),
-//('ht_view0_description_color', 'Description Font Color', 'Description Font Color', '5b5b5b'),
-//('ht_view0_description_font_size', 'Description Font Size', 'Description Font Size', '14'),
-//('ht_view0_show_description', 'Show Description', 'Show Description', 'on'),
-//('ht_view0_thumbs_width', 'Thumbnails Width', 'Thumbnails Width', '75'),
-//('ht_view0_thumbs_position', 'Thumbnails Position', 'Thumbnails Position', 'before'),
-//('ht_view0_show_thumbs', 'Show Thumbnails', 'Show Thumbnails', 'on'),
-//('ht_view0_title_font_size', 'Title Font Size', 'Title Font Size', '15'),
-//('ht_view0_title_font_color', 'Title Font Color', 'Title Font Color', '555555'),
-//('ht_view0_element_border_width', 'Element Border Width', 'Element Border Width', '1'),
-//('ht_view0_element_border_color', 'Element Border Color', 'Element Border Color', 'D0D0D0'),
-//('ht_view0_element_background_color', 'Element Background Color', 'Element Background Color', 'f7f7f7'),
-//('ht_view0_block_width', 'Block Width', 'Block Width', '275'),
-//('ht_view0_block_height', 'Block Height', 'Block Height', '320'),
-//
-//
-///*############################## VIEW 1 #####################################*/
-//
-//('ht_view1_show_separator_lines', 'Show Separator Lines', 'Show Separator Lines','on'),
-//('ht_view1_linkbutton_text', 'Link Button Text', 'Link Button Text', 'View Product'),
-//('ht_view1_show_linkbutton', 'Show Link Button', 'Show Link Button', 'on'),
-//('ht_view1_linkbutton_background_hover_color', 'Link Button Background Hover Color', 'Link Button Background Hover Color', 'df2e1b'),
-//('ht_view1_linkbutton_background_color', 'Link Button Background Color', 'Link Button Background Color', 'e74c3c'),
-//('ht_view1_linkbutton_font_hover_color', 'Link Button Font Hover Color', 'Link Button Font Hover Color', 'ffffff'),
-//('ht_view1_linkbutton_color', 'Link Button Font Color', 'Link Button Font Color', 'ffffff'),
-//('ht_view1_linkbutton_font_size', 'Link Button Font Size', 'Link Button Font Size', '14'),
-//('ht_view1_description_color', 'Description Font Color', 'Description Font Color', '5b5b5b'),
-//('ht_view1_description_font_size', 'Description Font Size', 'Description Font Size', '14'),
-//('ht_view1_show_description', 'Show Description', 'Show Description', 'on'),
-//('ht_view1_thumbs_width', 'Thumbnails Width', 'Thumbnails Width', '75'),
-//('ht_view1_thumbs_position', 'Thumbnails Position', 'Thumbnails Position', 'before'),
-//('ht_view1_show_thumbs', 'Show Thumbnails', 'Show Thumbnails', 'on'),
-//('ht_view1_title_font_size', 'Title Font Size', 'Title Font Size', '15'),
-//('ht_view1_title_font_color', 'Title Font Color', 'Title Font Color', '555555'),
-//('ht_view1_element_border_width', 'Element Border Width', 'Element Border Width', '1'),
-//('ht_view1_element_border_color', 'Element Border Color', 'Element Border Color', 'D0D0D0'),
-//('ht_view1_element_background_color', 'Element Background Color', 'Element Background Color', 'f7f7f7'),
-//('ht_view1_block_width', 'Block Width', 'Block Width', '275'),
-//
-//
-//
-///*############################## VIEW 2 Popup #####################################*/
-//
-//('ht_view2_element_linkbutton_text', 'Link Button Text', 'Link Button Text', 'View Product'),
-//('ht_view2_element_show_linkbutton', 'Show Link Button On Element', 'Show Link Button On Element', 'on'),
-//('ht_view2_element_linkbutton_color', 'Element Link Button Font Color', 'Element Link Button Font Color', 'ffffff'),
-//('ht_view2_element_linkbutton_font_size', 'Element Link Button Font Size', 'Element Link Button Font Size', '14'),
-//('ht_view2_element_linkbutton_background_color', 'Element Link Button Background Color', 'Element Link Button Background Color', '2ea2cd'),
-//('ht_view2_show_popup_linkbutton', 'Show Link Button On Popup', 'Show Link Button On Popup', 'on'),
-//('ht_view2_popup_linkbutton_background_hover_color', 'Link Button Background Hover Color', 'Link Button Background Hover Color', '0074a2'),
-//('ht_view2_popup_linkbutton_background_color', 'Link Button Background Color', 'Link Button Background Color', '2ea2cd'),
-//('ht_view2_popup_linkbutton_font_hover_color', 'Link Button Font Hover Color', 'Link Button Font Hover Color', 'ffffff'),
-//('ht_view2_popup_linkbutton_color', 'Element Link Button Font Color', 'Link Button Font Color', 'ffffff'),
-//('ht_view2_popup_linkbutton_font_size', 'Element Link Button Font Size', 'Link Button Font Size', '14'),
-//('ht_view2_description_color', 'Description Font Color', 'Description Font Color', '222222'),
-//('ht_view2_description_font_size', 'Description Font Size', 'Description Font Size', '14'),
-//('ht_view2_show_description', 'Show Description', 'Show Description', 'on'),
-//('ht_view2_thumbs_width', 'Thumbnails Width', 'Thumbnails Width', '75'),
-//('ht_view2_thumbs_height', 'Thumbnails Height', 'Thumbnails Height', '75'),
-//('ht_view2_thumbs_position', 'Thumbnails Position', 'Thumbnails Position', 'before'),
-//('ht_view2_show_thumbs', 'Show Thumbnails', 'Show Thumbnails', 'on'),
-//('ht_view2_popup_background_color', 'Popup Background Color', 'Popup Background Color', 'FFFFFF'),
-//('ht_view2_popup_overlay_color', 'Popup Overlay Color', 'Popup Overlay Color', '000000'),
-//('ht_view2_popup_overlay_transparency_color', 'Popup Overlay Transparency', 'Popup Overlay Transparency ', '70'),
-//('ht_view2_popup_closebutton_style', 'Popup Close Button Style', 'Popup Close Button Style', 'dark'),
-//('ht_view2_show_separator_lines', 'Show Separator Lines', 'Show Separator Lines','on'),
-//('ht_view2_show_popup_title', 'Show Popup Title', 'Show Popup Title','on'),
-//('ht_view2_element_title_font_size', 'Element Title Font Size', 'Element Title Font Size', '18'),
-//('ht_view2_element_title_font_color', 'Element Title Font Color', 'Element Title Font Color', '222222'),
-//('ht_view2_popup_title_font_size', 'Popup Title Font Size', 'Popup Title Font Size', '18'),
-//('ht_view2_popup_title_font_color', 'Popup Title Font Color', 'Popup Title Font Color', '222222'),
-//('ht_view2_element_overlay_color', 'Element Overlay Color', 'Element Overlay Color', 'FFFFFF'),
-//('ht_view2_element_overlay_transparency', 'Element Overlay Transparency', 'Element Overlay Transparency ', '70'),
-//('ht_view2_zoombutton_style', 'Zoom Button Style', 'Zoom Button Style','light'),
-//('ht_view2_element_border_width', 'Element Border Width', 'Element Border Width', '1'),
-//('ht_view2_element_border_color', 'Element Border Color', 'Element Border Color', 'dedede'),
-//('ht_view2_element_background_color', 'Element Background Color', 'Element Background Color', 'f9f9f9'),
-//('ht_view2_element_width', 'Block Width', 'Block Width', '275'),
-//('ht_view2_element_height', 'Block Height', 'Block Height', '320'),
-//
-//
-///*############################## VIEW 3 Fullwidth #####################################*/
-//
-//('ht_view3_show_separator_lines', 'Show Separator Lines', 'Show Separator Lines','on'),
-//('ht_view3_linkbutton_text', 'Link Button Text', 'Link Button Text', 'View Product'),
-//('ht_view3_show_linkbutton', 'Show Link Button', 'Show Link Button', 'on'),
-//('ht_view3_linkbutton_background_hover_color', 'Link Button Background Hover Color', 'Link Button Background Hover Color', '0074a2'),
-//('ht_view3_linkbutton_background_color', 'Link Button Background Color', 'Link Button Background Color', '2ea2cd'),
-//('ht_view3_linkbutton_font_hover_color', 'Link Button Font Hover Color', 'Link Button Font Hover Color', 'ffffff'),
-//('ht_view3_linkbutton_color', 'Link Button Font Color', 'Link Button Font Color', 'ffffff'),
-//('ht_view3_linkbutton_font_size', 'Link Button Font Size', 'Link Button Font Size', '14'),
-//('ht_view3_description_color', 'Description Font Color', 'Description Font Color', '555555'),
-//('ht_view3_description_font_size', 'Description Font Size', 'Description Font Size', '14'),
-//('ht_view3_show_description', 'Show Description', 'Show Description', 'on'),
-//('ht_view3_thumbs_width', 'Thumbnails Width', 'Thumbnails Width', '75'),
-//('ht_view3_thumbs_height', 'Thumbnails Height', 'Thumbnails Hight', '75'),
-//('ht_view3_show_thumbs', 'Show Thumbnails', 'Show Thumbnails', 'on'),
-//('ht_view3_title_font_size', 'Title Font Size', 'Title Font Size', '18'),
-//('ht_view3_title_font_color', 'Title Font Color', 'Title Font Color', '0074a2'),
-//('ht_view3_mainimage_width', 'Main Image Width', 'Main Image Width', '240'),
-//('ht_view3_element_border_width', 'Element Border Width', 'Element Border Width', '1'),
-//('ht_view3_element_border_color', 'Element Border Color', 'Element Border Color', 'dedede'),
-//('ht_view3_element_background_color', 'Element Background Color', 'Element Background Color', 'f9f9f9'),
-//
-//
-//
-//
-///*############################## VIEW 4 FAQ #####################################
-//
-//('ht_view4_togglebutton_style', 'Toggle Button Style', 'Toggle Button Style','dark'),
-//('ht_view4_show_separator_lines', 'Show Separator Lines', 'Show Separator Lines','on'),
-//('ht_view4_linkbutton_text', 'Link Button Text', 'Link Button Text', 'View Product'),
-//('ht_view4_show_linkbutton', 'Show Link Button', 'Show Link Button', 'on'),
-//('ht_view4_linkbutton_background_hover_color', 'Link Button Background Hover Color', 'Link Button Background Hover Color', 'df2e1b'),
-//('ht_view4_linkbutton_background_color', 'Link Button Background Color', 'Link Button Background Color', 'e74c3c'),
-//('ht_view4_linkbutton_font_hover_color', 'Link Button Font Hover Color', 'Link Button Font Hover Color', 'ffffff'),
-//('ht_view4_linkbutton_color', 'Link Button Font Color', 'Link Button Font Color', 'ffffff'),
-//('ht_view4_linkbutton_font_size', 'Link Button Font Size', 'Link Button Font Size', '14'),
-//('ht_view4_description_color', 'Description Font Color', 'Description Font Color', '555555'),
-//('ht_view4_description_font_size', 'Description Font Size', 'Description Font Size', '14'),
-//('ht_view4_show_description', 'Show Description', 'Show Description', 'on'),
-//('ht_view4_title_font_size', 'Title Font Size', 'Title Font Size', '18'),
-//('ht_view4_title_font_color', 'Title Font Color', 'Title Font Color', 'E74C3C'),
-//('ht_view4_element_border_width', 'Element Border Width', 'Element Border Width', '1'),
-//('ht_view4_element_border_color', 'Element Border Color', 'Element Border Color', 'dedede'),
-//('ht_view4_element_background_color', 'Element Background Color', 'Element Background Color', 'f9f9f9'),
-//('ht_view4_block_width', 'Block Width', 'Block Width', '275'),
-//*/
-///*############################## VIEW 5 SLIDER #####################################*/
-//
-//('ht_view5_icons_style', 'Icons Style', 'Icons Style','dark'),
-//('ht_view5_show_separator_lines', 'Show Separator Lines', 'Show Separator Lines','on'),
-//('ht_view5_linkbutton_text', 'Link Button Text', 'Link Button Text', 'View Product'),
-//('ht_view5_show_linkbutton', 'Show Link Button', 'Show Link Button', 'on'),
-//('ht_view5_linkbutton_background_hover_color', 'Link Button Background Hover Color', 'Link Button Background Hover Color', '0074a2'),
-//('ht_view5_linkbutton_background_color', 'Link Button Background Color', 'Link Button Background Color', '2ea2cd'),
-//('ht_view5_linkbutton_font_hover_color', 'Link Button Font Hover Color', 'Link Button Font Hover Color', 'ffffff'),
-//('ht_view5_linkbutton_color', 'Link Button Font Color', 'Link Button Font Color', 'ffffff'),
-//('ht_view5_linkbutton_font_size', 'Link Button Font Size', 'Link Button Font Size', '14'),
-//('ht_view5_description_color', 'Description Font Color', 'Description Font Color', '555555'),
-//('ht_view5_description_font_size', 'Description Font Size', 'Description Font Size', '14'),
-//('ht_view5_show_description', 'Show Description', 'Show Description', 'on'),
-//('ht_view5_thumbs_width', 'Thumbnails Width', 'Thumbnails Width', '75'),
-//('ht_view5_thumbs_height', 'Thumbnails Height', 'Thumbnails Hight', '75'),
-//('ht_view5_show_thumbs', 'Show Thumbnails', 'Show Thumbnails', 'on'),
-//('ht_view5_title_font_size', 'Title Font Size', 'Title Font Size', '16'),
-//('ht_view5_title_font_color', 'Title Font Color', 'Title Font Color', '0074a2'),
-//('ht_view5_main_image_width', 'Main Image Width', 'Main Image Width', '275'),
-//('ht_view5_slider_tabs_font_color', 'Slider Tabs Font Color', 'Slider Tabs Font Color', 'd9d99'),
-//('ht_view5_slider_tabs_background_color', 'Slider Tabs Background Color', 'Slider Tabs Background Color', '555555'),
-//('ht_view5_slider_background_color', 'Slider Background Color', 'Slider Background Color', 'f9f9f9'),
-//
-///*############################## VIEW 6 Lightbox-catalog #####################################*/
-//
-//('ht_view6_title_font_size', 'Title Font Size', 'Title Font Size', '16'),
-//('ht_view6_title_font_color', 'Title Font Color', 'Title Font Color', '0074A2'),
-//('ht_view6_title_font_hover_color', 'Title Font Hover Color', 'Title Font Hover Color', '2EA2CD'),
-//('ht_view6_title_background_color', 'Title Background Color', 'Title Background Color', '000000'),
-//('ht_view6_title_background_transparency', 'Title Background Transparency', 'Title Background Transparency', '80'),
-//('ht_view6_border_radius', 'Image Border Radius', 'Image Border Radius', '3'),
-//('ht_view6_border_width', 'Image Border Width', 'Image Border Width', '0'),
-//('ht_view6_border_color', 'Image Border Color', 'Image Border Color', 'eeeeee'),
-//('ht_view6_width', 'Image Width', 'Image Width', '275'),
-//
-///*##############################  Lightbox #####################################*/
-//            
-//('light_box_size', 'Light box size', 'Light box size', '17'),
-//('light_box_width', 'Light Box width', 'Light Box width', '500'),
-//('light_box_transition', 'Light Box Transition', 'Light Box Transition', 'elastic'),
-//('light_box_speed', 'Light box speed', 'Light box speed', '800'),
-//('light_box_href', 'Light box href', 'Light box href', 'False'),
-//('light_box_title', 'Light box Title', 'Light box Title', 'false'),
-//('light_box_scalephotos', 'Light box scalePhotos', 'Light box scalePhotos', 'true'),
-//('light_box_rel', 'Light Box rel', 'Light Box rel', 'false'),
-//('light_box_scrolling', 'Light box Scrollin', 'Light box Scrollin', 'false'),
-//('light_box_opacity', 'Light box Opacity', 'Light box Opacity', '20'),
-//('light_box_open', 'Light box Open', 'Light box Open', 'false'),
-//('light_box_overlayclose', 'Light box overlayClose', 'Light box overlayClose', 'true'),
-//('light_box_esckey', 'Light box escKey', 'Light box escKey', 'false'),
-//('light_box_arrowkey', 'Light box arrowKey', 'Light box arrowKey', 'false'),
-//('light_box_loop', 'Light box loop', 'Light box loop', 'true'),
-//('light_box_data', 'Light box data', 'Light box data', 'false'),
-//('light_box_classname', 'Light box className', 'Light box className', 'false'),
-//('light_box_fadeout', 'Light box fadeOut', 'Light box fadeOut', '300'),
-//('light_box_closebutton', 'Light box closeButton', 'Light box closeButton', 'false'),
-//('light_box_current', 'Light box current', 'Light box current', 'image'),
-//('light_box_previous', 'Light box previous', 'Light box previous', 'previous'),
-//('light_box_next', 'Light box next', 'Light box next', 'next'),
-//('light_box_close', 'Light box close', 'Light box close', 'close'),
-//('light_box_iframe', 'Light box iframe', 'Light box iframe', 'false'),
-//('light_box_inline', 'Light box inline', 'Light box inline', 'false'),
-//('light_box_html', 'Light box html', 'Light box html', 'false'),
-//('light_box_photo', 'Light box photo', 'Light box photo', 'false'),
-//('light_box_height', 'Light box height', 'Light box height', '500'),
-//('light_box_innerwidth', 'Light box innerWidth', 'Light box innerWidth', 'false'),
-//('light_box_innerheight', 'Light box innerHeight', 'Light box innerHeight', 'false'),
-//('light_box_initialwidth', 'Light box initialWidth', 'Light box initialWidth', '300'),
-//('light_box_initialheight', 'Light box initialHeight', 'Light box initialHeight', '100'),
-//('light_box_maxwidth', 'Light box maxWidth', 'Light box maxWidth', '768'),
-//('light_box_maxheight', 'Light box maxHeight', 'Light box maxHeight', '500'),
-//('light_box_slideshow', 'Light box slideshow', 'Light box slideshow', 'false'),
-//('light_box_slideshowspeed', 'Light box slideshowSpeed', 'Light box slideshowSpeed', '2500'),
-//('light_box_slideshowauto', 'Light box slideshowAuto', 'Light box slideshowAuto', 'true'),
-//('light_box_slideshowstart', 'Light box slideshowStart', 'Light box slideshowStart', 'start slideshow'),
-//('light_box_slideshowstop', 'Light box slideshowStop', 'Light box slideshowStop', 'stop slideshow'),
-//('light_box_fixed', 'Light box fixed', 'Light box fixed', 'true'),
-//('light_box_top', 'Light box top', 'Light box top', 'false'),
-//('light_box_bottom', 'Light box bottom', 'Light box bottom', 'false'),
-//('light_box_left', 'Light box left', 'Light box left', 'false'),
-//('light_box_right', 'Light box right', 'Light box right', 'false'),
-//('light_box_reposition', 'Light box reposition', 'Light box reposition', 'false'),
-//('light_box_retinaimage', 'Light box retinaImage', 'Light box retinaImage', 'true'),
-//('light_box_retinaurl', 'Light box retinaUrl', 'Light box retinaUrl', 'false'),
-//('light_box_retinasuffix', 'Light box retinaSuffix', 'Light box retinaSuffix', '@2x.$1'),
-//('light_box_returnfocus', 'Light box returnFocus', 'Light box returnFocus', 'true'),
-//('light_box_trapfocus', 'Light box trapFocus', 'Light box trapFocus', 'true'),
-//('light_box_fastiframe', 'Light box fastIframe', 'Light box fastIframe', 'true'),
-//('light_box_preloading', 'Light box preloading', 'Light box preloading', 'true'),
-//('slider_title_position', 'Slider title position', 'Slider title position', '5'),
-//('light_box_style', 'Light Box style', 'Light Box style', '1'),
-//('light_box_size_fix', 'Light Box size fix style', 'Light Box size fix style', 'false'),
-//            
-///*##############################  Isotope #####################################
-//            
-//('ht_view0_show_sorting', 'Show Sorting', 'Show Sorting', 'on'),
-//('ht_view0_sortbutton_font_size', 'Sort Button Font Size', 'Sort Button Font Size', '14'),                   
-//('ht_view0_sortbutton_font_color', 'Sort Button Font Color', 'Sort Button Font Color', '555555'),
-//('ht_view0_sortbutton_hover_font_color', 'Sort Button Hover Font Color', 'Sort Button Hover Font Color', 'ffffff'),
-//('ht_view0_sortbutton_background_color', 'Sort Button Background Color', 'Sort Button Background Color', 'F7F7F7'),
-//('ht_view0_sortbutton_hover_background_color', 'Sort Button Hover Background Color', 'Sort Button Hover Background Color', 'FF3845'),
-//('ht_view0_sortbutton_border_radius', 'Sort Button Border Radius', 'Sort Button Border Radius', '0'),
-//('ht_view0_sortbutton_border_padding', 'Sort Button Padding', 'Sort Button Padding', '3'),
-//('ht_view0_sorting_float', 'Sorting Position', 'Sorting Position', 'top'),
-//('ht_view0_show_filtering', 'Show Filtering', 'Show Filtering', 'on'),
-//('ht_view0_filterbutton_font_size', 'Filter Button Font Size', 'Filter Button Font Size', '14'),
-//('ht_view0_filterbutton_font_color', 'Filter Button Font Color', 'Filter Button Font Color', '555555'),
-//('ht_view0_filterbutton_background_color', 'Filter Button Background Color', 'Filter Button Background Color', 'F7F7F7'),
-//('ht_view0_filterbutton_hover_font_color', 'Filter Button Hover Font Color', 'Filter Button Hover Font Color', 'ffffff'),
-//('ht_view0_filterbutton_hover_background_color', 'Filter Button Hover Background Color', 'Filter Button Hover Background Color', 'FF3845'),
-//('ht_view0_filterbutton_border_radius', 'Filter Button Border Radius', 'Filter Button Border Radius', '0'),
-//('ht_view0_filterbutton_border_padding', 'Filter Button Padding', 'Filter Button Padding', '3'),
-//('ht_view0_filtering_float', 'Filtering Position', 'Filtering Position', 'left'),
-//('ht_view1_show_sorting', 'Show Sorting', 'Show Sorting', 'on'),
-//('ht_view1_sortbutton_font_size', 'Sort Button Font Size', 'Sort Button Font Size', '14'),                   
-//('ht_view1_sortbutton_font_color', 'Sort Button Font Color', 'Sort Button Font Color', '555555'),
-//('ht_view1_sortbutton_hover_font_color', 'Sort Button Hover Font Color', 'Sort Button Hover Font Color', 'ffffff'),
-//('ht_view1_sortbutton_background_color', 'Sort Button Background Color', 'Sort Button Background Color', 'F7F7F7'),
-//('ht_view1_sortbutton_hover_background_color', 'Sort Button Hover Background Color', 'Sort Button Hover Background Color', 'FF3845'),
-//('ht_view1_sortbutton_border_radius', 'Sort Button Border Radius', 'Sort Button Border Radius', '0'),
-//('ht_view1_sortbutton_border_padding', 'Sort Button Padding', 'Sort Button Padding', '3'),
-//('ht_view1_sorting_float', 'Sorting Position', 'Sorting Position', 'top'),
-//('ht_view1_show_filtering', 'Show Filtering', 'Show Filtering', 'on'),
-//('ht_view1_filterbutton_font_size', 'Filter Button Font Size', 'Filter Button Font Size', '14'),
-//('ht_view1_filterbutton_font_color', 'Filter Button Font Color', 'Filter Button Font Color', '555555'),
-//('ht_view1_filterbutton_background_color', 'Filter Button Background Color', 'Filter Button Background Color', 'F7F7F7'),
-//('ht_view1_filterbutton_hover_font_color', 'Filter Button Hover Font Color', 'Filter Button Hover Font Color', 'ffffff'),
-//('ht_view1_filterbutton_hover_background_color', 'Filter Button Hover Background Color', 'Filter Button Hover Background Color', 'FF3845'),
-//('ht_view1_filterbutton_border_radius', 'Filter Button Border Radius', 'Filter Button Border Radius', '0'),
-//('ht_view1_filterbutton_border_padding', 'Filter Button Padding', 'Filter Button Padding', '3'),
-//('ht_view1_filtering_float', 'Filtering Position', 'Filtering Position', 'left'),
-//('ht_view2_show_sorting', 'Show Sorting', 'Show Sorting', 'on'),
-//('ht_view2_sortbutton_font_size', 'Sort Button Font Size', 'Sort Button Font Size', '14'),                   
-//('ht_view2_sortbutton_font_color', 'Sort Button Font Color', 'Sort Button Font Color', '555555'),
-//('ht_view2_sortbutton_hover_font_color', 'Sort Button Hover Font Color', 'Sort Button Hover Font Color', 'ffffff'),
-//('ht_view2_sortbutton_background_color', 'Sort Button Background Color', 'Sort Button Background Color', 'F7F7F7'),
-//('ht_view2_sortbutton_hover_background_color', 'Sort Button Hover Background Color', 'Sort Button Hover Background Color', 'FF3845'),
-//('ht_view2_sortbutton_border_radius', 'Sort Button Border Radius', 'Sort Button Border Radius', '0'),
-//('ht_view2_sortbutton_border_padding', 'Sort Button Padding', 'Sort Button Padding', '3'),
-//('ht_view2_sorting_float', 'Sorting Position', 'Sorting Position', 'top'),
-//('ht_view2_show_filtering', 'Show Filtering', 'Show Filtering', 'on'),
-//('ht_view2_filterbutton_font_size', 'Filter Button Font Size', 'Filter Button Font Size', '14'),
-//('ht_view2_filterbutton_font_color', 'Filter Button Font Color', 'Filter Button Font Color', '555555'),
-//('ht_view2_filterbutton_background_color', 'Filter Button Background Color', 'Filter Button Background Color', 'F7F7F7'),
-//('ht_view2_filterbutton_hover_font_color', 'Filter Button Hover Font Color', 'Filter Button Hover Font Color', 'ffffff'),
-//('ht_view2_filterbutton_hover_background_color', 'Filter Button Hover Background Color', 'Filter Button Hover Background Color', 'FF3845'),
-//('ht_view2_filterbutton_border_radius', 'Filter Button Border Radius', 'Filter Button Border Radius', '0'),
-//('ht_view2_filterbutton_border_padding', 'Filter Button Padding', 'Filter Button Padding', '3'),
-//('ht_view2_filtering_float', 'Filtering Position', 'Filtering Position', 'left'),
-//('ht_view3_show_sorting', 'Show Sorting', 'Show Sorting', 'on'),
-//('ht_view3_sortbutton_font_size', 'Sort Button Font Size', 'Sort Button Font Size', '14'),                   
-//('ht_view3_sortbutton_font_color', 'Sort Button Font Color', 'Sort Button Font Color', '555555'),
-//('ht_view3_sortbutton_hover_font_color', 'Sort Button Hover Font Color', 'Sort Button Hover Font Color', 'ffffff'),
-//('ht_view3_sortbutton_background_color', 'Sort Button Background Color', 'Sort Button Background Color', 'F7F7F7'),
-//('ht_view3_sortbutton_hover_background_color', 'Sort Button Hover Background Color', 'Sort Button Hover Background Color', 'FF3845'),
-//('ht_view3_sortbutton_border_radius', 'Sort Button Border Radius', 'Sort Button Border Radius', '0'),
-//('ht_view3_sortbutton_border_padding', 'Sort Button Padding', 'Sort Button Padding', '3'),
-//('ht_view3_sorting_float', 'Sorting Position', 'Sorting Position', 'top'),
-//('ht_view3_show_filtering', 'Show Filtering', 'Show Filtering', 'on'),
-//('ht_view3_filterbutton_font_size', 'Filter Button Font Size', 'Filter Button Font Size', '14'),
-//('ht_view3_filterbutton_font_color', 'Filter Button Font Color', 'Filter Button Font Color', '555555'),
-//('ht_view3_filterbutton_background_color', 'Filter Button Background Color', 'Filter Button Background Color', 'F7F7F7'),
-//('ht_view3_filterbutton_hover_font_color', 'Filter Button Hover Font Color', 'Filter Button Hover Font Color', 'ffffff'),
-//('ht_view3_filterbutton_hover_background_color', 'Filter Button Hover Background Color', 'Filter Button Hover Background Color', 'FF3845'),
-//('ht_view3_filterbutton_border_radius', 'Filter Button Border Radius', 'Filter Button Border Radius', '0'),
-//('ht_view3_filterbutton_border_padding', 'Filter Button Padding', 'Filter Button Padding', '3'),
-//('ht_view3_filtering_float', 'Filtering Position', 'Filtering Position', 'left'),
-//('ht_view4_show_sorting', 'Show Sorting', 'Show Sorting', 'on'),
-//('ht_view4_sortbutton_font_size', 'Sort Button Font Size', 'Sort Button Font Size', '14'),                   
-//('ht_view4_sortbutton_font_color', 'Sort Button Font Color', 'Sort Button Font Color', '555555'),
-//('ht_view4_sortbutton_hover_font_color', 'Sort Button Hover Font Color', 'Sort Button Hover Font Color', 'ffffff'),
-//('ht_view4_sortbutton_background_color', 'Sort Button Background Color', 'Sort Button Background Color', 'F7F7F7'),
-//('ht_view4_sortbutton_hover_background_color', 'Sort Button Hover Background Color', 'Sort Button Hover Background Color', 'FF3845'),
-//('ht_view4_sortbutton_border_radius', 'Sort Button Border Radius', 'Sort Button Border Radius', '0'),
-//('ht_view4_sortbutton_border_padding', 'Sort Button Padding', 'Sort Button Padding', '3'),
-//('ht_view4_sorting_float', 'Sorting Position', 'Sorting Position', 'top'),
-//('ht_view4_show_filtering', 'Show Filtering', 'Show Filtering', 'on'),
-//('ht_view4_filterbutton_font_size', 'Filter Button Font Size', 'Filter Button Font Size', '14'),
-//('ht_view4_filterbutton_font_color', 'Filter Button Font Color', 'Filter Button Font Color', '555555'),
-//('ht_view4_filterbutton_background_color', 'Filter Button Background Color', 'Filter Button Background Color', 'F7F7F7'),
-//('ht_view4_filterbutton_hover_font_color', 'Filter Button Hover Font Color', 'Filter Button Hover Font Color', 'ffffff'),
-//('ht_view4_filterbutton_hover_background_color', 'Filter Button Hover Background Color', 'Filter Button Hover Background Color', 'FF3845'),
-//('ht_view4_filterbutton_border_radius', 'Filter Button Border Radius', 'Filter Button Border Radius', '0'),
-//('ht_view4_filterbutton_border_padding', 'Filter Button Padding', 'Filter Button Padding', '3'),
-//('ht_view4_filtering_float', 'Filtering Position', 'Filtering Position', 'left'),
-//('ht_view6_show_sorting', 'Show Sorting', 'Show Sorting', 'on'),
-//('ht_view6_sortbutton_font_size', 'Sort Button Font Size', 'Sort Button Font Size', '14'),                   
-//('ht_view6_sortbutton_font_color', 'Sort Button Font Color', 'Sort Button Font Color', '555555'),
-//('ht_view6_sortbutton_hover_font_color', 'Sort Button Hover Font Color', 'Sort Button Hover Font Color', 'ffffff'),
-//('ht_view6_sortbutton_background_color', 'Sort Button Background Color', 'Sort Button Background Color', 'F7F7F7'),
-//('ht_view6_sortbutton_hover_background_color', 'Sort Button Hover Background Color', 'Sort Button Hover Background Color', 'FF3845'),
-//('ht_view6_sortbutton_border_radius', 'Sort Button Border Radius', 'Sort Button Border Radius', '0'),
-//('ht_view6_sortbutton_border_padding', 'Sort Button Padding', 'Sort Button Padding', '3'),
-//('ht_view6_sorting_float', 'Sorting Position', 'Sorting Position', 'top'),
-//('ht_view6_show_filtering', 'Show Filtering', 'Show Filtering', 'on'),
-//('ht_view6_filterbutton_font_size', 'Filter Button Font Size', 'Filter Button Font Size', '14'),
-//('ht_view6_filterbutton_font_color', 'Filter Button Font Color', 'Filter Button Font Color', '555555'),
-//('ht_view6_filterbutton_background_color', 'Filter Button Background Color', 'Filter Button Background Color', 'F7F7F7'),
-//('ht_view6_filterbutton_hover_font_color', 'Filter Button Hover Font Color', 'Filter Button Hover Font Color', 'ffffff'),
-//('ht_view6_filterbutton_hover_background_color', 'Filter Button Hover Background Color', 'Filter Button Hover Background Color', 'FF3845'),
-//('ht_view6_filterbutton_border_radius', 'Filter Button Border Radius', 'Filter Button Border Radius', '0'),
-//('ht_view6_filterbutton_border_padding', 'Filter Button Padding', 'Filter Button Padding', '3'),
-//('ht_view6_filtering_float', 'Filtering Position', 'Filtering Position', 'left'),
-//('ht_view0_sorting_name_by_default', 'Default Sorting', 'Default Sorting', 'Default'),
-//('ht_view0_sorting_name_by_id', 'Sorting by ID', 'Default Sorting', 'Date'),
-//('ht_view0_sorting_name_by_name', 'Sorting by Name', 'Sorting by Name', 'Title'),
-//('ht_view0_sorting_name_by_random', 'Sorting by Random', 'Sorting by Random', 'Random'),
-//('ht_view0_sorting_name_by_asc', 'Asceding Sorting', 'Asceding Sorting', 'Asceding'),
-//('ht_view0_sorting_name_by_desc', 'Desceding Sorting', 'Desceding Sorting', 'Desceding'),
-//('ht_view1_sorting_name_by_default', 'Default Sorting', 'Default Sorting', 'Default'),
-//('ht_view1_sorting_name_by_id', 'Sorting by ID', 'Default Sorting', 'Date'),
-//('ht_view1_sorting_name_by_name', 'Sorting by Name', 'Sorting by Name', 'Title'),
-//('ht_view1_sorting_name_by_random', 'Sorting by Random', 'Sorting by Random', 'Random'),
-//('ht_view1_sorting_name_by_asc', 'Asceding Sorting', 'Asceding Sorting', 'Asceding'),
-//('ht_view1_sorting_name_by_desc', 'Desceding Sorting', 'Desceding Sorting', 'Desceding'),
-//('ht_view2_sorting_name_by_default', 'Default Sorting', 'Default Sorting', 'Default'),
-//('ht_view2_sorting_name_by_id', 'Sorting by ID', 'Default Sorting', 'Date'),
-//('ht_view2_sorting_name_by_name', 'Sorting by Name', 'Sorting by Name', 'Title'),
-//('ht_view2_sorting_name_by_random', 'Sorting by Random', 'Sorting by Random', 'Random'),
-//('ht_view2_sorting_name_by_asc', 'Asceding Sorting', 'Asceding Sorting', 'Asceding'),
-//('ht_view2_sorting_name_by_desc', 'Desceding Sorting', 'Desceding Sorting', 'Desceding'),
-//('ht_view3_sorting_name_by_default', 'Default Sorting', 'Default Sorting', 'Default'),
-//('ht_view3_sorting_name_by_id', 'Sorting by ID', 'Default Sorting', 'Date'),
-//('ht_view3_sorting_name_by_name', 'Sorting by Name', 'Sorting by Name', 'Title'),
-//('ht_view3_sorting_name_by_random', 'Sorting by Random', 'Sorting by Random', 'Random'),
-//('ht_view3_sorting_name_by_asc', 'Asceding Sorting', 'Asceding Sorting', 'Asceding'),
-//('ht_view3_sorting_name_by_desc', 'Desceding Sorting', 'Desceding Sorting', 'Desceding'),
-//('ht_view4_sorting_name_by_default', 'Default Sorting', 'Default Sorting', 'Default'),
-//('ht_view4_sorting_name_by_id', 'Sorting by ID', 'Default Sorting', 'Date'),
-//('ht_view4_sorting_name_by_name', 'Sorting by Name', 'Sorting by Name', 'Title'),
-//('ht_view4_sorting_name_by_random', 'Sorting by Random', 'Sorting by Random', 'Random'),
-//('ht_view4_sorting_name_by_asc', 'Asceding Sorting', 'Asceding Sorting', 'Asceding'),
-//('ht_view4_sorting_name_by_desc', 'Desceding Sorting', 'Desceding Sorting', 'Desceding'),
-//('ht_view5_sorting_name_by_default', 'Default Sorting', 'Default Sorting', 'Default'),
-//('ht_view5_sorting_name_by_id', 'Sorting by ID', 'Default Sorting', 'Date'),
-//('ht_view5_sorting_name_by_name', 'Sorting by Name', 'Sorting by Name', 'Title'),
-//('ht_view5_sorting_name_by_random', 'Sorting by Random', 'Sorting by Random', 'Random'),
-//('ht_view5_sorting_name_by_asc', 'Asceding Sorting', 'Asceding Sorting', 'Asceding'),
-//('ht_view5_sorting_name_by_desc', 'Desceding Sorting', 'Desceding Sorting', 'Desceding'),
-//('ht_view6_sorting_name_by_default', 'Default Sorting', 'Default Sorting', 'Default'),
-//('ht_view6_sorting_name_by_id', 'Sorting by date', 'date Sorting', 'Date'),
-//('ht_view6_sorting_name_by_name', 'Sorting by Name', 'Sorting by Name', 'Title'),
-//('ht_view6_sorting_name_by_random', 'Sorting by Random', 'Sorting by Random', 'Random'),
-//('ht_view6_sorting_name_by_asc', 'Asceding Sorting', 'Asceding Sorting', 'Asceding'),
-//('ht_view6_sorting_name_by_desc', 'Desceding Sorting', 'Desceding Sorting', 'Desceding'),
-//*/
-//
-//('ht_view2_popup_full_width', 'Popup Image Full Width', 'Popup Image Full Width','on'),
-//
-///* ##############################  Price And Discount(Market) Price #####################################*/
-//
-//('ht_view0_price_text', 'ht_catalog_view0_price_text', 'ht_catalog_view0_price_text', 'Price'),
-//('ht_catalog_view0_market_price_text', 'ht_catalog_view0_market_price_text', 'ht_catalog_view0_market_price_text', 'Discount Price'), 
-//('ht_view1_price_text', 'ht_catalog_view1_price_text', 'ht_catalog_view1_price_text', 'Price'),
-//('ht_catalog_view1_market_price_text', 'ht_catalog_view1_market_price_text', 'ht_catalog_view1_market_price_text', 'Discount Price'), 
-//('ht_view2_price_text', 'ht_catalog_view2_price_text', 'ht_catalog_view2_price_text', 'Price'),
-//('ht_catalog_view2_market_price_text', 'ht_catalog_view2_market_price_text', 'ht_catalog_view2_market_price_text', 'Discount Price'),
-//('ht_view3_price_text', 'ht_catalog_view3_price_text', 'ht_catalog_view3_price_text', 'Price'),
-//('ht_catalog_view3_market_price_text', 'ht_catalog_view3_market_price_text', 'ht_catalog_view3_market_price_text', 'Discount Price'),
-//('ht_view5_price_text', 'ht_catalog_view5_price_text', 'ht_catalog_view5_price_text', 'Price'),
-//('ht_catalog_view5_market_price_text', 'ht_catalog_view5_market_price_text', 'ht_catalog_view5_market_price_text', 'Discount Price'),
-//
-//('ht_catalog_view0_show_price', 'ht_catalog_view0_show_price', 'ht_catalog_view0_show_price', 'on'),
-//('ht_catalog_view0_price_font_size', 'ht_catalog_view0_price_font_size', 'ht_catalog_view0_price_font_size', '15'),
-//('ht_catalog_view0_price_font_color', 'ht_catalog_view0_price_font_color', 'ht_catalog_view0_price_font_color', '000000'),
-//('ht_catalog_view0_market_price_font_size', 'ht_catalog_view0_price_font_size', 'ht_catalog_view0_price_font_size', '15'),
-//('ht_catalog_view0_market_price_font_color', 'ht_catalog_view0_market_price_font_color', 'ht_catalog_view0_market_price_font_color', '000000'),
-//('ht_catalog_view1_show_price', 'ht_catalog_view1_show_price', 'ht_catalog_view1_show_price', 'on'),
-//('ht_catalog_view1_price_font_size', 'ht_catalog_view1_price_font_size', 'ht_catalog_view1_price_font_size', '15'),
-//('ht_catalog_view1_price_font_color', 'ht_catalog_view0_price_font_color', 'ht_catalog_view0_price_font_color', '000000'),
-//('ht_catalog_view1_market_price_font_size', 'ht_catalog_view0_price_font_size', 'ht_catalog_view0_price_font_size', '15'),
-//('ht_catalog_view1_market_price_font_color', 'ht_catalog_view0_price_font_color', 'ht_catalog_view0_price_font_color', '000000'),
-//('ht_catalog_view2_show_price', 'ht_catalog_view2_show_price', 'ht_catalog_view2_show_price', 'on'),
-//('ht_catalog_view2_price_font_size', 'ht_catalog_view2_price_font_size', 'ht_catalog_view2_price_font_size', '15'),
-//('ht_catalog_view2_price_font_color', 'ht_catalog_view2_price_font_color', 'ht_catalog_view2_price_font_color', '000000'),
-//('ht_catalog_view2_market_price_font_size', 'ht_catalog_view0_price_font_size', 'ht_catalog_view0_price_font_size', '15'),
-//('ht_catalog_view2_market_price_font_color', 'ht_catalog_view0_price_font_color', 'ht_catalog_view0_price_font_color', '000000'),
-//('ht_catalog_view3_show_price', 'ht_catalog_view3_show_price', 'ht_catalog_view3_show_price', 'on'),
-//('ht_catalog_view3_price_font_size', 'ht_catalog_view3_price_font_size', 'ht_catalog_view3_price_font_size', '15'),
-//('ht_catalog_view3_price_font_color', 'ht_catalog_view3_price_font_color', 'ht_catalog_view3_price_font_color', '000000'),
-//('ht_catalog_view3_market_price_font_size', 'ht_catalog_view0_price_font_size', 'ht_catalog_view0_price_font_size', '15'),
-//('ht_catalog_view3_market_price_font_color', 'ht_catalog_view0_price_font_color', 'ht_catalog_view0_price_font_color', '000000'),
-//('ht_catalog_view5_show_price', 'ht_catalog_view5_show_price', 'ht_catalog_view5_show_price', 'on'),
-//('ht_catalog_view5_price_font_size', 'ht_catalog_view5_price_font_size', 'ht_catalog_view5_price_font_size', '15'),
-//('ht_catalog_view5_price_font_color', 'ht_catalog_view5_price_font_color', 'ht_catalog_view5_price_font_color', '000000'),
-//('ht_catalog_view5_market_price_font_size', 'ht_catalog_view0_price_font_size', 'ht_catalog_view0_price_font_size', '15'),
-//('ht_catalog_view5_market_price_font_color', 'ht_catalog_view0_price_font_color', 'ht_catalog_view0_price_font_color', '000000'),
-//            
-//  /* ##############################  Zoom #####################################*/
-//('ht_catalog_zoom_window_type', 'Zoom Window Type', 'Zoom Window Type', 'window'),
-//('ht_catalog_zoom_window_width', 'Zoom Window Width', 'Zoom Window Width', '200'),
-//('ht_catalog_zoom_window_height', 'Zoom Window Height', 'Zoom Window Height', '150'),
-//('ht_catalog_zoom_x_asis', 'Zoom Window X asis', 'Zoom Window X asis', '0'),
-//('ht_catalog_zoom_y_asis', 'Zoom Window Y asis', 'Zoom Window Y asis', '0'),
-//('ht_catalog_zoom_window_position', 'Zoom Window position', 'Zoom Window position', '16'),
-//('ht_catalog_zoom_window_border_size', 'Zoom Window Border Size', 'Zoom Window Size', '2'),
-//('ht_catalog_zoom_window_border_color', 'Zoom Window Boreder Color', 'Zoom Window Boreder Color', '#000'),
-//('ht_catalog_zoom_window_lens_size', 'Zoom Window Lens Size', 'Zoom Window Lens Size', '200'),
-//('ht_catalog_zoom_window_fadein', 'Zoom Window Boreder Color', 'Zoom Window Boreder Color', '200'),
-//('ht_catalog_zoom_window_fadeout', 'Zoom Window Lens Size', 'Zoom Window Lens Size', '200'),
-//('ht_catalog_zoom_lens_fadein', 'Zoom Lens Fadein', 'Zoom Lens Fadein', '200'),
-//('ht_catalog_zoom_lens_fadeout', 'Zoom Lens Fadeout', 'Zoom Lens Fadeout', '200'),
-//('ht_catalog_zoom_lens_hide', 'Zoom Lens Hide', 'Zoom Lens Hide', 'false'),
-//('ht_catalog_zoom_lens_shape', 'ZoomLens Shape', 'Zoom Lens Shape', 'square'),
-//('ht_catalog_zoom_lens_color', 'Zoom Lens Color', 'Zoom Lens Color', '#fff'),
-//('ht_catalog_zoom_lens_opacity', 'Zoom Window Lens Opacity', 'Zoom Lens Opacity', '40'),
-//('ht_catalog_zoom_cursor', 'Zoom Cursor', 'Zoom Cursor', 'crosshair'),
-//('ht_catalog_zoom_scrollzoom', 'Scroll Zoom', 'Scroll Zoom', 'true'),
-//('ht_catalog_zoom_easing', 'Zoom easing', 'Zoom easing', 'true'),
-//('ht_catalog_zoom_lens_size_fix', 'Zoom easing', 'Zoom easing', 'false'),
-//('ht_catalog_zoom_lens_height', 'Zoom easing', 'Zoom easing', '100'),
-//('ht_catalog_zoom_lens_width', 'Zoom easing', 'Zoom easing', '100'),
-//('ht_catalog_zoom_tint', 'Zoom Tint', 'Zoom Tint', 'false'),
-//('ht_catalog_zoom_tint_colour', 'Zoom Tint Color', 'Zoom Tint Color', '#fff'),
-//('ht_catalog_zoom_tint_opacity', 'Zoom Tint Opacity', 'Zoom Tint Opacity', '40'),
-//('ht_catalog_zoom_tint_fadein', 'Zoom Tint Fadein Speed', 'Zoom Tint Fadein Speed', '200'),
-//('ht_catalog_zoom_tint_fadeout', 'Zoom Tint Fadeout Speed', 'Zoom Tint Fadeout Speed', '200'),
-//('ht_view3_allow_lightbox', 'View Mode', 'View Mode', 'on'),
-//('ht_view3_allow_zooming', 'View Mode', 'View Mode', 'on'), 
-//
-///*('ht_view0_allow_lightbox', 'View Mode', 'View Mode', 'on'),
-//('ht_view1_allow_lightbox', 'View Mode', 'View Mode', 'on'),
-//('ht_view2_allow_lightbox', 'View Mode', 'View Mode', 'on'),
-//('ht_view5_allow_lightbox', 'View Mode', 'View Mode', 'on'),
-//('ht_view0_allow_zooming', 'View Mode', 'View Mode', 'on'),
-//('ht_view1_allow_zooming', 'View Mode', 'View Mode', 'on'),
-//('ht_view2_allow_zooming', 'View Mode', 'View Mode', 'on'),
-//('ht_view5_allow_zooming', 'View Mode', 'View Mode', 'on'),*/
-//('ht_catalog_zoom_thumbs_zoom', 'Allow Thumbs Zoom', 'Allow Thumbs Zoom', 'off');
-//
-//query1;
+
+    $table_name = $wpdb->prefix . "huge_it_catalog_params";
+    $sql_1 = <<<query1
+INSERT INTO `$table_name` (`name`, `title`, `value`) VALUES
+
+('ht_single_product_price_text', 'ht_single_product_price_text', 'Price'),
+    ('ht_single_product_comments_text', 'ht_single_product_comments_text', 'Comments'),
+    ('ht_single_product_parameters_text', 'ht_single_product_parameters_text', 'Parameters'),
+    ('ht_single_product_rating_text', 'ht_single_product_rating_text', 'Rating'),
+    ('ht_single_product_share_text', 'ht_single_product_share_text', 'Share'),
+    ('ht_single_product_your_name_text', 'ht_single_product_your_name_text', 'Your Name'),
+    ('ht_single_product_your_Comment_text', 'ht_single_product_your_Comment_text', 'Your Comment'),
+    ('ht_single_product_captcha_text', 'ht_single_product_captcha_text', 'Captcha'),
+    ('ht_single_product_invalid_captcha_text', 'ht_single_product_invalid_captcha_text', 'Invalid Captcha'),
+    ('ht_single_product_asc_to_seller_text', 'ht_single_product_asc_to_seller_text', 'Asc To Seller'),
+    ('ht_single_product_your_mail_text', 'Your E-mail', 'Your E-mail'),
+    ('ht_single_product_your_phone_text', 'Your Phone', 'Your Phone'),
+    ('ht_single_product_your_message_text', 'Your Message', 'Your Message'),
+    ('ht_catalog_general_message_to_admin', 'ht_catalog_general_message_to_admin', 'off'),
+    ('ht_catalog_general_admin_email', 'ht_catalog_general_admin_email', 'admin-email@gmail.com'),
+    ('ht_catalog_general_admin_email_subject', 'ht_catalog_general_admin_email_subject', 'Admin subject'),
+    ('ht_catalog_general_admin_email_message', 'ht_catalog_general_admin_email_message', 'Message For admin {userMessage}'),
+    ('ht_catalog_general_admin_from_text', 'ht_catalog_general_admin_from_text', 'My Site'),
+    ('ht_catalog_general_message_to_user', 'ht_catalog_general_message_to_user', 'off'),
+    ('ht_catalog_general_user_subject', 'ht_catalog_general_user_subject', 'User subject'),
+    ('ht_catalog_general_user_message', 'ht_catalog_general_user_message', 'Message for user'),
+    ('ht_catalog_general_linkbutton_text', 'ht_catalog_general_linkbutton_text', 'View Product'),
+    ('ht_single_product_show_asc_seller_button', 'ht_single_product_show_asc_seller_button', 'off'),
+    ('ht_single_product_comments_submit_button_text', 'Zoom Window Type', 'Submit'),
+    ('ht_single_product_asc_seller_popup_button_text', 'Zoom Window Type', 'Submit'),
+    ('ht_single_product_asc_seller_button_text', 'ht_single_product_asc_seller_button_text', 'Contact To Seller');
+
+query1;
     
     
     $table_name = $wpdb->prefix . "huge_it_catalog_album_catalog_contact";
@@ -1720,30 +1310,33 @@ query6;
 //('ht_single_product_comments_submit_button_text_background_color', 'Zoom Window Type', '4ca6cf'),
 //('ht_single_product_comments_submit_button_text_background_hover_olor', 'Zoom Window Type', '21759b'),
 //
+///*
 //('ht_single_product_price_text', 'ht_single_product_price_text', 'Price'),
 //('ht_single_product_market_price_text', 'ht_single_product_market_price_text', 'Discount Price'),
 //('ht_single_product_comments_text', 'ht_single_product_comments_text', 'Comments'),
 //('ht_single_product_parameters_text', 'ht_single_product_parameters_text', 'Parameters'),
 //('ht_single_product_rating_text', 'ht_single_product_rating_text', 'Rating'),
 //('ht_single_product_share_text', 'ht_single_product_share_text', 'Share'),
+//('ht_single_product_your_name_text', 'ht_single_product_your_name_text', 'Your Name'),
+//('ht_single_product_your_Comment_text', 'ht_single_product_your_Comment_text', 'Your Comment'),
+//('ht_single_product_captcha_text', 'ht_single_product_captcha_text', 'Captcha'),
+//('ht_single_product_invalid_captcha_text', 'ht_single_product_invalid_captcha_text', 'Invalid Captcha'),
+//*/
 //('ht_single_product_show_price', 'ht_single_product_show_price', 'on'),
 //('ht_single_product_show_rating', 'ht_single_product_show_rating', 'on'),
 //('ht_single_product_show_share_buttons', 'ht_single_product_show_share_buttons', 'on'),
 //('ht_single_product_show_parameters', 'ht_single_product_show_parameters', 'on'),
 //('ht_single_product_show_comments', 'ht_single_product_show_comments', 'on'),
-//('ht_single_product_tabs_border_color', 'ht_single_product_tabs_border_color', 'cccccc'),
-//('ht_single_product_your_name_text', 'ht_single_product_your_name_text', 'Your Name'),
-//('ht_single_product_your_Comment_text', 'ht_single_product_your_Comment_text', 'Your Comment'),
-//('ht_single_product_captcha_text', 'ht_single_product_captcha_text', 'Captcha'),
-//('ht_single_product_invalid_captcha_text', 'ht_single_product_invalid_captcha_text', 'Invalid Captcha');
+//('ht_single_product_tabs_border_color', 'ht_single_product_tabs_border_color', 'cccccc');
+//
 //
 //query8;
-    
+//    
 
     
     
     
-//    $wpdb->query($sql_huge_it_catalog_params);
+    $wpdb->query($sql_huge_it_catalog_params);
     $wpdb->query($sql_huge_it_catalog_products);
     $wpdb->query($sql_huge_catalogs);
     $wpdb->query($sql_huge_it_catalog_rating);
@@ -1754,9 +1347,9 @@ query6;
 //    $wpdb->query($sql_huge_it_catalog_product_params);
 
 
-//    if (!$wpdb->get_var("select count(*) from " . $wpdb->prefix . "huge_it_catalog_params")) {
-//        $wpdb->query($sql_1);
-//    }
+    if (!$wpdb->get_var("select count(*) from " . $wpdb->prefix . "huge_it_catalog_params")) {
+        $wpdb->query($sql_1);
+    }
     if (!$wpdb->get_var("select count(*) from " . $wpdb->prefix . "huge_it_catalog_products")) {
       $wpdb->query($sql_2);
     }
@@ -1785,22 +1378,6 @@ query6;
 
 			///////////////////////////UPDATE////////////////////////////////////   
     
-//    $table_name = $wpdb->prefix . "huge_it_catalog_params";
-//    $sql_update_catalog_2 = "INSERT INTO `$table_name` (`name`, `title`,`description`, `value`) VALUES
-//    ('ht_view0_allow_lightbox', 'View Mode', 'View Mode', 'on'),
-//    ('ht_view1_allow_lightbox', 'View Mode', 'View Mode', 'on'),
-//    ('ht_view2_allow_lightbox', 'View Mode', 'View Mode', 'on'),
-//    ('ht_view5_allow_lightbox', 'View Mode', 'View Mode', 'on'),
-//    ('ht_view0_allow_zooming', 'View Mode', 'View Mode', 'on'),
-//    ('ht_view1_allow_zooming', 'View Mode', 'View Mode', 'on'),
-//    ('ht_view2_allow_zooming', 'View Mode', 'View Mode', 'on'),
-//    ('ht_view5_allow_zooming', 'View Mode', 'View Mode', 'on')";
-//
-//    $query="SELECT name FROM ".$wpdb->prefix."huge_it_catalog_params";
-//    $update_catalog_2=$wpdb->get_results($query);
-//    if(end($update_catalog_2)->name=='ht_view3_allow_zooming'){
-//            $wpdb->query($sql_update_catalog_2);
-//    };
     
     
     
