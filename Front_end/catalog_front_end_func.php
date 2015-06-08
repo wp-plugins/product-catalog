@@ -9,15 +9,15 @@ function showPublishedcatalogs_1($id)
 	$query=$wpdb->prepare("SELECT * FROM ".$wpdb->prefix."huge_it_catalogs WHERE id = '%d' order by id ASC",$id);
         $catalog=$wpdb->get_results($query);
 			   
-        $query="SELECT * FROM ".$wpdb->prefix."huge_it_catalog_params";
-        $rowspar = $wpdb->get_results($query);
+//        $query="SELECT * FROM ".$wpdb->prefix."huge_it_catalog_params";
+//        $rowspar = $wpdb->get_results($query);
         
         $paramssld = array();
-        foreach ($rowspar as $rowpar) {
-            $key = $rowpar->name;
-            $value = $rowpar->value;
-            $paramssld[$key] = $value;
-        }
+//        foreach ($rowspar as $rowpar) {
+//            $key = $rowpar->name;
+//            $value = $rowpar->value;
+//            $paramssld[$key] = $value;
+//        }
 //        var_dump($paramssld[$key]);exit;
         
             $getCatalogsFromAlbum=$wpdb->prepare("SELECT * FROM ".$wpdb->prefix."huge_it_catalog_album_catalog_contact,".$wpdb->prefix."huge_it_catalogs WHERE ".$wpdb->prefix."huge_it_catalog_album_catalog_contact.album_id = '%d' AND ".$wpdb->prefix."huge_it_catalog_album_catalog_contact.catalog_id=".$wpdb->prefix."huge_it_catalogs.id order by ordering ASC",$id);
@@ -52,16 +52,17 @@ function showPublishedcatalogs_1($id)
 //                $paramssld[$key] = $value;
 //            }
             
-            $query="SELECT * FROM ".$wpdb->prefix."huge_it_catalog_params";
-            $rowspar2 = $wpdb->get_results($query);
+//            $query="SELECT * FROM ".$wpdb->prefix."huge_it_catalog_params";
+//            $rowspar2 = $wpdb->get_results($query);
 
             $paramssld2 = array();
-            foreach ($rowspar2 as $rowpar2) {
-                $key2 = $rowpar2->name;
-                $value2 = $rowpar2->value;
-                $paramssld2[$key2] = $value2;
-            }
-            
+//            foreach ($rowspar2 as $rowpar2) {
+//                $key2 = $rowpar2->name;
+//                $value2 = $rowpar2->value;
+//                $paramssld2[$key2] = $value2;
+//            }
+            $paramssld1 = "";
+            $paramssld2 = "";
             $captchaFirstNum = rand(1,9);
             $captchaSecondNum = rand(1,9);
             $captcha_val = $captchaFirstNum + $captchaSecondNum;
@@ -70,10 +71,14 @@ function showPublishedcatalogs_1($id)
             return html_single_product_page($productArray, $paramssld, $paramssld2, $ratingsArray, $reviewsArray, $spamReviewsArray, $captchaFirstNum, $captchaSecondNum, $captcha_val);
         }
         else{
+            $paramssld1 = "";
+            $paramssld2 = "";
             if(isset($_GET['asc_seller_product_id'])){
                 return front_end_ask_seller();
             }
             else{
+                $paramssld1 = "";
+                $paramssld2 = "";
                 return front_end_catalog($images, $paramssld, $catalog, $catalogsFromAlbumArray);
             }
         }
@@ -86,15 +91,15 @@ function show_catalogs_from_album($id)
         $getCatalogsFromAlbum = $wpdb->prepare("SELECT *, ".$wpdb->prefix."huge_it_catalogs.name as catalog_name  FROM ".$wpdb->prefix."huge_it_catalog_album_catalog_contact,".$wpdb->prefix."huge_it_catalogs,".$wpdb->prefix."huge_it_catalog_albums WHERE ".$wpdb->prefix."huge_it_catalog_album_catalog_contact.album_id = '%d' AND ".$wpdb->prefix."huge_it_catalog_album_catalog_contact.catalog_id=".$wpdb->prefix."huge_it_catalogs.id AND ".$wpdb->prefix."huge_it_catalog_albums.id='%d'", $id, $id);
         $catalogsFromAlbumArray = $wpdb->get_results($getCatalogsFromAlbum);
         
-        $query="SELECT * FROM ".$wpdb->prefix."huge_it_catalog_params";
-        $rowspar = $wpdb->get_results($query);
+//        $query="SELECT * FROM ".$wpdb->prefix."huge_it_catalog_params";
+//        $rowspar = $wpdb->get_results($query);
         
         $paramssld = array();
-        foreach ($rowspar as $rowpar) {
-            $key = $rowpar->name;
-            $value = $rowpar->value;
-            $paramssld[$key] = $value;
-        }
+//        foreach ($rowspar as $rowpar) {
+//            $key = $rowpar->name;
+//            $value = $rowpar->value;
+//            $paramssld[$key] = $value;
+//        }
         if(isset($_GET['single_catalog_id'])){
             $id = $_GET['single_catalog_id'];
             $query=$wpdb->prepare("SELECT * FROM ".$wpdb->prefix."huge_it_catalog_products WHERE catalog_id = '%d' order by ordering ASC",$id);
@@ -103,15 +108,15 @@ function show_catalogs_from_album($id)
             $query=$wpdb->prepare("SELECT * FROM ".$wpdb->prefix."huge_it_catalogs WHERE id = '%d' order by id ASC",$id);
             $catalog=$wpdb->get_results($query);
 
-            $query="SELECT * FROM ".$wpdb->prefix."huge_it_catalog_params";
-            $rowspar = $wpdb->get_results($query);
+//            $query="SELECT * FROM ".$wpdb->prefix."huge_it_catalog_params";
+//            $rowspar = $wpdb->get_results($query);
 
             $paramssld = array();
-            foreach ($rowspar as $rowpar) {
-                $key = $rowpar->name;
-                $value = $rowpar->value;
-                $paramssld[$key] = $value;
-            }
+//            foreach ($rowspar as $rowpar) {
+//                $key = $rowpar->name;
+//                $value = $rowpar->value;
+//                $paramssld[$key] = $value;
+//            }
             
             
             return front_end_catalog($images, $paramssld, $catalog, $catalogsFromAlbumArray);
@@ -138,7 +143,6 @@ function show_catalogs_from_album($id)
 //            $rowspar = $wpdb->get_results($query);
             $paramssld2 = array();
             $paramssld = "";
-            $paramssld = array();
 //            foreach ($rowspar as $rowpar) {
 //                $key = $rowpar->name;
 //                $value = $rowpar->value;
@@ -163,12 +167,11 @@ function show_catalogs_from_album($id)
         
             return html_single_product_page($productArray, $paramssld, $paramssld2, $ratingsArray, $reviewsArray, $spamReviewsArray, $captchaFirstNum, $captchaSecondNum, $captcha_val);
         }
-        else
-        {
-//            $paramssld2 = "";
+        else{
+            $paramssld1 = "";
+            $paramssld2 = "";
             return album_front_end($paramssld, $catalogsFromAlbumArray);
         }
-
 }
 
 function show_catalogs_single_product($id){
@@ -201,15 +204,18 @@ function show_catalogs_single_product($id){
 //                $paramssld[$key] = $value;
 //            }
             
-            $query="SELECT * FROM ".$wpdb->prefix."huge_it_catalog_params";
-            $rowspar2 = $wpdb->get_results($query);
+//            $query="SELECT * FROM ".$wpdb->prefix."huge_it_catalog_params";
+//            $rowspar2 = $wpdb->get_results($query);
 
             $paramssld2 = array();
-            foreach ($rowspar2 as $rowpar2) {
-                $key2 = $rowpar2->name;
-                $value2 = $rowpar2->value;
-                $paramssld2[$key2] = $value2;
-            }
+//            foreach ($rowspar2 as $rowpar2) {
+//                $key2 = $rowpar2->name;
+//                $value2 = $rowpar2->value;
+//                $paramssld2[$key2] = $value2;
+//            }
+            $paramssld2 = array();
+            $paramssld2 = "";
+            $paramssld = "";
             
             $captchaFirstNum = rand(0,9);
             $captchaSecondNum = rand(0,9);

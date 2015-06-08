@@ -1,9 +1,7 @@
 <?php	
 if(function_exists('current_user_can'))
-//if(!current_user_can('manage_options')) {
-    
-if(!current_user_can('delete_pages')) {
-    die('Access Denied');
+if(!current_user_can('manage_options')) {
+die('Access Denied');
 }	
 if(!function_exists('current_user_can')){
 	die('Access Denied');
@@ -51,27 +49,19 @@ function html_showcatalogs( $rows,  $pageNav,$sort,$cat_row){
 
 <div class="wrap">
 	<?php $path_site2 = plugins_url("../images", __FILE__); ?>
-	<div id="poststuff">
-            
+        <div class="slider-options-head">
             <div style="float: left;">
-            <div><a href="http://huge-it.com/wordpress-plugins-product-catalog-user-manual/" target="_blank">User Manual</a></div>
-                <div>This section allows you to configure the Product Catalog options. <a href="http://huge-it.com/wordpress-plugins-product-catalog-user-manual/" target="_blank">More...</a></div>
-                <div>This options are disabled in free version. Get full version to customize them. <a href="http://huge-it.com/wordpress-plugins-product-catalog-user-manual/" target="_blank">Get full Version</a></div>
+                    <div><a href="http://huge-it.com/wordpress-plugins-product-catalog-user-manual/" target="_blank">User Manual</a></div>
+                    <div>This section allows you to configure the Product Catalog options. <a href="http://huge-it.com/wordpress-plugins-product-catalog-user-manual/" target="_blank">More...</a></div>
+            </div>
+            <div style="float: right;">
+                    <a class="header-logo-text" href="http://huge-it.com/product-catalog/" target="_blank">
+                            <div><img width="250px" src="<?php echo $path_site2; ?>/huge-it1.png" /></div>
+                            <div>Get the full version</div>
+                    </a>
+            </div>
         </div>
-        <div style="float: right;">
-                <a class="header-logo-text" href="http://huge-it.com/product-catalog/" target="_blank">
-                        <div><img width="250px" src="<?php echo $path_site2; ?>/huge-it1.png" /></div>
-                        <div>Get the full version</div>
-                </a>
-        </div>
-        <div style="clear:both;"></div>
-        <div style="color: #a00; margin-bottom: 15px;">Dear user. Thank you for your interest in our product.
-            Please be known, that this page is for commercial users, and in order to use options from there,
-            you should have pro license. We please you to be understanding. The money we get for pro license
-            is expended on constantly improvements of our plugins, making them more professional useful and effective,
-            as well as for keeping fast support for every user.
-        </div>
-        
+	<div id="poststuff">
 		<div id="catalogs-list-page">
 			<form method="post"  onkeypress="doNothing()" action="admin.php?page=catalogs_huge_it_catalog" id="admin_form" name="admin_form">
 			<h2>Huge-IT Catalogs
@@ -263,27 +253,25 @@ jQuery(function() {
 
 	
 <div class="wrap">
-            
 <?php $path_site2 = plugins_url("../images", __FILE__); ?>
-    <div style="float: left;">
-            <div><a href="http://huge-it.com/wordpress-plugins-product-catalog-user-manual/" target="_blank">User Manual</a></div>
+            <div style="float: left;">
+                <div><a href="http://huge-it.com/wordpress-plugins-product-catalog-user-manual/" target="_blank">User Manual</a></div>
                 <div>This section allows you to configure the Product Catalog options. <a href="http://huge-it.com/wordpress-plugins-product-catalog-user-manual/" target="_blank">More...</a></div>
                 <div>This options are disabled in free version. Get full version to customize them. <a href="http://huge-it.com/wordpress-plugins-product-catalog-user-manual/" target="_blank">Get full Version</a></div>
-        </div>
-        <div style="float: right;">
-                <a class="header-logo-text" href="http://huge-it.com/product-catalog/" target="_blank">
-                        <div><img width="250px" src="<?php echo $path_site2; ?>/huge-it1.png" /></div>
-                        <div>Get the full version</div>
-                </a>
-        </div>
-        <div style="clear:both;"></div>
-        <div style="color: #a00; margin-bottom: 15px;">Dear user. Thank you for your interest in our product.
-            Please be known, that this page is for commercial users, and in order to use options from there,
-            you should have pro license. We please you to be understanding. The money we get for pro license
-            is expended on constantly improvements of our plugins, making them more professional useful and effective,
-            as well as for keeping fast support for every user.
-        </div>
-
+            </div>
+            <div style="float: right;">
+                    <a class="header-logo-text" href="http://huge-it.com/product-catalog/" target="_blank">
+                            <div><img width="250px" src="<?php echo $path_site2; ?>/huge-it1.png" /></div>
+                            <div>Get the full version</div>
+                    </a>
+            </div>
+            <div style="clear:both;"></div>
+            <div style="color: #a00; margin-bottom: 15px;">Dear user. Thank you for your interest in our product.
+                Please be known, that this page is for commercial users, and in order to use options from there,
+                you should have pro license. We please you to be understanding. The money we get for pro license
+                is expended on constantly improvements of our plugins, making them more professional useful and effective,
+                as well as for keeping fast support for every user.
+            </div>
 <form action="admin.php?page=catalogs_huge_it_catalog&id=<?php echo $row->id; ?>" method="post" name="adminForm" id="adminForm">
 	<div id="poststuff" >
 	<div id="catalog-header">
@@ -577,8 +565,6 @@ jQuery(document).ready(function($){
                     if(count($separateParamAndChildsInArrayOrdered) != 1){
                         foreach ($separateParamAndChildsInArrayOrdered as $paramKey => $separateParamAndChild){
                             if($separateParamAndChild != "") {
-//                                var_dump($separateParamAndChild);
-//                                echo "'&lt;a href= &gt;aaa&lt;/a&gt;'";
                                 if($paramKey == 0){ ?>
                                     <ul class="full_param">
                                         <li class="new_parameter"><span><?php echo $separateParamAndChild; ?></span>
@@ -686,7 +672,6 @@ jQuery(document).ready(function($){
                                         var params_input_old_val = jQuery(this).parent().parent().parent().parent().parent().find(".parameters").val();    //    alert(params_hidden_input);
                                         var new_child_val = jQuery(this).val();
                                             new_child_val = new_child_val.replace(/@/g, 'thisisat');
-
                                         var params_input_old_val_in_array = params_input_old_val.split("@@");
                                         if(params_input_old_val_in_array[0] == "")
                                             { var new_change_val_index = parseInt(change_val_index) + parseInt(1); }
@@ -1213,7 +1198,7 @@ function html_catalog_reviews(){
             self.parent.location.assign('admin.php?page=huge_it_catalog_reviews_page');
         });
                     
-    });
+                });
 	</script>
 	 <div id="huge_it_view_reviews">
 		<div id="huge_it_view_reviews_wrap">

@@ -1,8 +1,6 @@
 <?php	
-if(function_exists('current_user_can'))
-//if(!current_user_can('manage_options')) {
-    
-if(!current_user_can('delete_pages')) {
+    if(function_exists('current_user_can'))
+    if(!current_user_can('manage_options')) {
     die('Access Denied');
 }	
 if(!function_exists('current_user_can')){
@@ -228,14 +226,14 @@ function edit_catalog($id)
 
     $query="SELECT * FROM ".$wpdb->prefix."huge_it_catalogs order by id ASC";
     $rowsld=$wpdb->get_results($query);
-    $query = "SELECT *  from " . $wpdb->prefix . "huge_it_catalog_params ";
-    $rowspar = $wpdb->get_results($query);
+//    $query = "SELECT *  from " . $wpdb->prefix . "huge_it_catalog_params ";
+//    $rowspar = $wpdb->get_results($query);
     $paramssld = array();
-    foreach ($rowspar as $rowpar) {
-        $key = $rowpar->name;
-        $value = $rowpar->value;
-        $paramssld[$key] = $value;
-    }
+//    foreach ($rowspar as $rowpar) {
+//        $key = $rowpar->name;
+//        $value = $rowpar->value;
+//        $paramssld[$key] = $value;
+//    }
 	
     $query="SELECT * FROM ".$wpdb->prefix."posts where post_type = 'post' and post_status = 'publish' order by id ASC";
     $rowsposts=$wpdb->get_results($query);
@@ -331,16 +329,16 @@ INSERT INTO
 	   $query="SELECT * FROM ".$wpdb->prefix."huge_it_catalogs order by id ASC";
            $rowsld=$wpdb->get_results($query);
 			  
-	   $query = "SELECT *  from " . $wpdb->prefix . "huge_it_catalog_params ";
+//	   $query = "SELECT *  from " . $wpdb->prefix . "huge_it_catalog_params ";
+//
+//           $rowspar = $wpdb->get_results($query);
 
-           $rowspar = $wpdb->get_results($query);
-
-           $paramssld = array();
-           foreach ($rowspar as $rowpar) {
-               $key = $rowpar->name;
-               $value = $rowpar->value;
-               $paramssld[$key] = $value;
-           }
+//           $paramssld = array();
+//           foreach ($rowspar as $rowpar) {
+//               $key = $rowpar->name;
+//               $value = $rowpar->value;
+//               $paramssld[$key] = $value;
+//           }
 	
 	  $query="SELECT * FROM ".$wpdb->prefix."posts where post_type = 'post' and post_status = 'publish' order by id ASC";
           $rowsposts=$wpdb->get_results($query);
