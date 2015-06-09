@@ -40,7 +40,7 @@ jQuery(document).ready(function () {
 <?php $path_site2 = plugins_url("../images", __FILE__); ?>
 
 <div id="poststuff">
-		<?php $path_site = plugins_url("Front_images", __FILE__); ?>
+	<?php $path_site2 = plugins_url("../images/", __FILE__); ?>
         <div style="float: left;">
             <div><a href="http://huge-it.com/wordpress-plugins-product-catalog-user-manual/" target="_blank">User Manual</a></div>
             <div>This section allows you to configure the Product Catalog options. <a href="http://huge-it.com/wordpress-plugins-product-catalog-user-manual/" target="_blank">More...</a></div>
@@ -59,12 +59,12 @@ jQuery(document).ready(function () {
             is expended on constantly improvements of our plugins, making them more professional useful and effective,
             as well as for keeping fast support for every user.
         </div>
-		<div id="post-body-content" class="catalog-options">
-<div style="margin-left: -20px;" id="poststuff">
-<div id="post-body-content" class="catalog-options">
+        <div id="post-body-content" class="catalog-options">
+            <div style="margin-left: -20px;" id="poststuff">
+                <div id="post-body-content" class="catalog-options">
 			<img style="width: 100%;" src="<?php echo $path_site2; ?>/options-1.jpg">
 		</div>			
-		</div>			
+            </div>			
 	</div>
 </div>
 </div>

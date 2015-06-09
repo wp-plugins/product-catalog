@@ -4,7 +4,7 @@
 Plugin Name: Huge IT Product Catalog
 Plugin URI: http://huge-it.com/product-catalog
 Description: Let us introduce our Huge-IT Product Catalog incomparable plugin. To begin with, why do we need this plugin and what are the advantages.
-Version: 1.1.0
+Version: 1.1.1
 Author: http://huge-it.com/
 License: GNU/GPLv3 http://www.gnu.org/licenses/gpl-3.0.html
 */
@@ -220,20 +220,21 @@ add_action('wp_enqueue_scripts', 'catalog_frontend_scripts_and_styles');
 add_action('admin_menu', 'huge_it_catalog_options_panel');
 function huge_it_catalog_options_panel()
 {
-    $page_cat = add_menu_page('Theme page title', 'Huge IT Catalog', 'manage_options', 'catalogs_huge_it_catalog', 'catalogs_huge_it_catalog', plugins_url('images/huge_it_catalogLogoHover -for_menu.png', __FILE__));
-    $catalogs = add_submenu_page('catalogs_huge_it_catalog', 'Catalogs', 'Catalogs', 'manage_options', 'catalogs_huge_it_catalog', 'catalogs_huge_it_catalog');
+    $page_cat = add_menu_page('Theme page title', 'Huge IT Catalog', 'delete_pages', 'catalogs_huge_it_catalog', 'catalogs_huge_it_catalog', plugins_url('images/huge_it_catalogLogoHover -for_menu.png', __FILE__));
+    $catalogs = add_submenu_page('catalogs_huge_it_catalog', 'Catalogs', 'Catalogs', 'delete_pages', 'catalogs_huge_it_catalog', 'catalogs_huge_it_catalog');
 //    $Albums = add_submenu_page('catalogs_huge_it_catalog', 'Catalog Stand', 'Catalog Stand', 'manage_options', 'huge_it_catalog_albums_page', 'huge_it_catalog_albums_page');
+    $general_options = add_submenu_page('catalogs_huge_it_catalog', 'General Options', 'General Options', 'manage_options', 'huge_it_catalog_general_options_page', 'huge_it_catalog_general_options_page');
+    $Submitions = add_submenu_page('catalogs_huge_it_catalog', 'Submitions', 'Submitions', 'manage_options', 'huge_it_catalog_submitions_page', 'huge_it_catalog_submitions_page');
+    $Reviews = add_submenu_page('catalogs_huge_it_catalog', 'Reviews Manager', 'Reviews Manager', 'manage_options', 'huge_it_catalog_reviews_page', 'huge_it_catalog_reviews_page');
+    $Ratings = add_submenu_page('catalogs_huge_it_catalog', 'Ratings Manager', 'Ratings Manager', 'manage_options', 'huge_it_catalog_ratings_page', 'huge_it_catalog_ratings_page');
     $page_option = add_submenu_page('catalogs_huge_it_catalog', 'Catalog Options', 'Catalog Options', 'manage_options', 'Options_catalog_styles', 'Options_catalog_styles');
     $products_options = add_submenu_page('catalogs_huge_it_catalog', 'Products Options', 'Products Options', 'manage_options', 'huge_it_catalog_products_page', 'huge_it_catalog_products_page');
     $lightbox_options = add_submenu_page('catalogs_huge_it_catalog', 'Image View Options', 'Image View Options', 'manage_options', 'Options_catalog_lightbox_styles', 'Options_catalog_lightbox_styles');    
-    $Ratings = add_submenu_page('catalogs_huge_it_catalog', 'Ratings Manager', 'Ratings Manager', 'manage_options', 'huge_it_catalog_ratings_page', 'huge_it_catalog_ratings_page');
-    $Reviews = add_submenu_page('catalogs_huge_it_catalog', 'Reviews Manager', 'Reviews Manager', 'manage_options', 'huge_it_catalog_reviews_page', 'huge_it_catalog_reviews_page');
     add_submenu_page('catalogs_huge_it_catalog', 'Featured Plugins', 'Featured Plugins', 'manage_options', 'huge_it__catalog_featured_plugins', 'huge_it__catalog_featured_plugins');
-    $Submitions = add_submenu_page('catalogs_huge_it_catalog', 'Submitions', 'Submitions', 'manage_options', 'huge_it_catalog_submitions_page', 'huge_it_catalog_submitions_page');
 
     add_action('admin_print_styles-' . $page_cat, 'huge_it_catalog_admin_script');
     add_action('admin_print_styles-' . $page_option, 'huge_it_catalog_option_admin_script');
-//    add_action('admin_print_styles-' . $Albums, 'huge_it_catalog_admin_script');
+    add_action('admin_print_styles-' . $Submitions, 'huge_it_catalog_admin_script');
     add_action('admin_print_styles-' . $lightbox_options, 'huge_it_catalog_option_admin_script');
 }
 
@@ -498,6 +499,19 @@ function huge_it_catalog_products_page(){
         }
     }
     show_product_options();
+    
+}
+
+function huge_it_catalog_general_options_page(){
+    require_once("admin/catalog_general_options_func.php");
+    require_once("admin/catalog_general_options_view.php");
+    
+    if (isset($_GET['task'])){
+        if ($_GET['task'] == 'save'){
+            save_styles_options();
+        }
+    }
+    show_general_options();
     
 }
 
@@ -810,50 +824,52 @@ function huge_it_catalog_my_action_callback_frontend() {
     }
     else
         if($_POST["post"] == "applyproductascsellerfromuser"){
-           if(isset($_POST["user_name"]))       {$name = $_POST["user_name"]; $name = stripslashes($name); $name = htmlspecialchars($name);
-                                                   strip_tags( preg_replace( '/<[^>]*>/', '', preg_replace( '/<script.*<\/[^>]*>/', '', $name ) ) ); }
-            if(isset($_POST["user_mail"]))       { $mail = $_POST["user_mail"]; $mail = stripslashes($mail); $mail = htmlspecialchars($mail);
-                                                   strip_tags( preg_replace( '/<[^>]*>/', '', preg_replace( '/<script.*<\/[^>]*>/', '', $mail ) ) ); }
-            if(isset($_POST["user_phone"]))      { $phone = $_POST["user_phone"]; $phone = stripslashes($phone); $phone = htmlspecialchars($phone);
-                                                   strip_tags( preg_replace( '/<[^>]*>/', '', preg_replace( '/<script.*<\/[^>]*>/', '', $phone ) ) ); }
-            if(isset($_POST["user_massage"]))    { $massage = $_POST["user_massage"];  $massage = stripslashes($massage); $massage = htmlspecialchars($massage);
-                                                   strip_tags( preg_replace( '/<[^>]*>/', '', preg_replace( '/<script.*<\/[^>]*>/', '', $massage ) ) ); }
-            if(isset($_POST["user_ip"]))         { $user_ip = $_POST["user_ip"]; $user_ip = stripslashes($user_ip); $user_ip = htmlspecialchars($user_ip);
-                                                   strip_tags( preg_replace( '/<[^>]*>/', '', preg_replace( '/<script.*<\/[^>]*>/', '', $user_ip ) ) ); }
-            if(isset($_POST["user_product_id"])) { $product_id = $_POST["user_product_id"]; $product_id  = stripslashes($product_id); $product_id  = htmlspecialchars($product_id);
-                                                   strip_tags( preg_replace( '/<[^>]*>/', '', preg_replace( '/<script.*<\/[^>]*>/', '', $product_id ) ) ); }
-            if(isset($_POST["user_spam"]))       { $spam = $_POST["user_spam"]; $spam = stripslashes($spam); $spam = htmlspecialchars($spam);
-                                                   strip_tags( preg_replace( '/<[^>]*>/', '', preg_replace( '/<script.*<\/[^>]*>/', '', $spam ) ) ); }
-            if(isset($_POST["captcha_val"]))     { $captcha_val = $_POST['captcha_val']; $captcha_val = stripslashes($captcha_val); $captcha_val = htmlspecialchars($captcha_val);
-                                                   strip_tags( preg_replace( '/<[^>]*>/', '', preg_replace( '/<script.*<\/[^>]*>/', '', $captcha_val ) ) ); }
+            if(isset($_POST["user_name"]))       { $name = $_POST["user_name"];              $name = sanitize_text_field($name);               }
+            if(isset($_POST["user_mail"]))       { $mail = $_POST["user_mail"];              $mail = sanitize_text_field($mail);               }
+            if(isset($_POST["user_phone"]))      { $phone = $_POST["user_phone"];            $phone = sanitize_text_field($phone);             }
+            if(isset($_POST["user_massage"]))    { $massage = $_POST["user_massage"];        $massage = sanitize_text_field($massage);         }
+            if(isset($_POST["user_ip"]))         { $user_ip = $_POST["user_ip"];             $user_ip = sanitize_text_field($user_ip);         }
+            if(isset($_POST["user_product_id"])) { $product_id = $_POST["user_product_id"];  $product_id  = sanitize_text_field($product_id);  }
+            if(isset($_POST["user_spam"]))       { $spam = $_POST["user_spam"];              $spam = sanitize_text_field($spam);               }
+            if(isset($_POST["captcha_val"]))     { $captcha_val = $_POST['captcha_val'];     $captcha_val = sanitize_text_field($captcha_val); }
+                                
+            $getAllParams = $wpdb->get_results("SELECT name,value FROM ".$wpdb->prefix."huge_it_catalog_general_params");
+            foreach($getAllParams AS $allParams){
+                if($allParams->name == "ht_catalog_general_message_to_user")     { $sendToUser = $allParams->value; }
+                if($allParams->name == "ht_catalog_general_user_subject")        { $userSubject = $allParams->value; }
+                if($allParams->name == "ht_catalog_general_user_message")        { $userMessage = $allParams->value; }
+                if($allParams->name == "ht_catalog_general_message_to_admin")    { $sendToAdmin = $allParams->value; }
+                if($allParams->name == "ht_catalog_general_admin_email")         { $adminEmail = $allParams->value; }
+                if($allParams->name == "ht_catalog_general_admin_email_subject") { $adminSubject = $allParams->value; }
+                if($allParams->name == "ht_catalog_general_admin_email_message") { $sendMessage = $allParams->value; }
+                if($allParams->name == "ht_catalog_general_admin_from_text")     { $from = $allParams->value; }
+            }
 
-
-			    $massage = "<table>
-                                   		<tr>
-                                                	<td width='1000' >
-                                                        	".$massage."
-                                                         </td>
-                                                </tr>
-                                                         <tr><td height='10' ></td></tr>
-                                                         <tr>
-                                                              <td width='1000'><strong>Customer Name: </strong> ".$name." </td>
-                                                         </tr>
-                                                         <tr>
-                                                              <td width='1000'><strong>Phone: </strong>".$phone."</td>
-                                                         </tr>
-                                                         <tr>
-                                                           <td width='1000'><strong>Location: </strong> ".$user_ip." </td>
-                                                         </tr>
-                                        </table>";
-
-
-            $admin_email = get_option( 'admin_email' );
+            $massage = "<table>
+                                <tr>
+                                    <td width='1000' >
+                                            ".$massage."
+                                     </td>
+                                </tr>
+                                <tr><td height='10' ></td></tr>
+                                <tr>
+                                    <td width='1000'><strong>Customer Name: </strong> ".$name." </td>
+                                </tr>
+                                <tr>
+                                    <td width='1000'><strong>Phone: </strong>".$phone."</td>
+                                </tr>
+                                <tr>
+                                    <td width='1000'><strong>Location: </strong> ".$user_ip." </td>
+                                </tr>
+                        </table>";
+		//$sendMessage = preg_replace('/\b{userMessage}\b/', $massage, $sendMessage);
+            $sendMessage = str_ireplace("{userMessage}",$massage,$sendMessage);
             $date = date("Y/m/d");
             $time = date("h:i");
             $datetime = $date." at ".$time;
-            $subject = 'New Message From Customer';
             $headers[] = 'From: '.$mail.' <'.$mail.'>' . "\r\n";
 	    $headers[] = "Content-type: text/html" ;
+            
             if($spam == 1){
                 $response = array('index' => '1', 'reason' => 'spamer');
                 echo json_encode($response);die();
@@ -874,17 +890,17 @@ function huge_it_catalog_my_action_callback_frontend() {
                             $captcha2 = rand(1,9);
                             $captcha12 = $captcha1 + $captcha2;
                             $updateCaptcha = $wpdb->query($wpdb->prepare("UPDATE ".$wpdb->prefix."huge_it_catalog_products  SET published_in_sl_width = '%s'", $captcha12));
-//                            if($updateCaptcha){
-
-                                $massageUser = 'Dear Customer,Your Message Was Sent To Seller,Please Wait To Response';
-                                $userSubject = 'Your Message Was Sent To Seller';
-                                $headersUser = 'From: Seller <Seller>' . "\r\n";
-                                $responseToUser = wp_mail( $mail, $userSubject, $massageUser, $headersUser );
+                                if($sendToAdmin == "on"){
+                                    $send = wp_mail( $adminEmail, $adminSubject, $sendMessage , $headers );
+                                }
+                                $headersUser = 'From: '.$from.' <'.$from.'>' . "\r\n";
+                                if($sendToAdmin == "on"){
+                                    $responseToUser = wp_mail( $mail, $userSubject, $userMessage, $headersUser );
+                                }
                                 
                                 $response = array('index' => '1', 'captcha1' => $captcha1, 'captcha2' => $captcha2, 'reason' => 'allOk');
                                 echo json_encode($response);
                                 die(); // this is required to return a proper result
-                           // }
                         }
                         else {
                             $response = array('index' => '3', 'reason' => 'wrongSql');
@@ -956,7 +972,7 @@ function huge_it_catalog_activate()
 //  `value` varchar(200) CHARACTER SET utf8 NOT NULL,
 //  PRIMARY KEY (`id`)
 //) ENGINE=MyISAM  DEFAULT CHARSET=latin1 AUTO_INCREMENT=8 ";
-    
+//    
 //    $sql_huge_it_catalog_product_params = "
 //CREATE TABLE IF NOT EXISTS `" . $wpdb->prefix . "huge_it_catalog_product_params`(
 //  `id` int(11) unsigned NOT NULL AUTO_INCREMENT,
@@ -965,6 +981,16 @@ function huge_it_catalog_activate()
 //  `value` varchar(200) CHARACTER SET utf8 NOT NULL,
 //  PRIMARY KEY (`id`)
 //) ENGINE=MyISAM  DEFAULT CHARSET=latin1 AUTO_INCREMENT=8 ";
+    
+    $sql_huge_it_catalog_general_params = "
+CREATE TABLE IF NOT EXISTS `" . $wpdb->prefix . "huge_it_catalog_general_params`(
+  `id` int(11) unsigned NOT NULL AUTO_INCREMENT,
+  `name` varchar(50) CHARACTER SET utf8 NOT NULL,
+  `title` varchar(200) CHARACTER SET utf8 NOT NULL,
+  `description` text CHARACTER SET utf8 NOT NULL,
+  `value` varchar(200) CHARACTER SET utf8 NOT NULL,
+  PRIMARY KEY (`id`)
+) ENGINE=MyISAM  DEFAULT CHARSET=latin1 AUTO_INCREMENT=8 ";
     
     $sql_huge_it_catalog_album_catalog_contact = "
 CREATE TABLE IF NOT EXISTS `" . $wpdb->prefix . "huge_it_catalog_album_catalog_contact`(
@@ -1062,18 +1088,6 @@ CREATE TABLE IF NOT EXISTS `" . $wpdb->prefix . "huge_it_catalog_asc_seller`(
 ) ENGINE=MyISAM  DEFAULT CHARSET=latin1 AUTO_INCREMENT=8 ";
     
     
-//    $sql_huge_it_catalog_reviews = "
-//CREATE TABLE IF NOT EXISTS `" . $wpdb->prefix . "huge_it_catalog_reviews` (
-//  `id` int(11) unsigned NOT NULL AUTO_INCREMENT,
-//  `name` text CHARACTER SET utf8 NOT NULL,
-//  `content` text CHARACTER SET utf8 NOT NULL,
-//  `product_id` int(11),
-//  `spam` int(11),
-//  `ip` text CHARACTER SET utf8 NOT NULL,
-//  
-//  PRIMARY KEY (`id`)
-//) ENGINE=MyISAM  DEFAULT CHARSET=latin1 AUTO_INCREMENT=8 ";
-    
 $sql_huge_it_catalog_albums = "
 CREATE TABLE IF NOT EXISTS `" . $wpdb->prefix . "huge_it_catalog_albums` (
   `id` int(11) unsigned NOT NULL AUTO_INCREMENT,
@@ -1084,7 +1098,7 @@ CREATE TABLE IF NOT EXISTS `" . $wpdb->prefix . "huge_it_catalog_albums` (
 ) ENGINE=MyISAM  DEFAULT CHARSET=latin1 AUTO_INCREMENT=8 ";
     
     
-//
+
 //    $table_name = $wpdb->prefix . "huge_it_catalog_params";
 //    $sql_1 = <<<query1
 //INSERT INTO `$table_name` (`name`, `title`,`description`, `value`) VALUES
@@ -1492,29 +1506,29 @@ CREATE TABLE IF NOT EXISTS `" . $wpdb->prefix . "huge_it_catalog_albums` (
 //
 //('ht_catalog_view0_show_price', 'ht_catalog_view0_show_price', 'ht_catalog_view0_show_price', 'on'),
 //('ht_catalog_view0_price_font_size', 'ht_catalog_view0_price_font_size', 'ht_catalog_view0_price_font_size', '15'),
-//('ht_catalog_view0_price_font_color', 'ht_catalog_view0_price_font_color', 'ht_catalog_view0_price_font_color', '000000'),
+//('ht_catalog_view0_price_font_color', 'ht_catalog_view0_price_font_color', 'ht_catalog_view0_price_font_color', 'e74c3c'),
 //('ht_catalog_view0_market_price_font_size', 'ht_catalog_view0_price_font_size', 'ht_catalog_view0_price_font_size', '15'),
 //('ht_catalog_view0_market_price_font_color', 'ht_catalog_view0_market_price_font_color', 'ht_catalog_view0_market_price_font_color', '000000'),
 //('ht_catalog_view1_show_price', 'ht_catalog_view1_show_price', 'ht_catalog_view1_show_price', 'on'),
 //('ht_catalog_view1_price_font_size', 'ht_catalog_view1_price_font_size', 'ht_catalog_view1_price_font_size', '15'),
-//('ht_catalog_view1_price_font_color', 'ht_catalog_view0_price_font_color', 'ht_catalog_view0_price_font_color', '000000'),
+//('ht_catalog_view1_price_font_color', 'ht_catalog_view1_price_font_color', 'ht_catalog_view1_price_font_color', 'e74c3c'),
 //('ht_catalog_view1_market_price_font_size', 'ht_catalog_view0_price_font_size', 'ht_catalog_view0_price_font_size', '15'),
-//('ht_catalog_view1_market_price_font_color', 'ht_catalog_view0_price_font_color', 'ht_catalog_view0_price_font_color', '000000'),
+//('ht_catalog_view1_market_price_font_color', 'ht_catalog_view1_market_price_font_color', 'ht_catalog_view1_market_price_font_color', '000000'),
 //('ht_catalog_view2_show_price', 'ht_catalog_view2_show_price', 'ht_catalog_view2_show_price', 'on'),
 //('ht_catalog_view2_price_font_size', 'ht_catalog_view2_price_font_size', 'ht_catalog_view2_price_font_size', '15'),
-//('ht_catalog_view2_price_font_color', 'ht_catalog_view2_price_font_color', 'ht_catalog_view2_price_font_color', '000000'),
+//('ht_catalog_view2_price_font_color', 'ht_catalog_view2_price_font_color', 'ht_catalog_view2_price_font_color', 'e74c3c'),
 //('ht_catalog_view2_market_price_font_size', 'ht_catalog_view0_price_font_size', 'ht_catalog_view0_price_font_size', '15'),
-//('ht_catalog_view2_market_price_font_color', 'ht_catalog_view0_price_font_color', 'ht_catalog_view0_price_font_color', '000000'),
+//('ht_catalog_view2_market_price_font_color', 'ht_catalog_view2_market_price_font_color', 'ht_catalog_view2_market_price_font_color', '000000'),
 //('ht_catalog_view3_show_price', 'ht_catalog_view3_show_price', 'ht_catalog_view3_show_price', 'on'),
 //('ht_catalog_view3_price_font_size', 'ht_catalog_view3_price_font_size', 'ht_catalog_view3_price_font_size', '15'),
-//('ht_catalog_view3_price_font_color', 'ht_catalog_view3_price_font_color', 'ht_catalog_view3_price_font_color', '000000'),
+//('ht_catalog_view3_price_font_color', 'ht_catalog_view3_price_font_color', 'ht_catalog_view3_price_font_color', '0074a2'),
 //('ht_catalog_view3_market_price_font_size', 'ht_catalog_view0_price_font_size', 'ht_catalog_view0_price_font_size', '15'),
-//('ht_catalog_view3_market_price_font_color', 'ht_catalog_view0_price_font_color', 'ht_catalog_view0_price_font_color', '000000'),
+//('ht_catalog_view3_market_price_font_color', 'ht_catalog_view3_market_price_font_color', 'ht_catalog_view3_market_price_font_color', '000000'),
 //('ht_catalog_view5_show_price', 'ht_catalog_view5_show_price', 'ht_catalog_view5_show_price', 'on'),
 //('ht_catalog_view5_price_font_size', 'ht_catalog_view5_price_font_size', 'ht_catalog_view5_price_font_size', '15'),
-//('ht_catalog_view5_price_font_color', 'ht_catalog_view5_price_font_color', 'ht_catalog_view5_price_font_color', '000000'),
+//('ht_catalog_view5_price_font_color', 'ht_catalog_view5_price_font_color', 'ht_catalog_view5_price_font_color', '0074a2'),
 //('ht_catalog_view5_market_price_font_size', 'ht_catalog_view0_price_font_size', 'ht_catalog_view0_price_font_size', '15'),
-//('ht_catalog_view5_market_price_font_color', 'ht_catalog_view0_price_font_color', 'ht_catalog_view0_price_font_color', '000000'),
+//('ht_catalog_view5_market_price_font_color', 'ht_catalog_view5_market_price_font_color', 'ht_catalog_view5_market_price_font_color', '000000'),
 //            
 //  /* ##############################  Zoom #####################################*/
 //('ht_catalog_zoom_window_type', 'Zoom Window Type', 'Zoom Window Type', 'window'),
@@ -1540,23 +1554,14 @@ CREATE TABLE IF NOT EXISTS `" . $wpdb->prefix . "huge_it_catalog_albums` (
 //('ht_catalog_zoom_lens_size_fix', 'Zoom easing', 'Zoom easing', 'false'),
 //('ht_catalog_zoom_lens_height', 'Zoom easing', 'Zoom easing', '100'),
 //('ht_catalog_zoom_lens_width', 'Zoom easing', 'Zoom easing', '100'),
-//('ht_catalog_zoom_tint', 'Zoom Tint', 'Zoom Tint', 'false'),
+//('ht_catalog_zoom_tint', 'Zoom Tint', 'Zoom Tint', 'true'),
 //('ht_catalog_zoom_tint_colour', 'Zoom Tint Color', 'Zoom Tint Color', '#fff'),
 //('ht_catalog_zoom_tint_opacity', 'Zoom Tint Opacity', 'Zoom Tint Opacity', '40'),
 //('ht_catalog_zoom_tint_fadein', 'Zoom Tint Fadein Speed', 'Zoom Tint Fadein Speed', '200'),
 //('ht_catalog_zoom_tint_fadeout', 'Zoom Tint Fadeout Speed', 'Zoom Tint Fadeout Speed', '200'),
 //('ht_view3_allow_lightbox', 'View Mode', 'View Mode', 'on'),
-//('ht_view3_allow_zooming', 'View Mode', 'View Mode', 'on'), 
-//
-///*('ht_view0_allow_lightbox', 'View Mode', 'View Mode', 'on'),
-//('ht_view1_allow_lightbox', 'View Mode', 'View Mode', 'on'),
-//('ht_view2_allow_lightbox', 'View Mode', 'View Mode', 'on'),
-//('ht_view5_allow_lightbox', 'View Mode', 'View Mode', 'on'),
-//('ht_view0_allow_zooming', 'View Mode', 'View Mode', 'on'),
-//('ht_view1_allow_zooming', 'View Mode', 'View Mode', 'on'),
-//('ht_view2_allow_zooming', 'View Mode', 'View Mode', 'on'),
-//('ht_view5_allow_zooming', 'View Mode', 'View Mode', 'on'),*/
-//('ht_catalog_zoom_thumbs_zoom', 'Allow Thumbs Zoom', 'Allow Thumbs Zoom', 'off');
+//('ht_catalog_zoom_thumbs_zoom', 'Allow Thumbs Zoom', 'Allow Thumbs Zoom', 'off'),
+//('ht_view3_allow_zooming', 'View Mode', 'View Mode', 'on');
 //
 //query1;
     
@@ -1638,27 +1643,7 @@ INSERT INTO `$table_name` (`name`, `content`, `product_id`, `spam`, `ip`, `date`
 ('User8', 'Great Plugin', '8', '0', '127.0.0.1', '12.01.2015');
 
 query5;
-    
-    
-    
-//    $table_name = $wpdb->prefix . "huge_it_catalog_asc_seller";
-//
-//
-//    $sql_9= <<<query9
-//INSERT INTO `$table_name` (`user_name`, `user_email`, `user_phone`, `user_massage`, `user_ip`, `date`, `spam`, `read_or_not`, `product_id`) VALUES
-//
-//('user_name', 'Great user_email', 'user_phone', 'user_massage', 'ip', 'date', '0', '1', '1'),
-//('user_name', 'Great user_email', 'user_phone', 'user_massage', 'ip', 'date', '0', '0', '2'),
-//('user_name', 'Great user_email', 'user_phone', 'user_massage', 'ip', 'date', '1', '1', '3'),
-//('user_name', 'Great user_email', 'user_phone', 'user_massage', 'ip', 'date', '0', '0', '4'),
-//('user_name', 'Great user_email', 'user_phone', 'user_massage', 'ip', 'date', '1', '1', '5'),
-//('user_name', 'Great user_email', 'user_phone', 'user_massage', 'ip', 'date', '1', '0', '6'),
-//('user_name', 'Great user_email', 'user_phone', 'user_massage', 'ip', 'date', '0', '1', '7'),
-//('user_name', 'Great user_email', 'user_phone', 'user_massage', 'ip', 'date', '0', '0', '8');
-//
-//query9;
-    
-    
+
     
     $table_name = $wpdb->prefix . "huge_it_catalog_albums";
     
@@ -1739,6 +1724,42 @@ query6;
 //
 //query8;
     
+    
+    $admin_email_default = get_option( 'admin_email' );
+    
+    $table_name = $wpdb->prefix . "huge_it_catalog_general_params";
+    $sql_9 = <<<query9
+INSERT INTO `$table_name` (`name`, `title`, `value`) VALUES
+
+('ht_single_product_price_text', 'ht_single_product_price_text', 'Price'),
+('ht_single_product_comments_text', 'ht_single_product_comments_text', 'Comments'),
+('ht_single_product_parameters_text', 'ht_single_product_parameters_text', 'Parameters'),
+('ht_single_product_rating_text', 'ht_single_product_rating_text', 'Rating'),
+('ht_single_product_share_text', 'ht_single_product_share_text', 'Share'),
+('ht_single_product_your_name_text', 'ht_single_product_your_name_text', 'Your Name'),
+('ht_single_product_your_Comment_text', 'ht_single_product_your_Comment_text', 'Your Comment'),
+('ht_single_product_captcha_text', 'ht_single_product_captcha_text', 'Captcha'),
+('ht_single_product_invalid_captcha_text', 'ht_single_product_invalid_captcha_text', 'Invalid Captcha'),
+('ht_single_product_asc_to_seller_text', 'ht_single_product_asc_to_seller_text', 'Asc To Seller'),
+('ht_single_product_your_mail_text', 'Your E-mail', 'Your E-mail'),
+('ht_single_product_your_phone_text', 'Your Phone', 'Your Phone'),
+('ht_single_product_your_message_text', 'Your Message', 'Your Message'),
+('ht_catalog_general_message_to_admin', 'ht_catalog_general_message_to_admin', 'off'),
+('ht_catalog_general_admin_email', 'ht_catalog_general_admin_email', '$admin_email_default'),
+('ht_catalog_general_admin_email_subject', 'ht_catalog_general_admin_email_subject', 'Admin subject'),
+('ht_catalog_general_admin_email_message', 'ht_catalog_general_admin_email_message', 'Message For admin {userMessage}'),
+('ht_catalog_general_admin_from_text', 'ht_catalog_general_admin_from_text', '$admin_email_default'),
+('ht_catalog_general_message_to_user', 'ht_catalog_general_message_to_user', 'off'),
+('ht_catalog_general_user_subject', 'ht_catalog_general_user_subject', 'User subject'),
+('ht_catalog_general_user_message', 'ht_catalog_general_user_message', 'Message for user'),
+('ht_catalog_general_linkbutton_text', 'ht_catalog_general_linkbutton_text', 'View Product'),
+('ht_single_product_show_asc_seller_button', 'ht_single_product_show_asc_seller_button', 'off'),
+('ht_single_product_comments_submit_button_text', 'Zoom Window Type', 'Submit'),
+('ht_single_product_asc_seller_popup_button_text', 'Zoom Window Type', 'Submit'),
+('ht_single_product_asc_seller_button_text', 'ht_single_product_asc_seller_button_text', 'Contact To Seller');
+
+query9;
+    
 
     
     
@@ -1752,6 +1773,7 @@ query6;
     $wpdb->query($sql_huge_it_catalog_albums);
     $wpdb->query($sql_huge_it_catalog_album_catalog_contact);
 //    $wpdb->query($sql_huge_it_catalog_product_params);
+    $wpdb->query($sql_huge_it_catalog_general_params);
 
 
 //    if (!$wpdb->get_var("select count(*) from " . $wpdb->prefix . "huge_it_catalog_params")) {
@@ -1778,30 +1800,12 @@ query6;
 //    if (!$wpdb->get_var("select count(*) from " . $wpdb->prefix . "huge_it_catalog_product_params")) {
 //        $wpdb->query($sql_8);
 //    }
-//    if (!$wpdb->get_var("select count(*) from " . $wpdb->prefix . "huge_it_catalog_asc_seller")) {
-//        $wpdb->query($sql_9);
-//    }
+    if (!$wpdb->get_var("select count(*) from " . $wpdb->prefix . "huge_it_catalog_general_params")) {
+        $wpdb->query($sql_9);
+    }
       
 
-			///////////////////////////UPDATE////////////////////////////////////   
-    
-//    $table_name = $wpdb->prefix . "huge_it_catalog_params";
-//    $sql_update_catalog_2 = "INSERT INTO `$table_name` (`name`, `title`,`description`, `value`) VALUES
-//    ('ht_view0_allow_lightbox', 'View Mode', 'View Mode', 'on'),
-//    ('ht_view1_allow_lightbox', 'View Mode', 'View Mode', 'on'),
-//    ('ht_view2_allow_lightbox', 'View Mode', 'View Mode', 'on'),
-//    ('ht_view5_allow_lightbox', 'View Mode', 'View Mode', 'on'),
-//    ('ht_view0_allow_zooming', 'View Mode', 'View Mode', 'on'),
-//    ('ht_view1_allow_zooming', 'View Mode', 'View Mode', 'on'),
-//    ('ht_view2_allow_zooming', 'View Mode', 'View Mode', 'on'),
-//    ('ht_view5_allow_zooming', 'View Mode', 'View Mode', 'on')";
-//
-//    $query="SELECT name FROM ".$wpdb->prefix."huge_it_catalog_params";
-//    $update_catalog_2=$wpdb->get_results($query);
-//    if(end($update_catalog_2)->name=='ht_view3_allow_zooming'){
-//            $wpdb->query($sql_update_catalog_2);
-//    };
-    
+			///////////////////////////UPDATE////////////////////////////////////       
     
     
 }

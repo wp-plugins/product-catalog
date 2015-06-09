@@ -6,7 +6,7 @@
 //else if(catalogThumbsZoom == "off"){
 //    for_zoom = ".for_zoom img";
 //}
-
+if(typeof allowZooming != 'undefined') {
 function zoom_start(){
 //    alert(allowZooming);
     if(allowZooming == "on"){
@@ -96,3 +96,4 @@ jQuery(window).resize(function(){
     jQuery('.zoomWrapper').height(image_height);
     
 });
+}
