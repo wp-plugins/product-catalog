@@ -536,6 +536,13 @@ jQuery(document).ready(function($){
 										<label for="market_price<?php echo $rowimages->id; ?>">Discount Price:</label>
 										<input  class="text_area" type="text" id="market_price<?php echo $rowimages->id; ?>" name="market_price<?php echo $rowimages->id; ?>" id="market_price<?php echo $rowimages->id; ?>"  value="<?php echo $rowimages->market_price; ?>">
 									</div>
+                                                                        <div>
+                                                                                <label for="single_product_url_type<?php echo $rowimages->id; ?>">Single Product Page Link:</label>
+                                                                                <div style="position: relative;">
+                                                                                    <input class="text_area product_url_select" type="text" id="single_product_url_type<?php echo $rowimages->id; ?>" name="single_product_url_type<?php echo $rowimages->id; ?>" value="<?php echo $rowimages->single_product_url_type; ?>">
+                                                                                    <img src="<?php echo $path_site2; ?>/close.gif" width="14" height="16" value="a" class="del_product_link">
+                                                                                </div>
+                                                                        </div>
 									<div class="description-block">
 										<label for="im_description<?php echo $rowimages->id; ?>">Description:</label>
 										<textarea id="im_description<?php echo $rowimages->id; ?>" name="im_description<?php echo $rowimages->id; ?>" ><?php echo $rowimages->description; ?></textarea>
@@ -884,6 +891,18 @@ jQuery(document).ready(function($){
                                             var catalog_cats_val = jQuery(this).val();
                                             jQuery(this).parent().find("#catalog_cats").val(catalog_cats_val);
                                         });
+                                   });
+                                   
+                                   jQuery(document).on('change', '.product_url_select', function (e){
+                                        if(jQuery(this).val() == ""){
+                                            jQuery(this).val("default");
+                                        }
+                                   });
+                                   
+                                   jQuery(document).on('click', '.del_product_link', function (e){
+//                                        if(jQuery(this).val() == ""){
+                                            jQuery(this).parent().find(".product_url_select").val("default");
+//                                        }
                                    });
                         </script>
                         

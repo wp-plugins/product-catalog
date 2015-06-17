@@ -1027,8 +1027,11 @@ function front_end_catalog($images, $paramssld, $paramssld3, $catalog)
                                   
                                 <?php
                                       if($paramssld['ht_view0_show_linkbutton']=='on'){
-                                          $page_link = $_SERVER["SERVER_NAME"].$_SERVER["REQUEST_URI"];
-                                          if (strpos(get_permalink(),'/?') !== false) { $product_page_link = get_permalink()."&single_prod_id=$row->id"; } else { if (strpos(get_permalink(),'/') !== false) { $product_page_link = get_permalink()."?single_prod_id=$row->id"; } else { $product_page_link = get_permalink()."/?single_prod_id=$row->id"; } }
+                                          if($row->single_product_url_type == "default"){
+                                             $page_link = $_SERVER["SERVER_NAME"].$_SERVER["REQUEST_URI"];
+                                             if (strpos(get_permalink(),'/?') !== false) { $product_page_link = get_permalink()."&single_prod_id=$row->id"; } else { if (strpos(get_permalink(),'/') !== false) { $product_page_link = get_permalink()."?single_prod_id=$row->id"; } else { $product_page_link = get_permalink()."/?single_prod_id=$row->id"; } }
+                                          }
+                                          else{ $product_page_link = $row->single_product_url_type; }
                                           ?>
                                               <div class="button-block">
                                                       <a href="<?php echo $product_page_link; ?>" <?php if ($row->link_target=="on"){echo 'target="_blank"';}?>><?php echo $paramssld3['ht_catalog_general_linkbutton_text']; ?></a>
@@ -1699,9 +1702,12 @@ var defaultBlockWidth=<?php echo $paramssld['ht_view0_block_width']; ?>;
                                       
                                       <?php
                                       if($paramssld['ht_view1_show_linkbutton']=='on'){
-                                          $page_link = $_SERVER["SERVER_NAME"].$_SERVER["REQUEST_URI"];
-                                          if (strpos(get_permalink(),'/?') !== false) { $product_page_link = get_permalink()."&single_prod_id=$row->id"; } else { $product_page_link = get_permalink()."/?single_prod_id=$row->id"; }
-                                          ?>
+                                          if($row->single_product_url_type == "default"){
+                                              $page_link = $_SERVER["SERVER_NAME"].$_SERVER["REQUEST_URI"];
+                                              if (strpos(get_permalink(),'/?') !== false) { $product_page_link = get_permalink()."&single_prod_id=$row->id"; } else { if (strpos(get_permalink(),'/') !== false) { $product_page_link = get_permalink()."?single_prod_id=$row->id"; } else { $product_page_link = get_permalink()."/?single_prod_id=$row->id"; } }
+                                          }
+                                         else{ $product_page_link = $row->single_product_url_type; }
+                                         ?>
                                               <div class="button-block">
                                                       <a href="<?php echo $product_page_link; ?>" <?php if ($row->link_target=="on"){echo 'target="_blank"';}?>><?php echo $paramssld3['ht_catalog_general_linkbutton_text']; ?></a>
                                               </div>
@@ -2725,9 +2731,12 @@ var defaultBlockHeight=<?php echo $paramssld['ht_view2_element_height']; ?>;
                               <div class="title-block_<?php echo $catalogID; ?>">
                                       <h3><?php echo $row->name; ?></h3>
                                       <?php if($paramssld["ht_view2_element_show_linkbutton"]=='on'){
-                                          $page_link = $_SERVER["SERVER_NAME"].$_SERVER["REQUEST_URI"];
-                                          if (strpos(get_permalink(),'/?') !== false) { $product_page_link = get_permalink()."&single_prod_id=$row->id"; } else { $product_page_link = get_permalink()."/?single_prod_id=$row->id"; }
-                                          ?>
+                                         if($row->single_product_url_type == "default"){
+                                             $page_link = $_SERVER["SERVER_NAME"].$_SERVER["REQUEST_URI"];
+                                             if (strpos(get_permalink(),'/?') !== false) { $product_page_link = get_permalink()."&single_prod_id=$row->id"; } else { if (strpos(get_permalink(),'/') !== false) { $product_page_link = get_permalink()."?single_prod_id=$row->id"; } else { $product_page_link = get_permalink()."/?single_prod_id=$row->id"; } }
+                                         }
+                                         else{ $product_page_link = $row->single_product_url_type; }
+                                         ?>
                                               <div class="button-block"><a href="<?php echo $product_page_link; ?>" <?php if ($row->link_target=="on"){echo 'target="_blank"';}?> ><?php echo $paramssld3["ht_catalog_general_linkbutton_text"]; ?></a></div>
                                       <?php } ?>
                               </div>
@@ -2791,9 +2800,12 @@ var defaultBlockHeight=<?php echo $paramssld['ht_view2_element_height']; ?>;
                                          <?php } ?>
                                         
                                        <?php if($paramssld["ht_view2_show_popup_linkbutton"]=='on'){
-                                           $page_link = $_SERVER["SERVER_NAME"].$_SERVER["REQUEST_URI"];
-                                               if (strpos(get_permalink(),'/?') !== false) { $product_page_link = get_permalink()."&single_prod_id=$row->id"; } else { $product_page_link = get_permalink()."/?single_prod_id=$row->id"; }
-                                       ?>
+                                               if($row->single_product_url_type == "default"){
+                                                  $page_link = $_SERVER["SERVER_NAME"].$_SERVER["REQUEST_URI"];
+                                                  if (strpos(get_permalink(),'/?') !== false) { $product_page_link = get_permalink()."&single_prod_id=$row->id"; } else { if (strpos(get_permalink(),'/') !== false) { $product_page_link = get_permalink()."?single_prod_id=$row->id"; } else { $product_page_link = get_permalink()."/?single_prod_id=$row->id"; } }
+                                             }
+                                         else{ $product_page_link = $row->single_product_url_type; }
+                                         ?>
 						<div class="button-block">
 						<a href="<?php echo $product_page_link; ?>"  <?php if ($row->link_target=="on"){echo 'target="_blank"';}?>><?php echo $paramssld3["ht_catalog_general_linkbutton_text"]; ?></a>
 						</div>
@@ -3268,15 +3280,18 @@ var defaultBlockHeight=<?php echo $paramssld['ht_view2_element_height']; ?>;
                                   <?php } ?>
                                           
                                       <?php
-//                                      if($paramssld["ht_view3_show_linkbutton"] == 'on') {
-                                          $page_link = $_SERVER["SERVER_NAME"].$_SERVER["REQUEST_URI"];
-                                          if (strpos(get_permalink(),'/?') !== false) { $product_page_link = get_permalink()."&single_prod_id=$row->id"; } else { $product_page_link = get_permalink()."/?single_prod_id=$row->id"; }
+                                      if($paramssld["ht_view3_show_linkbutton"] == 'on') {
+                                          if($row->single_product_url_type == "default"){
+                                             $page_link = $_SERVER["SERVER_NAME"].$_SERVER["REQUEST_URI"];
+                                             if (strpos(get_permalink(),'/?') !== false) { $product_page_link = get_permalink()."&single_prod_id=$row->id"; } else { if (strpos(get_permalink(),'/') !== false) { $product_page_link = get_permalink()."?single_prod_id=$row->id"; } else { $product_page_link = get_permalink()."/?single_prod_id=$row->id"; } }
+                                         }
+                                         else{ $product_page_link = $row->single_product_url_type; }
                                       ?>
                                           <div class="button-block">
                                                   <a href="<?php echo $product_page_link; ?>" <?php if ($row->link_target=="on"){ echo 'target="_blank"';}?>><?php echo $paramssld3["ht_catalog_general_linkbutton_text"]; ?></a>
                                           </div>
                                       <?php 
-//                                      } ?>
+                                      } ?>
                               </div>
                       </div>
 
@@ -3751,9 +3766,12 @@ jQuery(function(){
                                         <?php } ?>
                                         
                                         <?php if($paramssld["ht_view5_show_linkbutton"]=='on'){
-                                                $page_link = $_SERVER["SERVER_NAME"].$_SERVER["REQUEST_URI"];
-                                                if (strpos(get_permalink(),'/?') !== false) { $product_page_link = get_permalink()."&single_prod_id=$row->id"; } else { $product_page_link = get_permalink()."/?single_prod_id=$row->id"; }
-                                        ?>
+                                                if($row->single_product_url_type == "default"){
+                                                    $page_link = $_SERVER["SERVER_NAME"].$_SERVER["REQUEST_URI"];
+                                                    if (strpos(get_permalink(),'/?') !== false) { $product_page_link = get_permalink()."&single_prod_id=$row->id"; } else { if (strpos(get_permalink(),'/') !== false) { $product_page_link = get_permalink()."?single_prod_id=$row->id"; } else { $product_page_link = get_permalink()."/?single_prod_id=$row->id"; } }
+                                                }
+                                                else{ $product_page_link = $row->single_product_url_type; }
+                                         ?>
 						<div class="button-block">
 							<a class="" href="<?php echo $product_page_link; ?>"  <?php if ($row->link_target=="on"){echo 'target="_blank"';}?>><?php echo $paramssld3["ht_catalog_general_linkbutton_text"]; ?></a>
 						</div>
@@ -6670,8 +6688,11 @@ function album_front_end($paramssld, $paramssld3, $catalogsFromAlbumArray)
                                       <?php }
                                      
                                       if($paramssld['ht_view0_show_linkbutton']=='on'){
-                                          $page_link = $_SERVER["SERVER_NAME"].$_SERVER["REQUEST_URI"];
-                                          if (strpos(get_permalink(),'/?') !== false) { $product_page_link = get_permalink()."&single_catalog_id=$row->catalog_id"; } else { $product_page_link = get_permalink()."/?single_catalog_id=$row->catalog_id"; }
+                                          if($row->single_product_url_type == "default"){
+                                             $page_link = $_SERVER["SERVER_NAME"].$_SERVER["REQUEST_URI"];
+                                             if (strpos(get_permalink(),'/?') !== false) { $product_page_link = get_permalink()."&single_prod_id=$row->id"; } else { if (strpos(get_permalink(),'/') !== false) { $product_page_link = get_permalink()."?single_prod_id=$row->id"; } else { $product_page_link = get_permalink()."/?single_prod_id=$row->id"; } }
+                                          }
+                                          else{ $product_page_link = $row->single_product_url_type; }
                                       ?>
                                               <div class="button-block">
                                                       <a href="<?php echo $product_page_link; ?>" <?php if ($row->link_target=="on"){ echo 'target="_blank"'; }?>><?php echo $paramssld3['ht_catalog_general_linkbutton_text']; ?></a>
@@ -7263,12 +7284,15 @@ var defaultBlockWidth=<?php echo $paramssld['ht_view0_block_width']; ?>;
                                       
                                       <?php } 
                                       if($paramssld['ht_view1_show_linkbutton']=='on'){
-                                          $page_link = $_SERVER["SERVER_NAME"].$_SERVER["REQUEST_URI"];
-                                          if (strpos(get_permalink(),'/?') !== false) { $product_page_link = get_permalink()."&single_catalog_id=$row->catalog_id"; } else { $product_page_link = get_permalink()."/?single_catalog_id=$row->catalog_id"; }
+                                            if($row->single_product_url_type == "default"){
+                                                $page_link = $_SERVER["SERVER_NAME"].$_SERVER["REQUEST_URI"];
+                                                if (strpos(get_permalink(),'/?') !== false) { $product_page_link = get_permalink()."&single_prod_id=$row->id"; } else { if (strpos(get_permalink(),'/') !== false) { $product_page_link = get_permalink()."?single_prod_id=$row->id"; } else { $product_page_link = get_permalink()."/?single_prod_id=$row->id"; } }
+                                            }
+                                            else{ $product_page_link = $row->single_product_url_type; }
                                       ?>
-                                              <div class="button-block">
-                                                      <a href="<?php echo $product_page_link; ?>" <?php if ($row->link_target=="on"){echo 'target="_blank"';}?>><?php echo $paramssld3['ht_catalog_general_linkbutton_text']; ?></a>
-                                              </div>
+                                            <div class="button-block">
+                                                    <a href="<?php echo $product_page_link; ?>" <?php if ($row->link_target=="on"){echo 'target="_blank"';}?>><?php echo $paramssld3['ht_catalog_general_linkbutton_text']; ?></a>
+                                            </div>
                                       <?php } ?>
                               </div>
                       </div>
@@ -8247,9 +8271,12 @@ var defaultBlockHeight=<?php echo $paramssld['ht_view2_element_height']; ?>;
                               <div class="album_title-block_<?php echo $albumID; ?>">
                                       <h3><?php echo $row->catalog_name; ?></h3>
                                       <?php if($paramssld["ht_view2_element_show_linkbutton"]=='on'){
-                                          $page_link = $_SERVER["SERVER_NAME"].$_SERVER["REQUEST_URI"];
-                                          if (strpos(get_permalink(),'/?') !== false) { $product_page_link = get_permalink()."&single_catalog_id=$row->catalog_id"; } else { $product_page_link = get_permalink()."/?single_catalog_id=$row->catalog_id"; }
-                                          ?>
+                                               if($row->single_product_url_type == "default"){
+                                                   $page_link = $_SERVER["SERVER_NAME"].$_SERVER["REQUEST_URI"];
+                                                   if (strpos(get_permalink(),'/?') !== false) { $product_page_link = get_permalink()."&single_prod_id=$row->id"; } else { if (strpos(get_permalink(),'/') !== false) { $product_page_link = get_permalink()."?single_prod_id=$row->id"; } else { $product_page_link = get_permalink()."/?single_prod_id=$row->id"; } }
+                                               }
+                                               else{ $product_page_link = $row->single_product_url_type; }
+                                         ?>
                                               <div class="button-block">
                                                   <a href="<?php echo $product_page_link; ?>" <?php if ($row->link_target=="on"){echo 'target="_blank"';}?> >
                                                       <?php echo $paramssld3["ht_catalog_general_linkbutton_text"]; ?>
@@ -8295,9 +8322,12 @@ var defaultBlockHeight=<?php echo $paramssld['ht_view2_element_height']; ?>;
 					<?php if($paramssld["ht_view2_show_description"]=='on'){?><div class="description"><?php echo $row->description; ?></div><?php } ?>
 					
                                         <?php if($paramssld["ht_view2_show_popup_linkbutton"]=='on'){
-                                          $page_link = $_SERVER["SERVER_NAME"].$_SERVER["REQUEST_URI"];
-                                          if (strpos(get_permalink(),'/?') !== false) { $product_page_link = get_permalink()."&single_catalog_id=$row->catalog_id"; } else { $product_page_link = get_permalink()."/?single_catalog_id=$row->catalog_id"; }
-                                          ?>
+                                            if($row->single_product_url_type == "default"){
+                                                $page_link = $_SERVER["SERVER_NAME"].$_SERVER["REQUEST_URI"];
+                                                if (strpos(get_permalink(),'/?') !== false) { $product_page_link = get_permalink()."&single_prod_id=$row->id"; } else { if (strpos(get_permalink(),'/') !== false) { $product_page_link = get_permalink()."?single_prod_id=$row->id"; } else { $product_page_link = get_permalink()."/?single_prod_id=$row->id"; } }
+                                            }
+                                            else{ $product_page_link = $row->single_product_url_type; }
+                                        ?>
                                               <div class="button-block"><a href="<?php echo $product_page_link; ?>" <?php if ($row->link_target=="on"){echo 'target="_blank"';}?> ><?php echo $paramssld3["ht_catalog_general_linkbutton_text"]; ?></a></div>
                                       <?php } ?>
 					<div style="clear:both;"></div>
@@ -8684,8 +8714,11 @@ var defaultBlockHeight=<?php echo $paramssld['ht_view2_element_height']; ?>;
                               <?php }
 
                                       if($paramssld["ht_view3_show_linkbutton"] == 'on') {
-                                          $page_link = $_SERVER["SERVER_NAME"].$_SERVER["REQUEST_URI"];
-                                          if (strpos(get_permalink(),'/?') !== false) { $product_page_link = get_permalink()."&single_catalog_id=$row->catalog_id"; } else { $product_page_link = get_permalink()."/?single_catalog_id=$row->catalog_id"; }
+                                          if($row->single_product_url_type == "default"){
+                                              $page_link = $_SERVER["SERVER_NAME"].$_SERVER["REQUEST_URI"];
+                                              if (strpos(get_permalink(),'/?') !== false) { $product_page_link = get_permalink()."&single_prod_id=$row->id"; } else { if (strpos(get_permalink(),'/') !== false) { $product_page_link = get_permalink()."?single_prod_id=$row->id"; } else { $product_page_link = get_permalink()."/?single_prod_id=$row->id"; } }
+                                          }
+                                          else{ $product_page_link = $row->single_product_url_type; }
                               ?>
                                           <div class="button-block">
                                                   <a href="<?php echo $product_page_link; ?>" <?php if ($row->link_target=="on"){ echo 'target="_blank"';}?>><?php echo $paramssld3["ht_catalog_general_linkbutton_text"]; ?></a>
@@ -9124,8 +9157,11 @@ jQuery(function(){
 					<?php if($paramssld["ht_view5_show_description"]=='on'){?><div class="description"><?php echo $row->description; ?></div><?php } ?>
 					
                                         <?php if($paramssld["ht_view5_show_linkbutton"]=='on'){
-                                            $page_link = $_SERVER["SERVER_NAME"].$_SERVER["REQUEST_URI"];
-                                            if (strpos(get_permalink(),'/?') !== false) { $product_page_link = get_permalink()."&single_catalog_id=$row->catalog_id"; } else { $product_page_link = get_permalink()."/?single_catalog_id=$row->catalog_id"; }
+                                                if($row->single_product_url_type == "default"){
+                                                    $page_link = $_SERVER["SERVER_NAME"].$_SERVER["REQUEST_URI"];
+                                                    if (strpos(get_permalink(),'/?') !== false) { $product_page_link = get_permalink()."&single_prod_id=$row->id"; } else { if (strpos(get_permalink(),'/') !== false) { $product_page_link = get_permalink()."?single_prod_id=$row->id"; } else { $product_page_link = get_permalink()."/?single_prod_id=$row->id"; } }
+                                                }
+                                                else{ $product_page_link = $row->single_product_url_type; }
                                         ?>
 						<div class="button-block">
 							<a class="" href="<?php echo $product_page_link; ?>"  <?php if ($row->link_target=="on"){echo 'target="_blank"';}?>><?php echo $paramssld3["ht_catalog_general_linkbutton_text"]; ?></a>

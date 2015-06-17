@@ -4,7 +4,7 @@
 Plugin Name: Huge IT Product Catalog
 Plugin URI: http://huge-it.com/product-catalog
 Description: Let us introduce our Huge-IT Product Catalog incomparable plugin. To begin with, why do we need this plugin and what are the advantages.
-Version: 1.1.1
+Version: 1.1.2
 Author: http://huge-it.com/
 License: GNU/GPLv3 http://www.gnu.org/licenses/gpl-3.0.html
 */
@@ -1806,7 +1806,20 @@ query9;
       
 
 			///////////////////////////UPDATE////////////////////////////////////       
-    
+    $needToUpdateProductLink = 0;
+    $catalogProductsAllFieldsInArray = $wpdb->get_results("DESCRIBE " . $wpdb->prefix . "huge_it_catalog_products", ARRAY_A);
+    foreach($catalogProductsAllFieldsInArray as $catalogProductsFields){
+        if ($catalogProductsFields['Field'] == 'single_product_url_type'){
+            $needToUpdateProductLink = 1;
+        }
+    }
+    if($needToUpdateProductLink == 0){
+        $wpdb->query("ALTER TABLE ".$wpdb->prefix."huge_it_catalog_products ADD single_product_url_type text");
+        $wpdb->query("UPDATE ".$wpdb->prefix."huge_it_catalog_products SET single_product_url_type = 'default'");
+        
+//        $wpdb->query("ALTER TABLE ".$wpdb->prefix."huge_it_catalog_products ADD single_product_url text");
+//        $wpdb->query("UPDATE ".$wpdb->prefix."huge_it_catalog_products SET single_product_url = 'http://huge-it.com/fields/order-website-maintenance/'");
+    }
     
 }
 

@@ -528,16 +528,17 @@ function apply_cat($id)
                     $parameters = stripslashes($_POST["parameter".$rowimages->id]);
                     $parameters = htmlspecialchars($parameters);
                     $wpdb->query($wpdb->prepare("UPDATE ".$wpdb->prefix."huge_it_catalog_products SET  ordering = '%s'  WHERE ID = %d ", $_POST["order_by_".$rowimages->id.""], $rowimages->id));
-//                    $wpdb->query($wpdb->prepare("UPDATE ".$wpdb->prefix."huge_it_catalog_products SET  link_target = '%s'  WHERE ID = %d ",$_POST["sl_link_target".$rowimages->id.""], $rowimages->id));
-//                    $wpdb->query($wpdb->prepare("UPDATE ".$wpdb->prefix."huge_it_catalog_products SET  sl_url = '%s' WHERE ID = %d ", $_POST["sl_url".$rowimages->id.""], $rowimages->id));
                     $wpdb->query($wpdb->prepare("UPDATE ".$wpdb->prefix."huge_it_catalog_products SET  name = '%s'  WHERE ID = %d ", $title, $rowimages->id));
                     $wpdb->query($wpdb->prepare("UPDATE ".$wpdb->prefix."huge_it_catalog_products SET  description = '%s'  WHERE ID = %d ", $description, $rowimages->id));
                     $wpdb->query($wpdb->prepare("UPDATE ".$wpdb->prefix."huge_it_catalog_products SET  image_url = '%s'  WHERE ID = %d ", $_POST["imagess".$rowimages->id.""], $rowimages->id));
-//                    $wpdb->query($wpdb->prepare("UPDATE ".$wpdb->prefix."huge_it_catalog_products SET  category = '%s'  WHERE ID = %d ", $_POST["category".$rowimages->id.""], $rowimages->id));
                     $wpdb->query($wpdb->prepare("UPDATE ".$wpdb->prefix."huge_it_catalog_products SET  price = '%s'  WHERE ID = %d ", $_POST["price".$rowimages->id.""], $rowimages->id));
                     $wpdb->query($wpdb->prepare("UPDATE ".$wpdb->prefix."huge_it_catalog_products SET  market_price = '%s'  WHERE ID = %d ", $_POST["market_price".$rowimages->id.""], $rowimages->id));
                     $wpdb->query($wpdb->prepare("UPDATE ".$wpdb->prefix."huge_it_catalog_products SET  parameters = '%s'  WHERE ID = %d ", $parameters, $rowimages->id));
-                    //$wpdb->query($wpdb->prepare("UPDATE ".$wpdb->prefix."huge_it_catalog_products SET  cat_thumb = '".$_POST["cat_thumb".$rowimages->id.""]."'  WHERE ID = %d ", $rowimages->id));
+                    $wpdb->query($wpdb->prepare("UPDATE ".$wpdb->prefix."huge_it_catalog_products SET  single_product_url_type = '%s' WHERE ID = %d ", $_POST["single_product_url_type".$rowimages->id.""], $rowimages->id));
+//                    $wpdb->query($wpdb->prepare("UPDATE ".$wpdb->prefix."huge_it_catalog_products SET  single_product_url = '%s'  WHERE ID = %d ",$_POST["single_product_url".$rowimages->id.""], $rowimages->id));
+//                    $wpdb->query($wpdb->prepare("UPDATE ".$wpdb->prefix."huge_it_catalog_products SET  cat_thumb = '".$_POST["cat_thumb".$rowimages->id.""]."'  WHERE ID = %d ", $rowimages->id));
+//                    $wpdb->query($wpdb->prepare("UPDATE ".$wpdb->prefix."huge_it_catalog_products SET  category = '%s'  WHERE ID = %d ", $_POST["category".$rowimages->id.""], $rowimages->id));
+//                    $wpdb->query($wpdb->prepare("UPDATE ".$wpdb->prefix."huge_it_catalog_products SET  sl_url = '%s' WHERE ID = %d ", $_POST["sl_url".$rowimages->id.""], $rowimages->id));
 
                 }
 
