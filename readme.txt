@@ -1,7 +1,7 @@
 === Product Catalog ===
 Contributors: Huge-IT
 Donate link: http://huge-it.com/product-catalog/
-Tags: catalog, product reviews, catalogs, blog catalog, online store, product tabs, catalogue, products, vote, wp catalog, WP Catalogue, directory, product portfolio, product catalog, shopping cart, product catalogue, store, product feed, digital goods, listing, list, collection, product, attributes, display products, inventory, list products, product gallery, products catalog, catalog of goods, e-commerce, commerce, ecommerce, shop, shopping, wordpress ecommerce, product review, woocommerce catalog,
+Tags: catalog, product reviews, catalogs, blog catalog, online store, product tabs, catalogue, products, vote, wp catalog, WP Catalogue, directory, product portfolio, product catalog, shopping cart, product catalogue, store, product feed, digital goods, listing, list, collection, product, attributes, display products, inventory, list products, product gallery, products catalog, catalog of goods, e-commerce, commerce, ecommerce, shop, shopping, wordpress ecommerce, product review, woocommerce catalog, online shop, ecomerce, wp e-commerce, e-shop, WordPress shopping cart, wordpress store,
 Requires at least: 3.0.1
 Tested up to: 4.2.2
 Stable tag: 1.1.2
@@ -118,28 +118,28 @@ Now you can set your Product Catalog options, images and use our Product Catalog
 *  Bug fixed product catalog.
 
 = 1.1.0 =
-*  Bag fixed product catalog.
+*  Bug fixed product catalog.
 
 = 1.0.9 =
-*  Added new features and Bag fixed.
+*  Added new features and bug fixed.
 
 = 1.0.8 =
-*  Bag fixed product catalog.
+*  Bug fixed product catalog.
 
 = 1.0.7 =
-*  Bag fixed product catalog.
+*  Bug fixed product catalog.
 
 = 1.0.6 =
-*  Bag fixed product catalog.
+*  Bug fixed product catalog.
 
 = 1.0.5 =
-*  Bag fixed product catalog.
+*  Bug fixed product catalog.
 
 = 1.0.4 =
-*  Bag fixed product catalog.
+*  Bug fixed product catalog.
 
 = 1.0.3 =
-*  Bag fixed product catalog.
+*  Bug fixed product catalog.
 
 = 1.0.2 =
 *  Add Plugin product catalog.
