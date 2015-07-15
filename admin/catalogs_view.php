@@ -52,7 +52,7 @@ function html_showcatalogs( $rows,  $pageNav,$sort,$cat_row){
         <div style="float: left;">
             <div><a href="http://huge-it.com/wordpress-plugins-product-catalog-user-manual/" target="_blank">User Manual</a></div>
             <div>This section allows you to configure the Product Catalog options. <a href="http://huge-it.com/wordpress-plugins-product-catalog-user-manual/" target="_blank">More...</a></div>
-            <div>This options are disabled in free version. Get full version to customize them. <a href="http://huge-it.com/wordpress-plugins-product-catalog-user-manual/" target="_blank">Get full Version</a></div>
+            <div><a href="http://huge-it.com/product-catalog/" target="_blank">Get full Version</a></div>
         </div>
         <div style="float: right;">
                 <a class="header-logo-text" href="http://huge-it.com/product-catalog/" target="_blank">
@@ -61,12 +61,6 @@ function html_showcatalogs( $rows,  $pageNav,$sort,$cat_row){
                 </a>
         </div>
         <div style="clear:both;"></div>
-        <div style="color: #a00; margin-bottom: 15px;">Dear user. Thank you for your interest in our product.
-            Please be known, that this page is for commercial users, and in order to use options from there,
-            you should have pro license. We please you to be understanding. The money we get for pro license
-            is expended on constantly improvements of our plugins, making them more professional useful and effective,
-            as well as for keeping fast support for every user.
-        </div>
 	<div id="poststuff">
 		<div id="catalogs-list-page">
 			<form method="post"  onkeypress="doNothing()" action="admin.php?page=catalogs_huge_it_catalog" id="admin_form" name="admin_form">
@@ -263,7 +257,7 @@ jQuery(function() {
         <div style="float: left;">
             <div><a href="http://huge-it.com/wordpress-plugins-product-catalog-user-manual/" target="_blank">User Manual</a></div>
             <div>This section allows you to configure the Product Catalog options. <a href="http://huge-it.com/wordpress-plugins-product-catalog-user-manual/" target="_blank">More...</a></div>
-            <div>This options are disabled in free version. Get full version to customize them. <a href="http://huge-it.com/wordpress-plugins-product-catalog-user-manual/" target="_blank">Get full Version</a></div>
+            <div><a href="http://huge-it.com/product-catalog/" target="_blank">Get full Version</a></div>
         </div>
         <div style="float: right;">
                 <a class="header-logo-text" href="http://huge-it.com/product-catalog/" target="_blank">
@@ -272,12 +266,6 @@ jQuery(function() {
                 </a>
         </div>
         <div style="clear:both;"></div>
-        <div style="color: #a00; margin-bottom: 15px;">Dear user. Thank you for your interest in our product.
-            Please be known, that this page is for commercial users, and in order to use options from there,
-            you should have pro license. We please you to be understanding. The money we get for pro license
-            is expended on constantly improvements of our plugins, making them more professional useful and effective,
-            as well as for keeping fast support for every user.
-        </div>
 <form action="admin.php?page=catalogs_huge_it_catalog&id=<?php echo $row->id; ?>" method="post" name="adminForm" id="adminForm">
 	<div id="poststuff" >
 	<div id="catalog-header">
@@ -370,7 +358,7 @@ jQuery(document).ready(function($){
                                         $myrows = explode(",",$row->categories);
                                         $getAllParamsArray = getParams();
 					foreach ($rowim as $key=>$rowimages){ ?>
-                                            
+                                            <?php //var_dump($rowimages); ?>
 						<li <?php if($j%2==0){echo "class='has-background'";}$j++; ?>>
 							<input class="order_by" type="hidden" name="order_by_<?php echo $rowimages->id; ?>" value="<?php echo $rowimages->ordering; ?>" />
 							<div class="image-container">
@@ -534,7 +522,7 @@ jQuery(document).ready(function($){
 									</div>
                                                                         <div>
 										<label for="market_price<?php echo $rowimages->id; ?>">Discount Price:</label>
-										<input  class="text_area" type="text" id="market_price<?php echo $rowimages->id; ?>" name="market_price<?php echo $rowimages->id; ?>" id="market_price<?php echo $rowimages->id; ?>"  value="<?php echo $rowimages->market_price; ?>">
+										<input  class="text_area" type="text" id="market_price<?php echo $rowimages->id; ?>" name="market_price<?php echo $rowimages->id; ?>" style="margin-top: 1%;" id="market_price<?php echo $rowimages->id; ?>"  value="<?php echo $rowimages->market_price; ?>">
 									</div>
                                                                         <div>
                                                                                 <label for="single_product_url_type<?php echo $rowimages->id; ?>">Single Product Page Link:</label>
@@ -548,15 +536,7 @@ jQuery(document).ready(function($){
 										<textarea id="im_description<?php echo $rowimages->id; ?>" name="im_description<?php echo $rowimages->id; ?>" ><?php echo $rowimages->description; ?></textarea>
 									</div>
                                                                         
-<!--									<div class="link-block">
-										<label for="sl_url<?php echo $rowimages->id; ?>">URL:</label>
-										<input class="text_area url-input" type="text" id="sl_url<?php echo $rowimages->id; ?>" name="sl_url<?php echo $rowimages->id; ?>"  value="<?php echo $rowimages->sl_url; ?>" >
-										<label class="long" for="sl_link_target<?php echo $rowimages->id; ?>">
-											<span>Open in new tab</span>
-											<input type="hidden" name="sl_link_target<?php echo $rowimages->id; ?>" value="" />
-											<input  <?php if($rowimages->link_target == 'on'){ echo 'checked="checked"'; } ?>  class="link_target" type="checkbox" id="sl_link_target<?php echo $rowimages->id; ?>" name="sl_link_target<?php echo $rowimages->id; ?>" />
-										</label>
-									</div>-->
+
 								</div>
 <div class="category-container">
     <?php

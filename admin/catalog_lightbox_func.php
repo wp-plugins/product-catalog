@@ -22,8 +22,8 @@ function showStyles($op_type = "0")
 function save_styles_options()
 {
     global $wpdb;
-    if (isset($_POST['params'])) {
-      $params = $_POST['params'];
+//    if (isset($_POST['params'])) {
+//      $params = $_POST['params'];
 //      foreach ($params as $key => $value) {
 //          $wpdb->update($wpdb->prefix . 'huge_it_catalog_params',
 //              array('value' => $value),
@@ -32,15 +32,15 @@ function save_styles_options()
 //          );
 //      }
       ?>
-      <div class="updated"><p><strong><?php _e('Item Saved'); ?></strong></p></div>
+      <!--<div class="updated"><p><strong><?php _e('Item Saved'); ?></strong></p></div>-->
       <?php
-    }
+//    }
 }
 function save_global_options()
 {
     global $wpdb;
-    if (isset($_POST['params']))
-        $params = $_POST['params'];
+//    if (isset($_POST['params']))
+//        $params = $_POST['params'];
 //    foreach ($params as $key => $value) {
 //
 //	echo $_POST['params'];
@@ -51,7 +51,7 @@ function save_global_options()
 //        );
 //    }
     ?>
-    <div class="updated"><p><strong><?php _e('Item Saved'); ?></strong></p></div>
+    <!--<div class="updated"><p><strong><?php _e('Item Saved'); ?></strong></p></div>-->
 <?php
 }
 ?>

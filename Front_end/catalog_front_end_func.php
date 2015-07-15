@@ -19,7 +19,7 @@ function showPublishedcatalogs_1($id)
 	$query=$wpdb->prepare("SELECT * FROM ".$wpdb->prefix."huge_it_catalogs WHERE id = '%d' order by id ASC",$id);
         $catalog=$wpdb->get_results($query);
 			   
-        //        $query="SELECT * FROM ".$wpdb->prefix."huge_it_catalog_params";
+//        $query="SELECT * FROM ".$wpdb->prefix."huge_it_catalog_params";
 //        $rowspar = $wpdb->get_results($query);
         
         $paramssld = array();
@@ -54,7 +54,6 @@ function showPublishedcatalogs_1($id)
                 if($spamReview->spam != 0) { $spamReviewsArray[] = $spamReview->ip; }
             }
 //            var_dump($spamReviewsArray);
-            //            var_dump($spamReviewsArray);
 //            $query="SELECT * FROM ".$wpdb->prefix."huge_it_catalog_product_params";
 //            $rowspar = $wpdb->get_results($query);
             $paramssld = array();
@@ -73,20 +72,90 @@ function showPublishedcatalogs_1($id)
 //                $value2 = $rowpar2->value;
 //                $paramssld2[$key2] = $value2;
 //            }
+            
             $paramssld1 = "";
             $paramssld2 = "";
+            
+            include_once( ABSPATH . 'wp-admin/includes/plugin.php' );
+            $paramssld4 = array();
+            if ( is_plugin_active( 'product-catalog-releated-products/product-catalog-releated-products.php' ) ){
+                $query="SELECT * FROM ".$wpdb->prefix."huge_it_catalog_related_params";
+                $rowspar4 = $wpdb->get_results($query);
+
+                foreach ($rowspar4 as $rowpar4) {
+                    $key4 = $rowpar4->name;
+                    $value4 = $rowpar4->value;
+                    $paramssld4[$key4] = $value4;
+                }
+            }
             
             $captchaFirstNum = rand(1,9);
             $captchaSecondNum = rand(1,9);
             $captcha_val = $captchaFirstNum + $captchaSecondNum;
             $wpdb->query($wpdb->prepare("UPDATE ".$wpdb->prefix."huge_it_catalog_products  SET published_in_sl_width = '%s'", $captcha_val));
+//            var_dump($paramssld4);exit;
             
-            return html_single_product_page($productArray, $paramssld, $paramssld2, $paramssld3, $ratingsArray, $reviewsArray, $spamReviewsArray, $captchaFirstNum, $captchaSecondNum, $captcha_val);
+            if(!(function_exists("show_related_products"))){
+                function show_related_products($productId, $carousel_vertical, $show_arrows, $show_pager, $productArray){
+                global $wpdb;
+                $relatedProductsArray=$wpdb->get_results($wpdb->prepare("SELECT * FROM ".$wpdb->prefix."huge_it_catalog_products WHERE catalog_id = '%d' AND `id` NOT IN ('$productId') order by ordering ASC", $productArray->catalog_id));
+            ?>
+                <ul class="huge-it-related-carousel <?php echo $carousel_vertical; ?>"
+                    huge-it-carousel-horizontal-li-width=1
+                    huge-it-carousel-horizontal-li-height="1"
+                    huge-it-carousel-vertical-li-width=1
+                    huge-it-single-prod-width=1
+                >
+
+                   <div class="cycle-prev"></div>
+                   <div class="cycle-next"></div>
+                   <?php
+                       foreach ($relatedProductsArray as $singleRelatedProduct){ 
+                           $related_url = explode(';', $singleRelatedProduct->image_url);
+                           $price = $singleRelatedProduct->price;
+                           $discountPrice = $singleRelatedProduct->market_price;
+                           if($singleRelatedProduct->single_product_url_type == "default"){
+                                $page_link = $_SERVER["SERVER_NAME"].$_SERVER["REQUEST_URI"];
+                                if (strpos(get_permalink(),'/?') !== false) { $product_page_link = get_permalink()."&single_prod_id=$singleRelatedProduct->id"; } else { if (strpos(get_permalink(),'/') !== false) { $product_page_link = get_permalink()."?single_prod_id=$singleRelatedProduct->id"; } else { $product_page_link = get_permalink()."/?single_prod_id=$singleRelatedProduct->id"; } }
+                            }
+                            else{ $product_page_link = $singleRelatedProduct->single_product_url_type; }
+                   ?>
+                   <!--<a href="<?php echo $product_page_link; ?>" <?php echo ' target="_blank"'; ?>></a>-->
+                        <li>
+                            <a href="<?php echo $product_page_link; ?>" <?php echo ' target="_blank"'; ?>>
+                                <div class="catalog-related-item-block">
+                                    <img src='<?php echo $related_url[0]; ?>' alt='img' />
+                                </div>
+                                <div class="catalog-related-caption-block" style="" >
+                                    <span class="catalog-related-caption" >
+                                        <p><?php echo $singleRelatedProduct->name; ?></p>
+                                        <p><?php  if($discountPrice == "") { echo $price; } else { echo " ".$discountPrice; } ?></p>
+                                    </span>
+                                </div>
+                            </a>
+                        </li>
+              <?php } ?>
+                </ul>
+                
+                <?php if($show_pager == "on"){ ?>
+<!--                          <div class="pager-block">
+                              <div class="cycle-pager" id="pager_<?php echo $productId; ?>" ></div>
+                          </div>-->
+                <?php } ?>
+      <?php }
+            }
+            
+            return html_single_product_page($productArray, $paramssld, $paramssld2, $paramssld3, $paramssld4, $ratingsArray, $reviewsArray, $spamReviewsArray, $captchaFirstNum, $captchaSecondNum, $captcha_val);
         }
         else{
+            if(isset($_GET['asc_seller_product_id'])){
+                return front_end_ask_seller();
+            }
+            else{
                 $paramssld1 = "";
                 $paramssld2 = "";
                 return front_end_catalog($images, $paramssld, $paramssld3, $catalog, $catalogsFromAlbumArray);
+            }
         }
 
 }
@@ -157,13 +226,15 @@ function show_catalogs_from_album($id)
              
 //            $query="SELECT * FROM ".$wpdb->prefix."huge_it_catalog_product_params";
 //            $rowspar = $wpdb->get_results($query);
-            $paramssld2 = array();
-            $paramssld = "";
+            $paramssld = array();
 //            foreach ($rowspar as $rowpar) {
 //                $key = $rowpar->name;
 //                $value = $rowpar->value;
 //                $paramssld[$key] = $value;
 //            }
+            
+            $paramssld2 = array();
+            $paramssld = "";
             
 //            $query="SELECT * FROM ".$wpdb->prefix."huge_it_catalog_params";
 //            $rowspar2 = $wpdb->get_results($query);
@@ -175,13 +246,74 @@ function show_catalogs_from_album($id)
 //                $paramssld2[$key2] = $value2;
 //            }
             
+            include_once( ABSPATH . 'wp-admin/includes/plugin.php' );
+                $paramssld4 = array();
+            if ( is_plugin_active( 'product-catalog-releated-products/product-catalog-releated-products.php' ) ){
+                $query="SELECT * FROM ".$wpdb->prefix."huge_it_catalog_related_params";
+                $rowspar4 = $wpdb->get_results($query);
+
+                foreach ($rowspar4 as $rowpar4) {
+                    $key4 = $rowpar4->name;
+                    $value4 = $rowpar4->value;
+                    $paramssld4[$key4] = $value4;
+                }
+            }
+            
             $captchaFirstNum = rand(0,9);
             $captchaSecondNum = rand(0,9);
             $captcha_val = $captchaFirstNum + $captchaSecondNum;
             $captchaValues = $captchaFirstNum.",".$captchaSecondNum;
             $wpdb->query($wpdb->prepare("UPDATE ".$wpdb->prefix."huge_it_catalog_products  SET published_in_sl_width = '%s'", $captchaValues));
-        
-            return html_single_product_page($productArray, $paramssld, $paramssld2, $paramssld3, $ratingsArray, $reviewsArray, $spamReviewsArray, $captchaFirstNum, $captchaSecondNum, $captcha_val);
+            
+            function show_related_products($productId, $carousel_vertical, $show_arrows, $show_pager, $productArray){
+                global $wpdb;
+                $relatedProductsArray=$wpdb->get_results($wpdb->prepare("SELECT * FROM ".$wpdb->prefix."huge_it_catalog_products WHERE catalog_id = '%d' AND `id` NOT IN ('$productId') order by ordering ASC", $productArray->catalog_id));
+            ?>
+                <ul class="huge-it-related-carousel <?php echo $carousel_vertical; ?>"
+                    huge-it-carousel-horizontal-li-width=1
+                    huge-it-carousel-horizontal-li-height="1"
+                    huge-it-carousel-vertical-li-width=1
+                    huge-it-single-prod-width=1
+                >
+
+                   <div class="cycle-prev"></div>
+                   <div class="cycle-next"></div>
+                   <?php
+                       foreach ($relatedProductsArray as $singleRelatedProduct){ 
+                           $related_url = explode(';', $singleRelatedProduct->image_url);
+                           $price = $singleRelatedProduct->price;
+                           $discountPrice = $singleRelatedProduct->market_price;
+                           if($singleRelatedProduct->single_product_url_type == "default"){
+                                $page_link = $_SERVER["SERVER_NAME"].$_SERVER["REQUEST_URI"];
+                                if (strpos(get_permalink(),'/?') !== false) { $product_page_link = get_permalink()."&single_prod_id=$singleRelatedProduct->id"; } else { if (strpos(get_permalink(),'/') !== false) { $product_page_link = get_permalink()."?single_prod_id=$singleRelatedProduct->id"; } else { $product_page_link = get_permalink()."/?single_prod_id=$singleRelatedProduct->id"; } }
+                            }
+                            else{ $product_page_link = $singleRelatedProduct->single_product_url_type; }
+                   ?>
+                   <!--<a href="<?php echo $product_page_link; ?>" <?php echo ' target="_blank"'; ?>></a>-->
+                        <li>
+                            <a href="<?php echo $product_page_link; ?>" <?php echo ' target="_blank"'; ?>>
+                                <div class="catalog-related-item-block">
+                                    <img src='<?php echo $related_url[0]; ?>' alt='img' />
+                                </div>
+                                <div class="catalog-related-caption-block" style="" >
+                                    <span class="catalog-related-caption" >
+                                        <p><?php echo $singleRelatedProduct->name; ?></p>
+                                        <p><?php  if($discountPrice == "") { echo $price; } else { echo " ".$discountPrice; } ?></p>
+                                    </span>
+                                </div>
+                            </a>
+                        </li>
+              <?php } ?>
+                </ul>
+                
+                <?php if($show_pager == "on"){ ?>
+<!--                          <div class="pager-block">
+                              <div class="cycle-pager" id="pager_<?php echo $productId; ?>" ></div>
+                          </div>-->
+                <?php } ?>
+      <?php }
+            
+            return html_single_product_page($productArray, $paramssld, $paramssld2, $paramssld3, $paramssld4, $ratingsArray, $reviewsArray, $spamReviewsArray, $captchaFirstNum, $captchaSecondNum, $captcha_val);
         }
         else
             return album_front_end($paramssld, $paramssld3, $catalogsFromAlbumArray);
@@ -232,14 +364,13 @@ function show_catalogs_single_product($id){
 //            $rowspar2 = $wpdb->get_results($query);
 
             $paramssld2 = array();
+            $paramssld2 = "";
+            $paramssld = "";
 //            foreach ($rowspar2 as $rowpar2) {
 //                $key2 = $rowpar2->name;
 //                $value2 = $rowpar2->value;
 //                $paramssld2[$key2] = $value2;
 //            }
-            $paramssld2 = array();
-            $paramssld2 = "";
-            $paramssld = "";
             
             $captchaFirstNum = rand(0,9);
             $captchaSecondNum = rand(0,9);
@@ -247,7 +378,68 @@ function show_catalogs_single_product($id){
             $captchaValues = $captchaFirstNum.",".$captchaSecondNum;
             $wpdb->query($wpdb->prepare("UPDATE ".$wpdb->prefix."huge_it_catalog_products  SET published_in_sl_width = '%s'", $captchaValues));
             
-            return html_single_product_page($productArray, $paramssld, $paramssld2, $paramssld3, $ratingsArray, $reviewsArray, $spamReviewsArray, $captchaFirstNum, $captchaSecondNum, $captcha_val);
+            include_once( ABSPATH . 'wp-admin/includes/plugin.php' );
+                $paramssld4 = array();
+            if ( is_plugin_active( 'product-catalog-releated-products/product-catalog-releated-products.php' ) ){
+                $query="SELECT * FROM ".$wpdb->prefix."huge_it_catalog_related_params";
+                $rowspar4 = $wpdb->get_results($query);
+
+                foreach ($rowspar4 as $rowpar4) {
+                    $key4 = $rowpar4->name;
+                    $value4 = $rowpar4->value;
+                    $paramssld4[$key4] = $value4;
+                }
+            }
+            
+            function show_related_products($productId, $carousel_vertical, $show_arrows, $show_pager, $productArray){
+                global $wpdb;
+                $relatedProductsArray=$wpdb->get_results($wpdb->prepare("SELECT * FROM ".$wpdb->prefix."huge_it_catalog_products WHERE catalog_id = '%d' AND `id` NOT IN ('$productId') order by ordering ASC", $productArray->catalog_id));
+            ?>
+                <ul class="huge-it-related-carousel <?php echo $carousel_vertical; ?>"
+                    huge-it-carousel-horizontal-li-width=1
+                    huge-it-carousel-horizontal-li-height="1"
+                    huge-it-carousel-vertical-li-width=1
+                    huge-it-single-prod-width=1
+                >
+
+                   <div class="cycle-prev"></div>
+                   <div class="cycle-next"></div>
+                   <?php
+                       foreach ($relatedProductsArray as $singleRelatedProduct){ 
+                           $related_url = explode(';', $singleRelatedProduct->image_url);
+                           $price = $singleRelatedProduct->price;
+                           $discountPrice = $singleRelatedProduct->market_price;
+                           if($singleRelatedProduct->single_product_url_type == "default"){
+                                $page_link = $_SERVER["SERVER_NAME"].$_SERVER["REQUEST_URI"];
+                                if (strpos(get_permalink(),'/?') !== false) { $product_page_link = get_permalink()."&single_prod_id=$singleRelatedProduct->id"; } else { if (strpos(get_permalink(),'/') !== false) { $product_page_link = get_permalink()."?single_prod_id=$singleRelatedProduct->id"; } else { $product_page_link = get_permalink()."/?single_prod_id=$singleRelatedProduct->id"; } }
+                            }
+                            else{ $product_page_link = $singleRelatedProduct->single_product_url_type; }
+                   ?>
+                   <!--<a href="<?php echo $product_page_link; ?>" <?php echo ' target="_blank"'; ?>></a>-->
+                        <li>
+                            <a href="<?php echo $product_page_link; ?>" <?php echo ' target="_blank"'; ?>>
+                                <div class="catalog-related-item-block">
+                                    <img src='<?php echo $related_url[0]; ?>' alt='img' />
+                                </div>
+                                <div class="catalog-related-caption-block" style="" >
+                                    <span class="catalog-related-caption" >
+                                        <p><?php echo $singleRelatedProduct->name; ?></p>
+                                        <p><?php  if($discountPrice == "") { echo $price; } else { echo " ".$discountPrice; } ?></p>
+                                    </span>
+                                </div>
+                            </a>
+                        </li>
+              <?php } ?>
+                </ul>
+                
+                <?php if($show_pager == "on"){ ?>
+<!--                          <div class="pager-block">
+                              <div class="cycle-pager" id="pager_<?php echo $productId; ?>" ></div>
+                          </div>-->
+                <?php } ?>
+      <?php }
+            
+            return html_single_product_page($productArray, $paramssld, $paramssld2, $paramssld3, $paramssld4, $ratingsArray, $reviewsArray, $spamReviewsArray, $captchaFirstNum, $captchaSecondNum, $captcha_val);
 
 }
 

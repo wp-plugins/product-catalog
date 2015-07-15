@@ -332,8 +332,8 @@ INSERT INTO
 //	   $query = "SELECT *  from " . $wpdb->prefix . "huge_it_catalog_params ";
 //
 //           $rowspar = $wpdb->get_results($query);
-
-//           $paramssld = array();
+//
+           $paramssld = array();
 //           foreach ($rowspar as $rowpar) {
 //               $key = $rowpar->name;
 //               $value = $rowpar->value;
@@ -593,8 +593,8 @@ if (isset($_POST['params'])) {
             $sql_2 = "
 INSERT INTO 
 
-`" . $table_name . "` ( `name`, `catalog_id`, `description`, `image_url`, `sl_url`, `ordering`, `published`, `published_in_sl_width`, `price`, `market_price`, `parameters`) VALUES
-( '', '".$row->id."', '', '".$imagesnewupload.";', '', 'par_TV', 2, '1', '', '', '".$paramsStringForAddingInNewProduct."')";
+`" . $table_name . "` ( `name`, `catalog_id`, `description`, `image_url`, `sl_url`, `ordering`, `published`, `published_in_sl_width`, `price`, `market_price`, `parameters`, `single_product_url_type`) VALUES
+( '', '".$row->id."', '', '".$imagesnewupload.";', '', 'par_TV', 2, '1', '', '', '".$paramsStringForAddingInNewProduct."', 'default')";
 
 //            $sql_2 = $wpdb->query($wpdb->prepare("INSERT INTO `".$table_name."`"
 //                    . "( `name`, `catalog_id`, `description`, `image_url`, `sl_url`, `ordering`, `published`, `published_in_sl_width`, `price`, `market_price`, `parameters` ) VALUES"

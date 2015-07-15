@@ -4,7 +4,7 @@
 Plugin Name: Huge IT Product Catalog
 Plugin URI: http://huge-it.com/product-catalog
 Description: Let us introduce our Huge-IT Product Catalog incomparable plugin. To begin with, why do we need this plugin and what are the advantages.
-Version: 1.1.2
+Version: 1.1.3
 Author: http://huge-it.com/
 License: GNU/GPLv3 http://www.gnu.org/licenses/gpl-3.0.html
 */
@@ -36,9 +36,9 @@ add_action('init', 'hugesl_catalog_do_output_buffer');
 function hugesl_catalog_do_output_buffer() {
         ob_start();
 }
-add_action('init', 'catalog_lang_load');
+add_action('init', 'product_catalog_lang_load');
 
-function catalog_lang_load()
+function product_catalog_lang_load()
 {
     load_plugin_textdomain('sp_catalog', false, basename(dirname(__FILE__)) . '/Languages');
 
@@ -118,21 +118,21 @@ function huge_it_catalog_single_product_shotrcode($atts)
 /////////////// Filter Catalog
 
 
-function catalog_after_search_results($query)
+function product_catalog_after_search_results($query)
 {
     global $wpdb;
     if (isset($_REQUEST['s']) && $_REQUEST['s']) {
         $serch_word = htmlspecialchars(($_REQUEST['s']));
-        $query = str_replace($wpdb->prefix . "posts.post_content", gen_string_catalog_search($serch_word, $wpdb->prefix . 'posts.post_content') . " " . $wpdb->prefix . "posts.post_content", $query);
+        $query = str_replace($wpdb->prefix . "posts.post_content", gen_string_product_catalog_search($serch_word, $wpdb->prefix . 'posts.post_content') . " " . $wpdb->prefix . "posts.post_content", $query);
     }
     return $query;
 
 }
 
-add_filter('posts_request', 'catalog_after_search_results');
+add_filter('posts_request', 'product_catalog_after_search_results');
 
 
-function gen_string_catalog_search($serch_word, $wordpress_query_post)
+function gen_string_product_catalog_search($serch_word, $wordpress_query_post)
 {
     $string_search = '';
 
@@ -208,6 +208,17 @@ function catalog_frontend_scripts_and_styles() {
     wp_register_script( 'elevateZoomParams', plugins_url('/js/elevateZoomParams.js', __FILE__), array('jquery'),'1.0.0',true  ); 
     wp_enqueue_script( 'elevateZoomParams' );
     
+    //    wp_deregister_script('catalog-carousel');
+    wp_register_script('catalog-carousel', (plugins_url('/js/jquery.cycle2.js', __FILE__)), false);
+    wp_enqueue_script('catalog-carousel');
+    
+//    wp_deregister_script('catalog-carousel-2');
+    wp_register_script('catalog-carousel-2', (plugins_url('/js/jquery.cycle2.carousel.js', __FILE__)), false);
+    wp_enqueue_script('catalog-carousel-2');
+    
+    wp_register_style( 'catalog-carousel-style',plugins_url('/style/catalog-carousel-style.css', __FILE__) );   
+    wp_enqueue_style( 'catalog-carousel-style' );
+    
     wp_register_style( 'style2-os-css', plugins_url('/style/style2-os.css', __FILE__) );   
     wp_enqueue_style( 'style2-os-css' );
     
@@ -216,6 +227,12 @@ function catalog_frontend_scripts_and_styles() {
 }
 add_action('wp_enqueue_scripts', 'catalog_frontend_scripts_and_styles');
 
+//function wpb_adding_scripts() {
+//    
+//
+//} 
+//
+//add_action( 'wp_enqueue_scripts', 'wpb_adding_scripts', 999 ); 
 
 add_action('admin_menu', 'huge_it_catalog_options_panel');
 function huge_it_catalog_options_panel()
@@ -224,14 +241,20 @@ function huge_it_catalog_options_panel()
     $catalogs = add_submenu_page('catalogs_huge_it_catalog', 'Catalogs', 'Catalogs', 'delete_pages', 'catalogs_huge_it_catalog', 'catalogs_huge_it_catalog');
 //    $Albums = add_submenu_page('catalogs_huge_it_catalog', 'Catalog Stand', 'Catalog Stand', 'manage_options', 'huge_it_catalog_albums_page', 'huge_it_catalog_albums_page');
     $general_options = add_submenu_page('catalogs_huge_it_catalog', 'General Options', 'General Options', 'manage_options', 'huge_it_catalog_general_options_page', 'huge_it_catalog_general_options_page');
-    $Submitions = add_submenu_page('catalogs_huge_it_catalog', 'Submitions', 'Submitions', 'manage_options', 'huge_it_catalog_submitions_page', 'huge_it_catalog_submitions_page');
+    $Submitions = add_submenu_page('catalogs_huge_it_catalog', 'Submissions', 'Submissions', 'manage_options', 'huge_it_catalog_submitions_page', 'huge_it_catalog_submitions_page');
     $Reviews = add_submenu_page('catalogs_huge_it_catalog', 'Reviews Manager', 'Reviews Manager', 'manage_options', 'huge_it_catalog_reviews_page', 'huge_it_catalog_reviews_page');
     $Ratings = add_submenu_page('catalogs_huge_it_catalog', 'Ratings Manager', 'Ratings Manager', 'manage_options', 'huge_it_catalog_ratings_page', 'huge_it_catalog_ratings_page');
-    $page_option = add_submenu_page('catalogs_huge_it_catalog', 'Catalog Options', 'Catalog Options', 'manage_options', 'Options_catalog_styles', 'Options_catalog_styles');
+    $page_option = add_submenu_page('catalogs_huge_it_catalog', 'Catalog Options', 'Catalog Options', 'manage_options', 'Options_product_Catalog_styles', 'Options_product_Catalog_styles');
     $products_options = add_submenu_page('catalogs_huge_it_catalog', 'Products Options', 'Products Options', 'manage_options', 'huge_it_catalog_products_page', 'huge_it_catalog_products_page');
+    
+    if ( is_plugin_active( 'product-catalog-releated-products/product-catalog-releated-products.php' ) ) {
+        $related_products = add_submenu_page('catalogs_huge_it_catalog', 'Related Products', 'Related Products', 'manage_options', 'huge_it_catalog_related_products', 'huge_it_catalog_related_products');
+        add_action('admin_print_styles-' . $related_products, 'huge_it_catalog_option_admin_script');
+    }
+    
     $lightbox_options = add_submenu_page('catalogs_huge_it_catalog', 'Image View Options', 'Image View Options', 'manage_options', 'Options_catalog_lightbox_styles', 'Options_catalog_lightbox_styles');    
-    add_submenu_page('catalogs_huge_it_catalog', 'Featured Plugins', 'Featured Plugins', 'manage_options', 'huge_it__catalog_featured_plugins', 'huge_it__catalog_featured_plugins');
-
+    $Featured = add_submenu_page('catalogs_huge_it_catalog', 'Featured Plugins', 'Featured Plugins', 'manage_options', 'huge_it__catalog_featured_plugins', 'huge_it__catalog_featured_plugins');
+    
     add_action('admin_print_styles-' . $page_cat, 'huge_it_catalog_admin_script');
     add_action('admin_print_styles-' . $page_option, 'huge_it_catalog_option_admin_script');
     add_action('admin_print_styles-' . $Submitions, 'huge_it_catalog_admin_script');
@@ -372,7 +395,7 @@ function catalogs_huge_it_catalog()
 }
 
 
-function Options_catalog_styles()
+function Options_product_Catalog_styles()
 {
     require_once("admin/catalog_Options_func.php");
     require_once("admin/catalog_Options_view.php");
@@ -972,7 +995,7 @@ function huge_it_catalog_activate()
 //  `value` varchar(200) CHARACTER SET utf8 NOT NULL,
 //  PRIMARY KEY (`id`)
 //) ENGINE=MyISAM  DEFAULT CHARSET=latin1 AUTO_INCREMENT=8 ";
-//    
+    
 //    $sql_huge_it_catalog_product_params = "
 //CREATE TABLE IF NOT EXISTS `" . $wpdb->prefix . "huge_it_catalog_product_params`(
 //  `id` int(11) unsigned NOT NULL AUTO_INCREMENT,
@@ -991,6 +1014,15 @@ CREATE TABLE IF NOT EXISTS `" . $wpdb->prefix . "huge_it_catalog_general_params`
   `value` varchar(200) CHARACTER SET utf8 NOT NULL,
   PRIMARY KEY (`id`)
 ) ENGINE=MyISAM  DEFAULT CHARSET=latin1 AUTO_INCREMENT=8 ";
+    
+//    $sql_huge_it_catalog_related_params = "
+//CREATE TABLE IF NOT EXISTS `" . $wpdb->prefix . "huge_it_catalog_related_params`(
+//  `id` int(11) unsigned NOT NULL AUTO_INCREMENT,
+//  `name` varchar(50) CHARACTER SET utf8 NOT NULL,
+//  `title` varchar(200) CHARACTER SET utf8 NOT NULL,
+//  `value` varchar(200) CHARACTER SET utf8 NOT NULL,
+//  PRIMARY KEY (`id`)
+//) ENGINE=MyISAM  DEFAULT CHARSET=latin1 AUTO_INCREMENT=8 ";
     
     $sql_huge_it_catalog_album_catalog_contact = "
 CREATE TABLE IF NOT EXISTS `" . $wpdb->prefix . "huge_it_catalog_album_catalog_contact`(
@@ -1087,6 +1119,18 @@ CREATE TABLE IF NOT EXISTS `" . $wpdb->prefix . "huge_it_catalog_asc_seller`(
   PRIMARY KEY (`id`)
 ) ENGINE=MyISAM  DEFAULT CHARSET=latin1 AUTO_INCREMENT=8 ";
     
+    
+//    $sql_huge_it_catalog_reviews = "
+//CREATE TABLE IF NOT EXISTS `" . $wpdb->prefix . "huge_it_catalog_reviews` (
+//  `id` int(11) unsigned NOT NULL AUTO_INCREMENT,
+//  `name` text CHARACTER SET utf8 NOT NULL,
+//  `content` text CHARACTER SET utf8 NOT NULL,
+//  `product_id` int(11),
+//  `spam` int(11),
+//  `ip` text CHARACTER SET utf8 NOT NULL,
+//  
+//  PRIMARY KEY (`id`)
+//) ENGINE=MyISAM  DEFAULT CHARSET=latin1 AUTO_INCREMENT=8 ";
     
 $sql_huge_it_catalog_albums = "
 CREATE TABLE IF NOT EXISTS `" . $wpdb->prefix . "huge_it_catalog_albums` (
@@ -1760,7 +1804,21 @@ INSERT INTO `$table_name` (`name`, `title`, `value`) VALUES
 
 query9;
     
-
+//$table_name = $wpdb->prefix . "huge_it_catalog_related_params";
+//$sql_10 = <<<query10
+//INSERT INTO `$table_name` (`name`, `title`, `value`) VALUES
+//
+//('ht_catalog_related_products_show', 'ht_catalog_related_products_show', 'on'),
+//('ht_catalog_related_products_easing', 'ht_catalog_related_products_easing', 'on'),
+//('ht_catalog_related_products_visible_count', 'ht_catalog_related_products_visible_count', '4'),
+//('ht_catalog_related_products_vertical', 'ht_catalog_related_products_vertical', 'off'),
+//('ht_catalog_related_products_start', 'ht_catalog_related_products_start', '0'),
+//('ht_catalog_related_products_circular', 'ht_catalog_related_products_show', 'on'),
+//('ht_catalog_related_products_step', 'ht_catalog_related_products_show', 'on'),
+//('ht_catalog_related_products_autoplay', 'ht_catalog_related_products_autoplay', 'on'),
+//('ht_catalog_related_products_autoplay_speed', 'ht_catalog_related_products_autoplay_speed', '500');
+//
+//query10;
     
     
     
@@ -1774,6 +1832,7 @@ query9;
     $wpdb->query($sql_huge_it_catalog_album_catalog_contact);
 //    $wpdb->query($sql_huge_it_catalog_product_params);
     $wpdb->query($sql_huge_it_catalog_general_params);
+//    $wpdb->query($sql_huge_it_catalog_related_params);
 
 
 //    if (!$wpdb->get_var("select count(*) from " . $wpdb->prefix . "huge_it_catalog_params")) {
@@ -1803,9 +1862,70 @@ query9;
     if (!$wpdb->get_var("select count(*) from " . $wpdb->prefix . "huge_it_catalog_general_params")) {
         $wpdb->query($sql_9);
     }
+//    if (!$wpdb->get_var("select count(*) from " . $wpdb->prefix . "huge_it_catalog_related_params")) {
+//        $wpdb->query($sql_10);
+//    }
       
 
-			///////////////////////////UPDATE////////////////////////////////////       
+			///////////////////////////UPDATE////////////////////////////////////   
+    
+//    $table_name = $wpdb->prefix . "huge_it_catalog_product_params";
+//    $sql_update_catalog_1 = "INSERT INTO `$table_name` (`name`, `title`, `value`) VALUES
+//    ('ht_single_product_asc_seller_button_text', 'ht_single_product_asc_seller_button_text', 'Contact To Seller'),
+//    ('ht_single_product_asc_seller_button_text_size', 'ht_single_product_asc_seller_button_text_size', '18'), 
+//    ('ht_single_product_asc_seller_button_text_color', 'ht_single_product_asc_seller_button_text_color', 'ffffff'),
+//    ('ht_single_product_asc_seller_button_text_hover_color', 'ht_single_product_asc_seller_button_text_hover_color', 'ffffff'),
+//    ('ht_single_product_asc_seller_button_background_color', 'ht_single_product_asc_seller_button_background_color', 'E22828'),
+//    ('ht_single_product_asc_seller_button_background_hover_color', 'ht_single_product_asc_seller_button_background_hover_color', 'E22828'),
+//    ('ht_single_product_asc_to_seller_text', 'Ask To Seller Text', 'Ask To Seller'),
+//    ('ht_single_product_asc_seller_popup_background_1', 'ht_single_product_asc_seller_popup_background_1', 'ffffff'),
+//    ('ht_single_product_asc_seller_popup_background_2', 'ht_single_product_asc_seller_popup_background_2', '999999'),
+//    ('ht_single_product_your_mail_text', 'Your E-mail', 'Your E-mail'),
+//    ('ht_single_product_your_phone_text', 'Your Phone', 'Your Phone'),
+//    ('ht_single_product_your_message_text', 'Your Message', 'Your Message'),
+//    ('ht_single_product_asc_seller_popup_button_text', 'ht_single_product_asc_seller_popup_button_text', 'Submit'),
+//    ('ht_single_product_asc_seller_popup_button_text_size', 'ht_single_product_asc_seller_popup_button_text_size', '16'),
+//    ('ht_single_product_asc_seller_popup_button_text_color', 'ht_single_product_asc_seller_popup_button_text_color', '000000'),
+//    ('ht_single_product_asc_seller_popup_button_background_color', 'ht_single_product_asc_seller_popup_button_background_color', 'EEEEEE'),
+//    ('ht_single_product_asc_seller_popup_button_background_hover_color', 'ht_single_product_asc_seller_popup_button_background_hover_color', 'EEEEEE'),
+//    ('ht_single_product_asc_seller_popup_close_style', 'Close Button Style', 'dark')";
+//
+//    $query="SELECT name FROM ".$wpdb->prefix."huge_it_catalog_product_params";
+//    $update_catalog_1=$wpdb->get_results($query);
+//    if(end($update_catalog_1)->name=='ht_single_product_invalid_captcha_text'){
+//            $wpdb->query($sql_update_catalog_1);
+//    };
+    
+    
+//    $table_name = $wpdb->prefix . "huge_it_catalog_params";
+//    $sql_update_catalog_2 = "INSERT INTO `$table_name` (`name`, `title`,`description`, `value`) VALUES
+//    ('ht_view0_allow_lightbox', 'View Mode', 'View Mode', 'on'),
+//    ('ht_view1_allow_lightbox', 'View Mode', 'View Mode', 'on'),
+//    ('ht_view2_allow_lightbox', 'View Mode', 'View Mode', 'on'),
+//    ('ht_view5_allow_lightbox', 'View Mode', 'View Mode', 'on'),
+//    ('ht_view0_allow_zooming', 'View Mode', 'View Mode', 'off'),
+//    ('ht_view1_allow_zooming', 'View Mode', 'View Mode', 'off'),
+//    ('ht_view2_allow_zooming', 'View Mode', 'View Mode', 'on'),
+//    ('ht_view5_allow_zooming', 'View Mode', 'View Mode', 'on')";
+//
+//    $query="SELECT name FROM ".$wpdb->prefix."huge_it_catalog_params";
+//    $update_catalog_2=$wpdb->get_results($query);
+//    if(end($update_catalog_2)->name=='ht_view3_allow_zooming'){
+//            $wpdb->query($sql_update_catalog_2);
+//    };
+    
+    
+//    $table_name = $wpdb->prefix . "huge_it_catalog_product_params";
+//    $sql_update_catalog_3 = "INSERT INTO `$table_name` (`name`, `title`, `value`) VALUES
+//    ('ht_single_product_show_asc_seller_button', 'ht_single_product_show_asc_seller_button', 'off'),
+//    ('ht_single_product_message_for_user', 'ht_single_product_message_for_user', 'Dear Customer,Your Message Was Sent To Seller,Please Wait To Response')";
+//    
+//    $query="SELECT name FROM ".$wpdb->prefix."huge_it_catalog_product_params";
+//    $update_catalog_3=$wpdb->get_results($query);
+//    if(end($update_catalog_3)->name=='ht_single_product_asc_seller_popup_close_style'){
+//            $wpdb->query($sql_update_catalog_3);
+//    };
+    
     $needToUpdateProductLink = 0;
     $catalogProductsAllFieldsInArray = $wpdb->get_results("DESCRIBE " . $wpdb->prefix . "huge_it_catalog_products", ARRAY_A);
     foreach($catalogProductsAllFieldsInArray as $catalogProductsFields){
@@ -1820,6 +1940,8 @@ query9;
 //        $wpdb->query("ALTER TABLE ".$wpdb->prefix."huge_it_catalog_products ADD single_product_url text");
 //        $wpdb->query("UPDATE ".$wpdb->prefix."huge_it_catalog_products SET single_product_url = 'http://huge-it.com/fields/order-website-maintenance/'");
     }
+    
+    
     
 }
 

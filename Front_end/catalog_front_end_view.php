@@ -322,7 +322,7 @@ function front_end_catalog($images, $paramssld, $paramssld3, $catalog)
             var catalogWindowFadeIn = <?php echo $paramssld['ht_catalog_zoom_window_fadein'];?>;
             var catalogWindowFadeOut = <?php echo $paramssld['ht_catalog_zoom_window_fadeout'];?>;
             var catalogLensSize = <?php echo $paramssld['ht_catalog_zoom_window_lens_size'];?>;
-
+            
             var catalogLensFadeIn = <?php echo $paramssld['ht_catalog_zoom_lens_fadein'];?>;
             var catalogLensFadeOut = <?php echo $paramssld['ht_catalog_zoom_lens_fadeout'];?>;
             var catalogZoomLens = <?php echo $paramssld['ht_catalog_zoom_lens_hide'];?>;
@@ -1027,15 +1027,15 @@ function front_end_catalog($images, $paramssld, $paramssld3, $catalog)
                                   
                                 <?php
                                       if($paramssld['ht_view0_show_linkbutton']=='on'){
-                                          if($row->single_product_url_type == "default"){
+                                         if($row->single_product_url_type == "default"){
                                              $page_link = $_SERVER["SERVER_NAME"].$_SERVER["REQUEST_URI"];
                                              if (strpos(get_permalink(),'/?') !== false) { $product_page_link = get_permalink()."&single_prod_id=$row->id"; } else { if (strpos(get_permalink(),'/') !== false) { $product_page_link = get_permalink()."?single_prod_id=$row->id"; } else { $product_page_link = get_permalink()."/?single_prod_id=$row->id"; } }
-                                          }
-                                          else{ $product_page_link = $row->single_product_url_type; }
-                                          ?>
-                                              <div class="button-block">
-                                                      <a href="<?php echo $product_page_link; ?>" <?php if ($row->link_target=="on"){echo 'target="_blank"';}?>><?php echo $paramssld3['ht_catalog_general_linkbutton_text']; ?></a>
-                                              </div>
+                                         }
+                                         else{ $product_page_link = $row->single_product_url_type; }
+                                            ?>
+                                                <div class="button-block">
+                                                        <a href="<?php echo $product_page_link; ?>" <?php echo ' target="_blank"'; ?>><?php echo $paramssld3['ht_catalog_general_linkbutton_text']; ?></a>
+                                                </div>
                                 <?php } ?>
                               </div>
                       </div>
@@ -1703,13 +1703,13 @@ var defaultBlockWidth=<?php echo $paramssld['ht_view0_block_width']; ?>;
                                       <?php
                                       if($paramssld['ht_view1_show_linkbutton']=='on'){
                                           if($row->single_product_url_type == "default"){
-                                              $page_link = $_SERVER["SERVER_NAME"].$_SERVER["REQUEST_URI"];
-                                              if (strpos(get_permalink(),'/?') !== false) { $product_page_link = get_permalink()."&single_prod_id=$row->id"; } else { if (strpos(get_permalink(),'/') !== false) { $product_page_link = get_permalink()."?single_prod_id=$row->id"; } else { $product_page_link = get_permalink()."/?single_prod_id=$row->id"; } }
-                                          }
+                                             $page_link = $_SERVER["SERVER_NAME"].$_SERVER["REQUEST_URI"];
+                                             if (strpos(get_permalink(),'/?') !== false) { $product_page_link = get_permalink()."&single_prod_id=$row->id"; } else { if (strpos(get_permalink(),'/') !== false) { $product_page_link = get_permalink()."?single_prod_id=$row->id"; } else { $product_page_link = get_permalink()."/?single_prod_id=$row->id"; } }
+                                         }
                                          else{ $product_page_link = $row->single_product_url_type; }
                                          ?>
                                               <div class="button-block">
-                                                      <a href="<?php echo $product_page_link; ?>" <?php if ($row->link_target=="on"){echo 'target="_blank"';}?>><?php echo $paramssld3['ht_catalog_general_linkbutton_text']; ?></a>
+                                                      <a href="<?php echo $product_page_link; ?>" <?php echo ' target="_blank"'; ?>><?php echo $paramssld3['ht_catalog_general_linkbutton_text']; ?></a>
                                               </div>
                                       <?php } ?>
                               </div>
@@ -2731,13 +2731,13 @@ var defaultBlockHeight=<?php echo $paramssld['ht_view2_element_height']; ?>;
                               <div class="title-block_<?php echo $catalogID; ?>">
                                       <h3><?php echo $row->name; ?></h3>
                                       <?php if($paramssld["ht_view2_element_show_linkbutton"]=='on'){
-                                         if($row->single_product_url_type == "default"){
+                                          if($row->single_product_url_type == "default"){
                                              $page_link = $_SERVER["SERVER_NAME"].$_SERVER["REQUEST_URI"];
                                              if (strpos(get_permalink(),'/?') !== false) { $product_page_link = get_permalink()."&single_prod_id=$row->id"; } else { if (strpos(get_permalink(),'/') !== false) { $product_page_link = get_permalink()."?single_prod_id=$row->id"; } else { $product_page_link = get_permalink()."/?single_prod_id=$row->id"; } }
                                          }
                                          else{ $product_page_link = $row->single_product_url_type; }
-                                         ?>
-                                              <div class="button-block"><a href="<?php echo $product_page_link; ?>" <?php if ($row->link_target=="on"){echo 'target="_blank"';}?> ><?php echo $paramssld3["ht_catalog_general_linkbutton_text"]; ?></a></div>
+                                      ?>
+                                              <div class="button-block"><a href="<?php echo $product_page_link; ?>" <?php echo ' target="_blank"'; ?> ><?php echo $paramssld3["ht_catalog_general_linkbutton_text"]; ?></a></div>
                                       <?php } ?>
                               </div>
                       </div>	
@@ -2800,14 +2800,14 @@ var defaultBlockHeight=<?php echo $paramssld['ht_view2_element_height']; ?>;
                                          <?php } ?>
                                         
                                        <?php if($paramssld["ht_view2_show_popup_linkbutton"]=='on'){
-                                               if($row->single_product_url_type == "default"){
-                                                  $page_link = $_SERVER["SERVER_NAME"].$_SERVER["REQUEST_URI"];
-                                                  if (strpos(get_permalink(),'/?') !== false) { $product_page_link = get_permalink()."&single_prod_id=$row->id"; } else { if (strpos(get_permalink(),'/') !== false) { $product_page_link = get_permalink()."?single_prod_id=$row->id"; } else { $product_page_link = get_permalink()."/?single_prod_id=$row->id"; } }
-                                             }
+                                           if($row->single_product_url_type == "default"){
+                                             $page_link = $_SERVER["SERVER_NAME"].$_SERVER["REQUEST_URI"];
+                                             if (strpos(get_permalink(),'/?') !== false) { $product_page_link = get_permalink()."&single_prod_id=$row->id"; } else { if (strpos(get_permalink(),'/') !== false) { $product_page_link = get_permalink()."?single_prod_id=$row->id"; } else { $product_page_link = get_permalink()."/?single_prod_id=$row->id"; } }
+                                         }
                                          else{ $product_page_link = $row->single_product_url_type; }
                                          ?>
 						<div class="button-block">
-						<a href="<?php echo $product_page_link; ?>"  <?php if ($row->link_target=="on"){echo 'target="_blank"';}?>><?php echo $paramssld3["ht_catalog_general_linkbutton_text"]; ?></a>
+						<a href="<?php echo $product_page_link; ?>"  <?php echo ' target="_blank"'; ?>><?php echo $paramssld3["ht_catalog_general_linkbutton_text"]; ?></a>
 						</div>
 					<?php } ?>
 					<div style="clear:both;"></div>
@@ -3288,7 +3288,7 @@ var defaultBlockHeight=<?php echo $paramssld['ht_view2_element_height']; ?>;
                                          else{ $product_page_link = $row->single_product_url_type; }
                                       ?>
                                           <div class="button-block">
-                                                  <a href="<?php echo $product_page_link; ?>" <?php if ($row->link_target=="on"){ echo 'target="_blank"';}?>><?php echo $paramssld3["ht_catalog_general_linkbutton_text"]; ?></a>
+                                                  <a href="<?php echo $product_page_link; ?>" <?php echo ' target="_blank"'; ?>><?php echo $paramssld3["ht_catalog_general_linkbutton_text"]; ?></a>
                                           </div>
                                       <?php 
                                       } ?>
@@ -3766,14 +3766,14 @@ jQuery(function(){
                                         <?php } ?>
                                         
                                         <?php if($paramssld["ht_view5_show_linkbutton"]=='on'){
-                                                if($row->single_product_url_type == "default"){
-                                                    $page_link = $_SERVER["SERVER_NAME"].$_SERVER["REQUEST_URI"];
-                                                    if (strpos(get_permalink(),'/?') !== false) { $product_page_link = get_permalink()."&single_prod_id=$row->id"; } else { if (strpos(get_permalink(),'/') !== false) { $product_page_link = get_permalink()."?single_prod_id=$row->id"; } else { $product_page_link = get_permalink()."/?single_prod_id=$row->id"; } }
-                                                }
-                                                else{ $product_page_link = $row->single_product_url_type; }
+                                         if($row->single_product_url_type == "default"){
+                                             $page_link = $_SERVER["SERVER_NAME"].$_SERVER["REQUEST_URI"];
+                                             if (strpos(get_permalink(),'/?') !== false) { $product_page_link = get_permalink()."&single_prod_id=$row->id"; } else { if (strpos(get_permalink(),'/') !== false) { $product_page_link = get_permalink()."?single_prod_id=$row->id"; } else { $product_page_link = get_permalink()."/?single_prod_id=$row->id"; } }
+                                         }
+                                         else{ $product_page_link = $row->single_product_url_type; }
                                          ?>
 						<div class="button-block">
-							<a class="" href="<?php echo $product_page_link; ?>"  <?php if ($row->link_target=="on"){echo 'target="_blank"';}?>><?php echo $paramssld3["ht_catalog_general_linkbutton_text"]; ?></a>
+							<a class="" href="<?php echo $product_page_link; ?>"  <?php echo ' target="_blank"'; ?>><?php echo $paramssld3["ht_catalog_general_linkbutton_text"]; ?></a>
 						</div>
 					<?php } ?>
 				</div>
@@ -3808,8 +3808,8 @@ jQuery(function(){
 ?>
 
 <?php
-    function html_single_product_page($productArray, $paramssld, $paramssld2, $paramssld3, $ratingsArray, $reviewsArray, $spamReviewsArray, $captchaFirstNum, $captchaSecondNum, $captcha_val){
-        ob_start();              //       var_dump($paramssld);  var_dump($paramssld2);
+    function html_single_product_page($productArray, $paramssld, $paramssld2, $paramssld3, $paramssld4, $ratingsArray, $reviewsArray, $spamReviewsArray, $captchaFirstNum, $captchaSecondNum, $captcha_val){
+        ob_start();                                             //          var_dump($paramssld4);
         $rating = 0;
         if(!empty($ratingsArray)){
             for($i = 0; $i < count($ratingsArray) ; $i++ ){
@@ -3836,9 +3836,8 @@ jQuery(function(){
         $myPageLink = $_SERVER['HTTP_HOST'].$_SERVER['REQUEST_URI'];
         
         $adminLink = get_option( 'admin_email' );
-//        		var_dump($adminLink);exit;
-        
-$paramssld["ht_view0_sorting_float"] = "none";
+
+        $paramssld["ht_view0_sorting_float"] = "none";
 $paramssld["ht_view1_sorting_float"] = "none";
 $paramssld["ht_view2_sorting_float"] = "none";
 $paramssld["ht_view3_sorting_float"] = "none";
@@ -4179,7 +4178,42 @@ $paramssld["ht_single_product_asc_seller_popup_button_text_size"] = "16";
 $paramssld["ht_single_product_asc_seller_popup_button_text_color"] = "000000";
 $paramssld["ht_single_product_asc_seller_popup_button_background_color"] = "EEEEEE";
 $paramssld["ht_single_product_asc_seller_popup_button_background_hover_color"] = "EEEEEE";
-$paramssld["ht_single_product_asc_seller_popup_close_style"] = "dark";        
+$paramssld["ht_single_product_asc_seller_popup_close_style"] = "dark";
+
+        
+        if ( is_plugin_active( 'product-catalog-releated-products/product-catalog-releated-products.php' ) ){  }
+    else{
+        $paramssld4['ht_catalog_related_products_show'] = "off";
+        $paramssld4['ht_catalog_related_products_visible_count'] = "4";
+        $paramssld4['ht_catalog_related_products_vertical'] = "false";
+        $paramssld4['ht_catalog_related_products_start'] = "1";
+        $paramssld4['ht_catalog_related_products_circular'] = "true";
+        $paramssld4['ht_catalog_related_products_autoplay'] = "off";
+        $paramssld4['ht_catalog_related_products_show_arrows'] = "on";
+        $paramssld4['ht_catalog_related_products_delay'] = "1000";
+        $paramssld4['ht_catalog_related_products_changing_speed'] = "1000";
+        $paramssld4['ht_catalog_related_products_direction_reverse'] = "off";
+        $paramssld4['ht_catalog_related_products_position'] = "bottom";
+        $paramssld4['ht_catalog_related_products_pause_on_hover'] = "off";
+        $paramssld4['ht_catalog_related_products_vertical_elem_height'] = "105";
+        $paramssld4['ht_catalog_related_products_vertical_elem_width'] = "250";
+        $paramssld4['ht_catalog_related_products_vertical_caption_width'] = "50";
+        $paramssld4['ht_catalog_related_products_horizontal_elem_width'] = "190";
+        $paramssld4['ht_catalog_related_products_horizontal_elem_height'] = "143";
+        $paramssld4['ht_catalog_related_products_horizontal_border_size'] = "1";
+        $paramssld4['ht_catalog_related_products_horizontal_border_color'] = "c0c0c0";
+        $paramssld4['ht_catalog_related_products_vertical_border_size'] = "1";
+        $paramssld4['ht_catalog_related_products_vertical_border_color'] = "c0c0c0";
+        $paramssld4['ht_catalog_related_products_vertical_font_size'] = "17";
+        $paramssld4['ht_catalog_related_products_vertical_font_color'] = "c0c0c0";
+        $paramssld4['ht_catalog_related_products_horizontal_font_size'] = "17";
+        $paramssld4['ht_catalog_related_products_horizontal_font_color'] = "c0c0c0";
+        $paramssld4['ht_catalog_related_products_autoplay_speed'] = "2000";
+        $paramssld4['ht_catalog_related_products_horizontal_caption_height'] = "105";
+//        var_dump($paramssld4);exit;
+    }
+        
+//        exit;
         
 ?>
 
@@ -4268,8 +4302,7 @@ $paramssld["ht_single_product_asc_seller_popup_close_style"] = "dark";
 		var lightbox_slideshowStart = "<?php echo $paramssld2['light_box_slideshowstart'];?>";
 		var lightbox_slideshowStop = "<?php echo $paramssld2['light_box_slideshowstop'];?>";
 		var lightbox_fixed = <?php echo $paramssld2['light_box_fixed'];?>;
-	
-	
+		
 		<?php
 		$pos = $paramssld2['slider_title_position'];
 		switch($pos){ 
@@ -4388,14 +4421,39 @@ $paramssld["ht_single_product_asc_seller_popup_close_style"] = "dark";
 				return false;
 			});
 		});
-	}	
+	}
+                
+        
+                        /*    <-- Related Products    */
+                        
+        var related_products_show           = "<?php echo $paramssld4['ht_catalog_related_products_show'];           ?>";
+        var related_products_visible_count  = <?php  echo $paramssld4['ht_catalog_related_products_visible_count'];  ?>;
+        var related_products_circular       = <?php  echo $paramssld4['ht_catalog_related_products_circular'];       ?>;
+        var related_products_autoplay       = "<?php echo $paramssld4['ht_catalog_related_products_autoplay'];       ?>";
+        var related_products_autoplay_speed = <?php  echo $paramssld4['ht_catalog_related_products_autoplay_speed']; ?>;
+        var related_products_start          = <?php  echo $paramssld4['ht_catalog_related_products_start'] - 1;      ?>;
+        var related_products_changing_speed = <?php  echo $paramssld4['ht_catalog_related_products_changing_speed']; ?>;
+        var related_products_pause_on_hover = "<?php  echo $paramssld4['ht_catalog_related_products_pause_on_hover']; ?>";
+//        var related_products_vertical       = <?php  echo $paramssld4['ht_catalog_related_products_vertical']; ?>;
+        var vertical_carousel_li_height     = <?php  echo $paramssld4['ht_catalog_related_products_vertical_elem_height']; ?>;
+        
+                                /*    Related Products -->    */
+        
 </script>
 
+<?php
+    
 
-	
+    if($paramssld4['ht_catalog_related_products_autoplay'] == "on"){ $autoplay_speed = $paramssld4['ht_catalog_related_products_autoplay_speed']; } else { $autoplay_speed = 0; }
+    if($paramssld4['ht_catalog_related_products_position'] == "left" || $paramssld4['ht_catalog_related_products_position'] == "right"){
+        $paramssld4['ht_catalog_related_products_vertical'] = "true"; $carousel_vertical = "vertical"; $fullWithProducts = "false";
+    }
+    else { $paramssld4['ht_catalog_related_products_vertical'] = "false"; $carousel_vertical = "responsive"; $fullWithProducts = "true"; }
+?>
+
 	<?php include_once( ABSPATH . 'wp-admin/includes/plugin.php' );
-		if ( !(is_plugin_active( 'lightbox/lightbox.php' ) )) { 
-		?>
+		if ( !(is_plugin_active( 'lightbox/lightbox.php' ) )) {
+        ?>
 	<link href="<?php echo plugins_url('../style/colorbox-'.$paramssld2['light_box_style'].'.css', __FILE__);?>" rel="stylesheet" type="text/css" />
 	<?php } ?>
 		
@@ -4403,8 +4461,8 @@ $paramssld["ht_single_product_asc_seller_popup_close_style"] = "dark";
 		include_once( ABSPATH . 'wp-admin/includes/plugin.php' );
 		if ( !(is_plugin_active( 'wp-lightbox-2/wp-lightbox-2.php' ) )) { ?>
 
-	<?php } ?>        
-        
+	<?php } ?>
+                
 <style type="text/css">
 <?php if($paramssld2["ht_catalog_zoom_lens_size_fix"] == "true") { ?>
 
@@ -4421,10 +4479,30 @@ $paramssld["ht_single_product_asc_seller_popup_close_style"] = "dark";
 
 .huge_it_catalog_single_product_page {
 	position: relative;
-	width:98%; 
+	<?php
+            if($paramssld4['ht_catalog_related_products_show'] == "on" && $paramssld4['ht_catalog_related_products_position'] == "left"){ ?>
+                float: left;
+                width: -moz-calc(98% - <?php echo $paramssld4['ht_catalog_related_products_vertical_elem_width']; ?>px);
+                width: -webkit-calc(98% - <?php echo $paramssld4['ht_catalog_related_products_vertical_elem_width']; ?>px);
+                width: calc(98% - <?php echo $paramssld4['ht_catalog_related_products_vertical_elem_width']; ?>px);
+                margin-left: 2% !important;
+      <?php }
+      else{
+          if($paramssld4['ht_catalog_related_products_show'] == "on" && $paramssld4['ht_catalog_related_products_position'] == "right"){ ?>
+              float: right;
+              width: -moz-calc(98% - <?php echo $paramssld4['ht_catalog_related_products_vertical_elem_width']; ?>px);
+              width: -webkit-calc(98% - <?php echo $paramssld4['ht_catalog_related_products_vertical_elem_width']; ?>px);
+              width: calc(98% - <?php echo $paramssld4['ht_catalog_related_products_vertical_elem_width']; ?>px);
+              margin-right: 2% !important;
+    <?php }
+          else{ ?>
+                width: 98% !important;
+      <?php }
+      }
+      ?> 
 	margin:5px 0px 5px 0px;
 	padding:2%;
-	clear:both;
+	/*clear:both;*/
 	overflow: hidden;
 	/*border:<?php echo $paramssld['ht_single_product_border_width']; ?>px solid #<?php echo $paramssld['ht_single_product_border_color']; ?>;*/
 	background:#<?php echo $paramssld['ht_single_product_background_color']; ?>;
@@ -4880,6 +4958,7 @@ $paramssld["ht_single_product_asc_seller_popup_close_style"] = "dark";
 	padding:0px !important;
 	margin:0px !important;
 	width:100%;
+        font-size: 80%
 }
 
 .huge_it_catalog_view_tabs_contents > li .params-list li {
@@ -5229,6 +5308,14 @@ $paramssld["ht_single_product_asc_seller_popup_close_style"] = "dark";
 
 </style>
       
+        <?php
+            if ( is_plugin_active( 'product-catalog-releated-products/product-catalog-releated-products.php' ) ){
+                if($paramssld4['ht_catalog_related_products_show'] == "on" && $paramssld4['ht_catalog_related_products_position'] != "bottom"){
+                    show_related_products($productArray->id, $carousel_vertical, $paramssld4['ht_catalog_related_products_show_arrows'], "off", $productArray);
+                }
+            }
+        ?>
+
 <section id="huge_it_catalog_content_<?php echo $productArray->id; ?>" class="huge_it_catalog_single_product_page">
     <div class="huge_it_catalog_container">
 		<div class="left-block">
@@ -5444,7 +5531,7 @@ $paramssld["ht_single_product_asc_seller_popup_close_style"] = "dark";
                                         }
                                     }
                                 }
-                                else { echo "<br>No Params"; }
+                                else { echo "<br>No Parameters"; }
                             ?>
                             </ul>
                       </li>
@@ -5455,7 +5542,7 @@ $paramssld["ht_single_product_asc_seller_popup_close_style"] = "dark";
                           <div class="reviews-block"><?php
                             if(!empty($reviewsArray)){
                               if($reviewsArray[0]->id == ""){
-                                      echo "<br>no comments";
+                                      echo "<br>No Comments";
                               }
                               else{
                                       foreach ($reviewsArray as $review) { ?>
@@ -5491,10 +5578,579 @@ $paramssld["ht_single_product_asc_seller_popup_close_style"] = "dark";
 	<div class="clear"></div>
 	</div>
 </section>
+<div class="clear"></div>
+       
+<style>
+    .huge-it-related-carousel {
+         <?php
+            if($paramssld4['ht_catalog_related_products_vertical'] == "true"){ ?>
+                display: table;
+                margin: 0;
+                margin-top: 5px;
+                padding: 0;
+      <?php }
+       else { ?>
+                /*display: block;*/
+                margin: auto;
+                margin-right: 2%;
+                padding: 0;
+                width: 98%;
+       <?php } ?>
+    }
+    
+    .huge-it-related-carousel li {
+        margin: 0;
+        padding: 0;
+        <?php
+            if($paramssld4['ht_catalog_related_products_vertical'] == "false"){ ?>
+                /*height: <?php echo $paramssld4['ht_catalog_related_products_horizontal_elem_height']; ?>px;*/
+                /*max-height: <?php echo $paramssld4['ht_catalog_related_products_horizontal_elem_height']; ?>px;*/
+        <?php }
+            else{ ?>
+                position: relative !important;
+                width:  <?php echo $paramssld4['ht_catalog_related_products_vertical_elem_width']; ?>px;
+      <?php } ?>
+    }
+    
+    .huge-it-related-carousel li div.RelatedOnHoverVertical {
+        border-color: #<?php echo $paramssld4["ht_catalog_related_products_vertical_border_color"]; ?> !important;
+    }
+    
+    .huge-it-related-carousel li div.RelatedOnHoverHorizontal {
+        border-color: #<?php echo $paramssld4["ht_catalog_related_products_horizontal_border_color"]; ?> !important;
+    }
+    
+    .catalog-related-item-block {
+        width: 100%;
+        height: calc(100% - 2px);
+        /*border: 1px solid transparent;*/ 
+    }
+    
+    .huge-it-related-carousel li:hover {
+        /*width: <?php // echo $paramssld4['ht_catalog_related_products_vertical_elem_width'] * 2; ?>px;*/
+    }
+    
+    .huge-it-related-carousel li a {
+        text-decoration: none;
+    }
+                                /* <-- Slider Images */
+    .huge-it-related-carousel img {
+        <?php
+            if($paramssld4['ht_catalog_related_products_vertical'] == "false"){ ?>
+/*                height: <?php echo $paramssld4['ht_catalog_related_products_horizontal_elem_height']; ?>px;
+                max-height: <?php echo $paramssld4['ht_catalog_related_products_horizontal_elem_height']; ?>px;*/
+                width: auto !important;
+                margin: 0 auto !important;
+                display: block;
+      <?php }
+            else { ?>
+                height: auto;
+                width: <?php echo $paramssld4['ht_catalog_related_products_vertical_elem_width']; ?>px !important;
+                vertical-align: middle;
+                position: absolute;
+                top: 0;
+                bottom: 0;
+                margin: auto 0;
+      <?php } ?>
+    }
+                                /*     Slider Images --> */
+    
+    /* Responsive Slider Images */
+    .huge-it-related-carousel.responsive img {
+        padding-right: 10px;
+    }
+        /*  <--  pagination block   */
+        
+    .pager-block{
+        
+    }
+    .cycle-pager {
+        position: static;
+    }
+        /*       pagination block -->  */
+            
+    .catalog-related-item-block{
+        position: relative;
+        <?php
+            if($paramssld4['ht_catalog_related_products_vertical'] == "false"){ ?>
+                /*border-radius: <?php echo $paramssld4['ht_catalog_related_products_horizontal_border_radius']; ?>px;*/
+        <?php }
+            else{ ?>
+                height: 100%;
+                /*border-radius: <?php echo $paramssld4['ht_catalog_related_products_vertical_border_radius']; ?>px;*/
+      <?php } ?>
+    }
+        
+    .catalog-related-caption-block{
+        <?php
+        if($paramssld4['ht_catalog_related_products_vertical'] == "true" ){ ?>
+            position: absolute;
+            width: <?php echo $paramssld4['ht_catalog_related_products_vertical_caption_width'] - 8; ?>px;
+            font-size: 60%;
+            <?php if($paramssld4['ht_catalog_related_products_position'] == "left" ){ ?>
+                      right: <?php echo $paramssld4['ht_catalog_related_products_vertical_elem_width'] + 3; ?>px;
+            <?php }
+                  else{ ?>
+                      left: <?php echo $paramssld4['ht_catalog_related_products_vertical_elem_width'] + 3; ?>px;
+            <?php } ?>
+            top: 0;
+            padding: 0;
+            margin: 0;
+            overflow: hidden;
+            <?php if( $paramssld4['ht_catalog_related_products_position'] == "left") ?>{
+                text-align: right;
+            }
+  <?php }
+        else{ ?>
+            position: relative;
+            display: block;
+            width: 90%;
+            height: <?php echo $paramssld4['ht_catalog_related_products_horizontal_caption_height']; ?>px;
+            padding: 0;
+            margin: 0 auto;
+            text-align: center;
+  <?php } ?>
+    }
+    .catalog-related-caption{
+        <?php if($paramssld4['ht_catalog_related_products_vertical'] == "true" ){ ?>
+                  visibility: hidden;
+                  font-size: <?php echo $paramssld4['ht_catalog_related_products_vertical_font_size']; ?>px;
+                  color: #<?php echo $paramssld4['ht_catalog_related_products_vertical_font_color']; ?>;
+        <?php }
+        else{ ?>
+                  visibility: visible;
+                  font-size: <?php echo $paramssld4['ht_catalog_related_products_horizontal_font_size']; ?>px;
+                  color: #<?php echo $paramssld4['ht_catalog_related_products_horizontal_font_color']; ?>;
+      <?php }?>
+    }
+    .catalog-related-caption p{
+        margin: 0;
+        padding: 0;
+        overflow: hidden !important;
+        text-overflow: ellipsis;
+    }
+    
+</style>
+
+<style>
+        /* prev / next links */
+
+<?php
+      if($paramssld4['ht_catalog_related_products_vertical'] == "false"){ ?>
+            .cycle-prev, .cycle-next {
+                position: absolute;
+                top: 0; 
+                width: 5%;
+                opacity: 0;
+                filter: alpha(opacity=0);
+                z-index: 800;
+                height: 100%; 
+                cursor: pointer;
+            }
+            .cycle-prev {
+                left: 0;
+                background: url(<?php echo plugins_url('../images/leftArrow.png', __FILE__);?>) 10% 50% no-repeat;
+                background-color: #c0c0c0;
+            }
+            .cycle-next {
+                right: 0;
+                background: url(<?php echo plugins_url('../images/rightArrow.png', __FILE__);?>) 90% 50% no-repeat;
+                background-color: #c0c0c0;
+            }
+            .cycle-prev:hover, .cycle-next:hover {
+                opacity: .5;
+                filter: alpha(opacity=70); 
+            }
+
+            .disabled {
+                opacity: .5;
+                filter:alpha(opacity=50);
+            }
+<?php }
+      else{ ?>
+            .cycle-prev, .cycle-next {
+                position: absolute;
+                /*width: 45%;*/
+                height: 5%;
+                opacity: 0;
+                filter: alpha(opacity=0);
+                z-index: 800;
+                cursor: pointer;
+            }
+            .cycle-prev { 
+                top: 0;
+                background: url(<?php echo plugins_url('../images/upArrow.png', __FILE__);?>) 50% 50% no-repeat;
+                background-color: #c0c0c0;
+            }
+            .cycle-next {
+                bottom: 0;
+                background: url(<?php echo plugins_url('../images/downArrow.png', __FILE__);?>) 50% 50% no-repeat;
+                background-color: #c0c0c0;
+            }
+            .cycle-prev:hover, .cycle-next:hover {
+/*                opacity: 0.5; 
+                filter: alpha(opacity=70); */
+            }
+
+            .disabled { 
+                opacity: .5;
+                filter:alpha(opacity=50);
+            }
+<?php } ?>
+    
+    @media (max-width: 1200px) {
+        
+        .huge-it-related-carousel li .catalog-related-caption{
+            <?php
+            if($paramssld4['ht_catalog_related_products_vertical'] == "true"){ ?>
+                display: none;
+          <?php  } ?>
+        }
+    }
+    @media (max-width: 640px) {
+        .huge-it-related-carousel{
+            <?php
+            if($paramssld4['ht_catalog_related_products_vertical'] == "true"){ ?>
+                display: none;
+                float: none !important;
+     <?php  } ?>
+        }
+        .huge_it_catalog_single_product_page{
+            <?php
+            if($paramssld4['ht_catalog_related_products_vertical'] == "true"){ ?>
+                width: 98%;
+                float: none !important;
+     <?php  } ?>
+        }
+        
+         /* <--  Carousel Horizontalling */
+       
+        .huge-it-related-carousel {
+            <?php
+                if($paramssld4['ht_catalog_related_products_vertical'] == "true"){ ?>
+                    margin: auto;
+                    margin-right: 2%;
+                    padding: 0;
+                    width: 98%;
+          <?php } ?>
+        }
+
+        .huge-it-related-carousel img {
+             <?php
+                if($paramssld4['ht_catalog_related_products_vertical'] == "true"){ ?>
+                    position: relative;
+                    width: auto !important;
+                    margin: 0 auto !important;
+                    display: block;
+                <?php } ?>
+        }
+
+        .catalog-related-item-block{
+            <?php
+                if($paramssld4['ht_catalog_related_products_vertical'] == "true"){ ?>
+                    position: relative;
+                <?php } ?>
+        }
+        
+        .catalog-related-caption-block{
+    <?php
+        if($paramssld4['ht_catalog_related_products_vertical'] == "true"){ ?>
+            position: relative;
+            display: block;
+            width: 90%;
+            height: <?php echo $paramssld4['ht_catalog_related_products_horizontal_caption_height']; ?>px;
+            padding: 0;
+            margin: 0 auto;
+            text-align: center;
+            left: 0;
+            right: 0;
+    <?php } ?>
+    }
+    .huge-it-related-carousel li .catalog-related-caption{
+    <?php
+        if($paramssld4['ht_catalog_related_products_vertical'] == "true"){ ?>
+            display: block;
+            visibility: visible;
+            font-size: <?php echo $paramssld4['ht_catalog_related_products_horizontal_font_size']; ?>px;
+            color: #<?php echo $paramssld4['ht_catalog_related_products_horizontal_font_color']; ?>;
+  <?php } ?>
+    }
+    
+    /* slider horizontallimg --> */
+    
+        .cycle-prev, .cycle-next {
+                position: absolute;
+                top: 0; 
+                width: 5%;
+                opacity: 0.5; 
+                filter: alpha(opacity=70); 
+                z-index: 800;
+                height: 100%; 
+                cursor: pointer;
+            }
+            .cycle-prev {
+                left: 0;
+                background: url(<?php echo plugins_url('../images/leftArrow.png', __FILE__);?>) 10% 50% no-repeat;
+                background-color: #c0c0c0;
+            }
+            .cycle-next {
+                right: 0;
+                background: url(<?php echo plugins_url('../images/rightArrow.png', __FILE__);?>) 90% 50% no-repeat;
+                background-color: #c0c0c0;
+            }
+/*            .cycle-prev:hover, .cycle-next:hover {
+                opacity: .5;
+                filter: alpha(opacity=70);
+            }*/
+
+            .disabled {
+                opacity: .5;
+                filter:alpha(opacity=50);
+            }
+
+    }
+    
+@media (min-width: 640px) {
+    .huge-it-related-carousel{
+    <?php
+      if($paramssld4['ht_catalog_related_products_position'] == "left"){ ?>
+          float: left;
+          padding-left: <?php echo $paramssld4['ht_catalog_related_products_vertical_caption_width'] + 3; ?>px;
+          margin-left: -<?php echo $paramssld4['ht_catalog_related_products_vertical_caption_width'] + 3; ?>px;
+<?php }
+      else{
+          if($paramssld4['ht_catalog_related_products_position'] == "right"){ ?>
+              float:right;
+              padding-right: <?php echo $paramssld4['ht_catalog_related_products_vertical_caption_width']; ?>px;
+              margin-right: -<?php echo $paramssld4['ht_catalog_related_products_vertical_caption_width']; ?>px;
+    <?php }
+      }
+?>
+}
+
+    .cycle-carousel-wrap{
+        <?php if($paramssld4['ht_catalog_related_products_position'] == "left"){ ?>
+            left: <?php echo $paramssld4['ht_catalog_related_products_vertical_caption_width'] - 3; ?>px !important;
+        <?php } ?>
+    }
+}
+
+</style>
+
+    <?php
+            if ( is_plugin_active( 'product-catalog-releated-products/product-catalog-releated-products.php' ) ){
+                if($paramssld4['ht_catalog_related_products_show'] == "on" && $paramssld4['ht_catalog_related_products_position'] == "bottom"){                   
+                    show_related_products($productArray->id, $carousel_vertical, $paramssld4['ht_catalog_related_products_show_arrows'], "off", $productArray);
+                }
+            }
+    ?>
+
   
 <script>
     
-window.twttr=(function(d,s,id){var js,fjs=d.getElementsByTagName(s)[0],t=window.twttr||{};if(d.getElementById(id))return t;js=d.createElement(s);js.id=id;js.src="https://platform.twitter.com/widgets.js";fjs.parentNode.insertBefore(js,fjs);t._e=[];t.ready=function(f){t._e.push(f);};return t;}(document,"script","twitter-wjs"));
+jQuery(window).load(function(){
+    if( /Android|webOS|iPhone|iPad|iPod|BlackBerry|IEMobile|Opera Mini/i.test(navigator.userAgent) ) {
+        horizontal_slider_load_function();
+        related_horizontal_carousel_call();
+    }
+    else{
+        if(<?php echo $paramssld4['ht_catalog_related_products_vertical']; ?>  == true){
+            vertical_slider_load_function();
+            related_vertical_container_resize();
+   	}
+    	else{
+      	    horizontal_slider_load_function();
+        }
+    }
+});
+
+jQuery(document).ready(function(){
+    if( /Android|webOS|iPhone|iPad|iPod|BlackBerry|IEMobile|Opera Mini/i.test(navigator.userAgent) ){
+       jQuery(".huge-it-related-carousel").css({"display" : "block"});
+    }
+    else{
+        related_carousel_call();
+    }
+    related_carousel_ready_styles();
+});
+
+jQuery(window).resize(function(){
+    if( /Android|webOS|iPhone|iPad|iPod|BlackBerry|IEMobile|Opera Mini/i.test(navigator.userAgent) ){
+        return false;
+    }
+    else{
+        if(<?php  echo $paramssld4['ht_catalog_related_products_vertical']; ?> == false){
+            related_horizontal_container_resize();
+        }
+        else{
+            related_vertical_container_resize();
+        }   
+    }
+});
+
+function horizontal_slider_load_function(){
+        var kayficent = <?php echo $paramssld4['ht_catalog_related_products_horizontal_elem_width'] / $paramssld4['ht_catalog_related_products_horizontal_elem_height']; ?>;
+        var container_width = jQuery(".huge-it-related-carousel").parent().width() * 0.98;
+        var elements_max_width = container_width / <?php echo $paramssld4['ht_catalog_related_products_visible_count']; ?>;
+        var element_max_height = elements_max_width  / kayficent;
+        jQuery(".huge-it-related-carousel li").width(elements_max_width);
+        jQuery(".huge-it-related-carousel li .catalog-related-item-block").height(element_max_height);
+        jQuery(".huge-it-related-carousel li img").height(element_max_height);
+        var caption_and_elem_height = element_max_height + parseInt(<?php echo $paramssld4['ht_catalog_related_products_horizontal_caption_height'] + $paramssld4['ht_catalog_related_products_horizontal_border_size']; ?>);
+        jQuery(".huge-it-related-carousel li").height(caption_and_elem_height);
+        jQuery(".huge-it-related-carousel").attr("huge-it-carousel-horizontal-li-width", elements_max_width);
+        jQuery(".huge-it-related-carousel").attr("huge-it-carousel-horizontal-li-height", caption_and_elem_height);
+}
+function vertical_slider_load_function(){
+        var elements_max_height = 1;
+        jQuery(".huge-it-related-carousel li").each(function(){
+            if(jQuery(this).find("img").height() > elements_max_height ){
+                elements_max_height = jQuery(this).find("img").height();
+            }
+        });
+        elements_max_height = elements_max_height + parseInt(10);       //      img bottom padding
+        jQuery(".huge-it-related-carousel li").height(elements_max_height);
+        jQuery(".huge-it-related-carousel li .catalog-related-caption-block").height(elements_max_height);
+        var carousel_height = <?php echo $paramssld4['ht_catalog_related_products_visible_count']; ?> * elements_max_height;
+        jQuery(".huge-it-related-carousel").height(carousel_height);
+
+        var product_width = jQuery('.huge_it_catalog_single_product_page').width();
+        jQuery(".huge-it-related-carousel").attr("huge-it-single-prod-width", product_width);
+        var elements_max_width = jQuery(".huge-it-related-carousel li").width();
+        jQuery(".huge-it-related-carousel").attr("huge-it-carousel-horizontal-li-width", elements_max_width);
+        var elements_max_height = jQuery(".huge-it-related-carousel li").height();
+        jQuery(".huge-it-related-carousel").attr("huge-it-carousel-vertical-li-width", elements_max_height);
+}
+function related_horizontal_container_resize(){
+        var image = '.huge-it-related-carousel li .catalog-related-item-block img';
+        var li = '.huge-it-related-carousel li';
+        var new_li_width = jQuery(li).width();
+        var old_li_width = jQuery(".huge-it-related-carousel").attr("huge-it-carousel-horizontal-li-width");
+        var old_li_height = jQuery(".huge-it-related-carousel").attr("huge-it-carousel-horizontal-li-height");
+        var new_li_height = old_li_height * new_li_width / old_li_width;
+        jQuery(li).height(new_li_height);
+        var li_minus_caption_height = new_li_height - parseInt(<?php  echo $paramssld4['ht_catalog_related_products_horizontal_caption_height'] + $paramssld4['ht_catalog_related_products_horizontal_border_size']; ?>);
+        var elem_new_height = new_li_height - parseInt(<?php  echo $paramssld4['ht_catalog_related_products_horizontal_caption_height'] + $paramssld4['ht_catalog_related_products_horizontal_border_size']; ?>);
+        jQuery(image).height(li_minus_caption_height);
+        jQuery('.huge-it-related-carousel li .catalog-related-item-block').height(elem_new_height);
+}
+function related_vertical_container_resize(){
+        var image = '.huge-it-related-carousel li .catalog-related-item-block img';
+        var li = '.huge-it-related-carousel li';
+        var caption = jQuery(li).find(".catalog-related-caption-block");
+        var old_li_width  = jQuery(".huge-it-related-carousel").attr("huge-it-carousel-horizontal-li-width");
+        var old_li_height = jQuery(".huge-it-related-carousel").attr("huge-it-carousel-vertical-li-width");
+        var product = '.huge_it_catalog_single_product_page';
+        var product_old_width = jQuery(".huge-it-related-carousel").attr("huge-it-single-prod-width");
+        var product_new_width = jQuery(product).width();
+//        alert(product_old_width + " " + product_new_width);
+//        alert(old_li_width + " " + old_li_height);
+        var new_li_width = product_new_width * old_li_width / product_old_width;
+        var new_li_height = old_li_height * new_li_width / old_li_width;
+            jQuery(li).width(new_li_width);
+            jQuery(".huge-it-related-carousel .cycle-prev, .huge-it-related-carousel .cycle-next").width(new_li_width);
+            jQuery(li).height(new_li_height);
+        var caption_old_width = <?php echo $paramssld4['ht_catalog_related_products_vertical_caption_width']; ?>;
+        var caption_old_height = old_li_height;
+        var caption_new_height = new_li_height * 0.7;
+        var caption_new_width  = product_new_width  * caption_old_width   / product_old_width * 0.7;
+        var left_position = new_li_width + 10;
+        if("<?php echo $paramssld4['ht_catalog_related_products_position']; ?>" == "right"){
+            jQuery(".catalog-related-caption-block").css({"left" : left_position});
+        }
+        else{
+            jQuery(".catalog-related-caption-block").css({"right" : left_position});
+        }
+//        var caption_new_width = caption_new_height * caption_old_width / caption_old_height;
+            caption.height(new_li_height);
+//            alert(caption_new_width);
+            jQuery(caption).width(caption_new_width);
+            new_li_width = new_li_width +10;
+            if(jQuery(document).width() > 640){
+                var product_width = "calc(98% - "+new_li_width+"px)";
+                var moz_product_width = "-moz-calc(98% - "+new_li_width+"px)";
+                var webkit_product_width = "-webkit-calc(98% - "+new_li_width+"px)";
+                jQuery(product).css({"width" : moz_product_width});
+                jQuery(product).css({"width" : webkit_product_width});
+                jQuery(product).css({"width" : product_width});
+            }else{
+                var product_width = "98%";
+                jQuery(product).css({"width" : product_width});
+            }
+
+            
+            var carousel_height = <?php echo $paramssld4['ht_catalog_related_products_visible_count']; ?> * new_li_height;
+            jQuery(".huge-it-related-carousel").height(carousel_height);
+            
+}
+function related_carousel_call(){
+    jQuery( '.huge-it-related-carousel' ).cycle({
+        fx: "carousel",
+        slides: "li",
+        autoHeight: "calc",
+        log: true,
+        delay: <?php echo $paramssld4['ht_catalog_related_products_delay']; ?>,
+        timeout: <?php echo $autoplay_speed; ?>,
+        carouselVisible: <?php echo $paramssld4['ht_catalog_related_products_visible_count']; ?>,
+        carouselFluid: <?php echo $fullWithProducts; ?>,
+        allowWrap: <?php echo $paramssld4['ht_catalog_related_products_circular']; ?>,
+        pauseOnHover: "<?php echo $paramssld4['ht_catalog_related_products_pause_on_hover']; ?>",
+        speed: <?php echo $paramssld4['ht_catalog_related_products_changing_speed']; ?>,
+        carouselVertical: <?php echo $paramssld4['ht_catalog_related_products_vertical']; ?>
+    });
+}
+function related_horizontal_carousel_call(){
+        jQuery( '.huge-it-related-carousel' ).cycle({
+        fx: "carousel",
+        slides: "li",
+        autoHeight: "calc",
+        log: true,
+        delay: <?php echo $paramssld4['ht_catalog_related_products_delay']; ?>,
+        timeout: <?php echo $autoplay_speed; ?>,
+        carouselVisible: <?php echo $paramssld4['ht_catalog_related_products_visible_count']; ?>,
+        carouselFluid: <?php echo $fullWithProducts; ?>,
+        allowWrap: <?php echo $paramssld4['ht_catalog_related_products_circular']; ?>,
+        pauseOnHover: "<?php echo $paramssld4['ht_catalog_related_products_pause_on_hover']; ?>",
+        speed: <?php echo $paramssld4['ht_catalog_related_products_changing_speed']; ?>,
+        carouselVertical: false
+    });
+}
+function related_carousel_ready_styles(){
+    setTimeout(function(){ jQuery(".huge-it-related-carousel .cycle-prev, .huge-it-related-carousel .cycle-next").removeClass("disabled"); }, 300);
+    jQuery(".huge-it-related-carousel").hover(function() {
+        jQuery(this).find(".cycle-prev, .cycle-next").css({"opacity" : "0.5", "filter" : "alpha(opacity=70)"});
+    },function(){
+        jQuery(this).find(".cycle-prev, .cycle-next").css({"opacity" : "0", "filter" : "alpha(opacity=0)"});
+    });
+    if(<?php echo $paramssld4['ht_catalog_related_products_vertical']; ?>  == true){
+        if( /Android|webOS|iPhone|iPad|iPod|BlackBerry|IEMobile|Opera Mini/i.test(navigator.userAgent) ){}
+        else{
+            var arrow_width = jQuery(".huge-it-related-carousel li").width();
+            jQuery(".huge-it-related-carousel .cycle-prev, .huge-it-related-carousel .cycle-next").width(arrow_width);
+            jQuery(".huge-it-related-carousel li").each(function(){
+                jQuery(this).find(".catalog-related-item-block").css({"border" : "<?php echo $paramssld4["ht_catalog_related_products_vertical_border_size"]; ?>px solid transparent"});
+            });
+            jQuery(".huge-it-related-carousel li").hover(function() {
+                jQuery(this).find(".catalog-related-item-block").addClass("RelatedOnHoverVertical");
+                jQuery(this).find(".catalog-related-caption").css({"visibility" : "visible"});
+            },function(){
+                jQuery(this).find(".catalog-related-item-block").removeClass("RelatedOnHoverVertical");
+                jQuery(this).find(".catalog-related-caption").css({"visibility" : "hidden"});
+            });
+        }
+    }
+    else{
+        jQuery(".huge-it-related-carousel li").each(function(){
+            jQuery(this).find(".catalog-related-item-block").css({"border" : "<?php echo $paramssld4["ht_catalog_related_products_horizontal_border_size"]; ?>px solid transparent"});
+        });
+        jQuery(".huge-it-related-carousel li").hover(function() {
+                jQuery(this).find(".catalog-related-item-block").addClass("RelatedOnHoverHorizontal");
+            },function(){
+                jQuery(this).find(".catalog-related-item-block").removeClass("RelatedOnHoverHorizontal");
+            });
+    }
+}
+
         // bind filter on select change
 jQuery(document).ready(function(){
     jQuery('#huge_it_catalog_filters ul li').click(function() {
@@ -5508,14 +6164,14 @@ jQuery(document).ready(function(){
 });
 
 jQuery(document).ready(function($) {
-    jQuery('.ask_seller_popup').click(function() {
-        var NWin = window.open(jQuery(this).prop('href'), '', 'scrollbars=1,height=400,width=400');
-        if (window.focus)
-        {
-          NWin.focus();
-        }
-        return false;
-    });
+//    jQuery('.ask_seller_popup').click(function() {
+//        var NWin = window.open(jQuery(this).prop('href'), '', 'scrollbars=1,height=400,width=400');
+//        if (window.focus)
+//        {
+//          NWin.focus();
+//        }
+//        return false;
+//    });
 });
   
 jQuery(document).ready(function () {
@@ -5715,6 +6371,8 @@ jQuery(document).ready(function () {
            });
            
 });
+
+    window.twttr=(function(d,s,id){var js,fjs=d.getElementsByTagName(s)[0],t=window.twttr||{};if(d.getElementById(id))return t;js=d.createElement(s);js.id=id;js.src="https://platform.twitter.com/widgets.js";fjs.parentNode.insertBefore(js,fjs);t._e=[];t.ready=function(f){t._e.push(f);};return t;}(document,"script","twitter-wjs"));
 </script>
 
   <?php return ob_get_clean(); ?>
@@ -5735,7 +6393,7 @@ function album_front_end($paramssld, $paramssld3, $catalogsFromAlbumArray)
 //        $catalogShowFiltering=$catalog[0]->ht_show_filtering;
         
         
-                $paramssld["ht_view0_border_width"] = "0";
+        $paramssld["ht_view0_border_width"] = "0";
         $paramssld["ht_view0_togglebutton_style"] = "dark";
         $paramssld["ht_view0_show_separator_lines"] = "on";
         $paramssld["ht_view0_linkbutton_text"] = "View Product";
@@ -6013,7 +6671,6 @@ function album_front_end($paramssld, $paramssld3, $catalogsFromAlbumArray)
         $paramssld["ht_view2_allow_lightbox"] = "on";
         $paramssld["ht_view5_allow_zooming"] = "on";
         $paramssld["ht_view5_allow_lightbox"] = "off";
-        
         
 ?>
 <script>
@@ -6688,14 +7345,14 @@ function album_front_end($paramssld, $paramssld3, $catalogsFromAlbumArray)
                                       <?php }
                                      
                                       if($paramssld['ht_view0_show_linkbutton']=='on'){
-                                          if($row->single_product_url_type == "default"){
+                                         if($row->single_product_url_type == "default"){
                                              $page_link = $_SERVER["SERVER_NAME"].$_SERVER["REQUEST_URI"];
                                              if (strpos(get_permalink(),'/?') !== false) { $product_page_link = get_permalink()."&single_prod_id=$row->id"; } else { if (strpos(get_permalink(),'/') !== false) { $product_page_link = get_permalink()."?single_prod_id=$row->id"; } else { $product_page_link = get_permalink()."/?single_prod_id=$row->id"; } }
-                                          }
-                                          else{ $product_page_link = $row->single_product_url_type; }
-                                      ?>
+                                         }
+                                         else{ $product_page_link = $row->single_product_url_type; }
+                                         ?>
                                               <div class="button-block">
-                                                      <a href="<?php echo $product_page_link; ?>" <?php if ($row->link_target=="on"){ echo 'target="_blank"'; }?>><?php echo $paramssld3['ht_catalog_general_linkbutton_text']; ?></a>
+                                                      <a href="<?php echo $product_page_link; ?>" <?php echo ' target="_blank"'; ?>><?php echo $paramssld3['ht_catalog_general_linkbutton_text']; ?></a>
                                               </div>
                                       <?php } ?>
                               </div>
@@ -7284,15 +7941,15 @@ var defaultBlockWidth=<?php echo $paramssld['ht_view0_block_width']; ?>;
                                       
                                       <?php } 
                                       if($paramssld['ht_view1_show_linkbutton']=='on'){
-                                            if($row->single_product_url_type == "default"){
-                                                $page_link = $_SERVER["SERVER_NAME"].$_SERVER["REQUEST_URI"];
-                                                if (strpos(get_permalink(),'/?') !== false) { $product_page_link = get_permalink()."&single_prod_id=$row->id"; } else { if (strpos(get_permalink(),'/') !== false) { $product_page_link = get_permalink()."?single_prod_id=$row->id"; } else { $product_page_link = get_permalink()."/?single_prod_id=$row->id"; } }
-                                            }
-                                            else{ $product_page_link = $row->single_product_url_type; }
+                                          if($row->single_product_url_type == "default"){
+                                             $page_link = $_SERVER["SERVER_NAME"].$_SERVER["REQUEST_URI"];
+                                             if (strpos(get_permalink(),'/?') !== false) { $product_page_link = get_permalink()."&single_prod_id=$row->id"; } else { if (strpos(get_permalink(),'/') !== false) { $product_page_link = get_permalink()."?single_prod_id=$row->id"; } else { $product_page_link = get_permalink()."/?single_prod_id=$row->id"; } }
+                                         }
+                                         else{ $product_page_link = $row->single_product_url_type; }
                                       ?>
-                                            <div class="button-block">
-                                                    <a href="<?php echo $product_page_link; ?>" <?php if ($row->link_target=="on"){echo 'target="_blank"';}?>><?php echo $paramssld3['ht_catalog_general_linkbutton_text']; ?></a>
-                                            </div>
+                                              <div class="button-block">
+                                                      <a href="<?php echo $product_page_link; ?>" <?php echo ' target="_blank"'; ?>><?php echo $paramssld3['ht_catalog_general_linkbutton_text']; ?></a>
+                                              </div>
                                       <?php } ?>
                               </div>
                       </div>
@@ -8271,14 +8928,14 @@ var defaultBlockHeight=<?php echo $paramssld['ht_view2_element_height']; ?>;
                               <div class="album_title-block_<?php echo $albumID; ?>">
                                       <h3><?php echo $row->catalog_name; ?></h3>
                                       <?php if($paramssld["ht_view2_element_show_linkbutton"]=='on'){
-                                               if($row->single_product_url_type == "default"){
-                                                   $page_link = $_SERVER["SERVER_NAME"].$_SERVER["REQUEST_URI"];
-                                                   if (strpos(get_permalink(),'/?') !== false) { $product_page_link = get_permalink()."&single_prod_id=$row->id"; } else { if (strpos(get_permalink(),'/') !== false) { $product_page_link = get_permalink()."?single_prod_id=$row->id"; } else { $product_page_link = get_permalink()."/?single_prod_id=$row->id"; } }
-                                               }
-                                               else{ $product_page_link = $row->single_product_url_type; }
+                                          if($row->single_product_url_type == "default"){
+                                             $page_link = $_SERVER["SERVER_NAME"].$_SERVER["REQUEST_URI"];
+                                             if (strpos(get_permalink(),'/?') !== false) { $product_page_link = get_permalink()."&single_prod_id=$row->id"; } else { if (strpos(get_permalink(),'/') !== false) { $product_page_link = get_permalink()."?single_prod_id=$row->id"; } else { $product_page_link = get_permalink()."/?single_prod_id=$row->id"; } }
+                                         }
+                                         else{ $product_page_link = $row->single_product_url_type; }
                                          ?>
                                               <div class="button-block">
-                                                  <a href="<?php echo $product_page_link; ?>" <?php if ($row->link_target=="on"){echo 'target="_blank"';}?> >
+                                                  <a href="<?php echo $product_page_link; ?>" <?php echo ' target="_blank"'; ?> >
                                                       <?php echo $paramssld3["ht_catalog_general_linkbutton_text"]; ?>
                                                   </a>
                                               </div>
@@ -8322,13 +8979,13 @@ var defaultBlockHeight=<?php echo $paramssld['ht_view2_element_height']; ?>;
 					<?php if($paramssld["ht_view2_show_description"]=='on'){?><div class="description"><?php echo $row->description; ?></div><?php } ?>
 					
                                         <?php if($paramssld["ht_view2_show_popup_linkbutton"]=='on'){
-                                            if($row->single_product_url_type == "default"){
-                                                $page_link = $_SERVER["SERVER_NAME"].$_SERVER["REQUEST_URI"];
-                                                if (strpos(get_permalink(),'/?') !== false) { $product_page_link = get_permalink()."&single_prod_id=$row->id"; } else { if (strpos(get_permalink(),'/') !== false) { $product_page_link = get_permalink()."?single_prod_id=$row->id"; } else { $product_page_link = get_permalink()."/?single_prod_id=$row->id"; } }
-                                            }
-                                            else{ $product_page_link = $row->single_product_url_type; }
-                                        ?>
-                                              <div class="button-block"><a href="<?php echo $product_page_link; ?>" <?php if ($row->link_target=="on"){echo 'target="_blank"';}?> ><?php echo $paramssld3["ht_catalog_general_linkbutton_text"]; ?></a></div>
+                                         if($row->single_product_url_type == "default"){
+                                             $page_link = $_SERVER["SERVER_NAME"].$_SERVER["REQUEST_URI"];
+                                             if (strpos(get_permalink(),'/?') !== false) { $product_page_link = get_permalink()."&single_prod_id=$row->id"; } else { if (strpos(get_permalink(),'/') !== false) { $product_page_link = get_permalink()."?single_prod_id=$row->id"; } else { $product_page_link = get_permalink()."/?single_prod_id=$row->id"; } }
+                                         }
+                                         else{ $product_page_link = $row->single_product_url_type; }
+                                         ?>
+                                              <div class="button-block"><a href="<?php echo $product_page_link; ?>" <?php echo ' target="_blank"'; ?> ><?php echo $paramssld3["ht_catalog_general_linkbutton_text"]; ?></a></div>
                                       <?php } ?>
 					<div style="clear:both;"></div>
 				</div>
@@ -8715,13 +9372,13 @@ var defaultBlockHeight=<?php echo $paramssld['ht_view2_element_height']; ?>;
 
                                       if($paramssld["ht_view3_show_linkbutton"] == 'on') {
                                           if($row->single_product_url_type == "default"){
-                                              $page_link = $_SERVER["SERVER_NAME"].$_SERVER["REQUEST_URI"];
-                                              if (strpos(get_permalink(),'/?') !== false) { $product_page_link = get_permalink()."&single_prod_id=$row->id"; } else { if (strpos(get_permalink(),'/') !== false) { $product_page_link = get_permalink()."?single_prod_id=$row->id"; } else { $product_page_link = get_permalink()."/?single_prod_id=$row->id"; } }
-                                          }
-                                          else{ $product_page_link = $row->single_product_url_type; }
+                                             $page_link = $_SERVER["SERVER_NAME"].$_SERVER["REQUEST_URI"];
+                                             if (strpos(get_permalink(),'/?') !== false) { $product_page_link = get_permalink()."&single_prod_id=$row->id"; } else { if (strpos(get_permalink(),'/') !== false) { $product_page_link = get_permalink()."?single_prod_id=$row->id"; } else { $product_page_link = get_permalink()."/?single_prod_id=$row->id"; } }
+                                         }
+                                         else{ $product_page_link = $row->single_product_url_type; }
                               ?>
                                           <div class="button-block">
-                                                  <a href="<?php echo $product_page_link; ?>" <?php if ($row->link_target=="on"){ echo 'target="_blank"';}?>><?php echo $paramssld3["ht_catalog_general_linkbutton_text"]; ?></a>
+                                                  <a href="<?php echo $product_page_link; ?>" <?php echo ' target="_blank"'; ?>><?php echo $paramssld3["ht_catalog_general_linkbutton_text"]; ?></a>
                                           </div>
                              <?php
                                       }
@@ -9156,15 +9813,15 @@ jQuery(function(){
 					<div><h2 class="title"><?php echo $row->catalog_name; ?></h2></div>
 					<?php if($paramssld["ht_view5_show_description"]=='on'){?><div class="description"><?php echo $row->description; ?></div><?php } ?>
 					
-                                        <?php if($paramssld["ht_view5_show_linkbutton"]=='on'){
-                                                if($row->single_product_url_type == "default"){
-                                                    $page_link = $_SERVER["SERVER_NAME"].$_SERVER["REQUEST_URI"];
-                                                    if (strpos(get_permalink(),'/?') !== false) { $product_page_link = get_permalink()."&single_prod_id=$row->id"; } else { if (strpos(get_permalink(),'/') !== false) { $product_page_link = get_permalink()."?single_prod_id=$row->id"; } else { $product_page_link = get_permalink()."/?single_prod_id=$row->id"; } }
-                                                }
-                                                else{ $product_page_link = $row->single_product_url_type; }
-                                        ?>
+                                        <?php  if($paramssld["ht_view5_show_linkbutton"]=='on'){
+                                                  if($row->single_product_url_type == "default"){
+                                                   $page_link = $_SERVER["SERVER_NAME"].$_SERVER["REQUEST_URI"];
+                                                   if (strpos(get_permalink(),'/?') !== false) { $product_page_link = get_permalink()."&single_prod_id=$row->id"; } else { if (strpos(get_permalink(),'/') !== false) { $product_page_link = get_permalink()."?single_prod_id=$row->id"; } else { $product_page_link = get_permalink()."/?single_prod_id=$row->id"; } }
+                                               }
+                                               else{ $product_page_link = $row->single_product_url_type; }
+                                         ?>
 						<div class="button-block">
-							<a class="" href="<?php echo $product_page_link; ?>"  <?php if ($row->link_target=="on"){echo 'target="_blank"';}?>><?php echo $paramssld3["ht_catalog_general_linkbutton_text"]; ?></a>
+							<a class="" href="<?php echo $product_page_link; ?>"  <?php echo ' target="_blank"'; ?>><?php echo $paramssld3["ht_catalog_general_linkbutton_text"]; ?></a>
 						</div>
 					<?php } ?>
 				</div>

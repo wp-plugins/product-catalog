@@ -136,28 +136,6 @@
 	}
 }
 </style>
-
-<?php $path_site2 = plugins_url("../images/", __FILE__); ?>
-        <div style="float: left;">
-            <div><a href="http://huge-it.com/wordpress-plugins-product-catalog-user-manual/" target="_blank">User Manual</a></div>
-            <div>This section allows you to configure the Product Catalog options. <a href="http://huge-it.com/wordpress-plugins-product-catalog-user-manual/" target="_blank">More...</a></div>
-            <div>This options are disabled in free version. Get full version to customize them. <a href="http://huge-it.com/wordpress-plugins-product-catalog-user-manual/" target="_blank">Get full Version</a></div>
-        </div>
-        <div style="float: right;">
-                <a class="header-logo-text" href="http://huge-it.com/product-catalog/" target="_blank">
-                        <div><img width="250px" src="<?php echo $path_site2; ?>/huge-it1.png" /></div>
-                        <div>Get the full version</div>
-                </a>
-        </div>
-        <div style="clear:both;"></div>
-        <div style="color: #a00; margin-bottom: 15px;">Dear user. Thank you for your interest in our product.
-            Please be known, that this page is for commercial users, and in order to use options from there,
-            you should have pro license. We please you to be understanding. The money we get for pro license
-            is expended on constantly improvements of our plugins, making them more professional useful and effective,
-            as well as for keeping fast support for every user.
-        </div>
-        
-        
 <div class="element hugeitmicro-item">
 	<div class="left-block">
 		<div class="main-image-block">

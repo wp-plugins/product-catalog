@@ -9,11 +9,11 @@ function html_show_general_options($param_values){  //  var_dump($param_values);
 <?php $path_site2 = plugins_url("../images", __FILE__); ?>
 
 <div id="poststuff">
-    <?php $path_site = plugins_url("Front_images", __FILE__); ?>
+    <?php $path_site2 = plugins_url("../images/", __FILE__); ?>
         <div style="float: left;">
             <div><a href="http://huge-it.com/wordpress-plugins-product-catalog-user-manual/" target="_blank">User Manual</a></div>
             <div>This section allows you to configure the Product Catalog options. <a href="http://huge-it.com/wordpress-plugins-product-catalog-user-manual/" target="_blank">More...</a></div>
-            <div>This options are disabled in free version. Get full version to customize them. <a href="http://huge-it.com/wordpress-plugins-product-catalog-user-manual/" target="_blank">Get full Version</a></div>
+            <div><a href="http://huge-it.com/product-catalog/" target="_blank">Get full Version</a></div>
         </div>
         <div style="float: right;">
                 <a class="header-logo-text" href="http://huge-it.com/product-catalog/" target="_blank">
@@ -22,12 +22,6 @@ function html_show_general_options($param_values){  //  var_dump($param_values);
                 </a>
         </div>
         <div style="clear:both;"></div>
-        <div style="color: #a00; margin-bottom: 15px;">Dear user. Thank you for your interest in our product.
-            Please be known, that this page is for commercial users, and in order to use options from there,
-            you should have pro license. We please you to be understanding. The money we get for pro license
-            is expended on constantly improvements of our plugins, making them more professional useful and effective,
-            as well as for keeping fast support for every user.
-        </div>
 		<div id="post-body-content" class="catalog-options">
 			<div id="post-body-heading">
 				<h3>General Options</h3>
@@ -79,7 +73,7 @@ function html_show_general_options($param_values){  //  var_dump($param_values);
 							<input type="text" name="params[ht_single_product_captcha_text]" id="ht_single_product_captcha_text" value="<?php echo $param_values['ht_single_product_captcha_text']; ?>" class="text" />
 						</div>
                                                 <div class="has-background">
-                                                        <label for="ht_single_product_invalid_captcha_text">Captha Error Massage Text</label>
+                                                        <label for="ht_single_product_invalid_captcha_text">Captcha Error Message Text</label>
 							<input type="text" name="params[ht_single_product_invalid_captcha_text]" id="ht_single_product_invalid_captcha_text" value="<?php echo $param_values['ht_single_product_invalid_captcha_text']; ?>" class="text" />
 						</div>
 
@@ -120,12 +114,12 @@ function html_show_general_options($param_values){  //  var_dump($param_values);
                                         <div>
 						<h3>Email To Administrator</h3>
 						<div class="has-background">
-							<label for="ht_catalog_general_message_to_admin">Send Email For Each Submition</label>
+							<label for="ht_catalog_general_message_to_admin">Send Email For Each Submission</label>
 							<input type="hidden" value="off" name="params[ht_catalog_general_message_to_admin]" />
 							<input type="checkbox" id="ht_catalog_general_message_to_admin"  <?php  if($param_values['ht_catalog_general_message_to_admin']  == 'on'){ echo 'checked="checked"'; } ?>  name="params[ht_catalog_general_message_to_admin]" value="on" />
 						</div>
                                                 <div class="">
-							<label for="ht_catalog_general_admin_email">Adminoistrator E-mail</label>
+							<label for="ht_catalog_general_admin_email">Administrator E-mail</label>
 							<input name="params[ht_catalog_general_admin_email]" type="text" class="color" id="ht_catalog_general_admin_email" value="<?php echo $param_values['ht_catalog_general_admin_email']; ?>" size="10" />
 							
 						</div>
@@ -153,7 +147,7 @@ function html_show_general_options($param_values){  //  var_dump($param_values);
 						</div>
 					</div>
                                     
-                                        <div style="margin-top: -70px;">
+                                        <div style="//margin-top: -70px;">
 						<h3>Email To User</h3>
 						<div class="has-background">
 							<label for="ht_catalog_general_message_to_user">Send To Email</label>
@@ -179,7 +173,7 @@ function html_show_general_options($param_values){  //  var_dump($param_values);
 						<div class="clear"></div>
 						</div>
 					</div>
-                                    <div style="margin-top: -213px;">
+                                    <div style="margin-top: -355px">
                                         <h3>Contact Seller Button</h3>
                                         <div class="has-background">
                                                 <label for="ht_single_product_show_asc_seller_button">Show Contact Seller Button</label>

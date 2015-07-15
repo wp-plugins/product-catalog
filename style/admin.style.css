@@ -389,17 +389,18 @@
 	width:100%;
 	margin:0px 0px 10px 0px;
         overflow: hidden;
+        /*position: relative;*/
 }
 
 #images-list .image-options .options-container label {
 	display: inline-block;
 	float:left;
-	width: 16%;
+	width: 14%;
 	padding: 3px 0px 0px 0px;
 	vertical-align: middle;
 } 
 
-#images-list .image-options .options-container label {padding:10px 0px 0px 0px;}
+#images-list .image-options .options-container label {padding: 5px 3px 0px 0px;}
 
 #images-list .image-options .options-container input[type='text'],
  #images-list .image-options .options-container select,
@@ -581,8 +582,8 @@
 	right:0px;
 }
 
-#catalog-view-tabs-contents > li  > div > div input[type='text'],#catalog-view-tabs-contents > li  > div > div select {
-	width:100px;
+#catalog-view-tabs-contents > li  > div > div input[type='text'],#catalog-view-tabs-contents > li  > div > div input[type='number'],#catalog-view-tabs-contents > li  > div > div select {
+	width: 140px;
 }
 
 #catalog-view-tabs-contents > li  > div > div input[type='checkbox'] {
