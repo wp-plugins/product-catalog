@@ -2,6 +2,8 @@
 function showPublishedcatalogs_1($id)
 {
  global $wpdb;
+ // var_dump($GLOBALS['version']);exit;
+// var_dump($id);
  
         $query="SELECT * FROM ".$wpdb->prefix."huge_it_catalog_general_params";
         $rowspar3 = $wpdb->get_results($query);
@@ -22,7 +24,7 @@ function showPublishedcatalogs_1($id)
 //        $query="SELECT * FROM ".$wpdb->prefix."huge_it_catalog_params";
 //        $rowspar = $wpdb->get_results($query);
         
-        $paramssld = array();
+//        $paramssld = array();
 //        foreach ($rowspar as $rowpar) {
 //            $key = $rowpar->name;
 //            $value = $rowpar->value;
@@ -35,15 +37,20 @@ function showPublishedcatalogs_1($id)
             
         if(isset($_GET['single_prod_id'])){
             
+            $catalog_id = $id;
             $id = $_GET['single_prod_id'];
-            $getRatings=$wpdb->prepare("SELECT * FROM ".$wpdb->prefix."huge_it_catalog_rating WHERE prod_id = '%d'",$id);
+            
+            $getProduct=$wpdb->prepare("SELECT * FROM ".$wpdb->prefix."huge_it_catalog_products WHERE id = '%d' order by ordering ASC",$id);
+            $productArray=$wpdb->get_results($getProduct);
+                        
+            
+            if($productArray[0]->catalog_id != $catalog_id){  }
+            else{
+                $getRatings=$wpdb->prepare("SELECT * FROM ".$wpdb->prefix."huge_it_catalog_rating WHERE prod_id = '%d'",$id);
             $ratingsArray=$wpdb->get_results($getRatings);
             
             $getReviews=$wpdb->prepare("SELECT * FROM ".$wpdb->prefix."huge_it_catalog_reviews WHERE product_id = '%d'",$id);
             $reviewsArray=$wpdb->get_results($getReviews);
-            
-            $getProduct=$wpdb->prepare("SELECT * FROM ".$wpdb->prefix."huge_it_catalog_products WHERE id = '%d' order by ordering ASC",$id);
-            $productArray=$wpdb->get_results($getProduct);
             
             $getSpams = $wpdb->prepare("SELECT * FROM ".$wpdb->prefix."huge_it_catalog_reviews WHERE spam = '%d'",1);
             $spamsArray = $wpdb->get_results($getSpams);
@@ -136,24 +143,18 @@ function showPublishedcatalogs_1($id)
                         </li>
               <?php } ?>
                 </ul>
-                
-                <?php if($show_pager == "on"){ ?>
-<!--                          <div class="pager-block">
-                              <div class="cycle-pager" id="pager_<?php echo $productId; ?>" ></div>
-                          </div>-->
-                <?php } ?>
-      <?php }
+
+      <?php     }
+            }
+                return html_single_product_page($productArray, $paramssld, $paramssld2, $paramssld3, $paramssld4, $ratingsArray, $reviewsArray, $spamReviewsArray, $captchaFirstNum, $captchaSecondNum, $captcha_val);
             }
             
-            return html_single_product_page($productArray, $paramssld, $paramssld2, $paramssld3, $paramssld4, $ratingsArray, $reviewsArray, $spamReviewsArray, $captchaFirstNum, $captchaSecondNum, $captcha_val);
         }
         else{
             if(isset($_GET['asc_seller_product_id'])){
                 return front_end_ask_seller();
             }
             else{
-                $paramssld1 = "";
-                $paramssld2 = "";
                 return front_end_catalog($images, $paramssld, $paramssld3, $catalog, $catalogsFromAlbumArray);
             }
         }
@@ -207,23 +208,31 @@ function show_catalogs_from_album($id)
             return front_end_catalog($images, $paramssld, $paramssld3, $catalog, $catalogsFromAlbumArray);
         }
         else if(isset($_GET['single_prod_id'])){
+            
+            $catalog_id = $id;
             $id = $_GET['single_prod_id'];
             
-            $getRatings=$wpdb->prepare("SELECT * FROM ".$wpdb->prefix."huge_it_catalog_rating WHERE prod_id = '%d'",$id);
+            $getProduct=$wpdb->prepare("SELECT * FROM ".$wpdb->prefix."huge_it_catalog_products WHERE id = '%d' order by ordering ASC",$id);
+            $productArray=$wpdb->get_results($getProduct);
+                        
+            
+            if($productArray[0]->catalog_id != $catalog_id){  }
+            else{
+                $getRatings=$wpdb->prepare("SELECT * FROM ".$wpdb->prefix."huge_it_catalog_rating WHERE prod_id = '%d'",$id);
             $ratingsArray=$wpdb->get_results($getRatings);
             
             $getReviews=$wpdb->prepare("SELECT * FROM ".$wpdb->prefix."huge_it_catalog_reviews WHERE product_id = '%d'",$id);
             $reviewsArray=$wpdb->get_results($getReviews);
             
-            $getProduct=$wpdb->prepare("SELECT * FROM ".$wpdb->prefix."huge_it_catalog_products WHERE id = '%d' order by ordering ASC",$id);
-            $productArray=$wpdb->get_results($getProduct);
+            $getSpams = $wpdb->prepare("SELECT * FROM ".$wpdb->prefix."huge_it_catalog_reviews WHERE spam = '%d'",1);
+            $spamsArray = $wpdb->get_results($getSpams);
+//            var_dump($spamsArray);
             
             $spamReviewsArray = array();
-            foreach ($reviewsArray as $spamReview) {
-                if($spamReview->spam != 0) $spamReviewsArray[] = $spamReview->ip;
+            foreach ($spamsArray as $spamReview) {
+                if($spamReview->spam != 0) { $spamReviewsArray[] = $spamReview->ip; }
             }
-            
-             
+//            var_dump($spamReviewsArray);
 //            $query="SELECT * FROM ".$wpdb->prefix."huge_it_catalog_product_params";
 //            $rowspar = $wpdb->get_results($query);
             $paramssld = array();
@@ -233,13 +242,11 @@ function show_catalogs_from_album($id)
 //                $paramssld[$key] = $value;
 //            }
             
-            $paramssld2 = array();
-            $paramssld = "";
-            
 //            $query="SELECT * FROM ".$wpdb->prefix."huge_it_catalog_params";
 //            $rowspar2 = $wpdb->get_results($query);
-//
-//            $paramssld2 = array();
+
+            $paramssld2 = array();
+            $paramssld = "";
 //            foreach ($rowspar2 as $rowpar2) {
 //                $key2 = $rowpar2->name;
 //                $value2 = $rowpar2->value;
@@ -247,7 +254,7 @@ function show_catalogs_from_album($id)
 //            }
             
             include_once( ABSPATH . 'wp-admin/includes/plugin.php' );
-                $paramssld4 = array();
+            $paramssld4 = array();
             if ( is_plugin_active( 'product-catalog-releated-products/product-catalog-releated-products.php' ) ){
                 $query="SELECT * FROM ".$wpdb->prefix."huge_it_catalog_related_params";
                 $rowspar4 = $wpdb->get_results($query);
@@ -259,13 +266,14 @@ function show_catalogs_from_album($id)
                 }
             }
             
-            $captchaFirstNum = rand(0,9);
-            $captchaSecondNum = rand(0,9);
+            $captchaFirstNum = rand(1,9);
+            $captchaSecondNum = rand(1,9);
             $captcha_val = $captchaFirstNum + $captchaSecondNum;
-            $captchaValues = $captchaFirstNum.",".$captchaSecondNum;
-            $wpdb->query($wpdb->prepare("UPDATE ".$wpdb->prefix."huge_it_catalog_products  SET published_in_sl_width = '%s'", $captchaValues));
+            $wpdb->query($wpdb->prepare("UPDATE ".$wpdb->prefix."huge_it_catalog_products  SET published_in_sl_width = '%s'", $captcha_val));
+//            var_dump($paramssld4);exit;
             
-            function show_related_products($productId, $carousel_vertical, $show_arrows, $show_pager, $productArray){
+            if(!(function_exists("show_related_products"))){
+                function show_related_products($productId, $carousel_vertical, $show_arrows, $show_pager, $productArray){
                 global $wpdb;
                 $relatedProductsArray=$wpdb->get_results($wpdb->prepare("SELECT * FROM ".$wpdb->prefix."huge_it_catalog_products WHERE catalog_id = '%d' AND `id` NOT IN ('$productId') order by ordering ASC", $productArray->catalog_id));
             ?>
@@ -305,15 +313,12 @@ function show_catalogs_from_album($id)
                         </li>
               <?php } ?>
                 </ul>
-                
-                <?php if($show_pager == "on"){ ?>
-<!--                          <div class="pager-block">
-                              <div class="cycle-pager" id="pager_<?php echo $productId; ?>" ></div>
-                          </div>-->
-                <?php } ?>
-      <?php }
+
+      <?php     }
+            }
+                return html_single_product_page($productArray, $paramssld, $paramssld2, $paramssld3, $paramssld4, $ratingsArray, $reviewsArray, $spamReviewsArray, $captchaFirstNum, $captchaSecondNum, $captcha_val);
+            }
             
-            return html_single_product_page($productArray, $paramssld, $paramssld2, $paramssld3, $paramssld4, $ratingsArray, $reviewsArray, $spamReviewsArray, $captchaFirstNum, $captchaSecondNum, $captcha_val);
         }
         else
             return album_front_end($paramssld, $paramssld3, $catalogsFromAlbumArray);
@@ -324,7 +329,9 @@ function show_catalogs_single_product($id){
 
  global $wpdb;
 // var_dump($id);exit;
-            
+            if(isset($_GET['single_prod_id'])){
+                $id = $_GET['single_prod_id'];
+            }
             $query="SELECT * FROM ".$wpdb->prefix."huge_it_catalog_general_params";
             $rowspar3 = $wpdb->get_results($query);
 
@@ -391,7 +398,8 @@ function show_catalogs_single_product($id){
                 }
             }
             
-            function show_related_products($productId, $carousel_vertical, $show_arrows, $show_pager, $productArray){
+            if(!(function_exists("show_related_products"))){
+                function show_related_products($productId, $carousel_vertical, $show_arrows, $show_pager, $productArray){
                 global $wpdb;
                 $relatedProductsArray=$wpdb->get_results($wpdb->prepare("SELECT * FROM ".$wpdb->prefix."huge_it_catalog_products WHERE catalog_id = '%d' AND `id` NOT IN ('$productId') order by ordering ASC", $productArray->catalog_id));
             ?>
@@ -438,6 +446,7 @@ function show_catalogs_single_product($id){
                           </div>-->
                 <?php } ?>
       <?php }
+            }
             
             return html_single_product_page($productArray, $paramssld, $paramssld2, $paramssld3, $paramssld4, $ratingsArray, $reviewsArray, $spamReviewsArray, $captchaFirstNum, $captchaSecondNum, $captcha_val);
 
