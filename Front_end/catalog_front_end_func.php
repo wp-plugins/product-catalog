@@ -64,6 +64,7 @@ function showPublishedcatalogs_1($id)
 //            $query="SELECT * FROM ".$wpdb->prefix."huge_it_catalog_product_params";
 //            $rowspar = $wpdb->get_results($query);
             $paramssld = array();
+            $paramssld = "";
 //            foreach ($rowspar as $rowpar) {
 //                $key = $rowpar->name;
 //                $value = $rowpar->value;
@@ -151,6 +152,7 @@ function showPublishedcatalogs_1($id)
             
         }
         else{
+            $paramssld = "";
             if(isset($_GET['asc_seller_product_id'])){
                 return front_end_ask_seller();
             }
