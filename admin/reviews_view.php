@@ -7,7 +7,7 @@ if (!function_exists('current_user_can')) {
     die('Access Denied');
 }
 
-function html_show_reviews($reviewsArray) { $keyForBackground = 1;  //   var_dump($reviewsArray); ?>
+function html_show_reviews($reviewsArray) { $reviewsArray = array_reverse($reviewsArray, true); $keyForBackground = 1;  //   var_dump($reviewsArray); ?>
 <div class="wrap">
     <?php $path_site2 = plugins_url("../images/", __FILE__); ?>
         <div style="float: left;">

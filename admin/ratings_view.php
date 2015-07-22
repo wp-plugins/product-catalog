@@ -7,7 +7,7 @@ if (!function_exists('current_user_can')) {
     die('Access Denied');
 }
 
-function html_show_ratings($ratingsArray) { $keyForBackground = 1;  //  var_dump($ratingsArray);exit; ?>
+function html_show_ratings($ratingsArray){ $ratingsArray = array_reverse($ratingsArray, true); $keyForBackground = 1;  //  var_dump($ratingsArray);exit; ?>
 <div class="wrap">
     <?php $path_site2 = plugins_url("../images/", __FILE__); ?>
         <div style="float: left;">

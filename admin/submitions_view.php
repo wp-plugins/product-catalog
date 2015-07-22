@@ -48,7 +48,7 @@ else{ $visible_submitions = "1-50"; } ?>
                                 <input type="checkbox" name="all" />
                                 <select class="">
                                         <option value="none">None</option>
-                                        <option value="all">All</option>
+                                        <!--<option value="all">All</option>-->
                                         <option value="read">Read</option>
                                         <option value="unread">Unread</option>
 
@@ -398,11 +398,11 @@ jQuery( document ).ready(function(){
         
         jQuery('#hugeit_messages_page #hugeit_top_controls .controls-list .select select').change(function(){   //   alert(jQuery(this).val());
             var select_val = jQuery(this).val();
-            if(select_val == "all"){    //    alert(select_val);
-                jQuery("#the-comment-list tr").each(function(){
-                    jQuery(this).find("input[name='check_comments']").attr("checked","checked");
-                });
-            }
+//            if(select_val == "all"){    //    alert(select_val);
+//                jQuery("#the-comment-list tr").each(function(){
+//                    jQuery(this).find("input[name='check_comments']").attr("checked","checked");
+//                });
+//            }
             if(select_val == "none"){
                 jQuery(this).parent().find("input[name='all']").removeAttr("checked");
                 jQuery("#the-comment-list tr").each(function(){
