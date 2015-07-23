@@ -4554,7 +4554,7 @@ $paramssld["ht_single_product_asc_seller_popup_close_style"] = "dark";
 }
 
 .huge_it_catalog_single_product_page div.left-block .thumbs-block ul li {
-	margin:0px 3px 0px 2px;
+	margin: 3px;
 	padding:0px;
 	width:<?php echo $paramssld['ht_single_product_thumbs_width']; ?>px; 
 	height:<?php echo $paramssld['ht_single_product_thumbs_height']; ?>px !important; 
@@ -5616,9 +5616,9 @@ $paramssld["ht_single_product_asc_seller_popup_close_style"] = "dark";
        else { ?>
                 /*display: block;*/
                 margin: auto;
-                margin-right: 2%;
+                margin-right: 4%;
                 padding: 0;
-                width: 98%;
+                width: 96%;
        <?php } ?>
     }
     
@@ -6018,7 +6018,7 @@ jQuery(window).resize(function(){
 
 function horizontal_slider_load_function(){
         var kayficent = <?php echo $paramssld4['ht_catalog_related_products_horizontal_elem_width'] / $paramssld4['ht_catalog_related_products_horizontal_elem_height']; ?>;
-        var container_width = jQuery(".huge-it-related-carousel").parent().width() * 0.94;
+        var container_width = jQuery(".huge-it-related-carousel").parent().width() * 0.96;
         var elements_max_width = container_width / <?php echo $paramssld4['ht_catalog_related_products_visible_count']; ?>;
         var element_max_height = elements_max_width  / kayficent;
         jQuery(".huge-it-related-carousel li").width(elements_max_width);
