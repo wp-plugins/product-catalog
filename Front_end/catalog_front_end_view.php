@@ -480,7 +480,7 @@ function front_end_catalog($images, $paramssld, $paramssld3, $catalog)
                                         });
                                         var i;
                                         for(i = 1; i <= group_count; i++){
-                                            jQuery(".catalog_group" + i).colorbox({rel:'catalog_group' + i});
+                                            jQuery(".catalog_group" + i + "<?php echo "_".$catalogID; ?>").colorbox({rel:'catalog_group' + i + "<?php echo "_".$catalogID; ?>"});
                                         }
         				
                                         var catalog_slider_slides_count = 0;
@@ -490,8 +490,8 @@ function front_end_catalog($images, $paramssld, $paramssld3, $catalog)
                                         catalog_slider_slides_count = catalog_slider_slides_count - 1;
                                         
                                         for(i = 1; i <= catalog_slider_slides_count; i++){
-                                            jQuery(".catalog_slider_group" + i).colorbox({rel:'catalog_slider_group' + i});
-                                            jQuery(".clone .catalog_slider_group" + i).removeClass("catalog_slider_group" + i + " cboxElement");
+                                            jQuery(".catalog_slider_group" + i + "_<?php echo $catalogID; ?>").colorbox({rel:'catalog_slider_group' + i + "_<?php echo $catalogID; ?>"});
+                                            jQuery(".clone .catalog_slider_group" + i + "_<?php echo $catalogID; ?>").removeClass("catalog_slider_group" + i + "_<?php echo $catalogID; ?>" + " cboxElement");
                                         }
                                         //alert(catalog_slider_slides_count);
                                         
@@ -991,7 +991,7 @@ function front_end_catalog($images, $paramssld, $paramssld3, $catalog)
                                                               {
                                                               ?>
                                                               <li>
-                                                                      <a href="<?php echo $img; ?>" class="catalog_group<?php echo $group_key; ?>"><img src="<?php echo $img; ?>"></a>
+                                                                      <a href="<?php echo $img; ?>" class="catalog_group<?php echo $group_key."_".$catalogID; ?>"><img src="<?php echo $img; ?>"></a>
                                                               </li>
                                                               <?php
                                                               }
@@ -1631,7 +1631,7 @@ var defaultBlockWidth=<?php echo $paramssld['ht_view0_block_width']; ?>;
                                           
                                       <?php
                                             if($paramssld['ht_view1_show_thumbs']=='off'){ ?>
-                                                <a href="<?php echo $imgurl[0] ?>" class="catalog_group<?php echo $group_key; ?>">
+                                                <a href="<?php echo $imgurl[0] ?>" class="catalog_group<?php echo $group_key."_".$catalogID; ?>">
                                                     <img id="wd-cl-img<?php echo $key; ?>" src="<?php echo $imgurl[0]; ?>" />
                                                 </a>
                                       <?php }
@@ -1666,7 +1666,7 @@ var defaultBlockWidth=<?php echo $paramssld['ht_view0_block_width']; ?>;
                                                               {
                                                               ?>
                                                               <li>
-                                                                      <a href="<?php echo $img; ?>" class="catalog_group<?php echo $group_key; ?>"><img src="<?php echo $img; ?>"></a>
+                                                                      <a href="<?php echo $img; ?>" class="catalog_group<?php echo $group_key."_".$catalogID; ?>"><img src="<?php echo $img; ?>"></a>
                                                               </li>
                                                               <?php
                                                               }
@@ -3235,7 +3235,7 @@ var defaultBlockHeight=<?php echo $paramssld['ht_view2_element_height']; ?>;
                                       <div class="main-image-block_<?php echo $catalogID; ?> for_zoom">
                                               <?php $imgurl=explode(";",$row->image_url); ?>
                                               <?php 	if($row->image_url != ';'){ ?>
-                                                <a href="<?php echo $imgurl[0]; ?>" class="catalog_group<?php echo $group_key; ?>"><img id="wd-cl-img<?php echo $key; ?>"src="<?php echo $imgurl[0]; ?>"></a>
+                                                <a href="<?php echo $imgurl[0]; ?>" class="catalog_group<?php echo $group_key."_".$catalogID; ?>"><img id="wd-cl-img<?php echo $key; ?>"src="<?php echo $imgurl[0]; ?>"></a>
                                               <?php } else { ?>
                                                       <a href="<?php echo $imgurl[0]; ?>"><img id="wd-cl-img<?php echo $key; ?>" src="images/noimage.png"></a>
                                               <?php
@@ -3256,7 +3256,7 @@ var defaultBlockHeight=<?php echo $paramssld['ht_view2_element_height']; ?>;
                                                       foreach($imgurl as $key=>$img)
                                                       {
                                                               ?>
-                                                                      <li><a href="<?php echo $img;?>" class="catalog_group<?php echo $group_key; ?>"><img src="<?php echo $img; ?>"></a></li>
+                                                                      <li><a href="<?php echo $img;?>" class="catalog_group<?php echo $group_key."_".$catalogID; ?>"><img src="<?php echo $img; ?>"></a></li>
                                                       <?php
                                                       }
                                                       ?>
@@ -3737,7 +3737,7 @@ jQuery(function(){
 			<div class="slider-content-wrapper">
 				<div class="image-block_<?php echo $catalogID; ?>  ">
 					<?php 	if($row->image_url != ';'){ ?>
-					<a class="<?php if($paramssld['ht_view5_allow_lightbox'] == "on"){ echo "catalog_slider_group".$catalog_slider_group; } ?> for_zoom" href="<?php echo $imgurl[0]; ?>" >
+					<a class="<?php if($paramssld['ht_view5_allow_lightbox'] == "on"){ echo "catalog_slider_group".$catalog_slider_group."_".$catalogID; } ?> for_zoom" href="<?php echo $imgurl[0]; ?>" >
                                             <img class="main-image" src="<?php echo $imgurl[0]; ?>" alt="" />
                                         </a>
 					<?php } else { ?>
@@ -3751,7 +3751,7 @@ jQuery(function(){
 						<?php  
 						array_shift($imgurl);
                                                 foreach($imgurl as $key=>$img){?>
-                                                        <li><a class="<?php if($paramssld['ht_view5_allow_lightbox'] == "on"){ echo "catalog_slider_group".$catalog_slider_group; } ?>" href="<?php echo $img; ?>"><img src="<?php echo $img; ?>"></a></li>
+                                                        <li><a class="<?php if($paramssld['ht_view5_allow_lightbox'] == "on"){ echo "catalog_slider_group".$catalog_slider_group."_".$catalogID; } ?>" href="<?php echo $img; ?>"><img src="<?php echo $img; ?>"></a></li>
                                                 <?php } ?>
                                             </ul>
                                         </div>
