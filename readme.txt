@@ -1,9 +1,9 @@
 === Product Catalog ===
 Contributors: Huge-IT
 Donate link: http://huge-it.com/product-catalog/
-Tags: catalog, product reviews, catalogs, blog catalog, online store, product tabs, catalogue, products, vote, wp catalog, WP Catalogue, directory, product portfolio, product catalog, shopping cart, product catalogue, store, product feed, digital goods, listing, list, collection, product, attributes, display products, inventory, list products, product gallery, products catalog, catalog of goods, e-commerce, commerce, ecommerce, shop, shopping, wordpress ecommerce, product review, woocommerce catalog, shoping, online shop, ecomerce, wp e-commerce, e-shop, WordPress shopping cart, wordpress store, shipping, sell products, selling, restaurant menu, sales, sell, product widget, product management, review, catalog mode, post, posts, catalog post,
+Tags: catalog, product reviews, catalogs, blog catalog, online store, product tabs, catalogue, products, vote, wp catalog, WP Catalogue, directory, product portfolio, product catalog, shopping cart, product catalogue, store, product feed, digital goods, listing, list, collection, product, attributes, display products, inventory, list products, product gallery, products catalog, catalog of goods, e-commerce, commerce, ecommerce, shop, shopping, wordpress ecommerce, product review, woocommerce catalog, shoping, online shop, ecomerce,e-comerce, wp e-commerce, e-shop, WordPress shopping cart, wordpress store, shipping, sell products, selling, restaurant menu, sales, sell, product widget, product management, review, catalog mode, post, posts, catalog post,
 Requires at least: 3.0.1
-Tested up to: 4.2.4
+Tested up to: 4.3
 Stable tag: 1.1.8
 License: GPLv2 or later
 License URI: http://www.gnu.org/licenses/gpl-2.0.html
@@ -20,7 +20,7 @@ Let us introduce our Huge-IT Product Catalog incomparable plugin. To begin with,
 * [User Product Catalog Manual](http://huge-it.com/wordpress-plugins-product-catalog-user-manual/)
 
 Let us introduce our Huge-IT Product Catalog incomparable plugin. To begin with, why do we need this plugin and what are the advantages.
-The plugin is made for demonstration, sale, advertisements for your products. Imagine a stand with a variety of catalogs with a specific product category. To imagine is not difficult, to use is even easier.
+The plugin is made for demonstration, sale, advertisements for your products.In fact its gives you ability to create own online store for your wordpress website. Imagine a stand with a variety of catalogs with a specific product category. To imagine is not difficult, to use is even easier. The zooming options, price,discount price parameters and comment blocks with many other features will make your online store look like professional and advanced e-commerce website.
 
 You have the possibility to add an unlimited number of products, every product can be customized in detail to your preference. Collect all products in certain categories and add them catalog. Catalog may also be customized according to your taste, to allow a detailed understanding of the product in the catalog. In addition, each product may be associated with the image. Customers are provided with the ability of rate the products, and writing feedback about products shown in the catalog, as well as writing reviews which will show up for each product. 
 
@@ -53,15 +53,15 @@ Plugin includes two kind of shortcodes. The short one is for posts&pages, the lo
 
 ### 5 View Options - Product Catalog
 
-Block Toggle Up-Down. This view will demonstrate the product catalog main image in similar boxes with title, and little arrow next to it, as you press the arrow opens vertical tape, which consists of additional images, description and other parameters about product, and “View Product” button. Pressing on that button you will get to product catalog main page. All images open with Lightbox.
+Block Toggle Up-Down. The compact solution for your shop page. The view will demonstrate the product catalog main image in similar boxes with title, and little arrow next to it, as you press the arrow opens vertical tape, which consists of additional images, description and other parameters about product, and “View Product” button. Pressing on that button you will get to product catalog main page. All images open with Lightbox.
 
-Full-Height Blocks. Opened vertical tape, with large main image, additional images, text, information about product catalog and “View Product” button. Pressing on that button you will get to product catalog main page.  All images open with Lightbox.
+Full-Height Blocks. You definitely have seen e-commerce websites with such design. Its opened vertical tape, with large main image, additional images, text, information about product catalog and “View Product” button. Pressing on that button you will get to product catalog main page.  All images can be opened with Lightbox.
 
-Catalog / Content Popup. In closed position it is fixed boxes with cover/mail image and title, as you click on image, opens popup with larger main and additional images in it, title, description and other information about the product next to it, also “View Product” button. Pressing on that button you will get to product catalog main page.
+Catalog / Content Popup. In closed position it is fixed boxes with cover/mail image and title, as you click on image, opens popup with larger main and additional images in it, title, description and other information about the product next to it, so its gives fastness for your store as shop will not open new page but big popup with main information, also popup has “View Product” button. Pressing on that button you will get to product catalog main page.
 
 Full-With Blocks. Main image with tiny additional images under it, all of them can be opened with Lightbox. Next to the images you can find title, description, product information and  “View Product” button. Pressing on that button you will get to product catalog main page.
 
-Content Slider. Slider with main image with tiny additional images under it, all of them can be opened with Lightbox. Next to the images you can find title, description, product information and  “View Product” button. Pressing on that button you will get to product catalog main page. Slide the content manually by pressing on arrows.
+Content Slider.Slider with main image with tiny additional images under it, all of them can be opened with Lightbox. Next to the images you can find title, description, product information and  “View Product” button. Pressing on that button you will get to product catalog main page. Slide the content manually by pressing on arrows. You also may use it in your shop with another view as widget or advertisement for another category of store.
 
 Upgrade to [WordPress Product Catalog Pro](http://huge-it.com/product-catalog) to Customizable Styles and Colors.
 
