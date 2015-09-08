@@ -1,11 +1,11 @@
 <?php	
     if(function_exists('current_user_can'))
-    if(!current_user_can('manage_options')) {
-    die('Access Denied');
-}	
-if(!function_exists('current_user_can')){
-	die('Access Denied');
-}
+        if(!current_user_can('delete_pages')) {
+        die('Access Denied');
+    }	
+    if(!function_exists('current_user_can')){
+    	die('Access Denied');
+    }
 
 function showcatalog()
 {
@@ -506,15 +506,17 @@ function apply_cat($id)
                 $wpdb->query($wpdb->prepare("UPDATE ".$wpdb->prefix."huge_it_catalogs SET  sl_height               = '%s'  WHERE id = '%s' ", $_POST["sl_height"]           , $id));
                 $wpdb->query($wpdb->prepare("UPDATE ".$wpdb->prefix."huge_it_catalogs SET  pause_on_hover          = '%s'  WHERE id = '%s' ", $_POST["pause_on_hover"]      , $id));
                 $wpdb->query($wpdb->prepare("UPDATE ".$wpdb->prefix."huge_it_catalogs SET  catalog_list_effects_s  = '%s'  WHERE id = '%s' ", $_POST["catalog_effects_list"], $id));
-                $wpdb->query($wpdb->prepare("UPDATE ".$wpdb->prefix."huge_it_catalogs SET  description             = '%s'  WHERE id = '%s' ", $_POST["sl_pausetime"]        , $id));
+//                $wpdb->query($wpdb->prepare("UPDATE ".$wpdb->prefix."huge_it_catalogs SET  description             = '%s'  WHERE id = '%s' ", $_POST["sl_pausetime"]        , $id));
                 $wpdb->query($wpdb->prepare("UPDATE ".$wpdb->prefix."huge_it_catalogs SET  param                   = '%s'  WHERE id = '%s' ", $_POST["sl_changespeed"]      , $id));
-                $wpdb->query($wpdb->prepare("UPDATE ".$wpdb->prefix."huge_it_catalogs SET  sl_position             = '%s'  WHERE id = '%s' ", $_POST["sl_position"]         , $id));
+//                $wpdb->query($wpdb->prepare("UPDATE ".$wpdb->prefix."huge_it_catalogs SET  sl_position             = '%s'  WHERE id = '%s' ", $_POST["sl_position"]         , $id));
                 $wpdb->query($wpdb->prepare("UPDATE ".$wpdb->prefix."huge_it_catalogs SET  ordering                = '1'   WHERE id = '%s' ", $id));
                 $wpdb->query($wpdb->prepare("UPDATE ".$wpdb->prefix."huge_it_catalogs SET  categories              = '%s'  WHERE id = '%s' ", $_POST["allCategories"]       , $id));
                 $wpdb->query($wpdb->prepare("UPDATE ".$wpdb->prefix."huge_it_catalogs SET  ht_show_sorting         = '%s'  WHERE id = '%s' ", $_POST["ht_show_sorting"]     , $id));
                 $wpdb->query($wpdb->prepare("UPDATE ".$wpdb->prefix."huge_it_catalogs SET  ht_show_filtering       = '%s'  WHERE id = '%s' ", $_POST["ht_show_filtering"]   , $id));
                 $wpdb->query($wpdb->prepare("UPDATE ".$wpdb->prefix."huge_it_catalogs SET  cat_thumb               = '%s'  WHERE id = '%s' ", $_POST["cat_thumb"]           , $id));
-
+                $wpdb->query($wpdb->prepare("UPDATE ".$wpdb->prefix."huge_it_catalogs SET  pagination_type         = '%s'  WHERE id = '%s' ", $_POST["pagination_type"]     , $id));
+                $wpdb->query($wpdb->prepare("UPDATE ".$wpdb->prefix."huge_it_catalogs SET  count_into_page         = '%s'  WHERE id = '%s' ", $_POST["count_into_page"]     , $id));
+                
 
                 $query=$wpdb->prepare("SELECT * FROM ".$wpdb->prefix."huge_it_catalogs WHERE id = %d", $id);
                 $row=$wpdb->get_row($query);

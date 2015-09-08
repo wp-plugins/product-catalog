@@ -4,7 +4,7 @@
 Plugin Name: Huge IT Product Catalog
 Plugin URI: http://huge-it.com/product-catalog
 Description: Let us introduce our Huge-IT Product Catalog incomparable plugin. To begin with, why do we need this plugin and what are the advantages.
-Version: 1.1.8
+Version: 1.1.9
 Author: http://huge-it.com/
 License: GNU/GPLv3 http://www.gnu.org/licenses/gpl-3.0.html
 */
@@ -224,6 +224,9 @@ function catalog_frontend_scripts_and_styles() {
     
     wp_register_style( 'lightbox-css', plugins_url('/style/lightbox.css', __FILE__) );   
     wp_enqueue_style( 'lightbox-css' );
+    
+     wp_register_style( 'fontawesome-css', plugins_url('/style/css/font-awesome.css', __FILE__) );   
+     wp_enqueue_style( 'fontawesome-css' );
 }
 add_action('wp_enqueue_scripts', 'catalog_frontend_scripts_and_styles');
 
@@ -242,7 +245,7 @@ function huge_it_catalog_options_panel()
 //    $Albums = add_submenu_page('catalogs_huge_it_catalog', 'Catalog Stand', 'Catalog Stand', 'manage_options', 'huge_it_catalog_albums_page', 'huge_it_catalog_albums_page');
     $general_options = add_submenu_page('catalogs_huge_it_catalog', 'General Options', 'General Options', 'manage_options', 'huge_it_catalog_general_options_page', 'huge_it_catalog_general_options_page');
     $Submitions = add_submenu_page('catalogs_huge_it_catalog', 'Submissions', 'Submissions', 'manage_options', 'huge_it_catalog_submitions_page', 'huge_it_catalog_submitions_page');
-    $Reviews = add_submenu_page('catalogs_huge_it_catalog', 'Reviews Manager', 'Reviews Manager', 'manage_options', 'huge_it_catalog_reviews_page', 'huge_it_catalog_reviews_page');
+    $Reviews = add_submenu_page('catalogs_huge_it_catalog', 'Comments Manager', 'Comments Manager', 'manage_options', 'huge_it_catalog_reviews_page', 'huge_it_catalog_reviews_page');
     $Ratings = add_submenu_page('catalogs_huge_it_catalog', 'Ratings Manager', 'Ratings Manager', 'manage_options', 'huge_it_catalog_ratings_page', 'huge_it_catalog_ratings_page');
     $page_option = add_submenu_page('catalogs_huge_it_catalog', 'Catalog Options', 'Catalog Options', 'manage_options', 'Options_product_Catalog_styles', 'Options_product_Catalog_styles');
     $products_options = add_submenu_page('catalogs_huge_it_catalog', 'Products Options', 'Products Options', 'manage_options', 'huge_it_catalog_products_page', 'huge_it_catalog_products_page');
@@ -868,21 +871,24 @@ function huge_it_catalog_my_action_callback_frontend() {
                 if($allParams->name == "ht_catalog_general_admin_from_text")     { $from = $allParams->value; }
             }
 
-            $massage = "<table>
-                                <tr>
-                                    <td width='1000' >
-                                            ".$massage."
-                                     </td>
-                                </tr>
-                                <tr><td height='10' ></td></tr>
+            $massage = "<table class='message-block'>
                                 <tr>
                                     <td width='1000'><strong>Customer Name: </strong> ".$name." </td>
                                 </tr>
                                 <tr>
-                                    <td width='1000'><strong>Phone: </strong>".$phone."</td>
+                                    <td width='1000'><strong>Customer E-mail: </strong> ".$mail." </td>
                                 </tr>
                                 <tr>
-                                    <td width='1000'><strong>Location: </strong> ".$user_ip." </td>
+                                    <td width='1000'><strong>Phone: </strong> ".$phone."</td>
+                                </tr>
+                                <tr>
+                                    <td width='1000'><strong>IP Adress: </strong> ".$user_ip." </td>
+                                </tr>
+                                <tr><td height='10' ></td></tr>
+                                <tr class='message-text'>
+                                    <td width='1000' >
+                                            <strong>Message: </strong> ".$massage."
+                                    </td>
                                 </tr>
                         </table>";
 		//$sendMessage = preg_replace('/\b{userMessage}\b/', $massage, $sendMessage);
@@ -967,8 +973,465 @@ function huge_it_catalog_my_action_callback_frontend() {
                     }
                 }
             }
+            elseif($_POST["post"] == "load_more_elements_into_catalog"){
+                $catalog_id = $_POST["catalog_id"];
+                $old_count = $_POST["old_count"];
+                $count_into_page = $_POST["count_into_page"];
+                $show_thumbs = $_POST["show_thumbs"];
+                $show_description = $_POST["show_description"];
+                $show_linkbutton = $_POST["show_linkbutton"];
+                $parmalink = $_POST["parmalink"];
+                
+                $allow_lightbox = $_POST["allow_lightbox"];
+                if($allow_lightbox == 'on'){ $allow_lightbox = 'catalog_colorbox_grouping_'.$catalog_id; } else { $allow_lightbox = ""; }
+                
+                
+                $show_price = $_POST["show_price"];
+                if($show_price == "on"){
+                   $price_text = $_POST["price_text"];
+                }else{ $price_text = ""; }
+                
+                if($show_linkbutton == "on"){
+                    $linkbutton_text = $_POST["linkbutton_text"];
+                }else{ $linkbutton_text = ""; }
+                
+                $from = $old_count + 1;
+                $to = $count_into_page - 1;
+                
+                $query = $wpdb->prepare("SELECT * FROM ".$wpdb->prefix."huge_it_catalog_products WHERE catalog_id = '%d' order by ordering ASC LIMIT %d, %d ",$catalog_id, $from, $count_into_page);
+                $moreImagesInArray = $wpdb->get_results($query);
+                
+                $view = $_POST["view"];
+                
+                switch ($view){
+                    case 0:
+                        $group_key = $from + 1;
+                        $moreImages = "";
+                        foreach($moreImagesInArray as $key=>$row)
+                        {
+
+                            if($row->single_product_url_type == 'default'){
+                                $page_link = $_SERVER['SERVER_NAME'].$_SERVER['REQUEST_URI'];
+                                if (strpos(get_permalink(),'/?') !== false) { $product_page_link = get_permalink().'&single_prod_id=$row->id'; } else { if (strpos(get_permalink(),'/') !== false) { $product_page_link = get_permalink().'?single_prod_id=$row->id'; } else { $product_page_link = get_permalink().'/?single_prod_id=$row->id'; } }
+                            }
+                            else{ $product_page_link = $row->single_product_url_type; }
+                            $my_linkbutton = "<div class='button-block'>
+                                                  <a href='".$product_page_link."' target='_blank'>".$linkbutton_text."</a>
+                                              </div>";
+                            if($show_description == "on"){
+                                $description = "<div class='description-block_".$catalog_id."'>
+                                                    <p>".$row->description."</p>
+                                                </div>";
+                            }else{ $description = ""; }
+
+                            $imgurl=explode(";",$row->image_url);
+
+                            $thumbs_position = $_POST["thumbs_position"];
+                            
+                            $thumbs_li = "";
+                            foreach($imgurl as $key=>$img)
+                            {
+                                if($img != "" && $img != ";"){
+                                    $thumbs_li .="<li>
+                                                <a href='".$img."' class='catalog_group".$group_key."_".$catalog_id."'><img src='".$img."'></a>
+                                            </li>";
+                                }
+                            }
+
+
+                            $group_key ++;
+                            $moreImages .= "<div class='element_".$catalog_id." ".$allow_lightbox."' data-symbol='".$row->name."' data-category='alkaline-earth'>";
+                            $moreImages .= "<div class='default-block_".$catalog_id."'>";
+                            $moreImages .= "<div class='image-block_".$catalog_id." for_zoom'>";
+//                            $imgurl=explode(";",$row->image_url);
+                             if($row->image_url != ';'){
+                                     $moreImages .= "<img id='wd-cl-img".$key."' src='".$imgurl[0]."' />  </a>";
+                             }else{
+                                 $moreImages .= "<img id='wd-cl-img".$key."' src='images/noimage.png' />";
+                             }
+
+                             $moreImages .= "</div>
+                                                <div class='title-block_".$catalog_id."'>
+                                                    <h3 class='title'>".$row->name."</h3>
+                                                    <div class='open-close-button'></div>
+                                                </div>
+                                        </div>
+                                        <div class='wd-catalog-panel_".$catalog_id."' id='panel".$key."'>";
+//                             
+                             if($show_thumbs == "on" && $thumbs_position == "before"){
+                                 $moreImages .= "<div>
+                                                    <ul class='thumbs-list_".$catalog_id."'>
+                                                        ".$thumbs_li."
+                                                    </ul>
+                                                </div>";
+                             }
+                             if($show_description == "on"){
+                                 $moreImages .= "<div class='description-block_".$catalog_id."'>
+                                                    <p>".$row->description."</p>
+                                                </div>";
+                             }
+                             if($show_thumbs == "on" && $thumbs_position == "after"){
+                                 $moreImages .= "<div>
+                                                    <ul class='thumbs-list_".$catalog_id."'>
+                                                        ".$thumbs_li."
+                                                    </ul>
+                                                </div>";
+                             }
+                             if($show_price == "on" && $row->price != ''){
+                                   if($row->market_price == '') { $market_style = "style='text-decoration: none !important;'"; } else { $market_style = ""; }
+                                   $moreImages .= "<div class='price-block_".$catalog_id."'>
+                                                        <span class='old-price-block' >".$price_text." : <span class='old-price' ".$market_style.">".$row->price."</span></span>
+                                                        <span class='discont-price-block' ><span class='discont-price' >".$row->market_price."</span></span>
+                                                  </div>";
+                            }
+                            if($row->single_product_url_type == 'default'){
+                                    $page_link = $_SERVER['SERVER_NAME'].$_SERVER['REQUEST_URI'];
+                                    if (strpos($parmalink,'/?') !== false) { $product_page_link = $parmalink.'&single_prod_id='.$row->id; } else { if (strpos($parmalink,'/') !== false) { $product_page_link = $parmalink.'?single_prod_id='.$row->id; } else { $product_page_link = $parmalink.'/?single_prod_id='.$row->id; } }
+                            }
+                            else{ $product_page_link = $row->single_product_url_type; }
+                            $moreImages .= "<div class='button-block'>
+                                                <a href='".$product_page_link."' target='_blank'>".$linkbutton_text."</a>
+                                            </div>
+                                        </div>
+                                    </div>";
+                        }
+
+                        echo $moreImages;
+                        die();
+                        break;
+                    case 1:
+                        
+                $group_key = $from + 1;
+                        $moreImages = "";
+                        foreach($moreImagesInArray as $key=>$row)
+                        {
+
+                            if($row->single_product_url_type == 'default'){
+                                $page_link = $_SERVER['SERVER_NAME'].$_SERVER['REQUEST_URI'];
+                                if (strpos(get_permalink(),'/?') !== false) { $product_page_link = get_permalink().'&single_prod_id=$row->id'; } else { if (strpos(get_permalink(),'/') !== false) { $product_page_link = get_permalink().'?single_prod_id=$row->id'; } else { $product_page_link = get_permalink().'/?single_prod_id=$row->id'; } }
+                            }
+                            else{ $product_page_link = $row->single_product_url_type; }
+                            $my_linkbutton = "<div class='button-block'>
+                                                  <a href='".$product_page_link."' target='_blank'>".$linkbutton_text."</a>
+                                              </div>";
+                            if($show_description == "on"){
+                                $description = "<div class='description-block_".$catalog_id."'>
+                                                    <p>".$row->description."</p>
+                                                </div>";
+                            }else{ $description = ""; }
+
+                            $imgurl=explode(";",$row->image_url);
+
+                            $thumbs_position = $_POST["thumbs_position"];
+                            
+                            $thumbs_li = "";
+                            foreach($imgurl as $key=>$img)
+                            {
+                                if($img != "" && $img != ";"){
+                                    $thumbs_li .="<li>
+                                                <a href='".$img."' class='catalog_group".$group_key."_".$catalog_id."'><img src='".$img."'></a>
+                                            </li>";
+                                }
+                            }
+
+
+                            $group_key ++;
+                            $moreImages .= "<div class='element_".$catalog_id." ".$allow_lightbox."' data-symbol='".$row->name."' data-category='alkaline-earth'>";
+                            $moreImages .= "<div class='default-block_".$catalog_id."'>";
+                            $moreImages .= "<div class='image-block_".$catalog_id." for_zoom'>";
+//                            $imgurl=explode(";",$row->image_url);
+                             if($row->image_url != ';'){
+                                     $moreImages .= "<img id='wd-cl-img".$key."' src='".$imgurl[0]."' />  </a>";
+                             }else{
+                                 $moreImages .= "<img id='wd-cl-img".$key."' src='images/noimage.png' />";
+                             }
+
+                             $moreImages .= "</div>
+                                                <div class='title-block_".$catalog_id."'>
+                                                    <h3 class='title'>".$row->name."</h3>
+                                                    <div class='open-close-button'></div>
+                                                </div>
+                                        </div>
+                                        <div class='wd-catalog-panel_".$catalog_id."' id='panel".$key."'>";
+//                             
+                             if($show_thumbs == "on" && $thumbs_position == "before"){
+                                 $moreImages .= "<div>
+                                                    <ul class='thumbs-list_".$catalog_id."'>
+                                                        ".$thumbs_li."
+                                                    </ul>
+                                                </div>";
+                             }
+                             if($show_description == "on"){
+                                 $moreImages .= "<div class='description-block_".$catalog_id."'>
+                                                    <p>".$row->description."</p>
+                                                </div>";
+                             }
+                             if($show_thumbs == "on" && $thumbs_position == "after"){
+                                 $moreImages .= "<div>
+                                                    <ul class='thumbs-list_".$catalog_id."'>
+                                                        ".$thumbs_li."
+                                                    </ul>
+                                                </div>";
+                             }
+                             if($show_price == "on" && $row->price != ''){
+                                   if($row->market_price == '') { $market_style = "style='text-decoration: none !important;'"; } else { $market_style = ""; }
+                                   $moreImages .= "<div class='price-block_".$catalog_id."'>
+                                                        <span class='old-price-block' >".$price_text." : <span class='old-price' ".$market_style.">".$row->price."</span></span>
+                                                        <span class='discont-price-block' ><span class='discont-price' >".$row->market_price."</span></span>
+                                                  </div>";
+                            }
+                            if($row->single_product_url_type == 'default'){
+                                    $page_link = $_SERVER['SERVER_NAME'].$_SERVER['REQUEST_URI'];
+                                    if (strpos($parmalink,'/?') !== false) { $product_page_link = $parmalink.'&single_prod_id='.$row->id; } else { if (strpos($parmalink,'/') !== false) { $product_page_link = $parmalink.'?single_prod_id='.$row->id; } else { $product_page_link = $parmalink.'/?single_prod_id='.$row->id; } }
+                            }
+                            else{ $product_page_link = $row->single_product_url_type; }
+                            $moreImages .= "<div class='button-block'>
+                                                <a href='".$product_page_link."' target='_blank'>".$linkbutton_text."</a>
+                                            </div>
+                                        </div>
+                                    </div>";
+                        }
+                        
+                echo $moreImages;
+                die();
+                break;
+                    case 2:
+                        $group_key = $from;
+                        $moreImages = "";
+                        foreach($moreImagesInArray as $key=>$row)
+                        {
+
+                            if($row->single_product_url_type == 'default'){
+                                    $page_link = $_SERVER['SERVER_NAME'].$_SERVER['REQUEST_URI'];
+                                    if (strpos($parmalink,'/?') !== false) { $product_page_link = $parmalink.'&single_prod_id='.$row->id; } else { if (strpos($parmalink,'/') !== false) { $product_page_link = $parmalink.'?single_prod_id='.$row->id; } else { $product_page_link = $parmalink.'/?single_prod_id='.$row->id; } }
+                            }
+                            else{ $product_page_link = $row->single_product_url_type; }
+                            $my_linkbutton = "<div class='button-block'>
+                                                  <a href='".$product_page_link."' target='_blank'>".$linkbutton_text."</a>
+                                              </div>";
+                            if($show_description == "on"){
+                                $description = "<div class='description-block_".$catalog_id."'>
+                                                    <p>".$row->description."</p>
+                                                </div>";
+                            }else{ $description = ""; }
+
+                            $imgurl=explode(";",$row->image_url);
+
+                            $thumbs_position = $_POST["thumbs_position"];
+                            
+                            $thumbs_li = "";
+                            foreach($imgurl as $key=>$img)
+                            { $thumbs_li .="<li>
+                                                <a href='' class='catalog_group".$group_key."_".$catalog_id."'><img src='".$img."'></a>
+                                            </li>";
+                            }
+
+
+                            $group_key ++;
+                            $moreImages .= "<div class='element_".$catalog_id." ".$allow_lightbox."' data-symbol='".$row->name."' data-category='alkaline-earth'>";
+                            $moreImages .= "<div class='image-block_".$catalog_id."'>";
+                            $imgurl=explode(";",$row->image_url);
+                             if($row->image_url != ';'){
+                                $moreImages .= "<img id='wd-cl-img".$key."' src='".$imgurl[0]."' />";
+                             }else{
+                                 $moreImages .= "<img id='wd-cl-img".$key."' src='images/noimage.png' />";
+                             }
+                             $moreImages .= "<div class='image-overlay'><a href=#".$row->id."></a></div>"
+                                     . "</div>";
+                             
+                            if($row->single_product_url_type == 'default'){
+                                    $page_link = $_SERVER['SERVER_NAME'].$_SERVER['REQUEST_URI'];
+                                    if (strpos($parmalink,'/?') !== false) { $product_page_link = $parmalink.'&single_prod_id='.$row->id; } else { if (strpos($parmalink,'/') !== false) { $product_page_link = $parmalink.'?single_prod_id='.$row->id; } else { $product_page_link = $parmalink.'/?single_prod_id='.$row->id; } }
+                            }
+                            else{ $product_page_link = $row->single_product_url_type; }
+                            
+                             $moreImages .= "<div class='title-block_".$catalog_id."'>
+                                                   <h3 class='title'>".$row->name."</h3>
+                                            ";
+                             
+                            $moreImages .= "    <div class='button-block'>
+                                                    <a href='".$product_page_link."' target='_blank'>".$linkbutton_text."</a>
+                                                </div>
+                                            </div>
+                                        </div>
+                                    </div>";
+                        }
+                        
+                        
+                        
+                        
+                        
+                $group_key = $from;
+                $show_popup_linkbutton = $_POST["show_popup_linkbutton"];
+                $show_popup_title = $_POST['show_popup_title'];
+                $morePopups = "";
+//                $morePopups .= "<ul id='huge_it_catalog_popup_list_".$catalog_id."' style='display: none;'";
+                foreach($moreImagesInArray as $key=>$row)
+                {
+                    
+                    if($row->single_product_url_type == 'default'){
+                        $page_link = $_SERVER['SERVER_NAME'].$_SERVER['REQUEST_URI'];
+                        if (strpos(get_permalink(),'/?') !== false) { $product_page_link = get_permalink().'&single_prod_id='.$row->id; } else { if (strpos(get_permalink(),'/') !== false) { $product_page_link = get_permalink().'?single_prod_id='.$row->id; } else { $product_page_link = get_permalink().'/?single_prod_id='.$row->id; } }
+                    }
+                    else{ $product_page_link = $row->single_product_url_type; }
+                    $my_linkbutton = "<div class='button-block'>
+                                          <a href='".$product_page_link."' target='_blank'>".$linkbutton_text."</a>
+                                      </div>";
+                    if($show_description == "on"){
+                        $description = "<div class='description-block_".$catalog_id."'>
+                                            <p>".$row->description."</p>
+                                        </div>";
+                    }else{ $description = ""; }
+                    
+                    $thumbs_position = $_POST["thumbs_position"];
+                    
+                    $imgurl=explode(";",$row->image_url);
+                    array_pop($imgurl);
+                
+                    $thumbs_li = "";
+                    foreach($imgurl as $key=>$img)
+                    { if($img != "" && $img != ";"){ $thumbs_li .="<li><a href='".$row->sl_url."' class=''><img src='".$img."'></a></li>"; }  }
+                    
+                    $morePopups .= "<li class='pupup-element' id='huge_it_catalog_pupup_element_".$row->id."'>
+			<div class='heading-navigation_".$catalog_id."'>
+				<a href='#close' class='close'></a>
+				<div style='clear:both;'></div>
+			</div>
+			<div class='popup-wrapper_".$catalog_id."'>
+                            <div class='image-block_".$catalog_id."'>";
+                                if($row->image_url != ';'){
+                                   $morePopups .= "<img id='wd-cl-img".$key."' src='' />";
+                                }else{
+                                    $morePopups .= "<img id='wd-cl-img".$key."' src='images/noimage.png' />";
+                                }
+                                $morePopups .= ""
+                          . "</div>"
+                          . "<div class='right-block'>";
+                                if($show_popup_title == "on"){
+                                    $morePopups .= "<h3 class='title'>".$row->name."</h3>";
+                                }
+                                if($show_thumbs == "on" && $thumbs_position == "after"){
+                                    $morePopups .= "<div>
+                                                       <ul class='thumbs-list_".$catalog_id."'>
+                                                           ".$thumbs_li."
+                                                       </ul>
+                                                   </div>";
+                                }
+                                if($show_description == "on"){
+                                     $morePopups .= "<div class='description'>".$row->description."</div>";
+                                }
+    
+                                if($show_thumbs == "on" && $thumbs_position == "before"){
+                                    $morePopups .= "<div>
+                                                       <ul class='thumbs-list_".$catalog_id."'>
+                                                           ".$thumbs_li."
+                                                       </ul>
+                                                   </div>";
+                                } 
+                                 
+                     
+                                if($show_price == "on" && $row->price != ''){
+                                      if($row->market_price == '') { $market_style = "style='text-decoration: none !important;'"; } else { $market_style = ""; }
+                                      $morePopups .= "<div class='price-block_".$catalog_id."'>
+                                                           <span class='old-price-block' >".$price_text." : <span class='old-price' ".$market_style.">".$row->price."</span></span>
+                                                           <span class='discont-price-block' ><span class='discont-price' >".$row->market_price."</span></span>
+                                                     </div>";
+                               }
+                               
+                                if($row->single_product_url_type == 'default'){
+                                        $page_link = $_SERVER['SERVER_NAME'].$_SERVER['REQUEST_URI'];
+                                        if (strpos($parmalink,'/?') !== false) { $product_page_link = $parmalink.'&single_prod_id='.$row->id; } else { if (strpos($parmalink,'/') !== false) { $product_page_link = $parmalink.'?single_prod_id='.$row->id; } else { $product_page_link = $parmalink.'/?single_prod_id='.$row->id; } }
+                                }
+                                else{ $product_page_link = $row->single_product_url_type; }
+                                $morePopups .= "<div class='button-block'>
+                                                    <a href='".$product_page_link."' target='_blank'>".$linkbutton_text."</a>
+                                                </div>
+                                                <div style='clear:both;'></div>
+                                            </div>
+                                            <div style='clear:both;'></div>
+                                            </div></li>";
+                    }
+//                    $morePopups .= "</ul>";
+                    
+                        $response = array('moreImages' => $moreImages, 'morePopups' => $morePopups);
+                        echo json_encode($response);
+                        die();
+                        break;
+                    case 3:
+                        
+                        $moreImages = "";
+                        $group_key = $from;
+                        foreach($moreImagesInArray as $key=>$row)
+                        {
+                                $group_key++;
+                                $link = $row->sl_url;
+                                $imgurl = explode(";",$row->image_url);
+                                foreach($imgurl as $key=>$img)
+                                {
+                                    if($img != "" && $img != ";"){
+                                      $thumbs_li .="<li><a href='".$img."' class='catalog_group".$group_key."_".$catalog_id."'><img src='".$img."'></a></li>";
+                                    }
+                                }
+                                $moreImages .= "<div class='element_".$catalog_id." ".$allow_lightbox."' data-symbol='".$row->name."' data-category='alkaline-earth'>";
+                                $moreImages .= "<div class='left-block_".$catalog_id."'>
+                                                <div class='main-image-block_".$catalog_id." for_zoom'>";
+                                        
+                                                    if($row->image_url != ';'){
+                                                        $moreImages .= "<a href='".$imgurl[0]."' class='catalog_group".$group_key."_".$catalog_id."'><img id='wd-cl-img".$key."'src='".$imgurl[0]."'></a>";
+                                                    }else{
+                                                        $moreImages .= "<a href='".$imgurl[0]."'><img id='wd-cl-img".$key."' src='images/noimage.png'></a>";
+                                                    }
+                                                    $moreImages .= "</div>
+                                                                    <div class='thumbs-block'>";
+                                                    if($show_thumbs == "on"){
+                                                        $moreImages .= "<div>
+                                                                           <ul class='thumbs-list_".$catalog_id."'>
+                                                                               ".$thumbs_li."
+                                                                           </ul>
+                                                                       </div>";
+                                                    }
+                                                    $moreImages .= "</div>
+                                                </div>
+                                                <div class='right-block'>";
+                                                    if($row->name!=''){
+                                                        $moreImages .= "<div class='title-block_".$catalog_id."'><h3>".$row->name."</h3></div>";
+                                                    }
+                                                    if($show_description == "on" && $row->description != ''){
+                                                        $moreImages .= "<div class='description-block_".$catalog_id."'>".$row->description."</div>";
+                                                   }
+                                                   
+                                                   if($show_price == "on" && $row->price != ''){
+                                                        if($row->market_price == '') { $market_style = "style='text-decoration: none !important;'"; } else { $market_style = ""; }
+                                                        $moreImages .= "<div class='price-block_".$catalog_id."'>
+                                                                             <span class='old-price-block' >".$price_text." : <span class='old-price' ".$market_style.">".$row->price."</span></span>
+                                                                             <span class='discont-price-block' ><span class='discont-price' >".$row->market_price."</span></span>
+                                                                       </div>";
+                                                   }
+
+                                                   if($row->single_product_url_type == 'default'){
+                                                           $page_link = $_SERVER['SERVER_NAME'].$_SERVER['REQUEST_URI'];
+                                                           if (strpos($parmalink,'/?') !== false) { $product_page_link = $parmalink.'&single_prod_id='.$row->id; } else { if (strpos($parmalink,'/') !== false) { $product_page_link = $parmalink.'?single_prod_id='.$row->id; } else { $product_page_link = $parmalink.'/?single_prod_id='.$row->id; } }
+                                                   }
+                                                   else{ $product_page_link = $row->single_product_url_type; }
+                                                   $moreImages .= "<div class='button-block'>
+                                                                       <a href='".$product_page_link."' target='_blank'>".$linkbutton_text."</a>
+                                                                   </div>";
+                        $moreImages .= "</div>
+                                </div>"; 
+                        }
+                        echo $moreImages;
+                        die();
+                        break;
+                    case 5:
+                        echo 5;
+                        die();
+                        break;
+                }
+                
+                
+//                echo $from." ".$to;
+        }
     }
-        
 //}
 
 
@@ -1576,10 +2039,10 @@ CREATE TABLE IF NOT EXISTS `" . $wpdb->prefix . "huge_it_catalog_albums` (
 //            
 //  /* ##############################  Zoom #####################################*/
 //('ht_catalog_zoom_window_type', 'Zoom Window Type', 'Zoom Window Type', 'window'),
-//('ht_catalog_zoom_window_width', 'Zoom Window Width', 'Zoom Window Width', '200'),
-//('ht_catalog_zoom_window_height', 'Zoom Window Height', 'Zoom Window Height', '150'),
+//('ht_catalog_zoom_window_width', 'Zoom Window Width', 'Zoom Window Width', '300'),
+//('ht_catalog_zoom_window_height', 'Zoom Window Height', 'Zoom Window Height', '200'),
 //('ht_catalog_zoom_x_asis', 'Zoom Window X asis', 'Zoom Window X asis', '0'),
-//('ht_catalog_zoom_y_asis', 'Zoom Window Y asis', 'Zoom Window Y asis', '0'),
+//('ht_catalog_zoom_y_asis', 'Zoom Window Y asis', 'Zoom Window Y asis', '200'),
 //('ht_catalog_zoom_window_position', 'Zoom Window position', 'Zoom Window position', '16'),
 //('ht_catalog_zoom_window_border_size', 'Zoom Window Border Size', 'Zoom Window Size', '2'),
 //('ht_catalog_zoom_window_border_color', 'Zoom Window Boreder Color', 'Zoom Window Boreder Color', '#000'),
@@ -1677,14 +2140,14 @@ INSERT INTO
     $sql_5 = <<<query5
 INSERT INTO `$table_name` (`name`, `content`, `product_id`, `spam`, `ip`, `date`) VALUES
 
-('User1', 'Great Plugin', '1', '0', '127.0.0.1', '12.01.2015'),
-('User2', 'Great Plugin', '2', '0', '127.0.0.1', '12.01.2015'),
-('User3', 'Great Plugin', '3', '0', '127.0.0.1', '12.01.2015'),
-('User4', 'Great Plugin', '4', '0', '127.0.0.1', '12.01.2015'),
-('User5', 'Great Plugin', '5', '0', '127.0.0.1', '12.01.2015'),
-('User6', 'Great Plugin', '6', '0', '127.0.0.1', '12.01.2015'),
-('User7', 'Great Plugin', '7', '0', '127.0.0.1', '12.01.2015'),
-('User8', 'Great Plugin', '8', '0', '127.0.0.1', '12.01.2015');
+('Daniel', 'Lorem ipsum dolor sit amet', '1', '0', '127.0.0.1', '12.01.2015'),
+('Emily', 'Lorem ipsum dolor sit amet, consectetur adipiscing elit. Aenean aliquet, massa sit amet viverra tristique, urna sapien aliquam massa, sit amet ornare odio erat eleifend quam.', '2', '0', '127.0.0.1', '12.01.2015'),
+('Michael', 'Lorem ipsum dolor sit amet, consectetur adipiscing elit.', '3', '0', '127.0.0.1', '12.01.2015'),
+('Harry', 'Lorem ipsum dolor sit amet, consectetur adipiscing elit. Aenean aliquet, massa sit amet viverra tristique, urna sapien aliquam massa, sit amet ornare odio erat eleifend quam. In hac habitasse platea dictumst.', '4', '0', '127.0.0.1', '12.01.2015'),
+('Jack', 'Lorem ipsum dolor sit amet, consectetur adipiscing elit. Aenean aliquet, massa sit amet viverra tristique, urna sapien aliquam massa, sit amet ornare odio erat eleifend quam. In hac habitasse platea dictumst. Sed tincidunt arcu ut vestibulum lobortis.', '5', '0', '127.0.0.1', '12.01.2015'),
+('Maria', 'Lorem ipsum dolor sit amet, consectetur adipiscing elit. Aenean aliquet, massa sit amet viverra tristique, urna sapien aliquam massa.', '6', '0', '127.0.0.1', '12.01.2015'),
+('Lucia', 'Lorem ipsum dolor sit amet, consectetur adipiscing elit. Aenean aliquet, massa sit amet viverra tristique, urna sapien aliquam massa, sit amet ornare odio erat eleifend quam. In hac habitasse platea dictumst. Sed tincidunt arcu ut vestibulum lobortis. Vestibulum accumsan vulputate sapien. Nulla porta lobortis malesuada. In hac habitasse platea dictumst. Sed accumsan, tellus in dapibus porttitor, nulla velit ullamcorper erat, in hendrerit mauris metus at augue. Nulla congue dolor ac interdum semper. Nulla molestie urna vitae urna vehicula sodales.', '7', '0', '127.0.0.1', '12.01.2015'),
+('Anna', 'Lorem ipsum dolor sit amet, consectetur adipiscing elit. Aenean aliquet, massa sit amet viverra tristique, urna sapien aliquam massa, sit amet ornare odio erat eleifend quam. In hac habitasse platea dictumst. Sed tincidunt arcu ut vestibulum lobortis. Vestibulum accumsan vulputate sapien. Nulla porta lobortis malesuada. In hac habitasse platea dictumst. Sed accumsan, tellus in dapibus porttitor.', '8', '0', '127.0.0.1', '12.01.2015');
 
 query5;
 
@@ -1698,75 +2161,75 @@ INSERT INTO `$table_name` (`name`, `catalog_album_view_mode`) VALUES
 
 query6;
     
-//    $table_name = $wpdb->prefix . "huge_it_catalog_product_params";
-//    $sql_8 = <<<query8
-//INSERT INTO `$table_name` (`name`, `title`, `value`) VALUES
-//    
-//('ht_single_product_allow_lightbox', 'Allow Lightbox', 'on'),
-//('ht_single_product_allow_zooming', 'Allow Zooming', 'on'),
-//            
-//('ht_single_product_border_width', 'Product Border Width', '1'),
-//('ht_single_product_border_color', 'Product Border Color', 'f9f9f9'),
-//('ht_single_product_background_color', 'Product Background Color', 'efefef'),
-//('ht_single_product_mainimage_width', 'Product Image Width', '240'),
-//('ht_single_product_show_separator_lines', 'Product Show Separator Lines', 'on'),
-//            
-//('ht_single_product_title_font_size', 'Product Title Font Size', '24'),
-//('ht_single_product_title_font_color', 'Product Title Font Color', '0074A2'),
-//('ht_single_product_show_description', 'Product Show Description', 'on'),
-//('ht_single_product_description_font_size', 'Product Description Font Size', '14'),
-//('ht_single_product_description_font_color', 'Product Description Font Color', '000'),
-//            
-//('ht_single_product_show_thumbs', 'Product Show Thumbs', 'on'),
-//('ht_single_product_thumbs_width', 'Product Thumbs Width', '75'),
-//('ht_single_product_thumbs_height', 'Product Thumbs Height', '75'),
-//            
-//('ht_single_product_price_font_size', 'Product Price Font Size', '14'),
-//('ht_single_product_price_font_color', 'Product Price Font Color', 'E22828'),
-//('ht_single_product_market_price_font_size', 'Product Market Price Font Size', '14'),
-//('ht_single_product_market_price_font_color', 'Product Market Price Font Color', 'E22828'),
-//('ht_single_product_rating_font_size', 'Product Rating Font Size', '14'),
-//('ht_single_product_rating_font_color', 'Product Rating Font Color', '000000'),
-//            
-//('ht_single_product_tabs_font_color', 'Zoom Window Type', '000000'),
-//('ht_single_product_tabs_font_hover_color', 'Zoom Window Type', 'fff'),    
-//    
-//('ht_single_product_params_tab_box_background_color', 'Zoom Window Type', 'fff'),
-///*
-//    ('ht_single_product_params_tab_words_font_size', 'Zoom Window Type', '16'),
-//    ('ht_single_product_comments_tab_words_font_size', 'Zoom Window Type', '16'),
-//*/
-//('ht_single_product_params_tab_words_font_color', 'Zoom Window Type', '000'),
-//('ht_single_product_comments_tab_words_font_color', 'Zoom Window Type', '000'),
-//('ht_single_product_params_name_font_color', 'Zoom Window Type', '000'),
-//('ht_single_product_params_values_font_color', 'Zoom Window Type', '000'),
-//('ht_single_product_comments_name_font_color', 'Zoom Window Type', '000'),
-//('ht_single_product_comments_content_font_color', 'Zoom Window Type', '000'),
-//('ht_single_product_comments_submit_button_text', 'Zoom Window Type', 'Submit'),
-//('ht_single_product_comments_submit_button_text_font_size', 'Zoom Window Type', '14'),
-//('ht_single_product_comments_submit_button_text_font_color', 'Zoom Window Type', 'ffffff'),
-//('ht_single_product_comments_submit_button_text_font_hover_color', 'Zoom Window Type', 'ffffff'),
-//('ht_single_product_comments_submit_button_text_background_color', 'Zoom Window Type', '4ca6cf'),
-//('ht_single_product_comments_submit_button_text_background_hover_olor', 'Zoom Window Type', '21759b'),
-//
-//('ht_single_product_price_text', 'ht_single_product_price_text', 'Price'),
-//('ht_single_product_market_price_text', 'ht_single_product_market_price_text', 'Discount Price'),
-//('ht_single_product_comments_text', 'ht_single_product_comments_text', 'Comments'),
-//('ht_single_product_parameters_text', 'ht_single_product_parameters_text', 'Parameters'),
-//('ht_single_product_rating_text', 'ht_single_product_rating_text', 'Rating'),
-//('ht_single_product_share_text', 'ht_single_product_share_text', 'Share'),
-//('ht_single_product_show_price', 'ht_single_product_show_price', 'on'),
-//('ht_single_product_show_rating', 'ht_single_product_show_rating', 'on'),
-//('ht_single_product_show_share_buttons', 'ht_single_product_show_share_buttons', 'on'),
-//('ht_single_product_show_parameters', 'ht_single_product_show_parameters', 'on'),
-//('ht_single_product_show_comments', 'ht_single_product_show_comments', 'on'),
-//('ht_single_product_tabs_border_color', 'ht_single_product_tabs_border_color', 'cccccc'),
-//('ht_single_product_your_name_text', 'ht_single_product_your_name_text', 'Your Name'),
-//('ht_single_product_your_Comment_text', 'ht_single_product_your_Comment_text', 'Your Comment'),
-//('ht_single_product_captcha_text', 'ht_single_product_captcha_text', 'Captcha'),
-//('ht_single_product_invalid_captcha_text', 'ht_single_product_invalid_captcha_text', 'Invalid Captcha');
-//
-//query8;
+    $table_name = $wpdb->prefix . "huge_it_catalog_product_params";
+    $sql_8 = <<<query8
+INSERT INTO `$table_name` (`name`, `title`, `value`) VALUES
+    
+('ht_single_product_allow_lightbox', 'Allow Lightbox', 'on'),
+('ht_single_product_allow_zooming', 'Allow Zooming', 'on'),
+            
+('ht_single_product_border_width', 'Product Border Width', '1'),
+('ht_single_product_border_color', 'Product Border Color', 'f9f9f9'),
+('ht_single_product_background_color', 'Product Background Color', 'efefef'),
+('ht_single_product_mainimage_width', 'Product Image Width', '240'),
+('ht_single_product_show_separator_lines', 'Product Show Separator Lines', 'on'),
+            
+('ht_single_product_title_font_size', 'Product Title Font Size', '24'),
+('ht_single_product_title_font_color', 'Product Title Font Color', '0074A2'),
+('ht_single_product_show_description', 'Product Show Description', 'on'),
+('ht_single_product_description_font_size', 'Product Description Font Size', '14'),
+('ht_single_product_description_font_color', 'Product Description Font Color', '000'),
+            
+('ht_single_product_show_thumbs', 'Product Show Thumbs', 'on'),
+('ht_single_product_thumbs_width', 'Product Thumbs Width', '75'),
+('ht_single_product_thumbs_height', 'Product Thumbs Height', '75'),
+            
+('ht_single_product_price_font_size', 'Product Price Font Size', '14'),
+('ht_single_product_price_font_color', 'Product Price Font Color', 'E22828'),
+('ht_single_product_market_price_font_size', 'Product Market Price Font Size', '14'),
+('ht_single_product_market_price_font_color', 'Product Market Price Font Color', 'E22828'),
+('ht_single_product_rating_font_size', 'Product Rating Font Size', '14'),
+('ht_single_product_rating_font_color', 'Product Rating Font Color', '000000'),
+            
+('ht_single_product_tabs_font_color', 'Zoom Window Type', '000000'),
+('ht_single_product_tabs_font_hover_color', 'Zoom Window Type', '636363'),    
+    
+('ht_single_product_params_tab_box_background_color', 'Zoom Window Type', 'fff'),
+/*
+    ('ht_single_product_params_tab_words_font_size', 'Zoom Window Type', '16'),
+    ('ht_single_product_comments_tab_words_font_size', 'Zoom Window Type', '16'),
+*/
+('ht_single_product_params_tab_words_font_color', 'Zoom Window Type', '000'),
+('ht_single_product_comments_tab_words_font_color', 'Zoom Window Type', '000'),
+('ht_single_product_params_name_font_color', 'Zoom Window Type', '000'),
+('ht_single_product_params_values_font_color', 'Zoom Window Type', '000'),
+('ht_single_product_comments_name_font_color', 'Zoom Window Type', '000'),
+('ht_single_product_comments_content_font_color', 'Zoom Window Type', '000'),
+('ht_single_product_comments_submit_button_text', 'Zoom Window Type', 'Submit'),
+('ht_single_product_comments_submit_button_text_font_size', 'Zoom Window Type', '14'),
+('ht_single_product_comments_submit_button_text_font_color', 'Zoom Window Type', 'ffffff'),
+('ht_single_product_comments_submit_button_text_font_hover_color', 'Zoom Window Type', 'ffffff'),
+('ht_single_product_comments_submit_button_text_background_color', 'Zoom Window Type', '4ca6cf'),
+('ht_single_product_comments_submit_button_text_background_hover_olor', 'Zoom Window Type', '21759b'),
+
+('ht_single_product_price_text', 'ht_single_product_price_text', 'Price'),
+('ht_single_product_market_price_text', 'ht_single_product_market_price_text', 'Discount Price'),
+('ht_single_product_comments_text', 'ht_single_product_comments_text', 'Comments'),
+('ht_single_product_parameters_text', 'ht_single_product_parameters_text', 'Parameters'),
+('ht_single_product_rating_text', 'ht_single_product_rating_text', 'Rating'),
+('ht_single_product_share_text', 'ht_single_product_share_text', 'Share'),
+('ht_single_product_show_price', 'ht_single_product_show_price', 'on'),
+('ht_single_product_show_rating', 'ht_single_product_show_rating', 'on'),
+('ht_single_product_show_share_buttons', 'ht_single_product_show_share_buttons', 'on'),
+('ht_single_product_show_parameters', 'ht_single_product_show_parameters', 'on'),
+('ht_single_product_show_comments', 'ht_single_product_show_comments', 'on'),
+('ht_single_product_tabs_border_color', 'ht_single_product_tabs_border_color', 'cccccc'),
+('ht_single_product_your_name_text', 'ht_single_product_your_name_text', 'Your Name'),
+('ht_single_product_your_Comment_text', 'ht_single_product_your_Comment_text', 'Your Comment'),
+('ht_single_product_captcha_text', 'ht_single_product_captcha_text', 'Captcha'),
+('ht_single_product_invalid_captcha_text', 'ht_single_product_invalid_captcha_text', 'Invalid Captcha');
+
+query8;
     
     
     $admin_email_default = get_option( 'admin_email' );
@@ -1784,23 +2247,23 @@ INSERT INTO `$table_name` (`name`, `title`, `value`) VALUES
 ('ht_single_product_your_Comment_text', 'ht_single_product_your_Comment_text', 'Your Comment'),
 ('ht_single_product_captcha_text', 'ht_single_product_captcha_text', 'Captcha'),
 ('ht_single_product_invalid_captcha_text', 'ht_single_product_invalid_captcha_text', 'Invalid Captcha'),
-('ht_single_product_asc_to_seller_text', 'ht_single_product_asc_to_seller_text', 'Asc To Seller'),
+('ht_single_product_asc_to_seller_text', 'ht_single_product_asc_to_seller_text', 'Ask Seller'),
 ('ht_single_product_your_mail_text', 'Your E-mail', 'Your E-mail'),
 ('ht_single_product_your_phone_text', 'Your Phone', 'Your Phone'),
 ('ht_single_product_your_message_text', 'Your Message', 'Your Message'),
-('ht_catalog_general_message_to_admin', 'ht_catalog_general_message_to_admin', 'off'),
+('ht_catalog_general_message_to_admin', 'ht_catalog_general_message_to_admin', 'on'),
 ('ht_catalog_general_admin_email', 'ht_catalog_general_admin_email', '$admin_email_default'),
 ('ht_catalog_general_admin_email_subject', 'ht_catalog_general_admin_email_subject', 'Admin subject'),
 ('ht_catalog_general_admin_email_message', 'ht_catalog_general_admin_email_message', 'Message For admin {userMessage}'),
 ('ht_catalog_general_admin_from_text', 'ht_catalog_general_admin_from_text', '$admin_email_default'),
-('ht_catalog_general_message_to_user', 'ht_catalog_general_message_to_user', 'off'),
+('ht_catalog_general_message_to_user', 'ht_catalog_general_message_to_user', 'on'),
 ('ht_catalog_general_user_subject', 'ht_catalog_general_user_subject', 'User subject'),
 ('ht_catalog_general_user_message', 'ht_catalog_general_user_message', 'Message for user'),
 ('ht_catalog_general_linkbutton_text', 'ht_catalog_general_linkbutton_text', 'View Product'),
-('ht_single_product_show_asc_seller_button', 'ht_single_product_show_asc_seller_button', 'off'),
+('ht_single_product_show_asc_seller_button', 'ht_single_product_show_asc_seller_button', 'on'),
 ('ht_single_product_comments_submit_button_text', 'Zoom Window Type', 'Submit'),
 ('ht_single_product_asc_seller_popup_button_text', 'Zoom Window Type', 'Submit'),
-('ht_single_product_asc_seller_button_text', 'ht_single_product_asc_seller_button_text', 'Contact To Seller');
+('ht_single_product_asc_seller_button_text', 'ht_single_product_asc_seller_button_text', 'Contact Seller');
 
 query9;
     
@@ -1871,13 +2334,13 @@ query9;
     
 //    $table_name = $wpdb->prefix . "huge_it_catalog_product_params";
 //    $sql_update_catalog_1 = "INSERT INTO `$table_name` (`name`, `title`, `value`) VALUES
-//    ('ht_single_product_asc_seller_button_text', 'ht_single_product_asc_seller_button_text', 'Contact To Seller'),
+//    ('ht_single_product_asc_seller_button_text', 'ht_single_product_asc_seller_button_text', 'Contact Seller'),
 //    ('ht_single_product_asc_seller_button_text_size', 'ht_single_product_asc_seller_button_text_size', '18'), 
 //    ('ht_single_product_asc_seller_button_text_color', 'ht_single_product_asc_seller_button_text_color', 'ffffff'),
 //    ('ht_single_product_asc_seller_button_text_hover_color', 'ht_single_product_asc_seller_button_text_hover_color', 'ffffff'),
 //    ('ht_single_product_asc_seller_button_background_color', 'ht_single_product_asc_seller_button_background_color', 'E22828'),
 //    ('ht_single_product_asc_seller_button_background_hover_color', 'ht_single_product_asc_seller_button_background_hover_color', 'E22828'),
-//    ('ht_single_product_asc_to_seller_text', 'Ask To Seller Text', 'Ask To Seller'),
+//    ('ht_single_product_asc_to_seller_text', 'Submit Your Message Text', 'Submit Your Message'),
 //    ('ht_single_product_asc_seller_popup_background_1', 'ht_single_product_asc_seller_popup_background_1', 'ffffff'),
 //    ('ht_single_product_asc_seller_popup_background_2', 'ht_single_product_asc_seller_popup_background_2', '999999'),
 //    ('ht_single_product_your_mail_text', 'Your E-mail', 'Your E-mail'),
@@ -1926,6 +2389,81 @@ query9;
 //            $wpdb->query($sql_update_catalog_3);
 //    };
     
+    
+//    $table_name = $wpdb->prefix . "huge_it_catalog_params";
+//    $sql_update_catalog_4 = "INSERT INTO `$table_name` (`name`, `title`,`description`, `value`) VALUES
+//    ('htc_view0_load_more_position', 'Load More Position', 'Load More Position', 'center'),
+//    ('htc_view1_load_more_position', 'Load More Position', 'Load More Position', 'center'),
+//    ('htc_view2_load_more_position', 'Load More Position', 'Load More Position', 'center'),
+//    ('htc_view3_load_more_position', 'Load More Position', 'Load More Position', 'center'),
+//    ('htc_view0_load_more_font_size', 'Load More Position', 'Load More Font Size', '18'),
+//    ('htc_view1_load_more_font_size', 'Load More Position', 'Load More Font Size', '18'),
+//    ('htc_view2_load_more_font_size', 'Load More Position', 'Load More Font Size', '22'),
+//    ('htc_view3_load_more_font_size', 'Load More Position', 'Load More Font Size', '20'),
+//    ('htc_view0_load_more_font_color', 'Load More Position', 'Load More Font Color', 'FFFFFF '),
+//    ('htc_view1_load_more_font_color', 'Load More Position', 'Load More Font Color', 'FFFFFF '),
+//    ('htc_view2_load_more_font_color', 'Load More Position', 'Load More Font Color', 'FFFFFF '),
+//    ('htc_view3_load_more_font_color', 'Load More Position', 'Load More Font Color', 'FFFFFF '),
+//    ('htc_view0_load_more_font_hover_color', 'Load More Position', 'Load More Font Hover Color', 'FFFFFF'),
+//    ('htc_view1_load_more_font_hover_color', 'Load More Position', 'Load More Font Hover Color', 'FFFFFF'),
+//    ('htc_view2_load_more_font_hover_color', 'Load More Position', 'Load More Font Hover Color', 'F2F2F2'),
+//    ('htc_view3_load_more_font_hover_color', 'Load More Position', 'Load More Font Hover Color', 'FFFFFF'),
+//    ('htc_view0_load_more_button_background_color', 'Load More Position', 'Load More Button Background Color', 'A1A1A1'),
+//    ('htc_view1_load_more_button_background_color', 'Load More Position', 'Load More Button Background Color', 'A1A1A1'),
+//    ('htc_view2_load_more_button_background_color', 'Load More Position', 'Load More Button Background Color', 'FF2C2C'),
+//    ('htc_view3_load_more_button_background_color', 'Load More Position', 'Load More Button Background Color', 'A1A1A1'),
+//    ('htc_view0_load_more_button_background_hover_color', 'Load More Position', 'Load More Background Hover Color', 'A1A1A1'),
+//    ('htc_view1_load_more_button_background_hover_color', 'Load More Position', 'Load More Background Hover Color', 'A1A1A1'),
+//    ('htc_view2_load_more_button_background_hover_color', 'Load More Position', 'Load More Background Hover Color', '991A1A'),
+//    ('htc_view3_load_more_button_background_hover_color', 'Load More Position', 'Load More Background Hover Color', 'A1A1A1'),
+//    ('htc_view0_load_more_loading_icon', 'Load More Position', 'Loading Icon', '1'),
+//    ('htc_view1_load_more_loading_icon', 'Load More Position', 'Loading Icon', '2'),
+//    ('htc_view2_load_more_loading_icon', 'Load More Position', 'Loading Icon', '3'),
+//    ('htc_view3_load_more_loading_icon', 'Load More Position', 'Loading Icon', '4'),
+//    
+//    ('htc_view0_pagination_font_size', 'Load More Position', 'Loading Icon', '22'),
+//    ('htc_view1_pagination_font_size', 'Load More Position', 'Loading Icon', '22'),
+//    ('htc_view2_pagination_font_size', 'Load More Position', 'Loading Icon', '22'),
+//    ('htc_view3_pagination_font_size', 'Load More Position', 'Loading Icon', '22'),
+//    ('htc_view0_pagination_font_color', 'Load More Position', 'Loading Icon', '000'),
+//    ('htc_view1_pagination_font_color', 'Load More Position', 'Loading Icon', '000'),
+//    ('htc_view2_pagination_font_color', 'Load More Position', 'Loading Icon', '000'),
+//    ('htc_view3_pagination_font_color', 'Load More Position', 'Loading Icon', '000'),
+//    ('htc_view0_pagination_icon_size', 'Load More Position', 'Loading Icon', '22'),
+//    ('htc_view1_pagination_icon_size', 'Load More Position', 'Loading Icon', '22'),
+//    ('htc_view2_pagination_icon_size', 'Load More Position', 'Loading Icon', '22'),
+//    ('htc_view3_pagination_icon_size', 'Load More Position', 'Loading Icon', '22'),
+//    ('htc_view0_pagination_icon_color', 'Load More Position', 'Loading Icon', '000'),
+//    ('htc_view1_pagination_icon_color', 'Load More Position', 'Loading Icon', '000'),
+//    ('htc_view2_pagination_icon_color', 'Load More Position', 'Loading Icon', '000'),
+//    ('htc_view3_pagination_icon_color', 'Load More Position', 'Loading Icon', '000'),
+//    ('htc_view0_pagination_position', 'pagination Position', 'Loading Icon', 'center'),
+//    ('htc_view1_pagination_position', 'pagination Position', 'Loading Icon', 'center'),
+//    ('htc_view2_pagination_position', 'pagination Position', 'Loading Icon', 'center'),
+//    ('htc_view3_pagination_position', 'pagination Position', 'Loading Icon', 'center')";
+//
+//    $query="SELECT name FROM ".$wpdb->prefix."huge_it_catalog_params";
+//    $update_catalog_4=$wpdb->get_results($query);
+//    if(end($update_catalog_4)->name=='ht_view5_allow_zooming'){
+//            $wpdb->query($sql_update_catalog_4);
+//    };
+    
+    
+    
+    
+    $table_name = $wpdb->prefix . "huge_it_catalog_general_params";
+    $sql_update_catalog_5 = "INSERT INTO `$table_name` (`name`, `title`,`description`, `value`) VALUES
+    ('ht_single_product_invalid_mail_text', 'ht_single_product_invalid_mail_text', 'ht_single_product_invalid_mail_text', 'Invalid Email')";
+
+    $query="SELECT name FROM ".$wpdb->prefix."huge_it_catalog_general_params";
+    $update_catalog_5=$wpdb->get_results($query);
+    if(end($update_catalog_5)->name=='ht_single_product_asc_seller_button_text'){
+            $wpdb->query($sql_update_catalog_5);
+    };
+    
+    
+    
+    
     $needToUpdateProductLink = 0;
     $catalogProductsAllFieldsInArray = $wpdb->get_results("DESCRIBE " . $wpdb->prefix . "huge_it_catalog_products", ARRAY_A);
     foreach($catalogProductsAllFieldsInArray as $catalogProductsFields){
@@ -1939,6 +2477,21 @@ query9;
         
 //        $wpdb->query("ALTER TABLE ".$wpdb->prefix."huge_it_catalog_products ADD single_product_url text");
 //        $wpdb->query("UPDATE ".$wpdb->prefix."huge_it_catalog_products SET single_product_url = 'http://huge-it.com/fields/order-website-maintenance/'");
+    }
+    
+    $needToUpdatePagination = 0;
+    $catalogProductsAllFieldsInArray = $wpdb->get_results("DESCRIBE " . $wpdb->prefix . "huge_it_catalogs", ARRAY_A);
+    foreach($catalogProductsAllFieldsInArray as $catalogProductsFields){
+        if ($catalogProductsFields['Field'] == 'pagination_type'){
+            $needToUpdatePagination = 1;
+        }
+    }
+    if($needToUpdatePagination == 0){
+        $wpdb->query("ALTER TABLE ".$wpdb->prefix."huge_it_catalogs ADD pagination_type text");
+        $wpdb->query("UPDATE ".$wpdb->prefix."huge_it_catalogs SET pagination_type = 'show_all'");
+        
+        $wpdb->query("ALTER TABLE ".$wpdb->prefix."huge_it_catalogs ADD count_into_page text");
+        $wpdb->query("UPDATE ".$wpdb->prefix."huge_it_catalogs SET count_into_page = '2'");
     }
     
     

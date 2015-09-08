@@ -1,6 +1,6 @@
 <?php	
 if(function_exists('current_user_can'))
-if(!current_user_can('manage_options')) {
+if(!current_user_can('delete_pages')) {
 die('Access Denied');
 }	
 if(!function_exists('current_user_can')){
@@ -48,7 +48,7 @@ function html_showcatalogs( $rows,  $pageNav,$sort,$cat_row){
 
 
 <div class="wrap">
-	<?php $path_site2 = plugins_url("../images/", __FILE__); ?>
+    <?php $path_site2 = plugins_url("../images", __FILE__); ?>
         <div style="float: left;">
             <div><a href="http://huge-it.com/wordpress-plugins-product-catalog-user-manual/" target="_blank">User Manual</a></div>
             <div>This section allows you to configure the Product Catalog options. <a href="http://huge-it.com/wordpress-plugins-product-catalog-user-manual/" target="_blank">More...</a></div>
@@ -252,19 +252,19 @@ jQuery(function() {
 
 	
 <div class="wrap">
-<?php $path_site2 = plugins_url("../images/", __FILE__); ?>
-        <div style="float: left;">
+<?php $path_site2 = plugins_url("../images", __FILE__); ?>
+    <div style="float: left;">
             <div><a href="http://huge-it.com/wordpress-plugins-product-catalog-user-manual/" target="_blank">User Manual</a></div>
             <div>This section allows you to configure the Product Catalog options. <a href="http://huge-it.com/wordpress-plugins-product-catalog-user-manual/" target="_blank">More...</a></div>
             <div><a href="http://huge-it.com/product-catalog/" target="_blank">Get full Version</a></div>
-        </div>
-        <div style="float: right;">
-                <a class="header-logo-text" href="http://huge-it.com/product-catalog/" target="_blank">
-                        <div><img width="250px" src="<?php echo $path_site2; ?>/huge-it1.png" /></div>
-                        <div>Get the full version</div>
-                </a>
-        </div>
-        <div style="clear:both;"></div>
+    </div>
+    <div style="float: right;">
+            <a class="header-logo-text" href="http://huge-it.com/product-catalog/" target="_blank">
+                    <div><img width="250px" src="<?php echo $path_site2; ?>/huge-it1.png" /></div>
+                    <div>Get the full version</div>
+            </a>
+    </div>
+    <div style="clear:both;"></div>
 <form action="admin.php?page=catalogs_huge_it_catalog&id=<?php echo $row->id; ?>" method="post" name="adminForm" id="adminForm">
 	<div id="poststuff" >
 	<div id="catalog-header">
@@ -524,7 +524,7 @@ jQuery(document).ready(function($){
 										<input  class="text_area" type="text" id="market_price<?php echo $rowimages->id; ?>" name="market_price<?php echo $rowimages->id; ?>" style="margin-top: 1%;" id="market_price<?php echo $rowimages->id; ?>"  value="<?php echo $rowimages->market_price; ?>">
 									</div>
                                                                         <div>
-                                                                                <label for="single_product_url_type<?php echo $rowimages->id; ?>">Single Product Page Link:</label>
+                                                                                <label for="single_product_url_type<?php echo $rowimages->id; ?>">Product Page Custom Link:</label>
                                                                                 <div style="position: relative;">
                                                                                     <input class="text_area product_url_select" type="text" id="single_product_url_type<?php echo $rowimages->id; ?>" name="single_product_url_type<?php echo $rowimages->id; ?>" value="<?php echo $rowimages->single_product_url_type; ?>">
                                                                                     <img src="<?php echo $path_site2; ?>/close.gif" width="14" height="16" value="a" class="del_product_link">
@@ -599,7 +599,7 @@ jQuery(document).ready(function($){
                                                                         <!--<a class="button remove-image" href="admin.php?page=catalogs_huge_it_catalog&id=<?php echo $row->id; ?>&task=apply&removeslide=<?php echo $rowimages->id; ?>">-->
                                                                     <a class="button remove-image" href="admin.php?page=catalogs_huge_it_catalog&id=<?php echo $row->id; ?>&task=apply&removeslide=<?php echo $rowimages->id; ?>">Remove Product</a>
                                                                     <a href="admin.php?page=catalogs_huge_it_catalog&id=<?php echo $row->id; ?>&task=ratings&prod_id=<?php echo $rowimages->id; ?>&TB_iframe=1" class="remove-image button thickbox">View Ratings</a>
-                                                                    <a href="admin.php?page=catalogs_huge_it_catalog&id=<?php echo $row->id; ?>&task=reviews&prod_id=<?php echo $rowimages->id; ?>&TB_iframe=1" class="remove-image button thickbox">View Reviews</a>
+                                                                    <a href="admin.php?page=catalogs_huge_it_catalog&id=<?php echo $row->id; ?>&task=reviews&prod_id=<?php echo $rowimages->id; ?>&TB_iframe=1" class="remove-image button thickbox">View Comments</a>
 								</div>
 							</div>
                                                         <input type="hidden" name="parameter<?php echo $rowimages->id; ?>" class="parameters" value="<?php echo $rowimages->parameters; ?>">
@@ -872,6 +872,13 @@ jQuery(document).ready(function($){
                                         });
                                    });
                                    
+                                   jQuery(document).ready(function(){
+                                        jQuery('#pagination_type').change(function(){
+                                            if(jQuery(this).val() != "show_all"){ jQuery('#count_into_page').parent().css({ "display" : "inline-block" }); }
+                                            else{ jQuery('#count_into_page').parent().css({ "display" : "none" }); }
+                                        });
+                                   });
+                                   
                                    jQuery(document).on('change', '.product_url_select', function (e){
                                         if(jQuery(this).val() == ""){
                                             jQuery(this).val("default");
@@ -883,6 +890,19 @@ jQuery(document).ready(function($){
                                             jQuery(this).parent().find(".product_url_select").val("default");
 //                                        }
                                    });
+                                   
+                                   /*   <--    IF VIEW IS A CONTENT SLIDER,ADDING NONE DISPLAY TO PAGINATIO OPTIONS    */
+                                   jQuery(document).on('change', '#catalog_effects_list', function (e){
+                                        var active_view = jQuery(this).val();
+                                        if(active_view == 5){ jQuery("#pagination_type").parent().css({ "display" : "none" }); jQuery("#count_into_page").parent().css({ "display" : "none" }); }
+                                        else{ jQuery("#pagination_type").parent().css({ "display" : "" }); jQuery("#count_into_page").parent().css({ "display" : "" }); }
+                                   });
+                                   
+                                   jQuery(window).load(function(){
+                                       var active_view = <?php echo $row->catalog_list_effects_s; ?>;
+                                       if(active_view == 5){ jQuery("#pagination_type").parent().css({ "display" : "none" }); jQuery("#count_into_page").parent().css({ "display" : "none" }); }
+                                   });
+    
                         </script>
                         
 			<!-- SIDEBAR -->
@@ -904,8 +924,14 @@ jQuery(document).ready(function($){
 							<input type="hidden" value="off" name="pause_on_hover" />					
 							<input type="checkbox" name="pause_on_hover"  value="on" id="pause_on_hover"  <?php if($row->pause_on_hover  == 'on'){ echo 'checked="checked"'; } ?> />
 						</li>
+                                                
+                                                <li>
+							<label for="huge_it_catalog_name">Catalog Name</label>
+							<input type = "text" name="name" id="huge_it_catalog_name" value="<?php echo esc_html(stripslashes($row->name));?>" onkeyup = "name_changeRight(this)">
+						</li>
+                                               
 						<li>
-							<label for="catalog_effects_list">Views</label>
+							<label for="catalog_effects_list">Select The View</label>
 							<select name="catalog_effects_list" id="catalog_effects_list">
 									<option <?php if($row->catalog_list_effects_s == '0'){ echo 'selected'; } ?>  value="0">Blocks Toggle Up/Down</option>
 									<option <?php if($row->catalog_list_effects_s == '1'){ echo 'selected'; } ?>  value="1">Full-Height Blocks</option>
@@ -915,32 +941,28 @@ jQuery(document).ready(function($){
 							</select>
 						</li>
                                                 
-                                                <li>
-							<label for="huge_it_catalog_name">Catalog name</label>
-							<input type = "text" name="name" id="huge_it_catalog_name" value="<?php echo esc_html(stripslashes($row->name));?>" onkeyup = "name_changeRight(this)">
+                                                <li style="">
+							<label for="pagination_type">Displaying Content</label>
+							<select name="pagination_type" id="pagination_type">
+                                                            <option <?php if($row->pagination_type == 'show_all'){ echo 'selected'; } ?>   value="show_all">Show All</option>
+                                                            <option <?php if($row->pagination_type == 'pagination'){ echo 'selected'; } ?> value="pagination">Paginatiion</option>
+                                                            <option <?php if($row->pagination_type == 'load_more'){ echo 'selected'; } ?>  value="load_more">Load More</option>
+							</select>
 						</li>
                                                 
-						<li style="display:none;">
-							<label for="sl_pausetime">Pause time</label>
-							<input type="text" name="sl_pausetime" id="sl_pausetime" value="<?php echo $row->description; ?>" class="text_area" />
+                                                <li style=" <?php if($row->pagination_type == 'show_all'){echo "display:none;"; } ?>">
+							<label for="count_into_page">Content Per Page</label>
+							<input type="text" name="count_into_page" id="count_into_page" value="<?php echo $row->count_into_page; ?>" class="text_area" />
 						</li>
 						<li style="display:none;">
 							<label for="sl_changespeed">Change speed</label>
 							<input type="text" name="sl_changespeed" id="sl_changespeed" value="<?php echo $row->param; ?>" class="text_area" />
 						</li>
-						<li style="display:none;">
-							<label for="catalog_position">catalog Position</label>
-							<select name="sl_position" id="catalog_position">
-									<option <?php if($row->sl_position == 'left'){ echo 'selected'; } ?>  value="left">Left</option>
-									<option <?php if($row->sl_position == 'right'){ echo 'selected'; } ?>   value="right">Right</option>
-									<option <?php if($row->sl_position == 'center'){ echo 'selected'; } ?>  value="center">Center</option>
-							</select>
-						</li>
 
 					</ul>
 						<div id="major-publishing-actions">
 							<div id="publishing-action">
-								<input type="button" onclick="submitbutton('apply')" value="Save catalog" id="save-buttom" class="button button-primary button-large">
+								<input type="button" onclick="submitbutton('apply')" value="Save Catalog" id="save-buttom" class="button button-primary button-large">
 							</div>
 							<div class="clear"></div>
 							<!--<input type="button" onclick="window.location.href='admin.php?page=catalogs_huge_it_catalog'" value="Cancel" class="button-secondary action">-->
@@ -1209,8 +1231,8 @@ function html_catalog_reviews(){
 	</script>
 	 <div id="huge_it_view_reviews">
 		<div id="huge_it_view_reviews_wrap">
-			<h2>Product Reviews</h2>
-                        <a class="manager-link button view_all_reviews">All Reviews Manager</a>
+			<h2>Product Comments</h2>
+                        <a class="manager-link button view_all_reviews">All Comments Manager</a>
                             <div class="huge_it_prod_reviews_container">
                                 <table>
                                     <tr><th><input type="checkbox" id="check_all_reviews"/></th><th>Name</th><th>Comment</th><th class="del_few_reviews"><a class="">Delete</a></th></tr>

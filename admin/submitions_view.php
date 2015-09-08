@@ -22,18 +22,18 @@ if(isset($_POST["page_number"])){
 else{ $visible_submitions = "1-50"; } ?>
 
 <div class="wrap">
-    <?php $path_site2 = plugins_url("../images/", __FILE__); ?>
-        <div style="float: left;">
-            <div><a href="http://huge-it.com/wordpress-plugins-product-catalog-user-manual/" target="_blank">User Manual</a></div>
-            <div>This section allows you to configure the Product Catalog options. <a href="http://huge-it.com/wordpress-plugins-product-catalog-user-manual/" target="_blank">More...</a></div>
-        </div>
-        <div style="float: right;">
-                <a class="header-logo-text" href="http://huge-it.com/product-catalog/" target="_blank">
-                        <div><img width="250px" src="<?php echo $path_site2; ?>/huge-it1.png" /></div>
-                        <div>Get the full version</div>
-                </a>
-        </div>
-        <div style="clear:both;"></div>
+     <?php $path_site2 = plugins_url("../images/", __FILE__); ?>
+    <div style="float: left;">
+        <div><a href="http://huge-it.com/wordpress-plugins-product-catalog-user-manual/" target="_blank">User Manual</a></div>
+        <div>This section allows you to configure the Product Catalog options. <a href="http://huge-it.com/wordpress-plugins-product-catalog-user-manual/" target="_blank">More...</a></div>
+    </div>
+    <div style="float: right;">
+            <a class="header-logo-text" href="http://huge-it.com/product-catalog/" target="_blank">
+                    <div><img width="250px" src="<?php echo $path_site2; ?>/huge-it1.png" /></div>
+                    <div>Get the full version</div>
+            </a>
+    </div>
+    <div style="clear:both;"></div>
     <div id="poststuff">
         <div id="hugeit_messages_page">
             <div class="search_block">
@@ -102,7 +102,11 @@ else{ $visible_submitions = "1-50"; } ?>
                 <a href="#"></a>
             </div>
             <div class="submitted-on">Submitted on <a><?php echo "  ".$submition->date; ?></a></div>
-            <textarea class="submition_message" id_for_edit="<?php echo $submition->id; ?>" readonly ><?php echo htmlspecialchars_decode($submition->user_massage, ENT_NOQUOTES); ?></textarea>
+                <div class="submition_message" id_for_edit="<?php echo $submition->id; ?>" readonly >
+                    <?php
+                      echo $submition->user_massage;
+                    ?>
+                </div>
             <div id="inline-1" class="hidden">
             <textarea class="comment" rows="1" cols="1" readonly="readonly" ><?php echo $submition->user_name; ?></textarea>
             <div class="author-email"></div>
@@ -150,12 +154,58 @@ else{ $visible_submitions = "1-50"; } ?>
     </div>
 </div>
 
+
+<script>
+    jQuery(window).load(function(){                                 //    var i = 0;
+        jQuery("#the-comment-list tr.comment").each(function(){     //    i++;    alert("comment" + i);
+            jQuery(this).find(".message-block tr").each(function(){
+                var this_class = jQuery(this).attr("class");        //    alert(this_class);
+                if( this_class !== "message-text"){
+                    jQuery(this).closest(".submition_message").css({ "opacity" : 1 });
+                    jQuery(this).remove();
+                }
+            });
+        });
+    });
+    jQuery(document).ready(function(){
+            jQuery(".submition_message").each(function(){
+                
+            });
+    });
+</script>
 <?php } ?>
 
 <?php
 
-function html_huge_it_catalog_show_message($messageInArray){    //   var_dump($messageInArray); ?>
+function html_huge_it_catalog_show_message($messageInArray, $submitionsCount){       //var_dump($messageInArray); exit; ?>
 
+<?php
+    if(isset($_GET["id"])){
+        $current_page_id   = $_GET["id"];
+        
+        $max_count = count($submitionsCount);
+        $myNum = 1;
+        foreach($submitionsCount AS $num => $submition){
+            if($submition->id == $current_page_id){ $myNum = $num + 1; $custom_id = $num; }
+        }
+        
+        $current_page_url  = $_SERVER["REQUEST_URI"];
+        $current_page_url  = strstr($current_page_url, 'admin.php');
+//        $previous_page_id  = $submitionsCount[$custom_id - 1]->id;
+        
+        if (array_key_exists($custom_id - 1,$submitionsCount)){
+            $previous_page_id  = $submitionsCount[$custom_id - 1]->id;
+        }else{ $previous_page_id  = $submitionsCount[0]->id; }
+        
+        if (array_key_exists($custom_id + 1,$submitionsCount)){
+            $next_page_id  = $submitionsCount[$custom_id + 1]->id;
+        }else{ $next_page_id  = $submitionsCount[0]->id; }
+        //    var_dump($next_page_id)." ";
+        
+        $next_page_url     = str_replace($current_page_id,$next_page_id,    $current_page_url);
+        $previous_page_url = str_replace($current_page_id,$previous_page_id,$current_page_url);
+    }
+?>
 <div class="wrap">
     <div id="poststuff">
         <div id="hugeit_messages_page">
@@ -163,16 +213,34 @@ function html_huge_it_catalog_show_message($messageInArray){    //   var_dump($m
             <!--<form method="post"  onkeypress="doNothing()" action="admin.php?page=hugeit_contacts_huge_it_contact" id="admin_form" name="admin_form">-->
             <div id="hugeit_top_controls">
                 <ul class="controls-list" style="overflow: hidden;margin: 3px 0;">
+                        <li class="back"><a href="admin.php?page=huge_it_catalog_submitions_page" title="Mark as spam">Spam</a></li>
                         <li class="spam" value="<?php echo $messageInArray[0]->id; ?>" need_to_reload="yes" ><a href="#" title="Mark as spam">Spam</a></li>
                         <li class="trash" value="<?php echo $messageInArray[0]->id; ?>" need_to_reload="yes" ><a href="#">Trash</a></li>
                 </ul>
+                <div class="page-navigation">
+                        <span class="count"><?php echo "Submition ". $myNum . " Of " . $max_count; ?></span>
+                        <div class="buttons">
+                                <?php
+//                                var_dump($previous_page_url)." ";
+//                                var_dump($next_page_url)." ";
+                                    if($myNum > 1){
+                                        echo "<a href='".$previous_page_url."' class='prev_message' >Prev</a>";
+                                    }
+//                                  
+                                    if($myNum < $max_count){
+                                        echo "<a href='".$next_page_url."' class='next_message' >Next</a>";
+                                    }
+                                ?>
+                        </div>
+                </div>
             </div>
             <div style="clear: both;"></div>
             <div id="hugeit_messages_content">
-                <p><strong>FROM : </strong><?php echo $messageInArray[0]->user_name; ?></p>
-                <p><strong>Message : </strong><?php echo $messageInArray[0]->user_massage; ?></p>
-                <p><strong>E-mail : </strong><?php echo $messageInArray[0]->user_email; ?></p>
-                <p><strong>Phone : </strong><?php echo $messageInArray[0]->user_phone; ?></p>
+                <p>
+                    <?php
+                        echo $messageInArray[0]->user_massage;
+                    ?>
+                </p>
             </div>
             
         </div>
@@ -186,14 +254,29 @@ function html_huge_it_catalog_show_message($messageInArray){    //   var_dump($m
 #hugeit_messages_content{
         background-color: #ffffff;
         border: 1px solid #ccc;
-        padding: 0px 12px;
         border-radius: 10px;
+        width: 95%;
 }
 
-#hugeit_top_controls {width:95%;}
+#hugeit_messages_content p, #hugeit_messages_content table tr td{
+    padding-left: 12px;
+}
+
+#hugeit_top_controls {
+       width: 95%;
+       height: 30px;
+       display: inline-block;
+       margin: 6px 0px 0px 0px;
+       padding: 0;
+    /*margin: 5px 0px 0px 0px;*/
+}
 
 #hugeit_top_controls .controls-list {
-    
+       height: 30px;
+       display: inline-block;
+       margin: 0;
+       padding: 0;
+    /*margin: 5px 0px 0px 0px;*/
 }
 
 #hugeit_top_controls .controls-list li {
@@ -230,14 +313,24 @@ function html_huge_it_catalog_show_message($messageInArray){    //   var_dump($m
 
 }
 
+
+
+#hugeit_top_controls .controls-list li.back  a, #hugeit_top_controls .controls-list li.back  a:link, #hugeit_top_controls .controls-list li.back  a:visited {
+        background:url('<?php echo  plugins_url( '../images/gicons.png' , __FILE__ ); ?>') center -326px no-repeat #fafafa;
+        border-top-left-radius:3px;
+        border-bottom-left-radius:3px;
+}
+#hugeit_top_controls .controls-list li.back  a:hover, #hugeit_top_controls .controls-list li.back  a:focus, #hugeit_top_controls .controls-list li.back  a:active {
+        background:url('<?php echo  plugins_url( '../images/gicons.png' , __FILE__ ); ?>') center -826px no-repeat #fefefe;
+}
+
 #hugeit_top_controls .controls-list li  a, #hugeit_top_controls .controls-list li  a:link, #hugeit_top_controls .controls-list li  a:visited{
         display:block;
         min-width:40px;
         text-indent:-9999px;
-        padding:5px 10px 5px 10px;
+        padding: 5px 10px;
         background-color:#fafafa;
 }
-
 
 #hugeit_top_controls .controls-list li  a:hover, #hugeit_top_controls .controls-list li  a:focus, #hugeit_top_controls .controls-list li  a:active {
         background-color:#fefefe;
@@ -304,7 +397,9 @@ function html_huge_it_catalog_show_message($messageInArray){    //   var_dump($m
         border-top-left-radius:3px;
         border-bottom-left-radius:3px;
 } 
-#hugeit_top_controls  .page-navigation  a.prev:hover, #hugeit_top_controls  .page-navigation  a.prev:focus, #hugeit_top_controls  .page-navigation  a.prev:active {background:url('<?php echo  plugins_url( '../images/gicons.png' , __FILE__ ); ?>') center -606px no-repeat #fefefe;}
+#hugeit_top_controls  .page-navigation  a.prev:hover, #hugeit_top_controls  .page-navigation  a.prev:focus, #hugeit_top_controls  .page-navigation  a.prev:active {
+    background:url('<?php echo  plugins_url( '../images/gicons.png' , __FILE__ ); ?>') center -606px no-repeat #fefefe;
+}
 
 #hugeit_top_controls  .page-navigation  a.next, #hugeit_top_controls  .page-navigation  a.next:link, #hugeit_top_controls  .page-navigation  a.next:visited {
         background:url('<?php echo  plugins_url( '../images/gicons.png' , __FILE__ ); ?>') center -264px no-repeat #fafafa;
@@ -312,6 +407,22 @@ function html_huge_it_catalog_show_message($messageInArray){    //   var_dump($m
         border-bottom-right-radius:3px;
 }
 #hugeit_top_controls  .page-navigation  a.next:hover, #hugeit_top_controls  .page-navigation  a.next:focus, #hugeit_top_controls  .page-navigation  a.next:active {background:url('<?php echo  plugins_url( '../images/gicons.png' , __FILE__ ); ?>') center -764px no-repeat #fefefe;}
+
+#hugeit_top_controls  .page-navigation  a.prev_message, #hugeit_top_controls  .page-navigation  a.prev_message:link, #hugeit_top_controls  .page-navigation  a.prev_message:visited {
+        background:url('<?php echo  plugins_url( '../images/gicons.png' , __FILE__ ); ?>') center -106px no-repeat #fafafa;
+        border-top-left-radius:3px;
+        border-bottom-left-radius:3px;
+} 
+#hugeit_top_controls  .page-navigation  a.prev_message:hover, #hugeit_top_controls  .page-navigation  a.prev_message:focus, #hugeit_top_controls  .page-navigation  a.prev_message:active {
+    background:url('<?php echo  plugins_url( '../images/gicons.png' , __FILE__ ); ?>') center -606px no-repeat #fefefe;
+}
+
+#hugeit_top_controls  .page-navigation  a.next_message, #hugeit_top_controls  .page-navigation  a.next_message:link, #hugeit_top_controls  .page-navigation  a.next_message:visited {
+        background:url('<?php echo  plugins_url( '../images/gicons.png' , __FILE__ ); ?>') center -264px no-repeat #fafafa;
+        border-top-right-radius:3px;
+        border-bottom-right-radius:3px;
+}
+#hugeit_top_controls  .page-navigation  a.next_message:hover, #hugeit_top_controls  .page-navigation  a.next_message:focus, #hugeit_top_controls  .page-navigation  a.next_message:active {background:url('<?php echo  plugins_url( '../images/gicons.png' , __FILE__ ); ?>') center -764px no-repeat #fefefe;}
 
 
 a {
@@ -329,7 +440,9 @@ a {
 .hc_captcha_input {
         width: 35px !important;
 }
-
+#hugeit_messages_page #the-comment-list tr{
+    cursor: pointer;
+}
 #hugeit_messages_page #the-comment-list .read {
     opacity: 0.7;
 }
@@ -347,6 +460,9 @@ a {
     box-shadow: none;
     background-color: inherit;
     width: 100%;
+    height: 70px;
+    overflow: hidden;
+    opacity: 0;
 }
 
 #hugeit_messages_page .author input {

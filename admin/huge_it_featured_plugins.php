@@ -172,6 +172,22 @@
 <div class="element hugeitmicro-item">
 	<div class="left-block">
 		<div class="main-image-block">
+			<a href="<?php echo plugins_url( '../images/pimage-gallery-icon.png' , __FILE__ ); ?>" rel="content"><img src="<?php echo plugins_url( '../images/image-gallery-icon.png' , __FILE__ ); ?>"></a>
+		</div>
+	</div>
+	<div class="right-block">
+		<div class="title-block"><h3>Wordpress Image Gallery</h3></div>
+		<div class="description-block">
+			<p>Huge-IT Gallery images is perfect for using for creating various galleries within various views, to creating various sliders with plenty of styles, beautiful lightboxes with it’s options for any taste. The product allows adding descriptions and titles for each image of the Gallery. It is rather useful wherever using with various pages and posts, as well as within custom location.</p>
+		</div>			  				
+		<div class="button-block">
+			<a href="http://huge-it.com/wordpress-gallery/" target="_blank">View Plugin</a>
+		</div>
+	</div>
+</div>
+<div class="element hugeitmicro-item">
+	<div class="left-block">
+		<div class="main-image-block">
 			<a href="<?php echo plugins_url( '../images/lightbox-logo.jpg' , __FILE__ ); ?>" rel="content"><img src="<?php echo plugins_url( '../images/lightbox-logo.jpg' , __FILE__ ); ?>"></a>
 		</div>
 	</div>
@@ -246,22 +262,6 @@
 		</div>			  				
 		<div class="button-block">
 			<a href="http://huge-it.com/colorbox/" target="_blank">View Plugin</a>
-		</div>
-	</div>
-</div>
-<div class="element hugeitmicro-item">
-	<div class="left-block">
-		<div class="main-image-block">
-			<a href="<?php echo plugins_url( '../images/pimage-gallery-icon.png' , __FILE__ ); ?>" rel="content"><img src="<?php echo plugins_url( '../images/image-gallery-icon.png' , __FILE__ ); ?>"></a>
-		</div>
-	</div>
-	<div class="right-block">
-		<div class="title-block"><h3>Wordpress Image Gallery</h3></div>
-		<div class="description-block">
-			<p>Huge-IT Gallery images is perfect for using for creating various galleries within various views, to creating various sliders with plenty of styles, beautiful lightboxes with it’s options for any taste. The product allows adding descriptions and titles for each image of the Gallery. It is rather useful wherever using with various pages and posts, as well as within custom location.</p>
-		</div>			  				
-		<div class="button-block">
-			<a href="http://huge-it.com/wordpress-gallery/" target="_blank">View Plugin</a>
 		</div>
 	</div>
 </div>

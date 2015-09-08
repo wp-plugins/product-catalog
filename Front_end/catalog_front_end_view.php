@@ -299,6 +299,56 @@ function front_end_catalog($images, $paramssld, $paramssld3, $catalog)
         $paramssld["ht_view5_allow_zooming"] = "on";
         $paramssld["ht_view5_allow_lightbox"] = "off";
         
+        $paramssld["htc_view0_load_more_position"] = "center";
+        $paramssld["htc_view1_load_more_position"] = "center";
+        $paramssld["htc_view2_load_more_position"] = "center";
+        $paramssld["htc_view3_load_more_position"] = "center";
+        $paramssld["htc_view0_load_more_font_size"] = "18";
+        $paramssld["htc_view1_load_more_font_size"] = "18";
+        $paramssld["htc_view2_load_more_font_size"] = "22";
+        $paramssld["htc_view3_load_more_font_size"] = "20";
+        $paramssld["htc_view0_load_more_font_color"] = "F2F2F2";
+        $paramssld["htc_view1_load_more_font_color"] = "F2F2F2";
+        $paramssld["htc_view2_load_more_font_color"] = "F2F2F2";
+        $paramssld["htc_view3_load_more_font_color"] = "F2F2F2";
+        $paramssld["htc_view0_load_more_font_hover_color"] = "F2F2F2";
+        $paramssld["htc_view1_load_more_font_hover_color"] = "F2F2F2";
+        $paramssld["htc_view2_load_more_font_hover_color"] = "F2F2F2";
+        $paramssld["htc_view3_load_more_font_hover_color"] = "FFFFFF";
+        $paramssld["htc_view0_load_more_button_background_color"] = "A1A1A1";
+        $paramssld["htc_view1_load_more_button_background_color"] = "A1A1A1";
+        $paramssld["htc_view2_load_more_button_background_color"] = "FF2C2C";
+        $paramssld["htc_view3_load_more_button_background_color"] = "A1A1A1";
+        $paramssld["htc_view0_load_more_button_background_hover_color"] = "A1A1A1";
+        $paramssld["htc_view1_load_more_button_background_hover_color"] = "A1A1A1";
+        $paramssld["htc_view2_load_more_button_background_hover_color"] = "991A1A";
+        $paramssld["htc_view3_load_more_button_background_hover_color"] = "A1A1A1";
+        $paramssld["htc_view0_load_more_loading_icon"] = "1";
+        $paramssld["htc_view1_load_more_loading_icon"] = "1";
+        $paramssld["htc_view2_load_more_loading_icon"] = "1";
+        $paramssld["htc_view3_load_more_loading_icon"] = "1";
+        
+        $paramssld["htc_view0_pagination_font_size"] = "22";
+        $paramssld["htc_view1_pagination_font_size"] = "22";
+        $paramssld["htc_view2_pagination_font_size"] = "22";
+        $paramssld["htc_view3_pagination_font_size"] = "22";
+        $paramssld["htc_view0_pagination_font_color"] = "000";
+        $paramssld["htc_view1_pagination_font_color"] = "000";
+        $paramssld["htc_view2_pagination_font_color"] = "000";
+        $paramssld["htc_view3_pagination_font_color"] = "000";
+        $paramssld["htc_view0_pagination_icon_size"] = "22";
+        $paramssld["htc_view1_pagination_icon_size"] = "22";
+        $paramssld["htc_view2_pagination_icon_size"] = "22";
+        $paramssld["htc_view3_pagination_icon_size"] = "22";
+        $paramssld["htc_view0_pagination_icon_color"] = "000";
+        $paramssld["htc_view1_pagination_icon_color"] = "000";
+        $paramssld["htc_view2_pagination_icon_color"] = "000";
+        $paramssld["htc_view3_pagination_icon_color"] = "000";
+        $paramssld["htc_view0_pagination_position"] = "center";
+        $paramssld["htc_view1_pagination_position"] = "center";
+        $paramssld["htc_view2_pagination_position"] = "center";
+        $paramssld["htc_view3_pagination_position"] = "center";
+                
 ?>
 <script>
         var allowZooming;
@@ -330,9 +380,10 @@ function front_end_catalog($images, $paramssld, $paramssld3, $catalog)
             var catalogLensColour = "<?php echo $paramssld['ht_catalog_zoom_lens_color'];?>";
             var catalogLensOpacity = <?php echo $paramssld['ht_catalog_zoom_lens_opacity'];?>/100;
             var catalogCursor = "<?php echo $paramssld['ht_catalog_zoom_cursor'];?>";
+            
             var catalogScrollZoom = <?php echo $paramssld['ht_catalog_zoom_scrollzoom'];?>;
+            
             var catalogEasing = <?php echo $paramssld['ht_catalog_zoom_easing'];?>;
-
             var catalogTint = "<?php echo $paramssld['ht_catalog_zoom_tint'];?>";
             var catalogTintColour = "<?php echo $paramssld['ht_catalog_zoom_tint_colour'];?>";
             var catalogTintOpacity = <?php echo $paramssld['ht_catalog_zoom_tint_opacity'];?>/100;
@@ -482,6 +533,7 @@ function front_end_catalog($images, $paramssld, $paramssld3, $catalog)
                                         for(i = 1; i <= group_count; i++){
                                             jQuery(".catalog_group" + i + "<?php echo "_".$catalogID; ?>").colorbox({rel:'catalog_group' + i + "<?php echo "_".$catalogID; ?>"});
                                         }
+//                                        catalog_group<?php // echo $group_key."_".$catalogID; ?>
         				
                                         var catalog_slider_slides_count = 0;
                                         jQuery(".slider-content").each(function(){
@@ -550,6 +602,54 @@ function front_end_catalog($images, $paramssld, $paramssld3, $catalog)
 //       { $sorting_block_width ="100%"; $filtering_block_width ="30%"; $paramssld["ht_view0_sorting_float"] = "none"; $width_middle = "65%"; }
 //    if($paramssld["ht_view0_sorting_float"] == "top" && $paramssld["ht_view0_filtering_float"] == "top")
 //       { $sorting_block_width ="100%"; $filtering_block_width ="100%"; $left_to_top = "ok"; }
+
+if($catalog[0]->pagination_type == "show_all"){ $myAllImages = count($images); $countIntoPage = $catalog[0]->count_into_page; $pages = ceil($myAllImages / $countIntoPage); $page_index = $_GET["catalog_page_".$catalogID]; $maxCount = $page_index * $countIntoPage; $morePaste = $maxCount - $myAllImages; }
+else{
+    if(isset($_GET["catalog_page_".$catalogID])){
+            $myAllImages = count($images);
+            $countIntoPage = $catalog[0]->count_into_page;
+            $pages = ceil($myAllImages / $countIntoPage);
+            $page_index = $_GET["catalog_page_".$catalogID];
+            $maxCount = $page_index * $countIntoPage;
+            $morePaste = $maxCount - $myAllImages;
+            
+//            var_dump($page_index." ".$countIntoPage." ".$maxCount." ".$morePaste." ".$myAllImages." ".$pages);
+            if($page_index <= 1 || ($maxCount > $myAllImages) && $morePaste > $countIntoPage){
+                $imagesUsefulElements = array();
+                for($usefulKeys = 0; $usefulKeys < $countIntoPage; $usefulKeys++){
+                    $imagesUsefulElements[] = $images[$usefulKeys];
+                }
+                $images = $imagesUsefulElements;
+            }
+            elseif (($maxCount <= $myAllImages) || ($maxCount > $myAllImages && $morePaste <= $countIntoPage)){
+                $show_from = $page_index * $countIntoPage - $countIntoPage;
+                $show_until = $page_index * $countIntoPage - 1;
+                $usefulElementsKey = 0;
+                
+//                var_dump("from ".$show_from." ".$show_until);
+                foreach($images as $galleryElements){
+                    if($usefulElementsKey >= $show_from && $usefulElementsKey <= $show_until){
+                        $imagesUsefulElements[] = $galleryElements;
+                    }
+                    $usefulElementsKey++;
+                }
+                $images = $imagesUsefulElements;
+            }
+    }
+    else{
+        $myAllImages = count($images);
+        $page_index = 1;
+        $countIntoPage = $catalog[0]->count_into_page;
+        $pages = ceil($myAllImages / $countIntoPage);
+        $imagesUsefulElements = array();
+        for($usefulKeys = 0; $usefulKeys < $countIntoPage; $usefulKeys++){
+            $imagesUsefulElements[] = $images[$usefulKeys];
+//                    var_dump($usefulKeys);
+        }
+        $images = $imagesUsefulElements;
+    }
+}
+
 ?>
 <style type="text/css">
 
@@ -772,8 +872,8 @@ function front_end_catalog($images, $paramssld, $paramssld3, $catalog)
 	font-size:<?php echo $paramssld['ht_view0_linkbutton_font_size']; ?>px;
 	background:#<?php echo $paramssld['ht_view0_linkbutton_background_color']; ?>;
 	color:#<?php echo $paramssld['ht_view0_linkbutton_color']; ?>;
-	text-decoration:none;
         border: none;
+        text-decoration: none;
 }
 
 .wd-catalog-panel_<?php echo $catalogID; ?> .button-block a:hover, .wd-catalog-panel_<?php echo $catalogID; ?> .button-block a:focus, .wd-catalog-panel_<?php echo $catalogID; ?> .button-block a:active {
@@ -908,9 +1008,159 @@ function front_end_catalog($images, $paramssld, $paramssld3, $catalog)
         width: <?php echo $width_middle; ?> !important;
  <?php } ?>
 }
+.catalog_pagination_block_<?php echo $catalogID; ?>{
+    /*text-align: <?php echo $paramssld["htc_view0_pagination_position"]; ?>;*/
+    padding: 20px 0px;
+    margin: 16px 0px 35px 0px;
+}
+.catalog_pagination_<?php echo $catalogID; ?>{
+    text-align: <?php echo $paramssld["htc_view0_pagination_position"]; ?>;
+    /*display: inline-block;*/
+    /*height: 50px;*/
+/*    border: 1px solid #dadada;
+    border-radius: 6px;*/
+}
+.catalog_pagination_<?php echo $catalogID; ?> a, .catalog_pagination_<?php echo $catalogID; ?> span{
+    color: #515151;
+    font-size: 20px;
+    text-decoration: none;
+    text-align: center;
+/*    width: 48px;
+    height: 48px;*/
+    /*display: inline-block;*/
+    /*float: left;*/
+    margin: 0;
+    padding: 0;
+}
+.catalog_pagination_<?php echo $catalogID; ?> .pagination-text{
+    /*float: left;*/
+    color: #<?php echo $paramssld["htc_view0_pagination_font_color"]; ?>;
+    font-size: <?php echo $paramssld["htc_view0_pagination_font_size"]; ?>px;
+    /*font-weight: bold;*/
+    padding: 12px 0px;
+    text-decoration: none;
+    text-align: center;
+    /*display: inline-block;*/
+/*    width: 180px;
+    height: 48px;*/
+    /*background-color: #fff;*/
+}
+@media only screen and (max-width:500px) {
+	.catalog_pagination_<?php echo $catalogID; ?> .pagination-text{
+            font-size: 16px !important;
+            width: 120px !important;
+	}
+        .catalog_pagination_block_<?php echo $catalogID; ?>{
+            text-align: left;
+        }
+}
+.catalog_pagination_<?php echo $catalogID; ?> a{
+    text-align: center;
+    position: relative;
+    margin-right: 5px;
+    
+}
+.catalog_pagination_<?php echo $catalogID; ?> a i{
+    font-size: <?php echo $paramssld["htc_view0_pagination_icon_size"]; ?>px;
+    color: #<?php echo $paramssld["htc_view0_pagination_icon_color"]; ?>;
+/*    position: absolute;
+    top: -moz-calc(50% - 8px) !important;
+    top: -webkit-calc(50% - 8px)  !important;
+    top: calc(50% - 8px) !important;
+    top: -o-calc(50% - 8px) !important;
+    top: -ms-calc(50% - 8px) !important;
+    
+    left: -moz-calc(50% - 8px) !important;
+    left: -webkit-calc(50% - 8px)  !important;
+    left: calc(50% - 8px) !important;
+    left: -o-calc(50% - 8px) !important;
+    left: -ms-calc(50% - 8px) !important;*/
+}
+.catalog_pagination_<?php echo $catalogID; ?> .go-to-first{
+    font-size: 10px !important;
+    /*background-color: #F0F0F0 !important;*/
+    /*background:url('<?php echo  plugins_url( '../images/first-active.png' , __FILE__ ); ?>') center center no-repeat;*/
+/*    border-right: 1px solid #D0D0D0;
+    border-top-left-radius: 5px;
+    border-bottom-left-radius: 10px;*/
+}
+.catalog_pagination_<?php echo $catalogID; ?> .go-to-first-passive{
+    font-size: 10px !important;
+    /*background-color: #F0F0F0 !important;*/
+    /*background:url('<?php echo  plugins_url( '../images/first-passive.png' , __FILE__ ); ?>') center center no-repeat;*/
+/*    border-right: 1px solid #D0D0D0;
+    border-top-left-radius: 5px;
+    border-bottom-left-radius: 5px;*/
+}
+
+.catalog_pagination_<?php echo $catalogID; ?> .go-to-previous{
+    font-size: 10px !important;
+    /*background-color: #F0F0F0 !important;*/
+    /*background:url('<?php echo  plugins_url( '../images/left-active.png' , __FILE__ ); ?>') center center no-repeat;*/
+    /*border-right: 1px solid #D0D0D0;*/
+}
+.catalog_pagination_<?php echo $catalogID; ?> .go-to-previous-passive{
+    /*background-color: #F0F0F0 !important;*/
+    /*background:url('<?php echo  plugins_url( '../images/left-passive.png' , __FILE__ ); ?>') center center no-repeat;*/
+    /*border-right: 1px solid #D0D0D0;*/
+}
+
+.catalog_pagination_<?php echo $catalogID; ?> .go-to-last{
+    font-size: 10px !important;
+    /*background-color: #F0F0F0 !important;*/
+    /*background:url('<?php echo  plugins_url( '../images/last-active.png' , __FILE__ ); ?>') center center no-repeat;*/
+/*    border-left: 1px solid #D0D0D0;
+    border-top-right-radius: 5px;
+    border-bottom-right-radius: 5px;*/
+}
+.catalog_pagination_<?php echo $catalogID; ?> .go-to-last-passive{
+    font-size: 10px !important;
+    /*background-color: #F0F0F0 !important;*/
+    /*background:url('<?php echo  plugins_url( '../images/last-passive.png' , __FILE__ ); ?>') center center no-repeat;*/
+/*    border-top-right-radius: 5px;
+    border-bottom-right-radius: 5px;
+    border-left: 1px solid #D0D0D0;*/
+}
+
+.catalog_pagination_<?php echo $catalogID; ?> .go-to-next{
+    font-size: 10px !important;
+    /*background-color: #F0F0F0 !important;*/
+    /*background:url('<?php echo  plugins_url( '../images/right-active.png' , __FILE__ ); ?>') center center no-repeat;*/
+    /*border-left: 1px solid #D0D0D0;*/
+}
+.catalog_pagination_<?php echo $catalogID; ?> .go-to-next-passive{
+    font-size: 10px !important;
+    /*background-color: #F0F0F0 !important;*/
+    /*background:url('<?php echo  plugins_url( '../images/right-passive.png' , __FILE__ ); ?>') center center no-repeat;*/
+    /*border-left: 1px solid #D0D0D0;*/
+}
 
 .zoomContainer {
     z-index: 10;
+}
+.catalog_load_block_<?php echo $catalogID; ?>{
+    margin: 35px 0px;
+}
+.catalog_load_<?php echo $catalogID; ?>{
+    text-align: <?php echo $paramssld["htc_view0_load_more_position"]; ?>;
+}
+.catalog_load_<?php echo $catalogID; ?> a{
+    text-decoration: none;
+    /*width: 100%;*/
+    border-radius: 5px;
+    display: inline-block;
+    padding: 5px 15px;
+    font-size: <?php echo $paramssld["htc_view0_load_more_font_size"]; ?>px !important;
+    color: #<?php echo $paramssld["htc_view0_load_more_font_color"]; ?> !important;
+    background: #<?php echo $paramssld["htc_view0_load_more_button_background_color"]; ?> !important;
+    cursor: pointer;
+}
+.catalog_load_<?php echo $catalogID; ?> a:hover{
+    color: #<?php echo $paramssld["htc_view0_load_more_font_hover_color"]; ?> !important;
+    background: #<?php echo $paramssld["htc_view0_load_more_button_background_hover_color"]; ?> !important;
+}
+.catalog_load_<?php echo $catalogID; ?> a:focus{
+    outline: none;
 }
 
 </style>
@@ -967,11 +1217,10 @@ function front_end_catalog($images, $paramssld, $paramssld3, $catalog)
                                       <div class="image-block_<?php echo $catalogID; ?> for_zoom">
                                               <?php $imgurl=explode(";",$row->image_url); ?>
                                               <?php 	if($row->image_url != ';'){ ?>
-                                                    <img id="wd-cl-img<?php echo $key; ?>" src="<?php echo $imgurl[0]; ?>" />
-                                              <?php } else { ?>
-                                              <img id="wd-cl-img<?php echo $key; ?>" src="images/noimage.png" />
-                                              <?php
-                                              } ?>	
+                                                            <img id="wd-cl-img<?php echo $key; ?>" src="<?php echo $imgurl[0]; ?>" />
+                                              <?php     }else { ?>
+                                                            <img id="wd-cl-img<?php echo $key; ?>" src="images/noimage.png" />
+                                              <?php } ?>	
                                       </div>
                                       <div class="title-block_<?php echo $catalogID; ?>">
                                               <h3 class="title"><?php echo $row->name; ?></h3>
@@ -1047,6 +1296,93 @@ function front_end_catalog($images, $paramssld, $paramssld3, $catalog)
               }
               ?>
         </div>
+    
+        <?php
+            if($catalog[0]->pagination_type == "pagination"){
+        ?>
+        <div class="catalog_pagination_block_<?php echo $catalogID; ?>" >
+            <div class="catalog_pagination_<?php echo $catalogID; ?>" >
+                <?php
+//                var_dump($_SERVER);
+                
+                    if (strpos($_SERVER['QUERY_STRING'], 'catalog_page_') !== false)
+                {                                                                   //      IF WE HAVE $_GET PAGE
+                    $oneMore = $page_index + 1;
+                    $oneLess = $page_index - 1;
+                    
+                    if(isset($_GET["catalog_page_".$catalogID])){                   //      IF WE HAVE $_GET PAGE FOR THAT CATALOG
+                        $prevPagePath  = str_replace("catalog_page_".$catalogID."=".$page_index,"catalog_page_".$catalogID."=".$oneLess,$_SERVER['QUERY_STRING']);
+                        $nextPagePath  = str_replace("catalog_page_".$catalogID."=".$page_index,"catalog_page_".$catalogID."=".$oneMore,$_SERVER['QUERY_STRING']);
+                        $firstPagePath = str_replace("catalog_page_".$catalogID."=".$page_index,"catalog_page_".$catalogID."=1",$_SERVER['QUERY_STRING']);
+                        $lastPagePath  = str_replace("catalog_page_".$catalogID."=".$page_index,"catalog_page_".$catalogID."=".$pages,$_SERVER['QUERY_STRING']);
+//                        var_dump($nextPagePath);
+                    }
+                    else{                                                           //      IF WE HAVE $_GET PAGE FOR ANOTHER CATALOG
+                        $prevPagePath  = "#";
+                        $nextPagePath = $_SERVER['QUERY_STRING']."&catalog_page_".$catalogID."=2";
+//                        $nextPagePath  = str_replace("catalog_page_".$catalogID."=".$page_index,"catalog_page_".$catalogID."=".$oneMore,$_SERVER['QUERY_STRING']);
+                        $firstPagePath = $_SERVER['QUERY_STRING']."&catalog_page_".$catalogID."=1";
+                        $lastPagePath  = $_SERVER['QUERY_STRING']."&catalog_page_".$catalogID."=".$pages;
+                    }
+                }
+                else{                                                               //      IF WE HAVE NOOOT $_GET PAGE
+                    $oneMore = $page_index + 1;
+                    $oneLess = $page_index - 1;
+                    
+                    $prevPagePath  = "#";
+                    $nextPagePath  = "catalog_page_".$catalogID."=2";
+                    $firstPagePath = "catalog_page_".$catalogID."=1";
+                    $lastPagePath  = "catalog_page_".$catalogID."=".$pages;
+                }
+                
+
+               
+                    if (strpos(get_permalink(),'/?') !== false) { $pathSumbol = "&"; }
+                    else {
+                        if (strpos(get_permalink(),'/') !== false) { $pathSumbol = "?"; }
+                        else { $pathSumbol = "/?"; }
+                    }
+                    // The "back" link
+//                    $prevlink = ($page_index > 1) ? ''
+//                            . '<a href="'.$pathSumbol.$firstPagePath. '" class="go-to-first"></a> <a href="'.$pathSumbol.$prevPagePath. '" class="go-to-previous"></a>' : '<span class="disabled go-to-first-passive"></span> <span class="disabled go-to-previous-passive"></span>';
+//
+//                    // The "forward" link
+//                    $nextlink = ($page_index < $pages) ? ''
+//                            . '<a href="'.$pathSumbol.$nextPagePath. '" class="go-to-next"></a> <a href="'.$pathSumbol.$lastPagePath. '" class="go-to-last"></a>' : '<span class="disabled go-to-next-passive"></span> <span class="disabled go-to-last-passive"></span>';
+                    
+                    // The "back" link
+                    $prevlink = ($page_index > 1) ? ''
+                            . '<a href="'.$pathSumbol.$firstPagePath. '" class="go-to-first"><i class="icon-style4 hugeiticons-fast-backward" ></i></a>'
+                            . '<a href="'.$pathSumbol.$prevPagePath. '" class="go-to-previous"><i class="icon-style4 hugeiticons-chevron-left"></i></a>' : '<span class="disabled go-to-first-passive"></span> <span class="disabled go-to-previous-passive"></span>';
+
+                    // The "forward" link
+                    $nextlink = ($page_index < $pages) ? ''
+                            . '<a href="'.$pathSumbol.$nextPagePath. '" class="go-to-next"><i class="icon-style4 hugeiticons-chevron-right"></i></a>'
+                            . '<a href="'.$pathSumbol.$lastPagePath. '" class="go-to-last"><i class="icon-style4 hugeiticons-fast-forward" ></i></a>' : 
+                              '<span class="disabled go-to-next-passive"></span>'
+                            . '<span class="disabled go-to-last-passive"></span>';
+                    
+                    echo $prevlink." <span class='pagination-text'>".$page_index." / ".$pages."</span> ".$nextlink;
+                    
+                ?>
+                <input type="hidden" class="pagination-scroll-position" value=""/>
+            </div>
+        </div>
+        <?php
+            }
+            elseif($catalog[0]->pagination_type == "load_more"){ $path_site = plugins_url("/../images", __FILE__); ?>
+                <div class="catalog_load_block_<?php echo $catalogID; ?>" >
+                    <div class="catalog_load_<?php echo $catalogID; ?>" >
+                        <a href="#" class="load_more_elements_<?php echo $catalogID; ?>">Load More...</a>
+                        <img src="<?php echo $path_site; ?>/load_more_icon_<?php echo $paramssld['htc_view0_load_more_loading_icon']; ?>.gif" class="load_more_loading_icon" style="display: none"/>
+                        <input type="hidden" class="load-more-elements-count" value="<?php echo $countIntoPage; ?>"/>
+                    <?php
+                        
+                    ?>
+                    </div>
+                </div>
+      <?php } ?>
+    
 </section>
 
 <script>
@@ -1128,7 +1464,7 @@ var defaultBlockWidth=<?php echo $paramssld['ht_view0_block_width']; ?>;
         value = value === 'false' ? false : value;
         options[ key ] = value;
         if ( key === 'layoutMode' && typeof changeLayoutMode === 'function' ) {
-
+            
           changeLayoutMode( $this, options )
         } else {
 
@@ -1223,6 +1559,81 @@ var defaultBlockWidth=<?php echo $paramssld['ht_view0_block_width']; ?>;
 //                         jQuery("#huge_it_catalog_filters_<?php echo $catalogID; ?>").css({'margin-top':'5px'});
                 <?php // }
 //                  } ?>
+            
+            /*    <--   VIEW 0 ELEMENTS THUMBS CLICK    */
+            
+            jQuery(".element_<?php echo $catalogID; ?> .thumbs-block ul li a img").click(function(e){
+                var lightbox_is = "<?php echo $paramssld['ht_view0_allow_lightbox']; ?>"
+                    if(lightbox_is != "on"){
+                        e.preventDefault();
+//                        alert(lightbox_is);
+                        var new_src = jQuery(this).attr("src");    //    alert(new_src);
+                        var image = jQuery(this).closest(".element_<?php echo $catalogID; ?>").find(".default-block_<?php echo $catalogID; ?> .image-block_<?php echo $catalogID; ?> img");
+                            image.attr("src", new_src);
+                            zoom_start();
+                    }
+            });
+            
+            /*          VIEW 0 LOAD MORE CLICK    -->   */
+            
+            jQuery(".load_more_elements_<?php echo $catalogID; ?>").click(function(){
+                jQuery(this).css({ "display" : "none" });
+                jQuery(this).parent().find(".load_more_loading_icon").css({ "display" : "" });
+        var old_count = jQuery(this).parent().find(".load-more-elements-count").val() - parseInt(1);
+//        alert("<?php echo $paramssld['ht_view0_show_thumbs']; ?>");
+        var data = {
+                    action: 'my_action',
+                    post: 'load_more_elements_into_catalog',
+                    view: <?php echo $catalog[0]->catalog_list_effects_s; ?>,
+                    catalog_id: <?php echo $catalogID; ?>,
+                    count_into_page: <?php echo $countIntoPage; ?>,
+                    old_count: old_count,
+                    allow_lightbox: "<?php echo $paramssld['ht_view0_allow_lightbox']; ?>",
+                    show_thumbs: "<?php echo $paramssld['ht_view0_show_thumbs']; ?>",
+                    thumbs_position: "<?php echo $paramssld['ht_view0_thumbs_position']; ?>",
+                    show_description: "<?php echo $paramssld['ht_view0_show_description']; ?>",
+                    show_price: "<?php echo $paramssld["ht_catalog_view0_show_price"]; ?>",
+                    price_text: "<?php echo $paramssld3['ht_single_product_price_text']; ?>",
+                    show_linkbutton: "<?php echo $paramssld['ht_view0_show_linkbutton']; ?>",
+                    linkbutton_text: "<?php echo $paramssld3['ht_catalog_general_linkbutton_text']; ?>",
+                    parmalink: "<?php echo get_permalink(); ?>"
+        };
+
+                jQuery.post("<?php echo admin_url('admin-ajax.php'); ?>", data, function(response) {
+        //alert(response);
+//        alert(scroll);
+                    jQuery("#huge_it_catalog_container_<?php echo $catalogID; ?>").append(response);
+                        setTimeout(function(){
+                            jQuery("#huge_it_catalog_container_<?php echo $catalogID; ?>").hugeitmicro( 'reloadItems' ).hugeitmicro({ sortBy: 'original-order' }).hugeitmicro( 'reLayout' );
+                            jQuery(".load_more_elements_<?php echo $catalogID; ?>").css({ "display" : "" });
+                            jQuery(".load_more_elements_<?php echo $catalogID; ?>").parent().find(".load_more_loading_icon").css({ "display" : "none" });
+                        }, 100);
+                        
+                        var group_count = 0;
+                        jQuery(".catalog_colorbox_grouping_<?php echo $catalogID; ?>").each(function(){     //      CALLING COLORBOX
+                            group_count++;
+                        });
+                        var i;
+                        for(i = 1; i <= group_count; i++){
+                            jQuery(".catalog_group" + i + "<?php echo "_".$catalogID; ?>").colorbox({rel:'catalog_group' + i + "<?php echo "_".$catalogID; ?>"});
+                        }
+//                                        catalog_group<?php // echo $group_key."_".$catalogID; ?>
+
+                        zoom_start();                                                                       //      CALLING ELEVATEZOOM
+                        
+                                        
+                });
+
+                old_count = parseInt(old_count) + parseInt(<?php echo $countIntoPage; ?>) + parseInt(1);
+                jQuery(this).parent().find(".load-more-elements-count").val(old_count);
+        //        alert(old_count + " " + <?php echo $myAllImages; ?>)
+                var max_count = <?php echo $myAllImages; ?>;
+                if( old_count >=  max_count){ jQuery(".catalog_load_block_<?php echo $catalogID; ?>").remove(); }
+                return false;
+            });
+            
+            /*        <!--     VIEW 0 LOAD MORE CLICK          */
+            
         });
         
         jQuery(window).load(function(){
@@ -1250,9 +1661,65 @@ var defaultBlockWidth=<?php echo $paramssld['ht_view0_block_width']; ?>;
 //       { $sorting_block_width ="100%"; $filtering_block_width ="30%"; $paramssld["ht_view1_sorting_float"] = "none"; $width_middle = "65%"; }
 //    if($paramssld["ht_view1_sorting_float"] == "top" && $paramssld["ht_view1_filtering_float"] == "top")
 //       { $sorting_block_width ="100%"; $filtering_block_width ="100%"; $left_to_top = "ok"; }
+//var_dump($catalog[0]->count_into_page);
+if($catalog[0]->pagination_type == "show_all"){
+    $myAllImages = count($images);
+    $countIntoPage = $catalog[0]->count_into_page;
+    $pages = ceil($myAllImages / $countIntoPage);
+    if(isset($_GET["catalog_page_".$catalogID])){ $page_index = $_GET["catalog_page_".$catalogID]; }
+    else{ $page_index = "catalog_page_".$catalogID; }
+    $maxCount = $page_index * $countIntoPage;
+    $morePaste = $maxCount - $myAllImages; }
+else{
+    if(isset($_GET["catalog_page_".$catalogID])){
+            $myAllImages = count($images);
+            $countIntoPage = $catalog[0]->count_into_page;
+            $pages = ceil($myAllImages / $countIntoPage);
+            $page_index = $_GET["catalog_page_".$catalogID];
+            $maxCount = $page_index * $countIntoPage;
+            $morePaste = $maxCount - $myAllImages;
+            
+//            var_dump($page_index." ".$countIntoPage." ".$maxCount." ".$morePaste." ".$myAllImages." ".$pages);
+            if($page_index <= 1 || ($maxCount > $myAllImages) && $morePaste > $countIntoPage){
+                $imagesUsefulElements = array();
+                for($usefulKeys = 0; $usefulKeys < $countIntoPage; $usefulKeys++){
+                    $imagesUsefulElements[] = $images[$usefulKeys];
+                }
+                $images = $imagesUsefulElements;
+            }
+            elseif (($maxCount <= $myAllImages) || ($maxCount > $myAllImages && $morePaste <= $countIntoPage)){
+                $show_from = $page_index * $countIntoPage - $countIntoPage;
+                $show_until = $page_index * $countIntoPage - 1;
+                $usefulElementsKey = 0;
+                
+//                var_dump("from ".$show_from." ".$show_until);
+                foreach($images as $galleryElements){
+                    if($usefulElementsKey >= $show_from && $usefulElementsKey <= $show_until){
+                        $imagesUsefulElements[] = $galleryElements;
+                    }
+                    $usefulElementsKey++;
+                }
+                $images = $imagesUsefulElements;
+            }
+    }
+    else{
+        $myAllImages = count($images);
+        $page_index = 1;
+        $countIntoPage = $catalog[0]->count_into_page;
+        $pages = ceil($myAllImages / $countIntoPage);
+        $imagesUsefulElements = array();
+        for($usefulKeys = 0; $usefulKeys < $countIntoPage; $usefulKeys++){
+            $imagesUsefulElements[] = $images[$usefulKeys];
+//                    var_dump($usefulKeys);
+        }
+        $images = $imagesUsefulElements;
+    }
+}
+
+
 ?>
 
-<style type="text/css"> 
+<style type="text/css">
 .element_<?php echo $catalogID; ?> {
   width:<?php echo $paramssld['ht_view1_block_width']; ?>px;
   height:auto;
@@ -1570,10 +2037,161 @@ var defaultBlockWidth=<?php echo $paramssld['ht_view0_block_width']; ?>;
     /*width: <?php echo $width_middle; ?> !important;*/
  <?php // } ?>
 }
+
+.catalog_pagination_block_<?php echo $catalogID; ?>{
+    /*text-align: <?php echo $paramssld["htc_view1_pagination_position"]; ?>;*/
+    padding: 20px 0px;
+    margin: 16px 0px 35px 0px;
+}
+.catalog_pagination_<?php echo $catalogID; ?>{
+    text-align: <?php echo $paramssld["htc_view1_pagination_position"]; ?>;
+    /*display: inline-block;*/
+    /*height: 50px;*/
+/*    border: 1px solid #dadada;
+    border-radius: 6px;*/
+}
+.catalog_pagination_<?php echo $catalogID; ?> a, .catalog_pagination_<?php echo $catalogID; ?> span{
+    color: #515151;
+    font-size: 20px;
+    text-decoration: none;
+    text-align: center;
+/*    width: 48px;
+    height: 48px;*/
+    /*display: inline-block;*/
+    /*float: left;*/
+    margin: 0;
+    padding: 0;
+}
+.catalog_pagination_<?php echo $catalogID; ?> .pagination-text{
+    /*float: left;*/
+    color: #<?php echo $paramssld["htc_view1_pagination_font_color"]; ?>;
+    font-size: <?php echo $paramssld["htc_view1_pagination_font_size"]; ?>px;
+    /*font-weight: bold;*/
+    padding: 12px 0px;
+    text-decoration: none;
+    text-align: center;
+    /*display: inline-block;*/
+/*    width: 180px;
+    height: 48px;*/
+    /*background-color: #fff;*/
+}
+@media only screen and (max-width:500px) {
+	.catalog_pagination_<?php echo $catalogID; ?> .pagination-text{
+            font-size: 16px !important;
+            width: 120px !important;
+	}
+        .catalog_pagination_block_<?php echo $catalogID; ?>{
+            text-align: left;
+        }
+}
+.catalog_pagination_<?php echo $catalogID; ?> a{
+    text-align: center;
+    position: relative;
+    margin-right: 5px;
+    
+}
+.catalog_pagination_<?php echo $catalogID; ?> a i{
+    font-size: <?php echo $paramssld["htc_view1_pagination_icon_size"]; ?>px;
+    color: #<?php echo $paramssld["htc_view1_pagination_icon_color"]; ?>;
+/*    position: absolute;
+    top: -moz-calc(50% - 8px) !important;
+    top: -webkit-calc(50% - 8px)  !important;
+    top: calc(50% - 8px) !important;
+    top: -o-calc(50% - 8px) !important;
+    top: -ms-calc(50% - 8px) !important;
+    
+    left: -moz-calc(50% - 8px) !important;
+    left: -webkit-calc(50% - 8px)  !important;
+    left: calc(50% - 8px) !important;
+    left: -o-calc(50% - 8px) !important;
+    left: -ms-calc(50% - 8px) !important;*/
+}
+.catalog_pagination_<?php echo $catalogID; ?> .go-to-first{
+    font-size: 10px !important;
+    /*background-color: #F0F0F0 !important;*/
+    /*background:url('<?php echo  plugins_url( '../images/first-active.png' , __FILE__ ); ?>') center center no-repeat;*/
+/*    border-right: 1px solid #D0D0D0;
+    border-top-left-radius: 5px;
+    border-bottom-left-radius: 10px;*/
+}
+.catalog_pagination_<?php echo $catalogID; ?> .go-to-first-passive{
+    font-size: 10px !important;
+    /*background-color: #F0F0F0 !important;*/
+    /*background:url('<?php echo  plugins_url( '../images/first-passive.png' , __FILE__ ); ?>') center center no-repeat;*/
+/*    border-right: 1px solid #D0D0D0;
+    border-top-left-radius: 5px;
+    border-bottom-left-radius: 5px;*/
+}
+
+.catalog_pagination_<?php echo $catalogID; ?> .go-to-previous{
+    font-size: 10px !important;
+    /*background-color: #F0F0F0 !important;*/
+    /*background:url('<?php echo  plugins_url( '../images/left-active.png' , __FILE__ ); ?>') center center no-repeat;*/
+    /*border-right: 1px solid #D0D0D0;*/
+}
+.catalog_pagination_<?php echo $catalogID; ?> .go-to-previous-passive{
+    /*background-color: #F0F0F0 !important;*/
+    /*background:url('<?php echo  plugins_url( '../images/left-passive.png' , __FILE__ ); ?>') center center no-repeat;*/
+    /*border-right: 1px solid #D0D0D0;*/
+}
+
+.catalog_pagination_<?php echo $catalogID; ?> .go-to-last{
+    font-size: 10px !important;
+    /*background-color: #F0F0F0 !important;*/
+    /*background:url('<?php echo  plugins_url( '../images/last-active.png' , __FILE__ ); ?>') center center no-repeat;*/
+/*    border-left: 1px solid #D0D0D0;
+    border-top-right-radius: 5px;
+    border-bottom-right-radius: 5px;*/
+}
+.catalog_pagination_<?php echo $catalogID; ?> .go-to-last-passive{
+    font-size: 10px !important;
+    /*background-color: #F0F0F0 !important;*/
+    /*background:url('<?php echo  plugins_url( '../images/last-passive.png' , __FILE__ ); ?>') center center no-repeat;*/
+/*    border-top-right-radius: 5px;
+    border-bottom-right-radius: 5px;
+    border-left: 1px solid #D0D0D0;*/
+}
+
+.catalog_pagination_<?php echo $catalogID; ?> .go-to-next{
+    font-size: 10px !important;
+    /*background-color: #F0F0F0 !important;*/
+    /*background:url('<?php echo  plugins_url( '../images/right-active.png' , __FILE__ ); ?>') center center no-repeat;*/
+    /*border-left: 1px solid #D0D0D0;*/
+}
+.catalog_pagination_<?php echo $catalogID; ?> .go-to-next-passive{
+    font-size: 10px !important;
+    /*background-color: #F0F0F0 !important;*/
+    /*background:url('<?php echo  plugins_url( '../images/right-passive.png' , __FILE__ ); ?>') center center no-repeat;*/
+    /*border-left: 1px solid #D0D0D0;*/
+}
+
 .zoomContainer {
     z-index: 10;
 }
-
+.catalog_load_block_<?php echo $catalogID; ?>{
+    margin: 35px 0px;
+}
+.catalog_load_<?php echo $catalogID; ?>{
+    text-align: center;
+}
+.catalog_load_<?php echo $catalogID; ?> a{
+    text-decoration: none;
+    /*width: 100%;*/
+    border-radius: 5px;
+    display: inline-block;
+    padding: 5px 15px;
+    font-size: <?php echo $paramssld["htc_view1_load_more_font_size"]; ?>px !important;
+    color: #<?php echo $paramssld["htc_view1_load_more_font_color"]; ?> !important;
+    background: #<?php echo $paramssld["htc_view1_load_more_button_background_color"]; ?> !important;
+    cursor: pointer;
+}
+.catalog_load_<?php echo $catalogID; ?> a:hover{
+    color: #<?php echo $paramssld["htc_view1_load_more_font_hover_color"]; ?> !important;
+    background: #<?php echo $paramssld["htc_view1_load_more_button_background_hover_color"]; ?> !important;
+}
+.catalog_load_<?php echo $catalogID; ?> a:focus{
+    outline: none;
+}
 </style>
 <section id="huge_it_catalog_content_<?php echo $catalogID; ?>">
     <?php if($catalogShowSorting == "on")
@@ -1611,6 +2229,9 @@ var defaultBlockWidth=<?php echo $paramssld['ht_view0_block_width']; ?>;
             </ul>
         </div>
 <?php } ?>
+<!--    <div class="search-imput" >
+        <input type="text" autocomplete="off" />
+    </div>-->
         <div id="huge_it_catalog_container_<?php echo $catalogID; ?>" class="super-list variable-sizes clearfix" <?php //if($paramssld["ht_view1_sorting_float"] == "top" && $paramssld["ht_view1_filtering_float"] == "top") echo "style='clear: both;'";?>>
               <?php
               $group_key = 0;
@@ -1623,62 +2244,52 @@ var defaultBlockWidth=<?php echo $paramssld['ht_view0_block_width']; ?>;
 //                      $catForFilter = explode(",", $row->category);
                       ?>
                       <div class="element_<?php echo $catalogID; ?>  <?php if($paramssld['ht_view1_allow_lightbox'] == "on"){ echo "catalog_colorbox_grouping_".$catalogID;} ?> " data-symbol="<?php echo $row->name; ?>" data-category="alkaline-earth">
-                              <div class="default-block_<?php echo $catalogID; ?>">
-                                      <div class="image-block_<?php echo $catalogID; ?> for_zoom">
-                                              <?php $imgurl=explode(";",$row->image_url); ?>
-                                              <?php 	if($row->image_url != ';'){ ?>
-                                          
-                                          
-                                      <?php
-                                            if($paramssld['ht_view1_show_thumbs']=='off'){ ?>
-                                                <a href="<?php echo $imgurl[0] ?>" class="catalog_group<?php echo $group_key."_".$catalogID; ?>">
-                                                    <img id="wd-cl-img<?php echo $key; ?>" src="<?php echo $imgurl[0]; ?>" />
-                                                </a>
-                                      <?php }
-                                            else{ ?>
-                                                    <img id="wd-cl-img<?php echo $key; ?>" src="<?php echo $imgurl[0]; ?>" />
-                                          <?php } ?>
-                                          
-                                              <!--<img id="wd-cl-img<?php echo $key; ?>" src="<?php echo $imgurl[0]; ?>" />-->
-                                              
-                                              
-                                              
-                                              <?php }
+                          <div class="default-block_<?php echo $catalogID; ?>">
+                              <div class="image-block_<?php echo $catalogID; ?> for_zoom">
+                                      <?php $imgurl=explode(";",$row->image_url); ?>
+                                      <?php    if($row->image_url != ';'){ ?>
+                                          <?php    if($paramssld['ht_view1_show_thumbs']=='off'){ ?>
+                                                         <a href="<?php echo $imgurl[0] ?>" class="catalog_group<?php echo $group_key."_".$catalogID; ?>">
+                                                             <img id="wd-cl-img<?php echo $key; ?>" src="<?php echo $imgurl[0]; ?>" />
+                                                         </a>
+                                             <?php }
+                                                   else{ ?>
+                                                             <img id="wd-cl-img<?php echo $key; ?>" src="<?php echo $imgurl[0]; ?>" />
+                                             <?php } ?>
+
+                                         <?php }
                                               else { ?>
                                                 <img id="wd-cl-img<?php echo $key; ?>" src="images/noimage.png" />
                                                 <?php
                                               } ?>	
-                                      </div>
-                                      <div class="title-block_<?php echo $catalogID; ?>">
-                                              <h3 class="title"><?php echo $row->name; ?></h3>
-                                      </div>
                               </div>
+                              <div class="title-block_<?php echo $catalogID; ?>">
+                                      <h3 class="title"><?php echo $row->name; ?></h3>
+                              </div>
+                          </div>
 
-                              <div class="wd-catalog-panel_<?php echo $catalogID; ?>" id="panel<?php echo $key; ?>">
+                          <div class="wd-catalog-panel_<?php echo $catalogID; ?>" id="panel<?php echo $key; ?>">
                               <?php if($paramssld['ht_view1_show_thumbs']=='on' and $paramssld['ht_view1_thumbs_position']=="before")
-                                      {?>
-                                              <div>
-                                                      <ul class="thumbs-list_<?php echo $catalogID; ?>">
-                                                              <?php
-                                                              $imgurl=explode(";",$row->image_url);
-                                                              array_pop($imgurl);
-                                                              foreach($imgurl as $key=>$img)
-                                                              {
-                                                              ?>
-                                                              <li>
-                                                                      <a href="<?php echo $img; ?>" class="catalog_group<?php echo $group_key."_".$catalogID; ?>"><img src="<?php echo $img; ?>"></a>
-                                                              </li>
-                                                              <?php
-                                                              }
-                                                              ?>
-                                                      </ul>
-                                              </div>
-                                      <?php } 
-                                      if($paramssld['ht_view1_show_description']=='on'){?>
-                                              <div class="description-block_<?php echo $catalogID; ?>">
-                                                      <p><?php echo $row->description; ?></p>
-                                              </div>
-                                      <?php }
+                                    {?>
+                                        <div>
+                                            <ul class="thumbs-list_<?php echo $catalogID; ?>">
+                                            <?php
+                                                $imgurl=explode(";",$row->image_url);
+                                                array_pop($imgurl);
+                                                    foreach($imgurl as $key=>$img)
+                                                    { ?>
+                                                        <li>
+                                                            <a href="<?php echo $img; ?>" class="catalog_group<?php echo $group_key."_".$catalogID; ?>"><img src="<?php echo $img; ?>"></a>
+                                                        </li>
+                                            <?php } ?>
+                                            </ul>
+                                        </div>
+                              <?php } 
+                                    if($paramssld['ht_view1_show_description']=='on'){ ?>
+                                        <div class="description-block_<?php echo $catalogID; ?>">
+                                            <p><?php echo $row->description; ?></p>
+                                        </div>
+                              <?php }
                                       if($paramssld['ht_view1_show_thumbs']=='on' and $paramssld['ht_view1_thumbs_position']=="after"){?>
                                               <div>
                                                       <ul class="thumbs-list_<?php echo $catalogID; ?>">
@@ -1724,7 +2335,111 @@ var defaultBlockWidth=<?php echo $paramssld['ht_view0_block_width']; ?>;
               }
               ?>
         </div>
+
+        <?php
+            if($catalog[0]->pagination_type == "pagination"){
+        ?>
+        <div class="catalog_pagination_block_<?php echo $catalogID; ?>" >
+            <div class="catalog_pagination_<?php echo $catalogID; ?>" >
+                <?php
+//                var_dump($_SERVER);
+                
+                    if (strpos($_SERVER['QUERY_STRING'], 'catalog_page_') !== false)
+                {                                                                   //      IF WE HAVE $_GET PAGE
+                    $oneMore = $page_index + 1;
+                    $oneLess = $page_index - 1;
+                    
+                    if(isset($_GET["catalog_page_".$catalogID])){                   //      IF WE HAVE $_GET PAGE FOR THAT CATALOG
+                        $prevPagePath  = str_replace("catalog_page_".$catalogID."=".$page_index,"catalog_page_".$catalogID."=".$oneLess,$_SERVER['QUERY_STRING']);
+                        $nextPagePath  = str_replace("catalog_page_".$catalogID."=".$page_index,"catalog_page_".$catalogID."=".$oneMore,$_SERVER['QUERY_STRING']);
+                        $firstPagePath = str_replace("catalog_page_".$catalogID."=".$page_index,"catalog_page_".$catalogID."=1",$_SERVER['QUERY_STRING']);
+                        $lastPagePath  = str_replace("catalog_page_".$catalogID."=".$page_index,"catalog_page_".$catalogID."=".$pages,$_SERVER['QUERY_STRING']);
+//                        var_dump($nextPagePath);
+                    }
+                    else{                                                           //      IF WE HAVE $_GET PAGE FOR ANOTHER CATALOG
+                        $prevPagePath  = "#";
+                        $nextPagePath = $_SERVER['QUERY_STRING']."&catalog_page_".$catalogID."=2";
+//                        $nextPagePath  = str_replace("catalog_page_".$catalogID."=".$page_index,"catalog_page_".$catalogID."=".$oneMore,$_SERVER['QUERY_STRING']);
+                        $firstPagePath = $_SERVER['QUERY_STRING']."&catalog_page_".$catalogID."=1";
+                        $lastPagePath  = $_SERVER['QUERY_STRING']."&catalog_page_".$catalogID."=".$pages;
+                    }
+                }
+                else{                                                               //      IF WE HAVE NOOOT $_GET PAGE
+                    $oneMore = $page_index + 1;
+                    $oneLess = $page_index - 1;
+                    
+                    $prevPagePath  = "#";
+                    $nextPagePath  = "catalog_page_".$catalogID."=2";
+                    $firstPagePath = "catalog_page_".$catalogID."=1";
+                    $lastPagePath  = "catalog_page_".$catalogID."=".$pages;
+                }
+                
+
+               
+                    if (strpos(get_permalink(),'/?') !== false) { $pathSumbol = "&"; }
+                    else {
+                        if (strpos(get_permalink(),'/') !== false) { $pathSumbol = "?"; }
+                        else { $pathSumbol = "/?"; }
+                    }
+                    // The "back" link
+//                    $prevlink = ($page_index > 1) ? ''
+//                            . '<a href="'.$pathSumbol.$firstPagePath. '" class="go-to-first"></a> <a href="'.$pathSumbol.$prevPagePath. '" class="go-to-previous"></a>' : '<span class="disabled go-to-first-passive"></span> <span class="disabled go-to-previous-passive"></span>';
+//
+//                    // The "forward" link
+//                    $nextlink = ($page_index < $pages) ? ''
+//                            . '<a href="'.$pathSumbol.$nextPagePath. '" class="go-to-next"></a> <a href="'.$pathSumbol.$lastPagePath. '" class="go-to-last"></a>' : '<span class="disabled go-to-next-passive"></span> <span class="disabled go-to-last-passive"></span>';
+//                    echo $prevlink." <span class='pagination-text'>Page ".$page_index." / ".$pages."</span> ".$nextlink;
+                
+                    // The "back" link
+                    $prevlink = ($page_index > 1) ? ''
+                            . '<a href="'.$pathSumbol.$firstPagePath. '" class="go-to-first"><i class="icon-style4 hugeiticons-fast-backward" ></i></a>'
+                            . '<a href="'.$pathSumbol.$prevPagePath. '" class="go-to-previous"><i class="icon-style4 hugeiticons-chevron-left"></i></a>' : '<span class="disabled go-to-first-passive"></span> <span class="disabled go-to-previous-passive"></span>';
+
+                    // The "forward" link
+                    $nextlink = ($page_index < $pages) ? ''
+                            . '<a href="'.$pathSumbol.$nextPagePath. '" class="go-to-next"><i class="icon-style4 hugeiticons-chevron-right"></i></a>'
+                            . '<a href="'.$pathSumbol.$lastPagePath. '" class="go-to-last"><i class="icon-style4 hugeiticons-fast-forward" ></i></a>' : 
+                              '<span class="disabled go-to-next-passive"></span>'
+                            . '<span class="disabled go-to-last-passive"></span>';
+                    
+                    echo $prevlink." <span class='pagination-text'>".$page_index." / ".$pages."</span> ".$nextlink;
+                    
+                ?>
+            </div>
+        </div>
+        <?php
+            }
+            elseif($catalog[0]->pagination_type == "load_more"){ $path_site = plugins_url("/../images", __FILE__); ?>
+                <div class="catalog_load_block_<?php echo $catalogID; ?>" >
+                    <div class="catalog_load_<?php echo $catalogID; ?>" >
+                        <a href="#" class="load_more_elements_<?php echo $catalogID; ?>">Load More...</a>
+                        <img src="<?php echo $path_site; ?>/load_more_icon_<?php echo $paramssld['htc_view1_load_more_loading_icon']; ?>.gif" class="load_more_loading_icon" style="display: none"/>
+                        <input type="hidden" class="load-more-elements-count" value="<?php echo $countIntoPage; ?>"/>
+                    <?php
+                        
+                    ?>
+                    </div>
+                </div>
+      <?php } ?>
+
  </section>
+
+<!--<script>
+//    jQuery(".search-imput").change(function(){
+//       var dd = 3;
+//       jQuery(".element_8").each(function(){
+//           dd += 1;
+//           if(dd % 2 == 0){
+//               jQuery(this).remove();
+//           }
+//       });
+
+//       saxin display block.im uzacnerin display none u relayout
+//       
+//    });
+    
+</script>-->
+
 <script>
     var allowZooming = '<?php echo $paramssld['ht_view1_allow_zooming'];?>';
     var allowLightbox = '<?php // echo $paramssld['ht_view1_allow_lightbox'];?>';
@@ -1870,6 +2585,78 @@ var defaultBlockWidth=<?php echo $paramssld['ht_view1_block_width']; ?>;
 //                         jQuery("#huge_it_catalog_filters_<?php echo $catalogID; ?>").css({'margin-top':'5px'});
                 <?php // }
 //                  } ?>
+            
+            /*    <--   VIEW 1 ELEMENTS THUMBS CLICK    */
+            
+            jQuery(".element_<?php echo $catalogID; ?> .thumbs-list_<?php echo $catalogID; ?> li a img").click(function(e){
+                var lightbox_is = "<?php echo $paramssld['ht_view1_allow_lightbox']; ?>"
+                    if(lightbox_is != "on"){
+                        e.preventDefault();
+//                        alert(lightbox_is);
+                        var new_src = jQuery(this).attr("src");    //    alert(new_src);
+                        var image = jQuery(this).closest(".element_<?php echo $catalogID; ?>").find(".default-block_<?php echo $catalogID; ?> .image-block_<?php echo $catalogID; ?> img");
+                            image.attr("src", new_src);
+                            zoom_start();
+                    }
+            });
+            
+            
+            
+            jQuery(".load_more_elements_<?php echo $catalogID; ?>").click(function(){
+                jQuery(this).css({ "display" : "none" });
+                jQuery(this).parent().find(".load_more_loading_icon").css({ "display" : "" });
+                var old_count = jQuery(this).parent().find(".load-more-elements-count").val() - parseInt(1);
+        //        alert(old_count);
+                var data = {
+                            action: 'my_action',
+                            post: 'load_more_elements_into_catalog',
+                            view: <?php echo $catalog[0]->catalog_list_effects_s; ?>,
+                            catalog_id: <?php echo $catalogID; ?>,
+                            count_into_page: <?php echo $countIntoPage; ?>,
+                            old_count: old_count,
+                            allow_lightbox: "<?php echo $paramssld['ht_view1_allow_lightbox']; ?>",
+                            show_thumbs: "<?php echo $paramssld['ht_view1_show_thumbs']; ?>",
+                            thumbs_position: "<?php echo $paramssld['ht_view1_thumbs_position']; ?>",
+                            show_description: "<?php echo $paramssld['ht_view1_show_description']; ?>",
+                            show_price: "<?php echo $paramssld["ht_catalog_view1_show_price"]; ?>",
+                            price_text: "<?php echo $paramssld3['ht_single_product_price_text']; ?>",
+                            show_linkbutton: "<?php echo $paramssld['ht_view1_show_linkbutton']; ?>",
+                            linkbutton_text: "<?php echo $paramssld3['ht_catalog_general_linkbutton_text']; ?>",
+                            parmalink: "<?php echo get_permalink(); ?>"
+                };
+
+                jQuery.post("<?php echo admin_url('admin-ajax.php'); ?>", data, function(response) {
+        //alert(response);
+                    jQuery("#huge_it_catalog_container_<?php echo $catalogID; ?>").append(response);
+                        setTimeout(function(){
+                            jQuery(".load_more_elements_<?php echo $catalogID; ?>").css({ "display" : "" });
+                            jQuery(".load_more_elements_<?php echo $catalogID; ?>").parent().find(".load_more_loading_icon").css({ "display" : "none" });
+                            jQuery("#huge_it_catalog_container_<?php echo $catalogID; ?>").hugeitmicro( 'reloadItems' ).hugeitmicro({ sortBy: 'original-order' }).hugeitmicro( 'reLayout' );
+                        }, 100);
+
+                        var group_count = 0;
+                        jQuery(".catalog_colorbox_grouping_<?php echo $catalogID; ?>").each(function(){     //      CALLING COLORBOX
+                            group_count++;
+                        });
+                        var i;
+                        for(i = 1; i <= group_count; i++){
+                            jQuery(".catalog_group" + i + "<?php echo "_".$catalogID; ?>").colorbox({rel:'catalog_group' + i + "<?php echo "_".$catalogID; ?>"});
+                        }
+        //                                        catalog_group<?php // echo $group_key."_".$catalogID; ?>
+
+                        zoom_start();                                                                       //      CALLING ELEVATEZOOM
+
+                });
+
+                old_count = parseInt(old_count) + parseInt(<?php echo $countIntoPage; ?>) + parseInt(1);
+                jQuery(this).parent().find(".load-more-elements-count").val(old_count);
+        //        alert(old_count + " " + <?php echo $myAllImages; ?>)
+                var max_count = <?php echo $myAllImages; ?>;
+                if( old_count >=  max_count){ jQuery(".catalog_load_block_<?php echo $catalogID; ?>").remove(); }
+                return false;
+            });
+    
+    
         });
         
         jQuery(window).load(function(){
@@ -1897,6 +2684,54 @@ var defaultBlockWidth=<?php echo $paramssld['ht_view1_block_width']; ?>;
 //       { $sorting_block_width ="100%"; $filtering_block_width ="30%"; $paramssld["ht_view2_sorting_float"] = "none"; $width_middle = "65%"; }
 //    if($paramssld["ht_view2_sorting_float"] == "top" && $paramssld["ht_view2_filtering_float"] == "top")
 //       { $sorting_block_width ="100%"; $filtering_block_width ="100%"; $left_to_top = "ok"; }
+
+if($catalog[0]->pagination_type == "show_all"){ $myAllImages = count($images); $countIntoPage = $catalog[0]->count_into_page; $pages = ceil($myAllImages / $countIntoPage); $page_index = $_GET["catalog_page_".$catalogID]; $maxCount = $page_index * $countIntoPage; $morePaste = $maxCount - $myAllImages; }
+else{
+    if(isset($_GET["catalog_page_".$catalogID])){
+            $myAllImages = count($images);
+            $countIntoPage = $catalog[0]->count_into_page;
+            $pages = ceil($myAllImages / $countIntoPage);
+            $page_index = $_GET["catalog_page_".$catalogID];
+            $maxCount = $page_index * $countIntoPage;
+            $morePaste = $maxCount - $myAllImages;
+            
+//            var_dump($page_index." ".$countIntoPage." ".$maxCount." ".$morePaste." ".$myAllImages." ".$pages);
+            if($page_index <= 1 || ($maxCount > $myAllImages) && $morePaste > $countIntoPage){
+                $imagesUsefulElements = array();
+                for($usefulKeys = 0; $usefulKeys < $countIntoPage; $usefulKeys++){
+                    $imagesUsefulElements[] = $images[$usefulKeys];
+                }
+                $images = $imagesUsefulElements;
+            }
+            elseif (($maxCount <= $myAllImages) || ($maxCount > $myAllImages && $morePaste <= $countIntoPage)){
+                $show_from = $page_index * $countIntoPage - $countIntoPage;
+                $show_until = $page_index * $countIntoPage - 1;
+                $usefulElementsKey = 0;
+                
+//                var_dump("from ".$show_from." ".$show_until);
+                foreach($images as $galleryElements){
+                    if($usefulElementsKey >= $show_from && $usefulElementsKey <= $show_until){
+                        $imagesUsefulElements[] = $galleryElements;
+                    }
+                    $usefulElementsKey++;
+                }
+                $images = $imagesUsefulElements;
+            }
+    }
+    else{
+        $myAllImages = count($images);
+        $page_index = 1;
+        $countIntoPage = $catalog[0]->count_into_page;
+        $pages = ceil($myAllImages / $countIntoPage);
+        $imagesUsefulElements = array();
+        for($usefulKeys = 0; $usefulKeys < $countIntoPage; $usefulKeys++){
+            $imagesUsefulElements[] = $images[$usefulKeys];
+//                    var_dump($usefulKeys);
+        }
+        $images = $imagesUsefulElements;
+    }
+}
+
 ?>
 
 <script>
@@ -2085,12 +2920,65 @@ var defaultBlockHeight=<?php echo $paramssld['ht_view2_element_height']; ?>;
 //                         jQuery("#huge_it_catalog_filters_<?php echo $catalogID; ?>").css({'margin-top':'5px'});
                 <?php // }
 //                  } ?>
+            
+            
+            /*    <--    VIEW 2 LOAD MORE CLICK    */
+            
+            jQuery(".load_more_elements_<?php echo $catalogID; ?>").click(function(){
+                jQuery(this).css({ "display" : "none" });
+                jQuery(this).parent().find(".load_more_loading_icon").css({ "display" : "" });
+                var old_count = jQuery(this).parent().find(".load-more-elements-count").val() - parseInt(1);
+        //        alert("<?php echo $paramssld3["ht_catalog_general_linkbutton_text"]; ?>");
+                var data = {
+                            action: 'my_action',
+                            post: 'load_more_elements_into_catalog',
+                            view: <?php echo $catalog[0]->catalog_list_effects_s; ?>,
+                            catalog_id: <?php echo $catalogID; ?>,
+                            count_into_page: <?php echo $countIntoPage; ?>,
+                            old_count: old_count,
+                            allow_lightbox: "<?php echo $paramssld['ht_view2_allow_lightbox']; ?>",
+                            show_thumbs: "<?php echo $paramssld['ht_view2_show_thumbs']; ?>",
+                            thumbs_position: "<?php echo $paramssld['ht_view2_thumbs_position']; ?>",
+                            show_popup_title: "<?php echo $paramssld['ht_view2_show_popup_title']; ?>",
+                            show_description: "<?php echo $paramssld['ht_view2_show_description']; ?>",
+                            show_price: "<?php echo $paramssld["ht_catalog_view2_show_price"]; ?>",
+                            price_text: "<?php echo $paramssld3['ht_single_product_price_text']; ?>",
+                            show_linkbutton: "<?php echo $paramssld['ht_view2_element_show_linkbutton']; ?>",
+                            linkbutton_text: "<?php echo $paramssld3["ht_catalog_general_linkbutton_text"]; ?>",
+                            parmalink: "<?php echo get_permalink(); ?>",
+                            show_popup_linkbutton: "<?php echo $paramssld["ht_view2_show_popup_linkbutton"]; ?>"
+                };
+
+                jQuery.post("<?php echo admin_url('admin-ajax.php'); ?>", data, function(response) {
+                response = JSON.parse(response);           //  alert(response.moreImages + " " + response.morePopups);
+        //alert(response)
+                    jQuery("#huge_it_catalog_container_<?php echo $catalogID; ?>").append(response.moreImages);
+                    jQuery("#huge_it_catalog_popup_list_<?php echo $catalogID; ?>").append(response.morePopups);
+                        setTimeout(function(){
+                            jQuery(".load_more_elements_<?php echo $catalogID; ?>").css({ "display" : "" });
+                            jQuery(".load_more_elements_<?php echo $catalogID; ?>").parent().find(".load_more_loading_icon").css({ "display" : "none" });
+                            jQuery("#huge_it_catalog_container_<?php echo $catalogID; ?>").hugeitmicro( 'reloadItems' ).hugeitmicro({ sortBy: 'original-order' }).hugeitmicro( 'reLayout' );
+                        }, 100);
+
+                });
+
+                old_count = parseInt(old_count) + parseInt(<?php echo $countIntoPage; ?>) + parseInt(1);
+                jQuery(this).parent().find(".load-more-elements-count").val(old_count);
+        //        alert(old_count + " " + <?php echo $myAllImages; ?>);
+                var max_count = <?php echo $myAllImages; ?>;
+                if( old_count >=  max_count){ jQuery(".catalog_load_block_<?php echo $catalogID; ?>").remove(); }
+                return false;
+            });
+            
+            /*           VIEW 2 LOAD MORE CLICK    -->    */
+            
+            
         });
 
   });
   jQuery(document).ready(function(){
 
-	jQuery('.element_<?php echo $catalogID; ?> .image-block_<?php echo $catalogID; ?> .image-overlay a').on('click',function(){
+	jQuery('body').delegate('.element_<?php echo $catalogID; ?> .image-block_<?php echo $catalogID; ?> .image-overlay a', 'click', function() {
 		var strid = jQuery(this).attr('href').replace('#','');
 		jQuery('body').append('<div id="huge-popup-overlay_<?php echo $catalogID; ?>"></div>');
 		jQuery('#huge_it_catalog_popup_list_<?php echo $catalogID; ?>').insertBefore('#huge-popup-overlay_<?php echo $catalogID; ?>');
@@ -2109,7 +2997,7 @@ var defaultBlockHeight=<?php echo $paramssld['ht_view2_element_height']; ?>;
 		return false;
 	});
 	
-	jQuery('#huge_it_catalog_popup_list_<?php echo $catalogID; ?> .popup-wrapper_<?php echo $catalogID; ?> .right-block ul.thumbs-list_<?php echo $catalogID; ?> li a').click(function(){
+        jQuery('body').delegate('#huge_it_catalog_popup_list_<?php echo $catalogID; ?> .popup-wrapper_<?php echo $catalogID; ?> .right-block ul.thumbs-list_<?php echo $catalogID; ?> li a', 'click', function() {
 		var width=jQuery(window).width();
 		if(width<=767){
 			jQuery('body').scrollTop(0);
@@ -2120,7 +3008,7 @@ var defaultBlockHeight=<?php echo $paramssld['ht_view2_element_height']; ?>;
 		return false;
 	});
 	
-	jQuery('#huge_it_catalog_popup_list_<?php echo $catalogID; ?> .heading-navigation_<?php echo $catalogID; ?> .close').on('click',function(){
+        jQuery('body').delegate('#huge_it_catalog_popup_list_<?php echo $catalogID; ?> .heading-navigation_<?php echo $catalogID; ?> .close', 'click', function() {
 		closePopup();
 		return false;
 	});
@@ -2670,8 +3558,159 @@ var defaultBlockHeight=<?php echo $paramssld['ht_view2_element_height']; ?>;
  <?php } ?>
 }
 
+.catalog_pagination_block_<?php echo $catalogID; ?>{
+    /*text-align: <?php echo $paramssld["htc_view2_pagination_position"]; ?>;*/
+    padding: 20px 0px;
+    margin: 16px 0px 35px 0px;
+}
+.catalog_pagination_<?php echo $catalogID; ?>{
+    text-align: <?php echo $paramssld["htc_view2_pagination_position"]; ?>;
+    /*display: inline-block;*/
+    /*height: 50px;*/
+/*    border: 1px solid #dadada;
+    border-radius: 6px;*/
+}
+.catalog_pagination_<?php echo $catalogID; ?> a, .catalog_pagination_<?php echo $catalogID; ?> span{
+    color: #515151;
+    font-size: 20px;
+    text-decoration: none;
+    text-align: center;
+/*    width: 48px;
+    height: 48px;*/
+    /*display: inline-block;*/
+    /*float: left;*/
+    margin: 0;
+    padding: 0;
+}
+.catalog_pagination_<?php echo $catalogID; ?> .pagination-text{
+    /*float: left;*/
+    color: #<?php echo $paramssld["htc_view2_pagination_font_color"]; ?>;
+    font-size: <?php echo $paramssld["htc_view2_pagination_font_size"]; ?>px;
+    /*font-weight: bold;*/
+    padding: 12px 0px;
+    text-decoration: none;
+    text-align: center;
+    /*display: inline-block;*/
+/*    width: 180px;
+    height: 48px;*/
+    /*background-color: #fff;*/
+}
+@media only screen and (max-width:500px) {
+	.catalog_pagination_<?php echo $catalogID; ?> .pagination-text{
+            font-size: 16px !important;
+            width: 120px !important;
+	}
+        .catalog_pagination_block_<?php echo $catalogID; ?>{
+            text-align: left;
+        }
+}
+.catalog_pagination_<?php echo $catalogID; ?> a{
+    text-align: center;
+    position: relative;
+    margin-right: 5px;
+    
+}
+.catalog_pagination_<?php echo $catalogID; ?> a i{
+    font-size: <?php echo $paramssld["htc_view2_pagination_icon_size"]; ?>px;
+    color: #<?php echo $paramssld["htc_view2_pagination_icon_color"]; ?>;
+/*    position: absolute;
+    top: -moz-calc(50% - 8px) !important;
+    top: -webkit-calc(50% - 8px)  !important;
+    top: calc(50% - 8px) !important;
+    top: -o-calc(50% - 8px) !important;
+    top: -ms-calc(50% - 8px) !important;
+    
+    left: -moz-calc(50% - 8px) !important;
+    left: -webkit-calc(50% - 8px)  !important;
+    left: calc(50% - 8px) !important;
+    left: -o-calc(50% - 8px) !important;
+    left: -ms-calc(50% - 8px) !important;*/
+}
+.catalog_pagination_<?php echo $catalogID; ?> .go-to-first{
+    font-size: 10px !important;
+    /*background-color: #F0F0F0 !important;*/
+    /*background:url('<?php echo  plugins_url( '../images/first-active.png' , __FILE__ ); ?>') center center no-repeat;*/
+/*    border-right: 1px solid #D0D0D0;
+    border-top-left-radius: 5px;
+    border-bottom-left-radius: 10px;*/
+}
+.catalog_pagination_<?php echo $catalogID; ?> .go-to-first-passive{
+    font-size: 10px !important;
+    /*background-color: #F0F0F0 !important;*/
+    /*background:url('<?php echo  plugins_url( '../images/first-passive.png' , __FILE__ ); ?>') center center no-repeat;*/
+/*    border-right: 1px solid #D0D0D0;
+    border-top-left-radius: 5px;
+    border-bottom-left-radius: 5px;*/
+}
+
+.catalog_pagination_<?php echo $catalogID; ?> .go-to-previous{
+    font-size: 10px !important;
+    /*background-color: #F0F0F0 !important;*/
+    /*background:url('<?php echo  plugins_url( '../images/left-active.png' , __FILE__ ); ?>') center center no-repeat;*/
+    /*border-right: 1px solid #D0D0D0;*/
+}
+.catalog_pagination_<?php echo $catalogID; ?> .go-to-previous-passive{
+    /*background-color: #F0F0F0 !important;*/
+    /*background:url('<?php echo  plugins_url( '../images/left-passive.png' , __FILE__ ); ?>') center center no-repeat;*/
+    /*border-right: 1px solid #D0D0D0;*/
+}
+
+.catalog_pagination_<?php echo $catalogID; ?> .go-to-last{
+    font-size: 10px !important;
+    /*background-color: #F0F0F0 !important;*/
+    /*background:url('<?php echo  plugins_url( '../images/last-active.png' , __FILE__ ); ?>') center center no-repeat;*/
+/*    border-left: 1px solid #D0D0D0;
+    border-top-right-radius: 5px;
+    border-bottom-right-radius: 5px;*/
+}
+.catalog_pagination_<?php echo $catalogID; ?> .go-to-last-passive{
+    font-size: 10px !important;
+    /*background-color: #F0F0F0 !important;*/
+    /*background:url('<?php echo  plugins_url( '../images/last-passive.png' , __FILE__ ); ?>') center center no-repeat;*/
+/*    border-top-right-radius: 5px;
+    border-bottom-right-radius: 5px;
+    border-left: 1px solid #D0D0D0;*/
+}
+
+.catalog_pagination_<?php echo $catalogID; ?> .go-to-next{
+    font-size: 10px !important;
+    /*background-color: #F0F0F0 !important;*/
+    /*background:url('<?php echo  plugins_url( '../images/right-active.png' , __FILE__ ); ?>') center center no-repeat;*/
+    /*border-left: 1px solid #D0D0D0;*/
+}
+.catalog_pagination_<?php echo $catalogID; ?> .go-to-next-passive{
+    font-size: 10px !important;
+    /*background-color: #F0F0F0 !important;*/
+    /*background:url('<?php echo  plugins_url( '../images/right-passive.png' , __FILE__ ); ?>') center center no-repeat;*/
+    /*border-left: 1px solid #D0D0D0;*/
+}
+
 .zoomContainer {
     z-index: 10;
+}
+.catalog_load_block_<?php echo $catalogID; ?>{
+    margin: 35px 0px;
+}
+.catalog_load_<?php echo $catalogID; ?>{
+    text-align: center;
+}
+.catalog_load_<?php echo $catalogID; ?> a{
+    text-decoration: none;
+    /*width: 100%;*/
+    border-radius: 5px;
+    display: inline-block;
+    padding: 5px 15px;
+    font-size: <?php echo $paramssld["htc_view2_load_more_font_size"]; ?>px !important;
+    color: #<?php echo $paramssld["htc_view2_load_more_font_color"]; ?> !important;
+    background: #<?php echo $paramssld["htc_view2_load_more_button_background_color"]; ?> !important;
+    cursor: pointer;
+}
+.catalog_load_<?php echo $catalogID; ?> a:hover{
+    color: #<?php echo $paramssld["htc_view2_load_more_font_hover_color"]; ?> !important;
+    background: #<?php echo $paramssld["htc_view2_load_more_button_background_hover_color"]; ?> !important;
+}
+.catalog_load_<?php echo $catalogID; ?> a:focus{
+    outline: none;
 }
 
 </style>
@@ -2750,6 +3789,93 @@ var defaultBlockHeight=<?php echo $paramssld['ht_view2_element_height']; ?>;
               }?>
               <div style="clear:both;"></div>
         </div>
+    
+        <?php
+            if($catalog[0]->pagination_type == "pagination"){
+        ?>
+        <div class="catalog_pagination_block_<?php echo $catalogID; ?>" >
+            <div class="catalog_pagination_<?php echo $catalogID; ?>" >
+                <?php
+//                var_dump($_SERVER);
+                
+                    if (strpos($_SERVER['QUERY_STRING'], 'catalog_page_') !== false)
+                {                                                                   //      IF WE HAVE $_GET PAGE
+                    $oneMore = $page_index + 1;
+                    $oneLess = $page_index - 1;
+                    
+                    if(isset($_GET["catalog_page_".$catalogID])){                   //      IF WE HAVE $_GET PAGE FOR THAT CATALOG
+                        $prevPagePath  = str_replace("catalog_page_".$catalogID."=".$page_index,"catalog_page_".$catalogID."=".$oneLess,$_SERVER['QUERY_STRING']);
+                        $nextPagePath  = str_replace("catalog_page_".$catalogID."=".$page_index,"catalog_page_".$catalogID."=".$oneMore,$_SERVER['QUERY_STRING']);
+                        $firstPagePath = str_replace("catalog_page_".$catalogID."=".$page_index,"catalog_page_".$catalogID."=1",$_SERVER['QUERY_STRING']);
+                        $lastPagePath  = str_replace("catalog_page_".$catalogID."=".$page_index,"catalog_page_".$catalogID."=".$pages,$_SERVER['QUERY_STRING']);
+//                        var_dump($nextPagePath);
+                    }
+                    else{                                                           //      IF WE HAVE $_GET PAGE FOR ANOTHER CATALOG
+                        $prevPagePath  = "#";
+                        $nextPagePath = $_SERVER['QUERY_STRING']."&catalog_page_".$catalogID."=2";
+//                        $nextPagePath  = str_replace("catalog_page_".$catalogID."=".$page_index,"catalog_page_".$catalogID."=".$oneMore,$_SERVER['QUERY_STRING']);
+                        $firstPagePath = $_SERVER['QUERY_STRING']."&catalog_page_".$catalogID."=1";
+                        $lastPagePath  = $_SERVER['QUERY_STRING']."&catalog_page_".$catalogID."=".$pages;
+                    }
+                }
+                else{                                                               //      IF WE HAVE NOOOT $_GET PAGE
+                    $oneMore = $page_index + 1;
+                    $oneLess = $page_index - 1;
+                    
+                    $prevPagePath  = "#";
+                    $nextPagePath  = "catalog_page_".$catalogID."=2";
+                    $firstPagePath = "catalog_page_".$catalogID."=1";
+                    $lastPagePath  = "catalog_page_".$catalogID."=".$pages;
+                }
+                
+
+               
+                    if (strpos(get_permalink(),'/?') !== false) { $pathSumbol = "&"; }
+                    else {
+                        if (strpos(get_permalink(),'/') !== false) { $pathSumbol = "?"; }
+                        else { $pathSumbol = "/?"; }
+                    }
+                    // The "back" link
+//                    $prevlink = ($page_index > 1) ? ''
+//                            . '<a href="'.$pathSumbol.$firstPagePath. '" class="go-to-first"></a> <a href="'.$pathSumbol.$prevPagePath. '" class="go-to-previous"></a>' : '<span class="disabled go-to-first-passive"></span> <span class="disabled go-to-previous-passive"></span>';
+//
+//                    // The "forward" link
+//                    $nextlink = ($page_index < $pages) ? ''
+//                            . '<a href="'.$pathSumbol.$nextPagePath. '" class="go-to-next"></a> <a href="'.$pathSumbol.$lastPagePath. '" class="go-to-last"></a>' : '<span class="disabled go-to-next-passive"></span> <span class="disabled go-to-last-passive"></span>';
+//                    echo $prevlink." <span class='pagination-text'>Page ".$page_index." / ".$pages."</span> ".$nextlink;
+                
+                    // The "back" link
+                    $prevlink = ($page_index > 1) ? ''
+                            . '<a href="'.$pathSumbol.$firstPagePath. '" class="go-to-first"><i class="icon-style4 hugeiticons-fast-backward" ></i></a>'
+                            . '<a href="'.$pathSumbol.$prevPagePath. '" class="go-to-previous"><i class="icon-style4 hugeiticons-chevron-left"></i></a>' : '<span class="disabled go-to-first-passive"></span> <span class="disabled go-to-previous-passive"></span>';
+
+                    // The "forward" link
+                    $nextlink = ($page_index < $pages) ? ''
+                            . '<a href="'.$pathSumbol.$nextPagePath. '" class="go-to-next"><i class="icon-style4 hugeiticons-chevron-right"></i></a>'
+                            . '<a href="'.$pathSumbol.$lastPagePath. '" class="go-to-last"><i class="icon-style4 hugeiticons-fast-forward" ></i></a>' : 
+                              '<span class="disabled go-to-next-passive"></span>'
+                            . '<span class="disabled go-to-last-passive"></span>';
+                    
+                    echo $prevlink." <span class='pagination-text'>".$page_index." / ".$pages."</span> ".$nextlink;
+                    
+                ?>
+            </div>
+        </div>
+        <?php
+            }
+            elseif($catalog[0]->pagination_type == "load_more"){ $path_site = plugins_url("/../images", __FILE__); ?>
+                <div class="catalog_load_block_<?php echo $catalogID; ?>" >
+                    <div class="catalog_load_<?php echo $catalogID; ?>" >
+                        <a href="#" class="load_more_elements_<?php echo $catalogID; ?>">Load More...</a>
+                        <img src="<?php echo $path_site; ?>/load_more_icon_<?php echo $paramssld['htc_view2_load_more_loading_icon']; ?>.gif" class="load_more_loading_icon" style="display: none"/>
+                        <input type="hidden" class="load-more-elements-count" value="<?php echo $countIntoPage; ?>"/>
+                    <?php
+                        
+                    ?>
+                    </div>
+                </div>
+      <?php } ?>
+    
 </section>
 <ul id="huge_it_catalog_popup_list_<?php echo $catalogID; ?>">
 	<?php
@@ -2778,12 +3904,14 @@ var defaultBlockHeight=<?php echo $paramssld['ht_view2_element_height']; ?>;
 					<?php if($paramssld["ht_view2_show_popup_title"]=='on'){?><h3 class="title"><?php echo $row->name; ?></h3><?php } ?>
 					
 					<?php if($paramssld["ht_view2_thumbs_position"]=='before' and $paramssld["ht_view2_show_thumbs"] == 'on'){?>
-					<div><ul class="thumbs-list_<?php echo $catalogID; ?>">
+					<div>
+                                            <ul class="thumbs-list_<?php echo $catalogID; ?>">
 						<?php   
-								foreach($imgurl as $key=>$img){?>
-									<li><a href="<?php echo $row->sl_url; ?>" class=""><img src="<?php echo $img; ?>"></a></li>
-								<?php } ?>
-					</ul></div>
+                                                    foreach($imgurl as $key=>$img){ ?>
+                                                            <li><a href="<?php echo $row->sl_url; ?>" class=""><img src="<?php echo $img; ?>"></a></li>
+                                              <?php } ?>
+                                            </ul>
+                                        </div>
 					<?php } ?>
 					
 					<?php if($paramssld["ht_view2_show_description"]=='on'){?><div class="description"><?php echo $row->description; ?></div><?php } ?>
@@ -2841,16 +3969,64 @@ var defaultBlockHeight=<?php echo $paramssld['ht_view2_element_height']; ?>;
 //       { $sorting_block_width ="100%"; $filtering_block_width ="30%"; $paramssld["ht_view3_sorting_float"] = "none"; $width_middle = "65%"; }
 //    if($paramssld["ht_view3_sorting_float"] == "top" && $paramssld["ht_view3_filtering_float"] == "top")
 //       { $sorting_block_width ="100%"; $filtering_block_width ="100%"; $left_to_top = "ok"; }
+
+if($catalog[0]->pagination_type == "show_all"){ $myAllImages = count($images); $countIntoPage = $catalog[0]->count_into_page; $pages = ceil($myAllImages / $countIntoPage); $page_index = $_GET["catalog_page_".$catalogID]; $maxCount = $page_index * $countIntoPage; $morePaste = $maxCount - $myAllImages; }
+else{
+    if(isset($_GET["catalog_page_".$catalogID])){
+            $myAllImages = count($images);
+            $countIntoPage = $catalog[0]->count_into_page;
+            $pages = ceil($myAllImages / $countIntoPage);
+            $page_index = $_GET["catalog_page_".$catalogID];
+            $maxCount = $page_index * $countIntoPage;
+            $morePaste = $maxCount - $myAllImages;
+            
+//            var_dump($page_index." ".$countIntoPage." ".$maxCount." ".$morePaste." ".$myAllImages." ".$pages);
+                $imagesUsefulElements = array();
+            if($page_index <= 1 || ($maxCount > $myAllImages) && $morePaste > $countIntoPage){
+                for($usefulKeys = 0; $usefulKeys < $countIntoPage; $usefulKeys++){
+                    $imagesUsefulElements[] = $images[$usefulKeys];
+                }
+                $images = $imagesUsefulElements;
+            }
+            elseif (($maxCount <= $myAllImages) || ($maxCount > $myAllImages && $morePaste <= $countIntoPage)){
+                $show_from = $page_index * $countIntoPage - $countIntoPage;
+                $show_until = $page_index * $countIntoPage - 1;
+                $usefulElementsKey = 0;
+                
+//                var_dump("from ".$show_from." ".$show_until);
+                foreach($images as $galleryElements){
+                    if($usefulElementsKey >= $show_from && $usefulElementsKey <= $show_until){
+                        $imagesUsefulElements[] = $galleryElements;
+                    }
+                    $usefulElementsKey++;
+                }
+                $images = $imagesUsefulElements;
+            }
+    }
+    else{
+        $myAllImages = count($images);
+        $page_index = 1;
+        $countIntoPage = $catalog[0]->count_into_page;
+        $pages = ceil($myAllImages / $countIntoPage);
+        $imagesUsefulElements = array();
+        for($usefulKeys = 0; $usefulKeys < $countIntoPage; $usefulKeys++){
+            $imagesUsefulElements[] = $images[$usefulKeys];
+//                    var_dump($usefulKeys);
+        }
+        $images = $imagesUsefulElements;
+    }
+}
+
 ?>
 
 <style type="text/css">
-<?php if($paramssld["ht_catalog_zoom_lens_size_fix"] == "true") { ?>
+<?php // if($paramssld["ht_catalog_zoom_lens_size_fix"] == "true") { ?>
 
-.zoomLens {
+/*.zoomLens {
     width: <?php echo $paramssld["ht_catalog_zoom_lens_width"]; ?>px !important;
-    height: <?php echo $paramssld["ht_catalog_zoom_lens_height"]; ?>px !important;
-}
-<?php } ?>
+    height: <?php echo $paramssld["ht_catalog_zoom_lens_height"]; ?>px !important;*/
+/*}*/
+<?php // } ?>
 
 .element_<?php echo $catalogID; ?> {
 	position: relative;
@@ -2898,7 +4074,7 @@ var defaultBlockHeight=<?php echo $paramssld['ht_view2_element_height']; ?>;
 }
 
 .element_<?php echo $catalogID; ?> div.left-block_<?php echo $catalogID; ?> .thumbs-block ul li {
-	margin:0px 3px 0px 2px;
+	margin:0px 3px 5px 2px;
 	padding:0px;
 	width:<?php echo $paramssld['ht_view3_thumbs_width']; ?>px; 
 	height:<?php echo $paramssld['ht_view3_thumbs_height']; ?>px; 
@@ -3180,8 +4356,160 @@ var defaultBlockHeight=<?php echo $paramssld['ht_view2_element_height']; ?>;
                   width: <?php echo $width_middle; ?> !important;
            <?php } ?>
 }
+
+.catalog_pagination_block_<?php echo $catalogID; ?>{
+    /*text-align: <?php echo $paramssld["htc_view3_pagination_position"]; ?>;*/
+    padding: 20px 0px;
+    margin: 16px 0px 35px 0px;
+}
+.catalog_pagination_<?php echo $catalogID; ?>{
+    text-align: <?php echo $paramssld["htc_view3_pagination_position"]; ?>;
+    /*display: inline-block;*/
+    /*height: 50px;*/
+/*    border: 1px solid #dadada;
+    border-radius: 6px;*/
+}
+.catalog_pagination_<?php echo $catalogID; ?> a, .catalog_pagination_<?php echo $catalogID; ?> span{
+    color: #515151;
+    font-size: 20px;
+    text-decoration: none;
+    text-align: center;
+/*    width: 48px;
+    height: 48px;*/
+    /*display: inline-block;*/
+    /*float: left;*/
+    margin: 0;
+    padding: 0;
+}
+.catalog_pagination_<?php echo $catalogID; ?> .pagination-text{
+    /*float: left;*/
+    color: #<?php echo $paramssld["htc_view3_pagination_font_color"]; ?>;
+    font-size: <?php echo $paramssld["htc_view3_pagination_font_size"]; ?>px;
+    /*font-weight: bold;*/
+    padding: 12px 0px;
+    text-decoration: none;
+    text-align: center;
+    /*display: inline-block;*/
+/*    width: 180px;
+    height: 48px;*/
+    /*background-color: #fff;*/
+}
+@media only screen and (max-width:500px) {
+	.catalog_pagination_<?php echo $catalogID; ?> .pagination-text{
+            font-size: 16px !important;
+            width: 120px !important;
+	}
+        .catalog_pagination_block_<?php echo $catalogID; ?>{
+            text-align: left;
+        }
+}
+.catalog_pagination_<?php echo $catalogID; ?> a{
+    text-align: center;
+    position: relative;
+    margin-right: 5px;
+    
+}
+.catalog_pagination_<?php echo $catalogID; ?> a i{
+    font-size: <?php echo $paramssld["htc_view3_pagination_icon_size"]; ?>px;
+    color: #<?php echo $paramssld["htc_view3_pagination_icon_color"]; ?>;
+/*    position: absolute;
+    top: -moz-calc(50% - 8px) !important;
+    top: -webkit-calc(50% - 8px)  !important;
+    top: calc(50% - 8px) !important;
+    top: -o-calc(50% - 8px) !important;
+    top: -ms-calc(50% - 8px) !important;
+    
+    left: -moz-calc(50% - 8px) !important;
+    left: -webkit-calc(50% - 8px)  !important;
+    left: calc(50% - 8px) !important;
+    left: -o-calc(50% - 8px) !important;
+    left: -ms-calc(50% - 8px) !important;*/
+}
+.catalog_pagination_<?php echo $catalogID; ?> .go-to-first{
+    font-size: 10px !important;
+    /*background-color: #F0F0F0 !important;*/
+    /*background:url('<?php echo  plugins_url( '../images/first-active.png' , __FILE__ ); ?>') center center no-repeat;*/
+/*    border-right: 1px solid #D0D0D0;
+    border-top-left-radius: 5px;
+    border-bottom-left-radius: 10px;*/
+}
+.catalog_pagination_<?php echo $catalogID; ?> .go-to-first-passive{
+    font-size: 10px !important;
+    /*background-color: #F0F0F0 !important;*/
+    /*background:url('<?php echo  plugins_url( '../images/first-passive.png' , __FILE__ ); ?>') center center no-repeat;*/
+/*    border-right: 1px solid #D0D0D0;
+    border-top-left-radius: 5px;
+    border-bottom-left-radius: 5px;*/
+}
+
+.catalog_pagination_<?php echo $catalogID; ?> .go-to-previous{
+    font-size: 10px !important;
+    /*background-color: #F0F0F0 !important;*/
+    /*background:url('<?php echo  plugins_url( '../images/left-active.png' , __FILE__ ); ?>') center center no-repeat;*/
+    /*border-right: 1px solid #D0D0D0;*/
+}
+.catalog_pagination_<?php echo $catalogID; ?> .go-to-previous-passive{
+    /*background-color: #F0F0F0 !important;*/
+    /*background:url('<?php echo  plugins_url( '../images/left-passive.png' , __FILE__ ); ?>') center center no-repeat;*/
+    /*border-right: 1px solid #D0D0D0;*/
+}
+
+.catalog_pagination_<?php echo $catalogID; ?> .go-to-last{
+    font-size: 10px !important;
+    /*background-color: #F0F0F0 !important;*/
+    /*background:url('<?php echo  plugins_url( '../images/last-active.png' , __FILE__ ); ?>') center center no-repeat;*/
+/*    border-left: 1px solid #D0D0D0;
+    border-top-right-radius: 5px;
+    border-bottom-right-radius: 5px;*/
+}
+.catalog_pagination_<?php echo $catalogID; ?> .go-to-last-passive{
+    font-size: 10px !important;
+    /*background-color: #F0F0F0 !important;*/
+    /*background:url('<?php echo  plugins_url( '../images/last-passive.png' , __FILE__ ); ?>') center center no-repeat;*/
+/*    border-top-right-radius: 5px;
+    border-bottom-right-radius: 5px;
+    border-left: 1px solid #D0D0D0;*/
+}
+
+.catalog_pagination_<?php echo $catalogID; ?> .go-to-next{
+    font-size: 10px !important;
+    /*background-color: #F0F0F0 !important;*/
+    /*background:url('<?php echo  plugins_url( '../images/right-active.png' , __FILE__ ); ?>') center center no-repeat;*/
+    /*border-left: 1px solid #D0D0D0;*/
+}
+.catalog_pagination_<?php echo $catalogID; ?> .go-to-next-passive{
+    font-size: 10px !important;
+    /*background-color: #F0F0F0 !important;*/
+    /*background:url('<?php echo  plugins_url( '../images/right-passive.png' , __FILE__ ); ?>') center center no-repeat;*/
+    /*border-left: 1px solid #D0D0D0;*/
+}
+
 .zoomContainer {
     z-index: 10;
+}
+.catalog_load_block_<?php echo $catalogID; ?>{
+    margin: 35px 0px;
+}
+.catalog_load_<?php echo $catalogID; ?>{
+    text-align: center;
+}
+.catalog_load_<?php echo $catalogID; ?> a{
+    text-decoration: none;
+    /*width: 100%;*/
+    border-radius: 5px;
+    display: inline-block;
+    padding: 5px 15px;
+    font-size: <?php echo $paramssld["htc_view3_load_more_font_size"]; ?>px !important;
+    color: #<?php echo $paramssld["htc_view3_load_more_font_color"]; ?> !important;
+    background: #<?php echo $paramssld["htc_view3_load_more_button_background_color"]; ?> !important;
+    cursor: pointer;
+}
+.catalog_load_<?php echo $catalogID; ?> a:hover{
+    color: #<?php echo $paramssld["htc_view3_load_more_font_hover_color"]; ?> !important;
+    background: #<?php echo $paramssld["htc_view3_load_more_button_background_hover_color"]; ?> !important;
+}
+.catalog_load_<?php echo $catalogID; ?> a:focus{
+    outline: none;
 }
 
 </style>
@@ -3233,14 +4561,15 @@ var defaultBlockHeight=<?php echo $paramssld['ht_view2_element_height']; ?>;
                       <div class="element_<?php echo $catalogID; ?> <?php if($paramssld['ht_view3_allow_lightbox'] == "on"){ echo "catalog_colorbox_grouping_".$catalogID;} ?> " data-symbol="<?php echo $row->name; ?>" data-category="alkaline-earth">
                               <div class="left-block_<?php echo $catalogID; ?>">
                                       <div class="main-image-block_<?php echo $catalogID; ?> for_zoom">
-                                              <?php $imgurl=explode(";",$row->image_url); ?>
-                                              <?php 	if($row->image_url != ';'){ ?>
-                                                <a href="<?php echo $imgurl[0]; ?>" class="catalog_group<?php echo $group_key."_".$catalogID; ?>"><img id="wd-cl-img<?php echo $key; ?>"src="<?php echo $imgurl[0]; ?>"></a>
-                                              <?php } else { ?>
+                                           <?php
+                                               $imgurl=explode(";",$row->image_url);
+                                               if($row->image_url != ';'){ ?>
+                                                      <a href="" class="catalog_group<?php echo $group_key."_".$catalogID; ?>" onclick="return false;">
+                                                          <img id="wd-cl-img<?php echo $key; ?>"src="<?php echo $imgurl[0]; ?>">
+                                                      </a>
+                                         <?php }else{ ?>
                                                       <a href="<?php echo $imgurl[0]; ?>"><img id="wd-cl-img<?php echo $key; ?>" src="images/noimage.png"></a>
-                                              <?php
-                                              }
-                                              ?>
+                                          <?php } ?>
                                       </div>
                                       <div class="thumbs-block">
                                           <?php
@@ -3248,18 +4577,14 @@ var defaultBlockHeight=<?php echo $paramssld['ht_view2_element_height']; ?>;
                                               {
                                           ?>
                                               <ul class="thumbs-list_<?php echo $catalogID; ?>">					
-                                                      <?php
+                                                  <?php
                                                       $imgurl=explode(";",$row->image_url);
-                                                      array_pop($imgurl);
-                                                      array_shift($imgurl);
+                                                      array_pop($imgurl);       //      array_shift($imgurl);
 
                                                       foreach($imgurl as $key=>$img)
-                                                      {
-                                                              ?>
-                                                                      <li><a href="<?php echo $img;?>" class="catalog_group<?php echo $group_key."_".$catalogID; ?>"><img src="<?php echo $img; ?>"></a></li>
-                                                      <?php
-                                                      }
-                                                      ?>
+                                                      { ?>
+                                                            <li><a href="<?php echo $img;?>" class="catalog_group<?php echo $group_key."_".$catalogID; ?>"><img src="<?php echo $img; ?>"></a></li>
+                                                <?php } ?>
                                               </ul>
                                           <?php
                                           }
@@ -3305,6 +4630,93 @@ var defaultBlockHeight=<?php echo $paramssld['ht_view2_element_height']; ?>;
               ?>
 
         </div>
+    
+    <?php
+            if($catalog[0]->pagination_type == "pagination"){
+        ?>
+        <div class="catalog_pagination_block_<?php echo $catalogID; ?>" >
+            <div class="catalog_pagination_<?php echo $catalogID; ?>" >
+                <?php
+//                var_dump($_SERVER);
+                
+                    if (strpos($_SERVER['QUERY_STRING'], 'catalog_page_') !== false)
+                {                                                                   //      IF WE HAVE $_GET PAGE
+                    $oneMore = $page_index + 1;
+                    $oneLess = $page_index - 1;
+                    
+                    if(isset($_GET["catalog_page_".$catalogID])){                   //      IF WE HAVE $_GET PAGE FOR THAT CATALOG
+                        $prevPagePath  = str_replace("catalog_page_".$catalogID."=".$page_index,"catalog_page_".$catalogID."=".$oneLess,$_SERVER['QUERY_STRING']);
+                        $nextPagePath  = str_replace("catalog_page_".$catalogID."=".$page_index,"catalog_page_".$catalogID."=".$oneMore,$_SERVER['QUERY_STRING']);
+                        $firstPagePath = str_replace("catalog_page_".$catalogID."=".$page_index,"catalog_page_".$catalogID."=1",$_SERVER['QUERY_STRING']);
+                        $lastPagePath  = str_replace("catalog_page_".$catalogID."=".$page_index,"catalog_page_".$catalogID."=".$pages,$_SERVER['QUERY_STRING']);
+//                        var_dump($nextPagePath);
+                    }
+                    else{                                                           //      IF WE HAVE $_GET PAGE FOR ANOTHER CATALOG
+                        $prevPagePath  = "#";
+                        $nextPagePath = $_SERVER['QUERY_STRING']."&catalog_page_".$catalogID."=2";
+//                        $nextPagePath  = str_replace("catalog_page_".$catalogID."=".$page_index,"catalog_page_".$catalogID."=".$oneMore,$_SERVER['QUERY_STRING']);
+                        $firstPagePath = $_SERVER['QUERY_STRING']."&catalog_page_".$catalogID."=1";
+                        $lastPagePath  = $_SERVER['QUERY_STRING']."&catalog_page_".$catalogID."=".$pages;
+                    }
+                }
+                else{                                                               //      IF WE HAVE NOOOT $_GET PAGE
+                    $oneMore = $page_index + 1;
+                    $oneLess = $page_index - 1;
+                    
+                    $prevPagePath  = "#";
+                    $nextPagePath  = "catalog_page_".$catalogID."=2";
+                    $firstPagePath = "catalog_page_".$catalogID."=1";
+                    $lastPagePath  = "catalog_page_".$catalogID."=".$pages;
+                }
+                
+
+               
+                    if (strpos(get_permalink(),'/?') !== false) { $pathSumbol = "&"; }
+                    else {
+                        if (strpos(get_permalink(),'/') !== false) { $pathSumbol = "?"; }
+                        else { $pathSumbol = "/?"; }
+                    }
+                    // The "back" link
+//                    $prevlink = ($page_index > 1) ? ''
+//                            . '<a href="'.$pathSumbol.$firstPagePath. '" class="go-to-first"></a> <a href="'.$pathSumbol.$prevPagePath. '" class="go-to-previous"></a>' : '<span class="disabled go-to-first-passive"></span> <span class="disabled go-to-previous-passive"></span>';
+
+                    // The "forward" link
+//                    $nextlink = ($page_index < $pages) ? ''
+//                            . '<a href="'.$pathSumbol.$nextPagePath. '" class="go-to-next"></a> <a href="'.$pathSumbol.$lastPagePath. '" class="go-to-last"></a>' : '<span class="disabled go-to-next-passive"></span> <span class="disabled go-to-last-passive"></span>';
+                    
+                    // The "back" link
+                    $prevlink = ($page_index > 1) ? ''
+                            . '<a href="'.$pathSumbol.$firstPagePath. '" class="go-to-first"><i class="icon-style4 hugeiticons-fast-backward" ></i></a>'
+                            . '<a href="'.$pathSumbol.$prevPagePath. '" class="go-to-previous"><i class="icon-style4 hugeiticons-chevron-left"></i></a>' : '<span class="disabled go-to-first-passive"></span> <span class="disabled go-to-previous-passive"></span>';
+
+                    // The "forward" link
+                    $nextlink = ($page_index < $pages) ? ''
+                            . '<a href="'.$pathSumbol.$nextPagePath. '" class="go-to-next"><i class="icon-style4 hugeiticons-chevron-right"></i></a>'
+                            . '<a href="'.$pathSumbol.$lastPagePath. '" class="go-to-last"><i class="icon-style4 hugeiticons-fast-forward" ></i></a>' : 
+                              '<span class="disabled go-to-next-passive"></span>'
+                            . '<span class="disabled go-to-last-passive"></span>';
+                    
+                    echo $prevlink." <span class='pagination-text'>".$page_index." / ".$pages."</span> ".$nextlink;
+                
+                    
+                ?>
+            </div>
+        </div>
+        <?php
+            }
+            elseif($catalog[0]->pagination_type == "load_more"){ $path_site = plugins_url("/../images", __FILE__); ?>
+                <div class="catalog_load_block_<?php echo $catalogID; ?>" >
+                    <div class="catalog_load_<?php echo $catalogID; ?>" >
+                        <a href="#" class="load_more_elements_<?php echo $catalogID; ?>">Load More...</a>
+                        <img src="<?php echo $path_site; ?>/load_more_icon_<?php echo $paramssld['htc_view3_load_more_loading_icon']; ?>.gif" class="load_more_loading_icon" style="display: none"/>
+                        <input type="hidden" class="load-more-elements-count" value="<?php echo $countIntoPage; ?>"/>
+                    <?php
+                        
+                    ?>
+                    </div>
+                </div>
+      <?php } ?>
+    
  </section>
   
 <script>
@@ -3489,9 +4901,83 @@ jQuery(function(){
 //                  } ?>
            
            
-//           jQuery("#huge_it_catalog_content_<?php echo $catalogID; ?> .element_<?php echo $catalogID; ?> .button-block a").click(function(){
-//               alert("kpar");
-//           });
+            /*    <--   VIEW 3 ELEMENTS THUMBS CLICK    */
+            
+            jQuery(".element_<?php echo $catalogID; ?> .left-block_<?php echo $catalogID; ?> .thumbs-list_<?php echo $catalogID; ?> li a img").click(function(e){
+                var lightbox_is = "<?php echo $paramssld['ht_view3_allow_lightbox']; ?>"
+                    if(lightbox_is != "on"){
+                        e.preventDefault();
+//                        alert(lightbox_is);
+                        var new_src = jQuery(this).attr("src");    //    alert(new_src);
+                        var image = jQuery(this).closest(".element_<?php echo $catalogID; ?>").find(".main-image-block_<?php echo $catalogID; ?> a img");
+                            image.attr("src", new_src);
+                            zoom_start();
+                    }
+            });
+            
+            
+            /*    <--    VIEW 3 LOAD MORE CLICK    */
+            
+            jQuery(".load_more_elements_<?php echo $catalogID; ?>").click(function(){
+                jQuery(this).css({ "display" : "none" });
+                jQuery(this).parent().find(".load_more_loading_icon").css({ "display" : "" });
+            var old_count = jQuery(this).parent().find(".load-more-elements-count").val() - parseInt(1);
+    //        alert("<?php echo $paramssld3["ht_catalog_general_linkbutton_text"]; ?>");
+            var data = {
+                        action: 'my_action',
+                        post: 'load_more_elements_into_catalog',
+                        view: <?php echo $catalog[0]->catalog_list_effects_s; ?>,
+                        catalog_id: <?php echo $catalogID; ?>,
+                        count_into_page: <?php echo $countIntoPage; ?>,
+                        old_count: old_count,
+                        allow_lightbox: "<?php echo $paramssld['ht_view3_allow_lightbox']; ?>",
+                        show_thumbs: "<?php echo $paramssld['ht_view3_show_thumbs']; ?>",
+                        show_description: "<?php echo $paramssld['ht_view3_show_description']; ?>",
+                        show_price: "<?php echo $paramssld["ht_catalog_view3_show_price"]; ?>",
+                        show_linkbutton: "<?php echo $paramssld['ht_view3_show_linkbutton']; ?>",
+                        price_text: "<?php echo $paramssld3['ht_single_product_price_text']; ?>",
+                        linkbutton_text: "<?php echo $paramssld3["ht_catalog_general_linkbutton_text"]; ?>",
+                        parmalink: "<?php echo get_permalink(); ?>",
+                        thumbs_position: "useLess",
+                        show_popup_title: "useLess",
+                        show_popup_linkbutton: "useLess"
+            };
+
+            jQuery.post("<?php echo admin_url('admin-ajax.php'); ?>", data, function(response) {
+//              response = JSON.parse(response);           //  alert(response.moreImages + " " + response.morePopups);
+//              alert(response)
+                    jQuery("#huge_it_catalog_container_<?php echo $catalogID; ?>").append(response);
+                    
+                        setTimeout(function(){
+                            jQuery(".load_more_elements_<?php echo $catalogID; ?>").css({ "display" : "" });
+                            jQuery(".load_more_elements_<?php echo $catalogID; ?>").parent().find(".load_more_loading_icon").css({ "display" : "none" });
+                            jQuery("#huge_it_catalog_container_<?php echo $catalogID; ?>").hugeitmicro( 'reloadItems' ).hugeitmicro({ sortBy: 'original-order' }).hugeitmicro( 'reLayout' );
+                        }, 100);
+                        
+                        var group_count = 0;
+                        jQuery(".catalog_colorbox_grouping_<?php echo $catalogID; ?>").each(function(){     //      CALLING COLORBOX
+                            group_count++;
+                        });
+                        var i;
+                        for(i = 1; i <= group_count; i++){
+                            jQuery(".catalog_group" + i + "<?php echo "_".$catalogID; ?>").colorbox({rel:'catalog_group' + i + "<?php echo "_".$catalogID; ?>"});
+                        }
+//                                        catalog_group<?php // echo $group_key."_".$catalogID; ?>
+
+                        zoom_start();                                                                       //      CALLING ELEVATEZOOM
+                        
+            });
+
+            old_count = parseInt(old_count) + parseInt(<?php echo $countIntoPage; ?>) + parseInt(1);
+            jQuery(this).parent().find(".load-more-elements-count").val(old_count);
+    //        alert(old_count + " " + <?php echo $myAllImages; ?>);
+            var max_count = <?php echo $myAllImages; ?>;
+            if( old_count >=  max_count){ jQuery(".catalog_load_block_<?php echo $catalogID; ?>").remove(); }
+            return false;
+        });
+            
+            /*           VIEW 3 LOAD MORE CLICK    -->    */
+
         });
         
         //end of filtering
@@ -3502,6 +4988,7 @@ jQuery(function(){
 	});
 
   });
+  
 </script>
 	  
 	  <?php
@@ -3514,7 +5001,7 @@ jQuery(function(){
 	  <?php
 	  
         break;
-/////////////////////////////////// VIEW 5 Slider ////////////////////////////////////
+/////////////////////////////////// VIEW 5 Content Slider ////////////////////////////////////
 		case 5;
 ?>
   <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery-easing/1.3/jquery.easing.min.js"></script>
@@ -3748,8 +5235,8 @@ jQuery(function(){
 					<?php if($paramssld["ht_view5_show_thumbs"]){ ?>
 					<div class="thumbs-block">
                                             <ul class="thumbs-list_<?php echo $catalogID; ?>">
-						<?php  
-						array_shift($imgurl);
+						<?php
+//						array_pop($imgurl);
                                                 foreach($imgurl as $key=>$img){?>
                                                         <li><a class="<?php if($paramssld['ht_view5_allow_lightbox'] == "on"){ echo "catalog_slider_group".$catalog_slider_group."_".$catalogID; } ?>" href="<?php echo $img; ?>"><img src="<?php echo $img; ?>"></a></li>
                                                 <?php } ?>
@@ -3796,6 +5283,27 @@ jQuery(function(){
      * console.log(api);
      */
 	 jQuery('#main-slider_<?php echo $catalogID; ?>').liquidSlider();
+         
+         
+         jQuery(document).ready(function(){
+             
+            /*    <--   VIEW 3 ELEMENTS THUMBS CLICK    */
+            
+            jQuery(".slider-content-wrapper .image-block_<?php echo $catalogID; ?> .thumbs-list_<?php echo $catalogID; ?> li a img").click(function(e){
+                var lightbox_is = "<?php echo $paramssld['ht_view5_allow_lightbox']; ?>"
+                    if(lightbox_is != "on"){
+                        e.preventDefault();
+//                        alert(lightbox_is);
+                        var new_src = jQuery(this).attr("src");    //    alert(new_src);
+                        var image = jQuery(".slider-content .image-block_<?php echo $catalogID; ?> a .main-image");
+                            image.attr("src", new_src);
+                            zoom_start();
+                    }
+            });
+            
+            
+         });
+           
   </script>
 <?php  
         break;
@@ -3842,351 +5350,407 @@ jQuery(function(){
         
         $adminLink = get_option( 'admin_email' );
 
-        $paramssld["ht_view0_sorting_float"] = "none";
-$paramssld["ht_view1_sorting_float"] = "none";
-$paramssld["ht_view2_sorting_float"] = "none";
-$paramssld["ht_view3_sorting_float"] = "none";
-$paramssld["ht_view4_sorting_float"] = "none";
-$paramssld["ht_view5_sorting_float"] = "none";
-$paramssld["ht_view6_sorting_float"] = "none";
-
-$paramssld["ht_view0_filtering_float"] = "none";
-$paramssld["ht_view1_filtering_float"] = "none";
-$paramssld["ht_view2_filtering_float"] = "none";
-$paramssld["ht_view3_filtering_float"] = "none";
-$paramssld["ht_view4_filtering_float"] = "none";
-$paramssld["ht_view5_filtering_float"] = "none";
-$paramssld["ht_view6_filtering_float"] = "none";
-$paramssld["ht_single_product_allow_lightbox"] = "off";
-$paramssld["ht_single_product_allow_zooming"] = "on";
-$paramssld["ht_single_product_border_width"] = "1";
-$paramssld["ht_single_product_border_color"] = "f9f9f9";
-$paramssld["ht_single_product_background_color"] = "efefef";
-$paramssld["ht_single_product_mainimage_width"] = "240";
-$paramssld["ht_single_product_show_separator_lines"] = "on";
-$paramssld["ht_single_product_title_font_size"] = "24";
-$paramssld["ht_single_product_title_font_color"] = "0074A2";
-$paramssld["ht_single_product_show_description"] = "on";
-$paramssld["ht_single_product_description_font_size"] = "14";
-$paramssld["ht_single_product_description_font_color"] = "000";
-$paramssld["ht_single_product_show_thumbs"] = "on";
-$paramssld["ht_single_product_thumbs_width"] = "75";
-$paramssld["ht_single_product_thumbs_height"] = "75";
-$paramssld["ht_single_product_price_font_size"] = "14";
-$paramssld["ht_single_product_price_font_color"] = "E22828";
-$paramssld["ht_single_product_market_price_font_size"] = "14";
-$paramssld["ht_single_product_market_price_font_color"] = "E22828";
-$paramssld["ht_single_product_rating_font_size"] = "14";
-$paramssld["ht_single_product_rating_font_color"] = "000000";
-$paramssld["ht_single_product_tabs_font_color"] = "fff";
-$paramssld["ht_single_product_tabs_font_hover_color"] = "fff";
-$paramssld["ht_single_product_params_tab_box_background_color"] = "fff";
-$paramssld["ht_single_product_params_tab_words_font_color"] = "000";
-$paramssld["ht_single_product_comments_tab_words_font_color"] = "000";
-$paramssld["ht_single_product_params_name_font_color"] = "000";
-$paramssld["ht_single_product_params_values_font_color"] = "000";
-$paramssld["ht_single_product_comments_name_font_color"] = "000";
-$paramssld["ht_single_product_comments_content_font_color"] = "000";
-$paramssld["ht_single_product_comments_submit_button_text"] = "Submit";
-$paramssld["ht_single_product_comments_submit_button_text_font_size"] = "14";
-$paramssld["ht_single_product_comments_submit_button_text_font_color"] = "FFFFFF";
-$paramssld["ht_single_product_comments_submit_button_text_font_hover_color"] = "FFFFFF";
-$paramssld["ht_single_product_comments_submit_button_text_background_color"] = "4ca6cf";
-$paramssld["ht_single_product_comments_submit_button_text_background_hover_olor"] = "21759b";
-$paramssld["ht_single_product_price_text"] = "Price";
-$paramssld["ht_single_product_market_price_text"] = "Discount Price";
-$paramssld["ht_single_product_comments_text"] = "Comments";
-$paramssld["ht_single_product_parameters_text"] = "Parameters";
-$paramssld["ht_single_product_rating_text"] = "Rating";
-$paramssld["ht_single_product_share_text"] = "Share";
-$paramssld["ht_single_product_show_price"] = "on";
-$paramssld["ht_single_product_show_rating"] = "on";
-$paramssld["ht_single_product_show_share_buttons"] = "on";
-$paramssld["ht_single_product_show_parameters"] = "on";
-$paramssld["ht_single_product_show_comments"] = "on";
-$paramssld["ht_single_product_tabs_border_color"] = "cccccc";
-$paramssld["ht_single_product_your_name_text"] = "Your Name";
-$paramssld["ht_single_product_your_Comment_text"] = "Your Comment";
-$paramssld["ht_single_product_captcha_text"] = "Captcha";
-$paramssld["ht_single_product_invalid_captcha_text"] = "Invalid Captcha";
-
-$paramssld2["ht_view0_togglebutton_style"] = "dark";
-$paramssld2["ht_view0_show_separator_lines"] = "on";
-$paramssld2["ht_view0_linkbutton_text"] = "View Product";
-$paramssld2["ht_view0_show_linkbutton"] = "on";
-$paramssld2["ht_view0_linkbutton_background_hover_color"] = "df2e1b";
-$paramssld2["ht_view0_linkbutton_background_color"] = "e74c3c";
-$paramssld2["ht_view0_linkbutton_font_hover_color"] = "ffffff";
-$paramssld2["ht_view0_linkbutton_color"] = "ffffff";
-$paramssld2["ht_view0_linkbutton_font_size"] = "14";
-$paramssld2["ht_view0_description_color"] = "5b5b5b";
-$paramssld2["ht_view0_description_font_size"] = "14";
-$paramssld2["ht_view0_show_description"] = "on";
-$paramssld2["ht_view0_thumbs_width"] = "75";
-$paramssld2["ht_view0_thumbs_position"] = "before";
-$paramssld2["ht_view0_show_thumbs"] = "on";
-$paramssld2["ht_view0_title_font_size"] = "15";
-$paramssld2["ht_view0_title_font_color"] = "555555";
-$paramssld2["ht_view0_element_border_width"] = "1";
-$paramssld2["ht_view0_element_border_color"] = "D0D0D0";
-$paramssld2["ht_view0_element_background_color"] = "f7f7f7";
-$paramssld2["ht_view0_block_width"] = "275";
-$paramssld2["ht_view0_block_height"] = "160";
-$paramssld2["ht_view1_show_separator_lines"] = "on";
-$paramssld2["ht_view1_linkbutton_text"] = "View Product";
-$paramssld2["ht_view1_show_linkbutton"] = "on";
-$paramssld2["ht_view1_linkbutton_background_hover_color"] = "df2e1b";
-$paramssld2["ht_view1_linkbutton_background_color"] = "e74c3c";
-$paramssld2["ht_view1_linkbutton_font_hover_color"] = "ffffff";
-$paramssld2["ht_view1_linkbutton_color"] = "ffffff";
-$paramssld2["ht_view1_linkbutton_font_size"] = "14";
-$paramssld2["ht_view1_description_color"] = "5b5b5b";
-$paramssld2["ht_view1_description_font_size"] = "14";
-$paramssld2["ht_view1_show_description"] = "on";
-$paramssld2["ht_view1_thumbs_width"] = "75";
-$paramssld2["ht_view1_thumbs_position"] = "before";
-$paramssld2["ht_view1_show_thumbs"] = "on";
-$paramssld2["ht_view1_title_font_size"] = "15";
-$paramssld2["ht_view1_title_font_color"] = "555555";
-$paramssld2["ht_view1_element_border_width"] = "1";
-$paramssld2["ht_view1_element_border_color"] = "D0D0D0";
-$paramssld2["ht_view1_element_background_color"] = "f7f7f7";
-$paramssld2["ht_view1_block_width"] = "275";
-$paramssld2["ht_view2_element_linkbutton_text"] = "View Product";
-$paramssld2["ht_view2_element_show_linkbutton"] = "on";
-$paramssld2["ht_view2_element_linkbutton_color"] = "ffffff";
-$paramssld2["ht_view2_element_linkbutton_font_size"] = "14";
-$paramssld2["ht_view2_element_linkbutton_background_color"] = "2ea2cd";
-$paramssld2["ht_view2_show_popup_linkbutton"] = "on";
-$paramssld2["ht_view2_popup_linkbutton_text"] = "View Product";
-$paramssld2["ht_view2_popup_linkbutton_background_hover_color"] = "0074a2";
-$paramssld2["ht_view2_popup_linkbutton_background_color"] = "2ea2cd";
-$paramssld2["ht_view2_popup_linkbutton_font_hover_color"] = "ffffff";
-$paramssld2["ht_view2_popup_linkbutton_color"] = "ffffff";
-$paramssld2["ht_view2_popup_linkbutton_font_size"] = "14";
-$paramssld2["ht_view2_description_color"] = "222222";
-$paramssld2["ht_view2_description_font_size"] = "14";
-$paramssld2["ht_view2_show_description"] = "on";
-$paramssld2["ht_view2_thumbs_width"] = "75";
-$paramssld2["ht_view2_thumbs_height"] = "75";
-$paramssld2["ht_view2_thumbs_position"] = "before";
-$paramssld2["ht_view2_show_thumbs"] = "on";
-$paramssld2["ht_view2_popup_background_color"] = "FFFFFF";
-$paramssld2["ht_view2_popup_overlay_color"] = "000000";
-$paramssld2["ht_view2_popup_overlay_transparency_color"] = "70";
-$paramssld2["ht_view2_popup_closebutton_style"] = "dark";
-$paramssld2["ht_view2_show_separator_lines"] = "on";
-$paramssld2["ht_view2_show_popup_title"] = "on";
-$paramssld2["ht_view2_element_title_font_size"] = "18";
-$paramssld2["ht_view2_element_title_font_color"] = "222222";
-$paramssld2["ht_view2_popup_title_font_size"] = "18";
-$paramssld2["ht_view2_popup_title_font_color"] = "222222";
-$paramssld2["ht_view2_element_overlay_color"] = "FFFFFF";
-$paramssld2["ht_view2_element_overlay_transparency"] = "70";
-$paramssld2["ht_view2_zoombutton_style"] = "light";
-$paramssld2["ht_view2_element_border_width"] = "1";
-$paramssld2["ht_view2_element_border_color"] = "dedede";
-$paramssld2["ht_view2_element_background_color"] = "f9f9f9";
-$paramssld2["ht_view2_element_width"] = "275";
-$paramssld2["ht_view2_element_height"] = "160";
-$paramssld2["ht_view3_show_separator_lines"] = "on";
-$paramssld2["ht_view3_linkbutton_text"] = "View Product";
-$paramssld2["ht_view3_show_linkbutton"] = "on";
-$paramssld2["ht_view3_linkbutton_background_hover_color"] = "0074a2";
-$paramssld2["ht_view3_linkbutton_background_color"] = "2ea2cd";
-$paramssld2["ht_view3_linkbutton_font_hover_color"] = "ffffff";
-$paramssld2["ht_view3_linkbutton_color"] = "ffffff";
-$paramssld2["ht_view3_linkbutton_font_size"] = "14";
-$paramssld2["ht_view3_description_color"] = "555555";
-$paramssld2["ht_view3_description_font_size"] = "14";
-$paramssld2["ht_view3_show_description"] = "on";
-$paramssld2["ht_view3_thumbs_width"] = "75";
-$paramssld2["ht_view3_thumbs_height"] = "75";
-$paramssld2["ht_view3_show_thumbs"] = "on";
-$paramssld2["ht_view3_title_font_size"] = "18";
-$paramssld2["ht_view3_title_font_color"] = "0074a2";
-$paramssld2["ht_view3_mainimage_width"] = "240";
-$paramssld2["ht_view3_element_border_width"] = "1";
-$paramssld2["ht_view3_element_border_color"] = "dedede";
-$paramssld2["ht_view3_element_background_color"] = "f9f9f9";
-$paramssld2["ht_view5_icons_style"] = "dark";
-$paramssld2["ht_view5_show_separator_lines"] = "on";
-$paramssld2["ht_view5_linkbutton_text"] = "View Product";
-$paramssld2["ht_view5_show_linkbutton"] = "on";
-$paramssld2["ht_view5_linkbutton_background_hover_color"] = "0074a2";
-$paramssld2["ht_view5_linkbutton_background_color"] = "2ea2cd";
-$paramssld2["ht_view5_linkbutton_font_hover_color"] = "ffffff";
-$paramssld2["ht_view5_linkbutton_color"] = "ffffff";
-$paramssld2["ht_view5_linkbutton_font_size"] = "14";
-$paramssld2["ht_view5_description_color"] = "555555";
-$paramssld2["ht_view5_description_font_size"] = "14";
-$paramssld2["ht_view5_show_description"] = "on";
-$paramssld2["ht_view5_thumbs_width"] = "75";
-$paramssld2["ht_view5_thumbs_height"] = "75";
-$paramssld2["ht_view5_show_thumbs"] = "on";
-$paramssld2["ht_view5_title_font_size"] = "16";
-$paramssld2["ht_view5_title_font_color"] = "0074a2";
-$paramssld2["ht_view5_main_image_width"] = "275";
-$paramssld2["ht_view5_slider_tabs_font_color"] = "d9d99";
-$paramssld2["ht_view5_slider_tabs_background_color"] = "555555";
-$paramssld2["ht_view5_slider_background_color"] = "f9f9f9";
-$paramssld2["ht_view6_title_font_size"] = "16";
-$paramssld2["ht_view6_title_font_color"] = "0074A2";
-$paramssld2["ht_view6_title_font_hover_color"] = "2EA2CD";
-$paramssld2["ht_view6_title_background_color"] = "000000";
-$paramssld2["ht_view6_title_background_transparency"] = "80";
-$paramssld2["ht_view6_border_radius"] = "3";
-$paramssld2["ht_view6_border_width"] = "0";
-$paramssld2["ht_view6_border_color"] = "eeeeee";
-$paramssld2["ht_view6_width"] = "275";
-$paramssld2["light_box_size"] = "17";
-$paramssld2["light_box_width"] = "500";
-$paramssld2["light_box_transition"] = "elastic";
-$paramssld2["light_box_speed"] = "800";
-$paramssld2["light_box_href"] = "False";
-$paramssld2["light_box_title"] = "false";
-$paramssld2["light_box_scalephotos"] = "true";
-$paramssld2["light_box_rel"] = "false";
-$paramssld2["light_box_scrolling"] = "false";
-$paramssld2["light_box_opacity"] = "20";
-$paramssld2["light_box_open"] = "false";
-$paramssld2["light_box_overlayclose"] = "true";
-$paramssld2["light_box_esckey"] = "false";
-$paramssld2["light_box_arrowkey"] = "false";
-$paramssld2["light_box_loop"] = "true";
-$paramssld2["light_box_data"] = "false";
-$paramssld2["light_box_classname"] = "false";
-$paramssld2["light_box_fadeout"] = "300";
-$paramssld2["light_box_closebutton"] = "false";
-$paramssld2["light_box_current"] = "image";
-$paramssld2["light_box_previous"] = "previous";
-$paramssld2["light_box_next"] = "next";
-$paramssld2["light_box_close"] = "close";
-$paramssld2["light_box_iframe"] = "false";
-$paramssld2["light_box_inline"] = "false";
-$paramssld2["light_box_html"] = "false";
-$paramssld2["light_box_photo"] = "false";
-$paramssld2["light_box_height"] = "500";
-$paramssld2["light_box_innerwidth"] = "false";
-$paramssld2["light_box_innerheight"] = "false";
-$paramssld2["light_box_initialwidth"] = "300";
-$paramssld2["light_box_initialheight"] = "100";
-$paramssld2["light_box_maxwidth"] = "768";
-$paramssld2["light_box_maxheight"] = "500";
-$paramssld2["light_box_slideshow"] = "false";
-$paramssld2["light_box_slideshowspeed"] = "2500";
-$paramssld2["light_box_slideshowauto"] = "true";
-$paramssld2["light_box_slideshowstart"] = "start slideshow";
-$paramssld2["light_box_slideshowstop"] = "stop slideshow";
-$paramssld2["light_box_fixed"] = "true";
-$paramssld2["light_box_top"] = "false";
-$paramssld2["light_box_bottom"] = "false";
-$paramssld2["light_box_left"] = "false";
-$paramssld2["light_box_right"] = "false";
-$paramssld2["light_box_reposition"] = "false";
-$paramssld2["light_box_retinaimage"] = "true";
-$paramssld2["light_box_retinaurl"] = "false";
-$paramssld2["light_box_retinasuffix"] = "@2x.$1";
-$paramssld2["light_box_returnfocus"] = "true";
-$paramssld2["light_box_trapfocus"] = "true";
-$paramssld2["light_box_fastiframe"] = "true";
-$paramssld2["light_box_preloading"] = "true";
-$paramssld2["slider_title_position"] = "5";
-$paramssld2["light_box_style"] = "1";
-$paramssld2["light_box_size_fix"] = "false";
-$paramssld2["ht_view2_popup_full_width"] = "on";
-$paramssld2["ht_view0_price_text"] = "Price";
-$paramssld2["ht_view1_price_text"] = "Price";
-$paramssld2["ht_view2_price_text"] = "Price";
-$paramssld2["ht_view3_price_text"] = "Price";
-$paramssld2["ht_view5_price_text"] = "Price";
-$paramssld2["ht_catalog_view0_show_price"] = "on";
-$paramssld2["ht_catalog_view0_price_font_size"] = "15";
-$paramssld2["ht_catalog_view0_price_font_color"] = "e74c3c";
-$paramssld2["ht_catalog_view0_market_price_font_size"] = "15";
-$paramssld2["ht_catalog_view0_market_price_font_color"] = "000000";
-$paramssld2["ht_catalog_view1_show_price"] = "on";
-$paramssld2["ht_catalog_view1_price_font_size"] = "15";
-$paramssld2["ht_catalog_view1_price_font_color"] = "e74c3c";
-$paramssld2["ht_catalog_view1_market_price_font_size"] = "15";
-$paramssld2["ht_catalog_view1_market_price_font_color"] = "000000";
-$paramssld2["ht_catalog_view2_show_price"] = "on";
-$paramssld2["ht_catalog_view2_price_font_size"] = "15";
-$paramssld2["ht_catalog_view2_price_font_color"] = "e74c3c";
-$paramssld2["ht_catalog_view2_market_price_font_size"] = "15";
-$paramssld2["ht_catalog_view2_market_price_font_color"] = "000000";
-$paramssld2["ht_catalog_view3_show_price"] = "on";
-$paramssld2["ht_catalog_view3_price_font_size"] = "15";
-$paramssld2["ht_catalog_view3_price_font_color"] = "0074a2";
-$paramssld2["ht_catalog_view3_market_price_font_size"] = "15";
-$paramssld2["ht_catalog_view3_market_price_font_color"] = "000000";
-$paramssld2["ht_catalog_view5_show_price"] = "on";
-$paramssld2["ht_catalog_view5_price_font_size"] = "15";
-$paramssld2["ht_catalog_view5_price_font_color"] = "0074a2";
-$paramssld2["ht_catalog_view5_market_price_font_size"] = "15";
-$paramssld2["ht_catalog_view5_market_price_font_color"] = "000000";
-$paramssld2["ht_catalog_zoom_window_type"] = "window";
-$paramssld2["ht_catalog_zoom_window_width"] = "200";
-$paramssld2["ht_catalog_zoom_window_height"] = "150";
-$paramssld2["ht_catalog_zoom_x_asis"] = "0";
-$paramssld2["ht_catalog_zoom_y_asis"] = "0";
-$paramssld2["ht_catalog_zoom_window_position"] = "16";
-$paramssld2["ht_catalog_zoom_window_border_size"] = "2";
-$paramssld2["ht_catalog_zoom_window_border_color"] = "#000";
-$paramssld2["ht_catalog_zoom_window_lens_size"] = "200";
-$paramssld2["ht_catalog_zoom_window_fadein"] = "200";
-$paramssld2["ht_catalog_zoom_window_fadeout"] = "200";
-$paramssld2["ht_catalog_zoom_lens_fadein"] = "200";
-$paramssld2["ht_catalog_zoom_lens_fadeout"] = "200";
-$paramssld2["false"] = "true";
-$paramssld2["ht_catalog_zoom_lens_shape"] = "square";
-$paramssld2["ht_catalog_zoom_lens_color"] = "#fff";
-$paramssld2["ht_catalog_zoom_lens_opacity"] = "40";
-$paramssld2["ht_catalog_zoom_cursor"] = "crosshair";
-$paramssld2["ht_catalog_zoom_scrollzoom"] = "true";
-$paramssld2["ht_catalog_zoom_easing"] = "true";
-$paramssld2["ht_catalog_zoom_lens_size_fix"] = "false";
-$paramssld2["ht_catalog_zoom_lens_height"] = "100";
-$paramssld2["ht_catalog_zoom_lens_width"] = "100";
-$paramssld2["ht_catalog_zoom_tint"] = "true";
-$paramssld2["ht_catalog_zoom_tint_colour"] = "#fff";
-$paramssld2["ht_catalog_zoom_tint_opacity"] = "40";
-$paramssld2["ht_catalog_zoom_tint_fadein"] = "200";
-$paramssld2["ht_catalog_zoom_tint_fadeout"] = "200";
-$paramssld2['ht_catalog_zoom_lens_hide'] = "false";
-$paramssld2["ht_view3_allow_lightbox"] = "on";
-$paramssld2["ht_catalog_zoom_thumbs_zoom"] = "off";
-$paramssld2["ht_view3_allow_zooming"] = "on";
-$paramssld["ht_view0_allow_zooming"] = "off";
-$paramssld["ht_view0_allow_lightbox"] = "on";
-$paramssld["ht_view1_allow_zooming"] = "off";
-$paramssld["ht_view1_allow_lightbox"] = "on";
-$paramssld["ht_view2_allow_zooming"] = "off";
-$paramssld["ht_view2_allow_lightbox"] = "on";
-$paramssld["ht_view5_allow_zooming"] = "on";
-$paramssld["ht_view5_allow_lightbox"] = "off";
-$paramssld["ht_single_product_show_asc_seller_button"] = "off";
-$paramssld["ht_single_product_asc_seller_button_text"] = "Contact To Seller";
-$paramssld["ht_single_product_asc_seller_button_text_size"] = "25";
-$paramssld["ht_single_product_asc_seller_button_text_color"] = "ffffff";
-$paramssld["ht_single_product_asc_seller_button_text_hover_color"] = "ffffff";
-$paramssld["ht_single_product_asc_seller_button_background_color"] = "E22828";
-$paramssld["ht_single_product_asc_seller_button_background_hover_color"] = "E22828";
-$paramssld["ht_single_product_asc_to_seller_text"] = "Asc To Seller";
-$paramssld["ht_single_product_asc_seller_popup_background_1"] = "ffffff";
-$paramssld["ht_single_product_asc_seller_popup_background_2"] = "999999";
-$paramssld["ht_single_product_your_mail_text"] = "Your E-mail";
-$paramssld["ht_single_product_your_phone_text"] = "Your Phone";
-$paramssld["ht_single_product_your_message_text"] = "Your Message";
-$paramssld["ht_single_product_asc_seller_popup_button_text"] = "Submit";
-$paramssld["ht_single_product_asc_seller_popup_button_text_size"] = "16";
-$paramssld["ht_single_product_asc_seller_popup_button_text_color"] = "000000";
-$paramssld["ht_single_product_asc_seller_popup_button_background_color"] = "EEEEEE";
-$paramssld["ht_single_product_asc_seller_popup_button_background_hover_color"] = "EEEEEE";
-$paramssld["ht_single_product_asc_seller_popup_close_style"] = "dark";
-
         
-        if ( is_plugin_active( 'product-catalog-releated-products/product-catalog-releated-products.php' ) ){  }
+        $paramssld["ht_view0_sorting_float"] = "none";
+        $paramssld["ht_view1_sorting_float"] = "none";
+        $paramssld["ht_view2_sorting_float"] = "none";
+        $paramssld["ht_view3_sorting_float"] = "none";
+        $paramssld["ht_view4_sorting_float"] = "none";
+        $paramssld["ht_view5_sorting_float"] = "none";
+        $paramssld["ht_view6_sorting_float"] = "none";
+
+        $paramssld["ht_view0_filtering_float"] = "none";
+        $paramssld["ht_view1_filtering_float"] = "none";
+        $paramssld["ht_view2_filtering_float"] = "none";
+        $paramssld["ht_view3_filtering_float"] = "none";
+        $paramssld["ht_view4_filtering_float"] = "none";
+        $paramssld["ht_view5_filtering_float"] = "none";
+        $paramssld["ht_view6_filtering_float"] = "none";
+        $paramssld["ht_single_product_allow_lightbox"] = "off";
+        $paramssld["ht_single_product_allow_zooming"] = "on";
+        $paramssld["ht_single_product_border_width"] = "1";
+        $paramssld["ht_single_product_border_color"] = "f9f9f9";
+        $paramssld["ht_single_product_background_color"] = "efefef";
+        $paramssld["ht_single_product_mainimage_width"] = "240";
+        $paramssld["ht_single_product_show_separator_lines"] = "on";
+        $paramssld["ht_single_product_title_font_size"] = "24";
+        $paramssld["ht_single_product_title_font_color"] = "0074A2";
+        $paramssld["ht_single_product_show_description"] = "on";
+        $paramssld["ht_single_product_description_font_size"] = "14";
+        $paramssld["ht_single_product_description_font_color"] = "000";
+        $paramssld["ht_single_product_show_thumbs"] = "on";
+        $paramssld["ht_single_product_thumbs_width"] = "75";
+        $paramssld["ht_single_product_thumbs_height"] = "75";
+        $paramssld["ht_single_product_price_font_size"] = "14";
+        $paramssld["ht_single_product_price_font_color"] = "E22828";
+        $paramssld["ht_single_product_market_price_font_size"] = "14";
+        $paramssld["ht_single_product_market_price_font_color"] = "E22828";
+        $paramssld["ht_single_product_rating_font_size"] = "14";
+        $paramssld["ht_single_product_rating_font_color"] = "000000";
+        $paramssld["ht_single_product_tabs_font_color"] = "000";
+        $paramssld["ht_single_product_tabs_font_hover_color"] = "fff";
+        $paramssld["ht_single_product_params_tab_box_background_color"] = "fff";
+        $paramssld["ht_single_product_params_tab_words_font_color"] = "000";
+        $paramssld["ht_single_product_comments_tab_words_font_color"] = "000";
+        $paramssld["ht_single_product_params_name_font_color"] = "000";
+        $paramssld["ht_single_product_params_values_font_color"] = "000";
+        $paramssld["ht_single_product_comments_name_font_color"] = "000";
+        $paramssld["ht_single_product_comments_content_font_color"] = "000";
+        $paramssld["ht_single_product_comments_submit_button_text"] = "Submit";
+        $paramssld["ht_single_product_comments_submit_button_text_font_size"] = "14";
+        $paramssld["ht_single_product_comments_submit_button_text_font_color"] = "FFFFFF";
+        $paramssld["ht_single_product_comments_submit_button_text_font_hover_color"] = "FFFFFF";
+        $paramssld["ht_single_product_comments_submit_button_text_background_color"] = "4ca6cf";
+        $paramssld["ht_single_product_comments_submit_button_text_background_hover_olor"] = "21759b";
+        $paramssld["ht_single_product_price_text"] = "Price";
+        $paramssld["ht_single_product_market_price_text"] = "Discount Price";
+        $paramssld["ht_single_product_comments_text"] = "Comments";
+        $paramssld["ht_single_product_parameters_text"] = "Parameters";
+        $paramssld["ht_single_product_rating_text"] = "Rating";
+        $paramssld["ht_single_product_share_text"] = "Share";
+        $paramssld["ht_single_product_show_price"] = "on";
+        $paramssld["ht_single_product_show_rating"] = "on";
+        $paramssld["ht_single_product_show_share_buttons"] = "on";
+        $paramssld["ht_single_product_show_parameters"] = "on";
+        $paramssld["ht_single_product_show_comments"] = "on";
+        $paramssld["ht_single_product_tabs_border_color"] = "cccccc";
+        $paramssld["ht_single_product_your_name_text"] = "Your Name";
+        $paramssld["ht_single_product_your_Comment_text"] = "Your Comment";
+        $paramssld["ht_single_product_captcha_text"] = "Captcha";
+        $paramssld["ht_single_product_invalid_captcha_text"] = "Invalid Captcha";
+
+        $paramssld2["ht_view0_togglebutton_style"] = "dark";
+        $paramssld2["ht_view0_show_separator_lines"] = "on";
+        $paramssld2["ht_view0_linkbutton_text"] = "View Product";
+        $paramssld2["ht_view0_show_linkbutton"] = "on";
+        $paramssld2["ht_view0_linkbutton_background_hover_color"] = "df2e1b";
+        $paramssld2["ht_view0_linkbutton_background_color"] = "e74c3c";
+        $paramssld2["ht_view0_linkbutton_font_hover_color"] = "ffffff";
+        $paramssld2["ht_view0_linkbutton_color"] = "ffffff";
+        $paramssld2["ht_view0_linkbutton_font_size"] = "14";
+        $paramssld2["ht_view0_description_color"] = "5b5b5b";
+        $paramssld2["ht_view0_description_font_size"] = "14";
+        $paramssld2["ht_view0_show_description"] = "on";
+        $paramssld2["ht_view0_thumbs_width"] = "75";
+        $paramssld2["ht_view0_thumbs_position"] = "before";
+        $paramssld2["ht_view0_show_thumbs"] = "on";
+        $paramssld2["ht_view0_title_font_size"] = "15";
+        $paramssld2["ht_view0_title_font_color"] = "555555";
+        $paramssld2["ht_view0_element_border_width"] = "1";
+        $paramssld2["ht_view0_element_border_color"] = "D0D0D0";
+        $paramssld2["ht_view0_element_background_color"] = "f7f7f7";
+        $paramssld2["ht_view0_block_width"] = "275";
+        $paramssld2["ht_view0_block_height"] = "160";
+        $paramssld2["ht_view1_show_separator_lines"] = "on";
+        $paramssld2["ht_view1_linkbutton_text"] = "View Product";
+        $paramssld2["ht_view1_show_linkbutton"] = "on";
+        $paramssld2["ht_view1_linkbutton_background_hover_color"] = "df2e1b";
+        $paramssld2["ht_view1_linkbutton_background_color"] = "e74c3c";
+        $paramssld2["ht_view1_linkbutton_font_hover_color"] = "ffffff";
+        $paramssld2["ht_view1_linkbutton_color"] = "ffffff";
+        $paramssld2["ht_view1_linkbutton_font_size"] = "14";
+        $paramssld2["ht_view1_description_color"] = "5b5b5b";
+        $paramssld2["ht_view1_description_font_size"] = "14";
+        $paramssld2["ht_view1_show_description"] = "on";
+        $paramssld2["ht_view1_thumbs_width"] = "75";
+        $paramssld2["ht_view1_thumbs_position"] = "before";
+        $paramssld2["ht_view1_show_thumbs"] = "on";
+        $paramssld2["ht_view1_title_font_size"] = "15";
+        $paramssld2["ht_view1_title_font_color"] = "555555";
+        $paramssld2["ht_view1_element_border_width"] = "1";
+        $paramssld2["ht_view1_element_border_color"] = "D0D0D0";
+        $paramssld2["ht_view1_element_background_color"] = "f7f7f7";
+        $paramssld2["ht_view1_block_width"] = "275";
+        $paramssld2["ht_view2_element_linkbutton_text"] = "View Product";
+        $paramssld2["ht_view2_element_show_linkbutton"] = "on";
+        $paramssld2["ht_view2_element_linkbutton_color"] = "ffffff";
+        $paramssld2["ht_view2_element_linkbutton_font_size"] = "14";
+        $paramssld2["ht_view2_element_linkbutton_background_color"] = "2ea2cd";
+        $paramssld2["ht_view2_show_popup_linkbutton"] = "on";
+        $paramssld2["ht_view2_popup_linkbutton_text"] = "View Product";
+        $paramssld2["ht_view2_popup_linkbutton_background_hover_color"] = "0074a2";
+        $paramssld2["ht_view2_popup_linkbutton_background_color"] = "2ea2cd";
+        $paramssld2["ht_view2_popup_linkbutton_font_hover_color"] = "ffffff";
+        $paramssld2["ht_view2_popup_linkbutton_color"] = "ffffff";
+        $paramssld2["ht_view2_popup_linkbutton_font_size"] = "14";
+        $paramssld2["ht_view2_description_color"] = "222222";
+        $paramssld2["ht_view2_description_font_size"] = "14";
+        $paramssld2["ht_view2_show_description"] = "on";
+        $paramssld2["ht_view2_thumbs_width"] = "75";
+        $paramssld2["ht_view2_thumbs_height"] = "75";
+        $paramssld2["ht_view2_thumbs_position"] = "before";
+        $paramssld2["ht_view2_show_thumbs"] = "on";
+        $paramssld2["ht_view2_popup_background_color"] = "FFFFFF";
+        $paramssld2["ht_view2_popup_overlay_color"] = "000000";
+        $paramssld2["ht_view2_popup_overlay_transparency_color"] = "70";
+        $paramssld2["ht_view2_popup_closebutton_style"] = "dark";
+        $paramssld2["ht_view2_show_separator_lines"] = "on";
+        $paramssld2["ht_view2_show_popup_title"] = "on";
+        $paramssld2["ht_view2_element_title_font_size"] = "18";
+        $paramssld2["ht_view2_element_title_font_color"] = "222222";
+        $paramssld2["ht_view2_popup_title_font_size"] = "18";
+        $paramssld2["ht_view2_popup_title_font_color"] = "222222";
+        $paramssld2["ht_view2_element_overlay_color"] = "FFFFFF";
+        $paramssld2["ht_view2_element_overlay_transparency"] = "70";
+        $paramssld2["ht_view2_zoombutton_style"] = "light";
+        $paramssld2["ht_view2_element_border_width"] = "1";
+        $paramssld2["ht_view2_element_border_color"] = "dedede";
+        $paramssld2["ht_view2_element_background_color"] = "f9f9f9";
+        $paramssld2["ht_view2_element_width"] = "275";
+        $paramssld2["ht_view2_element_height"] = "160";
+        $paramssld2["ht_view3_show_separator_lines"] = "on";
+        $paramssld2["ht_view3_linkbutton_text"] = "View Product";
+        $paramssld2["ht_view3_show_linkbutton"] = "on";
+        $paramssld2["ht_view3_linkbutton_background_hover_color"] = "0074a2";
+        $paramssld2["ht_view3_linkbutton_background_color"] = "2ea2cd";
+        $paramssld2["ht_view3_linkbutton_font_hover_color"] = "ffffff";
+        $paramssld2["ht_view3_linkbutton_color"] = "ffffff";
+        $paramssld2["ht_view3_linkbutton_font_size"] = "14";
+        $paramssld2["ht_view3_description_color"] = "555555";
+        $paramssld2["ht_view3_description_font_size"] = "14";
+        $paramssld2["ht_view3_show_description"] = "on";
+        $paramssld2["ht_view3_thumbs_width"] = "75";
+        $paramssld2["ht_view3_thumbs_height"] = "75";
+        $paramssld2["ht_view3_show_thumbs"] = "on";
+        $paramssld2["ht_view3_title_font_size"] = "18";
+        $paramssld2["ht_view3_title_font_color"] = "0074a2";
+        $paramssld2["ht_view3_mainimage_width"] = "240";
+        $paramssld2["ht_view3_element_border_width"] = "1";
+        $paramssld2["ht_view3_element_border_color"] = "dedede";
+        $paramssld2["ht_view3_element_background_color"] = "f9f9f9";
+        $paramssld2["ht_view5_icons_style"] = "dark";
+        $paramssld2["ht_view5_show_separator_lines"] = "on";
+        $paramssld2["ht_view5_linkbutton_text"] = "View Product";
+        $paramssld2["ht_view5_show_linkbutton"] = "on";
+        $paramssld2["ht_view5_linkbutton_background_hover_color"] = "0074a2";
+        $paramssld2["ht_view5_linkbutton_background_color"] = "2ea2cd";
+        $paramssld2["ht_view5_linkbutton_font_hover_color"] = "ffffff";
+        $paramssld2["ht_view5_linkbutton_color"] = "ffffff";
+        $paramssld2["ht_view5_linkbutton_font_size"] = "14";
+        $paramssld2["ht_view5_description_color"] = "555555";
+        $paramssld2["ht_view5_description_font_size"] = "14";
+        $paramssld2["ht_view5_show_description"] = "on";
+        $paramssld2["ht_view5_thumbs_width"] = "75";
+        $paramssld2["ht_view5_thumbs_height"] = "75";
+        $paramssld2["ht_view5_show_thumbs"] = "on";
+        $paramssld2["ht_view5_title_font_size"] = "16";
+        $paramssld2["ht_view5_title_font_color"] = "0074a2";
+        $paramssld2["ht_view5_main_image_width"] = "275";
+        $paramssld2["ht_view5_slider_tabs_font_color"] = "d9d99";
+        $paramssld2["ht_view5_slider_tabs_background_color"] = "555555";
+        $paramssld2["ht_view5_slider_background_color"] = "f9f9f9";
+        $paramssld2["ht_view6_title_font_size"] = "16";
+        $paramssld2["ht_view6_title_font_color"] = "0074A2";
+        $paramssld2["ht_view6_title_font_hover_color"] = "2EA2CD";
+        $paramssld2["ht_view6_title_background_color"] = "000000";
+        $paramssld2["ht_view6_title_background_transparency"] = "80";
+        $paramssld2["ht_view6_border_radius"] = "3";
+        $paramssld2["ht_view6_border_width"] = "0";
+        $paramssld2["ht_view6_border_color"] = "eeeeee";
+        $paramssld2["ht_view6_width"] = "275";
+        $paramssld2["light_box_size"] = "17";
+        $paramssld2["light_box_width"] = "500";
+        $paramssld2["light_box_transition"] = "elastic";
+        $paramssld2["light_box_speed"] = "800";
+        $paramssld2["light_box_href"] = "False";
+        $paramssld2["light_box_title"] = "false";
+        $paramssld2["light_box_scalephotos"] = "true";
+        $paramssld2["light_box_rel"] = "false";
+        $paramssld2["light_box_scrolling"] = "false";
+        $paramssld2["light_box_opacity"] = "20";
+        $paramssld2["light_box_open"] = "false";
+        $paramssld2["light_box_overlayclose"] = "true";
+        $paramssld2["light_box_esckey"] = "false";
+        $paramssld2["light_box_arrowkey"] = "false";
+        $paramssld2["light_box_loop"] = "true";
+        $paramssld2["light_box_data"] = "false";
+        $paramssld2["light_box_classname"] = "false";
+        $paramssld2["light_box_fadeout"] = "300";
+        $paramssld2["light_box_closebutton"] = "false";
+        $paramssld2["light_box_current"] = "image";
+        $paramssld2["light_box_previous"] = "previous";
+        $paramssld2["light_box_next"] = "next";
+        $paramssld2["light_box_close"] = "close";
+        $paramssld2["light_box_iframe"] = "false";
+        $paramssld2["light_box_inline"] = "false";
+        $paramssld2["light_box_html"] = "false";
+        $paramssld2["light_box_photo"] = "false";
+        $paramssld2["light_box_height"] = "500";
+        $paramssld2["light_box_innerwidth"] = "false";
+        $paramssld2["light_box_innerheight"] = "false";
+        $paramssld2["light_box_initialwidth"] = "300";
+        $paramssld2["light_box_initialheight"] = "100";
+        $paramssld2["light_box_maxwidth"] = "768";
+        $paramssld2["light_box_maxheight"] = "500";
+        $paramssld2["light_box_slideshow"] = "false";
+        $paramssld2["light_box_slideshowspeed"] = "2500";
+        $paramssld2["light_box_slideshowauto"] = "true";
+        $paramssld2["light_box_slideshowstart"] = "start slideshow";
+        $paramssld2["light_box_slideshowstop"] = "stop slideshow";
+        $paramssld2["light_box_fixed"] = "true";
+        $paramssld2["light_box_top"] = "false";
+        $paramssld2["light_box_bottom"] = "false";
+        $paramssld2["light_box_left"] = "false";
+        $paramssld2["light_box_right"] = "false";
+        $paramssld2["light_box_reposition"] = "false";
+        $paramssld2["light_box_retinaimage"] = "true";
+        $paramssld2["light_box_retinaurl"] = "false";
+        $paramssld2["light_box_retinasuffix"] = "@2x.$1";
+        $paramssld2["light_box_returnfocus"] = "true";
+        $paramssld2["light_box_trapfocus"] = "true";
+        $paramssld2["light_box_fastiframe"] = "true";
+        $paramssld2["light_box_preloading"] = "true";
+        $paramssld2["slider_title_position"] = "5";
+        $paramssld2["light_box_style"] = "1";
+        $paramssld2["light_box_size_fix"] = "false";
+        $paramssld2["ht_view2_popup_full_width"] = "on";
+        $paramssld2["ht_view0_price_text"] = "Price";
+        $paramssld2["ht_view1_price_text"] = "Price";
+        $paramssld2["ht_view2_price_text"] = "Price";
+        $paramssld2["ht_view3_price_text"] = "Price";
+        $paramssld2["ht_view5_price_text"] = "Price";
+        $paramssld2["ht_catalog_view0_show_price"] = "on";
+        $paramssld2["ht_catalog_view0_price_font_size"] = "15";
+        $paramssld2["ht_catalog_view0_price_font_color"] = "e74c3c";
+        $paramssld2["ht_catalog_view0_market_price_font_size"] = "15";
+        $paramssld2["ht_catalog_view0_market_price_font_color"] = "000000";
+        $paramssld2["ht_catalog_view1_show_price"] = "on";
+        $paramssld2["ht_catalog_view1_price_font_size"] = "15";
+        $paramssld2["ht_catalog_view1_price_font_color"] = "e74c3c";
+        $paramssld2["ht_catalog_view1_market_price_font_size"] = "15";
+        $paramssld2["ht_catalog_view1_market_price_font_color"] = "000000";
+        $paramssld2["ht_catalog_view2_show_price"] = "on";
+        $paramssld2["ht_catalog_view2_price_font_size"] = "15";
+        $paramssld2["ht_catalog_view2_price_font_color"] = "e74c3c";
+        $paramssld2["ht_catalog_view2_market_price_font_size"] = "15";
+        $paramssld2["ht_catalog_view2_market_price_font_color"] = "000000";
+        $paramssld2["ht_catalog_view3_show_price"] = "on";
+        $paramssld2["ht_catalog_view3_price_font_size"] = "15";
+        $paramssld2["ht_catalog_view3_price_font_color"] = "0074a2";
+        $paramssld2["ht_catalog_view3_market_price_font_size"] = "15";
+        $paramssld2["ht_catalog_view3_market_price_font_color"] = "000000";
+        $paramssld2["ht_catalog_view5_show_price"] = "on";
+        $paramssld2["ht_catalog_view5_price_font_size"] = "15";
+        $paramssld2["ht_catalog_view5_price_font_color"] = "0074a2";
+        $paramssld2["ht_catalog_view5_market_price_font_size"] = "15";
+        $paramssld2["ht_catalog_view5_market_price_font_color"] = "000000";
+        $paramssld2["ht_catalog_zoom_window_type"] = "window";
+        $paramssld2["ht_catalog_zoom_window_width"] = "200";
+        $paramssld2["ht_catalog_zoom_window_height"] = "150";
+        $paramssld2["ht_catalog_zoom_x_asis"] = "0";
+        $paramssld2["ht_catalog_zoom_y_asis"] = "0";
+        $paramssld2["ht_catalog_zoom_window_position"] = "16";
+        $paramssld2["ht_catalog_zoom_window_border_size"] = "2";
+        $paramssld2["ht_catalog_zoom_window_border_color"] = "#000";
+        $paramssld2["ht_catalog_zoom_window_lens_size"] = "200";
+        $paramssld2["ht_catalog_zoom_window_fadein"] = "200";
+        $paramssld2["ht_catalog_zoom_window_fadeout"] = "200";
+        $paramssld2["ht_catalog_zoom_lens_fadein"] = "200";
+        $paramssld2["ht_catalog_zoom_lens_fadeout"] = "200";
+        $paramssld2["false"] = "true";
+        $paramssld2["ht_catalog_zoom_lens_shape"] = "square";
+        $paramssld2["ht_catalog_zoom_lens_color"] = "#fff";
+        $paramssld2["ht_catalog_zoom_lens_opacity"] = "40";
+        $paramssld2["ht_catalog_zoom_cursor"] = "crosshair";
+        $paramssld2["ht_catalog_zoom_scrollzoom"] = "true";
+        $paramssld2["ht_catalog_zoom_easing"] = "true";
+        $paramssld2["ht_catalog_zoom_lens_size_fix"] = "false";
+        $paramssld2["ht_catalog_zoom_lens_height"] = "100";
+        $paramssld2["ht_catalog_zoom_lens_width"] = "100";
+        $paramssld2["ht_catalog_zoom_tint"] = "true";
+        $paramssld2["ht_catalog_zoom_tint_colour"] = "#fff";
+        $paramssld2["ht_catalog_zoom_tint_opacity"] = "40";
+        $paramssld2["ht_catalog_zoom_tint_fadein"] = "200";
+        $paramssld2["ht_catalog_zoom_tint_fadeout"] = "200";
+        $paramssld2['ht_catalog_zoom_lens_hide'] = "false";
+        $paramssld2["ht_view3_allow_lightbox"] = "on";
+        $paramssld2["ht_catalog_zoom_thumbs_zoom"] = "off";
+        $paramssld2["ht_view3_allow_zooming"] = "on";
+        $paramssld["ht_view0_allow_zooming"] = "off";
+        $paramssld["ht_view0_allow_lightbox"] = "on";
+        $paramssld["ht_view1_allow_zooming"] = "off";
+        $paramssld["ht_view1_allow_lightbox"] = "on";
+        $paramssld["ht_view2_allow_zooming"] = "off";
+        $paramssld["ht_view2_allow_lightbox"] = "on";
+        $paramssld["ht_view5_allow_zooming"] = "on";
+        $paramssld["ht_view5_allow_lightbox"] = "off";
+        $paramssld["ht_single_product_show_asc_seller_button"] = "on";
+        $paramssld["ht_single_product_asc_seller_button_text"] = "Contact To Seller";
+        $paramssld["ht_single_product_asc_seller_button_text_size"] = "18";
+        $paramssld["ht_single_product_asc_seller_button_text_color"] = "ffffff";
+        $paramssld["ht_single_product_asc_seller_button_text_hover_color"] = "ffffff";
+        $paramssld["ht_single_product_asc_seller_button_background_color"] = "E22828";
+        $paramssld["ht_single_product_asc_seller_button_background_hover_color"] = "E22828";
+        $paramssld["ht_single_product_asc_to_seller_text"] = "Asc Seller";
+        $paramssld["ht_single_product_asc_seller_popup_background_1"] = "ffffff";
+        $paramssld["ht_single_product_asc_seller_popup_background_2"] = "ffffff";
+        $paramssld["ht_single_product_your_mail_text"] = "Your E-mail";
+        $paramssld["ht_single_product_your_phone_text"] = "Your Phone";
+        $paramssld["ht_single_product_your_message_text"] = "Your Message";
+        $paramssld["ht_single_product_asc_seller_popup_button_text"] = "Submit";
+        $paramssld["ht_single_product_asc_seller_popup_button_text_size"] = "19";
+        $paramssld["ht_single_product_asc_seller_popup_button_text_color"] = "fff";
+        $paramssld["ht_single_product_asc_seller_popup_button_background_color"] = "E22828";
+        $paramssld["ht_single_product_asc_seller_popup_button_background_hover_color"] = "C52323";
+        $paramssld["ht_single_product_asc_seller_popup_close_style"] = "dark";
+        
+        
+        $paramssld["htc_view0_load_more_position"] = "center";
+        $paramssld["htc_view1_load_more_position"] = "center";
+        $paramssld["htc_view2_load_more_position"] = "center";
+        $paramssld["htc_view3_load_more_position"] = "center";
+        $paramssld["htc_view0_load_more_font_size"] = "18";
+        $paramssld["htc_view1_load_more_font_size"] = "18";
+        $paramssld["htc_view2_load_more_font_size"] = "22";
+        $paramssld["htc_view3_load_more_font_size"] = "20";
+        $paramssld["htc_view0_load_more_font_color"] = "F2F2F2";
+        $paramssld["htc_view1_load_more_font_color"] = "F2F2F2";
+        $paramssld["htc_view2_load_more_font_color"] = "F2F2F2";
+        $paramssld["htc_view3_load_more_font_color"] = "F2F2F2";
+        $paramssld["htc_view0_load_more_font_hover_color"] = "F2F2F2";
+        $paramssld["htc_view1_load_more_font_hover_color"] = "F2F2F2";
+        $paramssld["htc_view2_load_more_font_hover_color"] = "F2F2F2";
+        $paramssld["htc_view3_load_more_font_hover_color"] = "FFFFFF";
+        $paramssld["htc_view0_load_more_button_background_color"] = "A1A1A1";
+        $paramssld["htc_view1_load_more_button_background_color"] = "A1A1A1";
+        $paramssld["htc_view2_load_more_button_background_color"] = "FF2C2C";
+        $paramssld["htc_view3_load_more_button_background_color"] = "A1A1A1";
+        $paramssld["htc_view0_load_more_button_background_hover_color"] = "A1A1A1";
+        $paramssld["htc_view1_load_more_button_background_hover_color"] = "A1A1A1";
+        $paramssld["htc_view2_load_more_button_background_hover_color"] = "991A1A";
+        $paramssld["htc_view3_load_more_button_background_hover_color"] = "A1A1A1";
+        $paramssld["htc_view0_load_more_loading_icon"] = "1";
+        $paramssld["htc_view1_load_more_loading_icon"] = "1";
+        $paramssld["htc_view2_load_more_loading_icon"] = "1";
+        $paramssld["htc_view3_load_more_loading_icon"] = "1";
+        
+        $paramssld["htc_view0_pagination_font_size"] = "22";
+        $paramssld["htc_view1_pagination_font_size"] = "22";
+        $paramssld["htc_view2_pagination_font_size"] = "22";
+        $paramssld["htc_view3_pagination_font_size"] = "22";
+        $paramssld["htc_view0_pagination_font_color"] = "000";
+        $paramssld["htc_view1_pagination_font_color"] = "000";
+        $paramssld["htc_view2_pagination_font_color"] = "000";
+        $paramssld["htc_view3_pagination_font_color"] = "000";
+        $paramssld["htc_view0_pagination_icon_size"] = "22";
+        $paramssld["htc_view1_pagination_icon_size"] = "22";
+        $paramssld["htc_view2_pagination_icon_size"] = "22";
+        $paramssld["htc_view3_pagination_icon_size"] = "22";
+        $paramssld["htc_view0_pagination_icon_color"] = "000";
+        $paramssld["htc_view1_pagination_icon_color"] = "000";
+        $paramssld["htc_view2_pagination_icon_color"] = "000";
+        $paramssld["htc_view3_pagination_icon_color"] = "000";
+        $paramssld["htc_view0_pagination_position"] = "center";
+        $paramssld["htc_view1_pagination_position"] = "center";
+        $paramssld["htc_view2_pagination_position"] = "center";
+        $paramssld["htc_view3_pagination_position"] = "center";
+    
+        $paramssld["ht_single_product_asc_to_seller_input_border_size"]  = "1";
+        $paramssld["ht_single_product_asc_to_seller_text_font_size"]     = "26";
+        $paramssld["ht_single_product_asc_to_seller_text_font_color"]    = "D91A1A";
+        $paramssld["ht_single_product_asc_to_seller_input_border_color"] = "B3B3B3";
+        
+    if ( is_plugin_active( 'product-catalog-releated-products/product-catalog-releated-products.php' ) ){  }
     else{
         $paramssld4['ht_catalog_related_products_show'] = "off";
         $paramssld4['ht_catalog_related_products_visible_count'] = "4";
@@ -4469,18 +6033,18 @@ $paramssld["ht_single_product_asc_seller_popup_close_style"] = "dark";
 	<?php } ?>
                 
 <style type="text/css">
-<?php if($paramssld2["ht_catalog_zoom_lens_size_fix"] == "true") { ?>
+<?php // if($paramssld2["ht_catalog_zoom_lens_size_fix"] == "true") { ?>
 
-.zoomLens {
+/*.zoomLens {
     width: <?php echo $paramssld2["ht_catalog_zoom_lens_width"]; ?>px !important;
     height: <?php echo $paramssld2["ht_catalog_zoom_lens_height"]; ?>px !important;
-}
+}*/
 
 .zoomContainer {
     z-index: 10;
 }
 
-<?php } ?>
+<?php // } ?>
 
 .huge_it_catalog_single_product_page {
 	position: relative;
@@ -4580,6 +6144,7 @@ $paramssld["ht_single_product_asc_seller_popup_close_style"] = "dark";
 .huge_it_catalog_single_product_page .rating-and-share-blocks {
 	font-size:<?php echo $paramssld['ht_single_product_rating_font_size']; ?>px !important;
 	color:#<?php echo $paramssld['ht_single_product_rating_font_color']; ?> !important;
+        background: none !important;;
         /*padding-bottom: 2% !important;*/
 }
 
@@ -4600,6 +6165,7 @@ $paramssld["ht_single_product_asc_seller_popup_close_style"] = "dark";
 .huge_it_catalog_single_product_page div.right-block > div p {
 	margin:0px;
         padding: 4px 0px 12px 0px;
+        font-size: initial;
 }
 
 .huge_it_catalog_single_product_page div.right-block > div:last-child {
@@ -4683,7 +6249,7 @@ $paramssld["ht_single_product_asc_seller_popup_close_style"] = "dark";
 }
 
 .huge_it_catalog_single_product_page .rating-block .label {
-	display:block;
+	display: block;
 	float:left;
 	line-height:15px;
 	margin-right: 5px;
@@ -4764,6 +6330,15 @@ $paramssld["ht_single_product_asc_seller_popup_close_style"] = "dark";
 	background-image:url('<?php echo  plugins_url( '../images/share.buttons.png', __FILE__ ); ?>');
 }
 
+.huge_it_catalog_single_product_page .right-block .share_buttons_block ul li.facebook a:hover {
+    background-position: 0px -22px !important;
+    border-color: #bbb;
+}
+.huge_it_catalog_single_product_page .right-block .share_buttons_block ul li.pinterest a:hover {
+    background-position: -43px -22px;
+    border-color: #bbb;
+}
+
 .huge_it_catalog_single_product_page .right-block .share_buttons_block ul li.twitter {
 	width: 20px;
         border-right: 1px solid #ccc;
@@ -4792,8 +6367,8 @@ $paramssld["ht_single_product_asc_seller_popup_close_style"] = "dark";
   margin: 0px;
   padding: 0px;
   font-size: <?php echo $paramssld['ht_single_product_asc_seller_button_text_size']; ?>px;
-  padding: 7px 10px 7px 10px;
   border: none;
+  padding: 7px 10px 7px 10px;
   border-radius: 5px;
   color: #<?php echo $paramssld['ht_single_product_asc_seller_button_text_color']; ?>;
   background: #<?php echo $paramssld['ht_single_product_asc_seller_button_background_color']; ?>;
@@ -4811,22 +6386,39 @@ $paramssld["ht_single_product_asc_seller_popup_close_style"] = "dark";
 #catalog-order-popup-1 label {
     display: block;
     padding: 6px 0px;
+    overflow: hidden;
 }
-
-#catalog-order-popup-1 input{
+   
+#catalog-order-popup-1 input, #catalog-order-popup-1 textarea {
     display: block;
     width: 100%;
     margin: 6px 0px 0px 0px;
     padding: 6px 0px;
     padding-left: 5px;
-    border: none;
+    font-size: initial;
+    border: <?php echo $paramssld['ht_single_product_asc_to_seller_input_border_size']; ?>px solid #<?php echo $paramssld['ht_single_product_asc_to_seller_input_border_color']; ?>;
 }
 
+#catalog-order-popup-1 input::-webkit-input-placeholder, #catalog-order-popup-1 textarea::-webkit-input-placeholder { color: #666666; }
+#catalog-order-popup-1 input:-moz-placeholder , #catalog-order-popup-1 textarea:-moz-placeholder { color: #666666; }
+#catalog-order-popup-1 input::-moz-placeholder, #catalog-order-popup-1 textarea::-moz-placeholder { color: #666666; }
+#catalog-order-popup-1 input:-ms-input-placeholder, #catalog-order-popup-1 textarea:-ms-input-placeholder { color: #666666; }
+
+#catalog-order-popup-1 textarea{
+    height: 120px;
+}
+
+.order_popup_submit_close{
+    display: block;
+    text-decoration: none;
+}
 #catalog-order-popup-1 #order_popup_submit {
     font-size: <?php echo $paramssld["ht_single_product_asc_seller_popup_button_text_size"]; ?>px !important;
+    font-weight: bold;
     color: #<?php echo $paramssld["ht_single_product_asc_seller_popup_button_text_color"]; ?> !important;
     background: #<?php echo $paramssld["ht_single_product_asc_seller_popup_button_background_color"]; ?> !important;
     border: none;
+    height: auto;
 }
 
 #catalog-order-popup-1 #order_popup_submit:hover {
@@ -4834,8 +6426,7 @@ $paramssld["ht_single_product_asc_seller_popup_close_style"] = "dark";
 }
 
 #catalog-order-popup-1 .empty::-webkit-input-placeholder { color: #E22828; }
-        
-        
+     
 .modalDialog {
 	position: fixed;
 	font-family: Arial, Helvetica, sans-serif;
@@ -4843,7 +6434,7 @@ $paramssld["ht_single_product_asc_seller_popup_close_style"] = "dark";
 	right: 0;
 	bottom: 0;
 	left: 0;
-	background: rgba(0,0,0,0.8);
+	background: rgba(0,0,0,0.5);
 	z-index: 99999;
 	opacity:0;
 	-webkit-transition: opacity 400ms ease-in;
@@ -4868,28 +6459,29 @@ $paramssld["ht_single_product_asc_seller_popup_close_style"] = "dark";
 	background: -o-linear-gradient(#<?php echo $paramssld["ht_single_product_asc_seller_popup_background_1"]; ?>, #<?php echo $paramssld["ht_single_product_asc_seller_popup_background_2"]; ?>);
 }
 
+
+
 .catalog-order-popup-close {
         line-height: 25px;
         position: absolute;
-        right: 5px;
+        right: 10px;
         text-align: center;
-        top: 7px;
+        top: 18px;
         width: 24px;
         text-decoration: none !important;
         border: none !important;
-        font-weight: bold;
-        font-size: 30px;
+        /*font-weight: bold;*/
+        font-size: 27px;
         color: #<?php if($paramssld["ht_single_product_asc_seller_popup_close_style"] == "dark"){ echo "000"; } else { echo "fff"; } ?> !important;
-}
-
-#catalog-order-popup-1 h2 {
-    font-size: 32px !important;
-    margin: 10px 0px;
 }
 
 .catalog-order-popup-close:hover { color: #<?php if($paramssld["ht_single_product_asc_seller_popup_close_style"] == "dark"){ echo "000"; } else { echo "fff"; } ?> !important; }
 
-
+#catalog-order-popup-1 h2 {
+    font-size: <?php echo $paramssld["ht_single_product_asc_to_seller_text_font_size"]; ?>px !important;
+    margin: 10px 0px;
+    color: #<?php echo $paramssld["ht_single_product_asc_to_seller_text_font_color"]; ?>;
+}
 
 .zoomContainer {
     z-index: 99999;
@@ -4995,7 +6587,12 @@ $paramssld["ht_single_product_asc_seller_popup_close_style"] = "dark";
 }
 
 .huge_it_catalog_view_tabs_contents > li .params-list li.parameter-block {
+        text-align: center;
+        font-size: 15px;
+        overflow: hidden;
+        text-overflow: ellipsis;
 	color: #<?php echo $paramssld['ht_single_product_params_name_font_color']; ?>;
+        /*line-height*/
 }
 
 
@@ -5003,6 +6600,9 @@ $paramssld["ht_single_product_asc_seller_popup_close_style"] = "dark";
 	width:69%;
 	background:url('<?php echo  plugins_url( '../images/params.bg.png', __FILE__ ); ?>') left bottom repeat-x;
         color: #<?php echo $paramssld['ht_single_product_params_values_font_color']; ?>;
+        font-size: 15px;
+        overflow: hidden;
+        text-overflow: ellipsis;
 }
 
 /*UNCHECKED*/
@@ -5462,18 +7062,18 @@ $paramssld["ht_single_product_asc_seller_popup_close_style"] = "dark";
                                         </li>
 				</ul>
                             </div>
-                            
+                        </div>
                   <?php } ?>
                                 <?php $product_page_link = get_permalink()."&single_prod_id=$productArray->id&asc_seller"; ?>
                             
                             
                             <div style="clear: both;" ></div>
-                        </div>
+                        
                             <?php
-                                 if($paramssld3["ht_single_product_show_asc_seller_button"] == 'on'){ ?>
+                                 if($paramssld["ht_single_product_show_asc_seller_button"] == 'on'){ ?>
                                      <div class="contact-seller-block">
                                         <div class="order_button" style="">
-                                            <a href="#catalog-order-popup-1" style=""><span class="label"><?php echo $paramssld3['ht_single_product_asc_seller_button_text']; ?></span></a>
+                                            <a href="#catalog-order-popup-1" style=""><span class="label"><?php echo $paramssld['ht_single_product_asc_seller_button_text']; ?></span></a>
                                         </div>
 
                                         <div id="catalog-order-popup-1" class="modalDialog">
@@ -5483,7 +7083,9 @@ $paramssld["ht_single_product_asc_seller_popup_close_style"] = "dark";
                                                     <label><input type="text" name="asc_seller_name" class="asc_seller_name" placeholder="<?php echo $paramssld3["ht_single_product_your_name_text"]; ?>" /></label>
                                                     <label><input type="text" name="asc_seller_mail" class="asc_seller_mail" placeholder="<?php echo $paramssld3["ht_single_product_your_mail_text"]; ?>"  /></label>
                                                     <label><input type="text" name="asc_seller_phone" class="asc_seller_phone" placeholder="<?php echo $paramssld3["ht_single_product_your_phone_text"]; ?>" /></label>
-                                                    <label><input type="text" name="asc_seller_massage" class="asc_seller_massage" placeholder="<?php echo $paramssld3["ht_single_product_your_message_text"]; ?>" /></label>
+                                                    <label>
+                                                        <textarea name="asc_seller_massage" class="asc_seller_massage" placeholder="<?php echo $paramssld3["ht_single_product_your_message_text"]; ?>" ></textarea>
+                                                    </label>
                                                     <label>
                                                         <input type="text" class="captchaInputValue" placeholder="<?php echo $captchaFirstNum." + ".$captchaSecondNum." = ?"; ?>" autocomplete="off" />
                                                         <p class="invalid"></p>
@@ -5491,7 +7093,9 @@ $paramssld["ht_single_product_asc_seller_popup_close_style"] = "dark";
                                                     <input type="hidden" name="asc_seller_product_id" class="asc_seller_product_id" value="<?php echo $productArray->id; ?>" />
                                                     <input type="hidden" name="asc_seller_spam" class="asc_seller_spam" value="<?php echo $spam; ?>" />
                                                     <input type="hidden" name="asc_seller_ip" class="huge_it_catalog_product_ip" value="<?php echo $_SERVER['SERVER_ADDR']; ?>" />
-                                                    <input type="submit" name="order_popup_submit" id="order_popup_submit" value="<?php echo $paramssld3["ht_single_product_asc_seller_popup_button_text"];?>" />
+                                                    <a href="#catalog-order-popup-close" title="Close" class="order_popup_submit_close">
+                                                        <input type="submit" name="order_popup_submit" id="order_popup_submit" value="<?php echo $paramssld3["ht_single_product_asc_seller_popup_button_text"];?>" />
+                                                    </a>
                                             </div>
                                         </div>
                                     </div>
@@ -5652,6 +7256,7 @@ $paramssld["ht_single_product_asc_seller_popup_close_style"] = "dark";
         height: calc(100% - 2px);
         height: -o-calc(100% - 2px);
         height: -ms-calc(100% - 2px);
+        /*border: 1px solid transparent;*/ 
     }
     
     .huge-it-related-carousel li:hover {
@@ -6024,6 +7629,8 @@ function horizontal_slider_load_function(){
         jQuery(".huge-it-related-carousel li").width(elements_max_width);
         jQuery(".huge-it-related-carousel li .catalog-related-item-block").height(element_max_height);
         jQuery(".huge-it-related-carousel li img").height(element_max_height);
+        
+//        jQuery(".huge-it-related-carousel li img").css("cssText", "height: " + element_max_height +"px !important;");
         var caption_and_elem_height = element_max_height + parseInt(<?php echo $paramssld4['ht_catalog_related_products_horizontal_caption_height'] + $paramssld4['ht_catalog_related_products_horizontal_border_size']; ?>);
         jQuery(".huge-it-related-carousel li").height(caption_and_elem_height);
         jQuery(".huge-it-related-carousel").attr("huge-it-carousel-horizontal-li-width", elements_max_width);
@@ -6213,6 +7820,10 @@ jQuery(document).ready(function () {
                 return false;
 	});
         
+        jQuery(".order_button a").click(function(){
+//            jQuery(".modalDialog").css({ opacity: 1 });
+	});
+        
         jQuery('#comments_submit').click(function(){
 //            if(jQuery("#captchaInputValue").val() == <?php echo $captcha_val; ?>){
                 var comments_name = jQuery("#comments_name").val();
@@ -6261,20 +7872,15 @@ jQuery(document).ready(function () {
                         jQuery("#captchaInputValue").parent().find(".invalid").text("");
                     }
                     if(response.index == 2){
-                        jQuery("#captchaInputValue").parent().find(".invalid").text("<?php echo $paramssld3["ht_single_product_invalid_captcha_text"]; ?>");
+                        jQuery("#captchaInputValue").parent().find(".invalid").text("<?php echo $paramssld3["ht_single_product_invalid_captcha_text"]; ?>").css({ "color" : "#E22828" });
                     }
                 });
                 return false;
                 }
-//            }
-//            else{
-//                jQuery("#captchaInputValue").parent().find(".invalid").text("<?php echo $paramssld3["ht_single_product_invalid_captcha_text"]; ?>");
-////                alert("invalid");
-//                return false;
-//            }
         });
         
-        jQuery('#order_popup_submit').click(function(){
+        jQuery('.order_popup_submit_close').click(function(e){
+            e.preventDefault();
                 var user_name       = jQuery("#catalog-order-popup-1 .asc_seller_name").val();
                 var user_mail       = jQuery("#catalog-order-popup-1 .asc_seller_mail").val();
                 var user_phone      = jQuery("#catalog-order-popup-1 .asc_seller_phone").val();
@@ -6285,21 +7891,22 @@ jQuery(document).ready(function () {
                 var user_ip         = jQuery("#catalog-order-popup-1 .huge_it_catalog_product_ip").val();
                 var emailCheck=/^[a-z0-9!#$%&'*+/=?^_`{|}~-]+(?:\.[a-z0-9!#$%&'*+/=?^_`{|}~-]+)*@(?:[a-z0-9](?:[a-z0-9-]*[a-z0-9])?\.)+[a-z0-9](?:[a-z0-9-]*[a-z0-9])?$/i;
                     if(user_name == "" || user_mail == ""  || user_phone == ""  || user_massage == ""  || user_product_id == "" || captcha_val == ""){
-//                    alert("empty field");
-                    jQuery("#catalog-order-popup-1 input[type=text]").each(function(){
-                        if(!jQuery(this).val()){        //        alert(jQuery(this).attr("name"));
-                            jQuery(this).addClass("empty");
-                        }
-                        else{ jQuery(this).removeClass("empty"); }
-                    });
-                    return false;
+                        jQuery("#catalog-order-popup-1 input[type=text], #catalog-order-popup-1 textarea").each(function(){
+                            if(!jQuery(this).val()){        //        alert(jQuery(this).attr("name"));
+                                jQuery(this).addClass("empty");
+                            }
+                            else{ jQuery(this).removeClass("empty"); }
+                        });
+                        return false;
                     }
                     else{
+                        var email_path = jQuery("#catalog-order-popup-1 .asc_seller_mail");
                         if(!(emailCheck.test(user_mail))){
-                            alert("invalid email");return false;
+                            jQuery(email_path).val("").attr("placeholder", "Invalid Email").addClass("empty");
+                            return false;
                         }
                         else{
-                            
+                            jQuery(email_path).removeClass("empty").attr("placeholder", "<?php echo $paramssld3["ht_single_product_your_mail_text"]; ?>");
     //                   alert(user_name + " " + user_mail+ " " + user_phone + " " + user_massage + " " + user_product_id + " " + captcha_val + " " + user_spam + " " + user_ip);
                         var data = {
                             action: 'my_action',
@@ -6315,7 +7922,7 @@ jQuery(document).ready(function () {
                         };
 
                         jQuery.post("<?php echo admin_url('admin-ajax.php'); ?>", data, function(response) {    //    alert(response);
-                            response = JSON.parse(response); 
+                            response = JSON.parse(response);
                             if(response.index == 1){
                                 if( jQuery(".reviews-block .review").text().length == 0 ) { jQuery(".reviews-block").text(""); }
                                 jQuery("#catalog-order-popup-1 .asc_seller_name").removeAttr('value');
@@ -6326,22 +7933,18 @@ jQuery(document).ready(function () {
                                 jQuery("#catalog-order-popup-1 input[type=text]").each(function(){
                                     jQuery(this).removeClass("empty");
                                 });
+                                window.location = jQuery('.order_popup_submit_close').attr("href");
+//                                jQuery(".modalDialog").css({ opacity: 0 });
     //                            jQuery(".modalDialog ").find("a.catalog-order-popup-close").click();
                             }
                             if(response.index == 2){
-                                jQuery("#catalog-order-popup-1").find(".invalid").text("<?php echo $paramssld3["ht_single_product_invalid_captcha_text"]; ?>");
+                                jQuery("#catalog-order-popup-1").find(".invalid").text("<?php echo $paramssld3["ht_single_product_invalid_captcha_text"]; ?>").css({ "color" : "#E22828" });
+                                return false;
                             }
                         });
-                        return false;
+                        
                     }
-    //            }
-    //            else{
-    //                jQuery("#captchaInputValue").parent().find(".invalid").text("<?php echo $paramssld3["ht_single_product_invalid_captcha_text"]; ?>");
-    ////                alert("invalid");
-    //                return false;
-    //            }
-                
-                        }
+                }
                         
         });
             
@@ -6419,7 +8022,6 @@ function album_front_end($paramssld, $paramssld3, $catalogsFromAlbumArray)
 //        $catalogCats=$catalog[0]->categories;
 //        $catalogShowSorting=$catalog[0]->ht_show_sorting;
 //        $catalogShowFiltering=$catalog[0]->ht_show_filtering;
-        
         
         $paramssld["ht_view0_border_width"] = "0";
         $paramssld["ht_view0_togglebutton_style"] = "dark";
@@ -6700,6 +8302,56 @@ function album_front_end($paramssld, $paramssld3, $catalogsFromAlbumArray)
         $paramssld["ht_view5_allow_zooming"] = "on";
         $paramssld["ht_view5_allow_lightbox"] = "off";
         
+        
+        $paramssld["htc_view0_load_more_position"] = "center";
+        $paramssld["htc_view1_load_more_position"] = "center";
+        $paramssld["htc_view2_load_more_position"] = "center";
+        $paramssld["htc_view3_load_more_position"] = "center";
+        $paramssld["htc_view0_load_more_font_size"] = "18";
+        $paramssld["htc_view1_load_more_font_size"] = "18";
+        $paramssld["htc_view2_load_more_font_size"] = "22";
+        $paramssld["htc_view3_load_more_font_size"] = "20";
+        $paramssld["htc_view0_load_more_font_color"] = "F2F2F2";
+        $paramssld["htc_view1_load_more_font_color"] = "F2F2F2";
+        $paramssld["htc_view2_load_more_font_color"] = "F2F2F2";
+        $paramssld["htc_view3_load_more_font_color"] = "F2F2F2";
+        $paramssld["htc_view0_load_more_font_hover_color"] = "F2F2F2";
+        $paramssld["htc_view1_load_more_font_hover_color"] = "F2F2F2";
+        $paramssld["htc_view2_load_more_font_hover_color"] = "F2F2F2";
+        $paramssld["htc_view3_load_more_font_hover_color"] = "FFFFFF";
+        $paramssld["htc_view0_load_more_button_background_color"] = "A1A1A1";
+        $paramssld["htc_view1_load_more_button_background_color"] = "A1A1A1";
+        $paramssld["htc_view2_load_more_button_background_color"] = "FF2C2C";
+        $paramssld["htc_view3_load_more_button_background_color"] = "A1A1A1";
+        $paramssld["htc_view0_load_more_button_background_hover_color"] = "A1A1A1";
+        $paramssld["htc_view1_load_more_button_background_hover_color"] = "A1A1A1";
+        $paramssld["htc_view2_load_more_button_background_hover_color"] = "991A1A";
+        $paramssld["htc_view3_load_more_button_background_hover_color"] = "A1A1A1";
+        $paramssld["htc_view0_load_more_loading_icon"] = "1";
+        $paramssld["htc_view1_load_more_loading_icon"] = "1";
+        $paramssld["htc_view2_load_more_loading_icon"] = "1";
+        $paramssld["htc_view3_load_more_loading_icon"] = "1";
+        
+        $paramssld["htc_view0_pagination_font_size"] = "22";
+        $paramssld["htc_view1_pagination_font_size"] = "22";
+        $paramssld["htc_view2_pagination_font_size"] = "22";
+        $paramssld["htc_view3_pagination_font_size"] = "22";
+        $paramssld["htc_view0_pagination_font_color"] = "000";
+        $paramssld["htc_view1_pagination_font_color"] = "000";
+        $paramssld["htc_view2_pagination_font_color"] = "000";
+        $paramssld["htc_view3_pagination_font_color"] = "000";
+        $paramssld["htc_view0_pagination_icon_size"] = "22";
+        $paramssld["htc_view1_pagination_icon_size"] = "22";
+        $paramssld["htc_view2_pagination_icon_size"] = "22";
+        $paramssld["htc_view3_pagination_icon_size"] = "22";
+        $paramssld["htc_view0_pagination_icon_color"] = "000";
+        $paramssld["htc_view1_pagination_icon_color"] = "000";
+        $paramssld["htc_view2_pagination_icon_color"] = "000";
+        $paramssld["htc_view3_pagination_icon_color"] = "000";
+        $paramssld["htc_view0_pagination_position"] = "center";
+        $paramssld["htc_view1_pagination_position"] = "center";
+        $paramssld["htc_view2_pagination_position"] = "center";
+        $paramssld["htc_view3_pagination_position"] = "center";
 ?>
 <script>
         var allowZooming = '<?php echo $paramssld['ht_view3_allow_zooming'];?>';
@@ -6732,9 +8384,10 @@ function album_front_end($paramssld, $paramssld3, $catalogsFromAlbumArray)
             var catalogLensColour = "<?php echo $paramssld['ht_catalog_zoom_lens_color'];?>";
             var catalogLensOpacity = <?php echo $paramssld['ht_catalog_zoom_lens_opacity'];?>/100;
             var catalogCursor = "<?php echo $paramssld['ht_catalog_zoom_cursor'];?>";
+            
             var catalogScrollZoom = <?php echo $paramssld['ht_catalog_zoom_scrollzoom'];?>;
+            
             var catalogEasing = <?php echo $paramssld['ht_catalog_zoom_easing'];?>;
-
             var catalogTint = "<?php echo $paramssld['ht_catalog_zoom_tint'];?>";
             var catalogTintColour = "<?php echo $paramssld['ht_catalog_zoom_tint_colour'];?>";
             var catalogTintOpacity = <?php echo $paramssld['ht_catalog_zoom_tint_opacity'];?>/100;
@@ -9046,17 +10699,17 @@ var defaultBlockHeight=<?php echo $paramssld['ht_view2_element_height']; ?>;
 ?>
 
 <style type="text/css">
-<?php if($paramssld["ht_catalog_zoom_lens_size_fix"] == "true") { ?>
+<?php // if($paramssld["ht_catalog_zoom_lens_size_fix"] == "true") { ?>
 
 .zoomContainer {
     z-index: 10;
 }
 
-.zoomLens {
-    width: <?php echo $paramssld["ht_catalog_zoom_lens_width"]; ?>px !important;
-    height: <?php echo $paramssld["ht_catalog_zoom_lens_height"]; ?>px !important;
-}
-<?php } ?>
+/*.zoomLens {*/
+/*    width: <?php echo $paramssld["ht_catalog_zoom_lens_width"]; ?>px !important;
+    height: <?php echo $paramssld["ht_catalog_zoom_lens_height"]; ?>px !important;*/
+/*}*/
+<?php // } ?>
 
 .album_element_<?php echo $albumID; ?> {
 	position: relative;
@@ -9628,7 +11281,7 @@ jQuery(function(){
 	  <?php
 	  
         break;
-/////////////////////////////////// VIEW 5 Slider ////////////////////////////////////
+/////////////////////////////////// VIEW 5 Content Slider ////////////////////////////////////
 		case 5;
 ?>
   <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery-easing/1.3/jquery.easing.min.js"></script>

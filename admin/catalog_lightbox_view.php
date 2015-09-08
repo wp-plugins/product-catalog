@@ -22,18 +22,6 @@ function display_zoom_type(){
     }
 }
 
-function display_sizes(){
-    if(jQuery("#ht_catalog_zoom_lens_size_fix").is(':checked')){
-       jQuery(".lens_width").css({"display" : "block",});
-       jQuery(".lens_height").css({"display" : "block",});
-       jQuery("#ht_catalog_zoom_scrollzoom").parent().css({"display" : "none",});
-    }
-    else{
-       jQuery(".lens_width").css({"display" : "none",});
-       jQuery(".lens_height").css({"display" : "none",});
-       jQuery("#ht_catalog_zoom_scrollzoom").parent().css({"display" : "block",});
-    }
-}
 jQuery(document).ready(function () {
 	popupsizes(jQuery('#light_box_size_fix'));
 	function popupsizes(checkbox){
@@ -93,15 +81,13 @@ jQuery(document).ready(function () {
         });        
 });
 jQuery(window).load(function(){
-        display_sizes();
         display_zoom_type();
 });
 </script>
-<?php $path_site2 = plugins_url("../images", __FILE__); ?>
 
 <div id="poststuff">
-    <?php $path_site2 = plugins_url("../images/", __FILE__); ?>
-        <div style="float: left;">
+    <?php $path_site2 = plugins_url("../images", __FILE__); ?>
+    <div style="float: left;">
             <div><a href="http://huge-it.com/wordpress-plugins-product-catalog-user-manual/" target="_blank">User Manual</a></div>
             <div>This section allows you to configure the Product Catalog options. <a href="http://huge-it.com/wordpress-plugins-product-catalog-user-manual/" target="_blank">More...</a></div>
             <div>This options are disabled in free version. Get full version to customize them. <a href="http://huge-it.com/wordpress-plugins-product-catalog-user-manual/" target="_blank">Get full Version</a></div>
@@ -120,18 +106,53 @@ jQuery(window).load(function(){
             as well as for keeping fast support for every user.
         </div>
     <div id="post-body-content" class="catalog-options">            
-           <div style="margin-left: -20px;" id="poststuff">
-              <div id="post-body-content" class="catalog-options">
-                  <img style="width: 100%;" src="<?php echo $path_site2; ?>/options-3.jpg">
-              </div>
-          </div>	
-    </div>
-</div>
+            <div id="post-body-heading"><h3>Image View Options</h3>
+                <a onclick="" onclick="" class="save-catalog-options button-primary">Save</a>
+            </div>
+            <div id="catalog-options-list">
+                <ul id="catalog-view-tabs">
+                    <li><a href="#lightbox-options">Lightbox Options</a></li>
+                    <li><a href="#zoom-options">Zoom Options</a></li>
+                </ul>
+
+                <ul class="options-block" id="catalog-view-tabs-contents">
+                    <li id="lightbox-options">
+                                <div id="post-body-content" class="catalog-options" style="width: 100%;">
+                                        <img style="width: 100%;" src="<?php echo $path_site2; ?>/options-5.jpg">
+                                </div>			
+                    </li>
+
+
+                    <!-- VIEW 1 -->
+                    <li id="zoom-options">
+                        <div id="post-body-content" class="catalog-options" style="width: 100%;">
+                                <img style="width: 100%;" src="<?php echo $path_site2; ?>/options-4.jpg">
+                        </div>	
+                    </li>
+
+                </ul>
+
+                <div id="post-body-footer">
+                        <a onclick="" class="save-catalog-options button-primary">Save</a>
+                        <div class="clear"></div>
+                </div>
+            </div>
+    </div>  
 </div>
 <input type="hidden" name="option" value=""/>
 <input type="hidden" name="task" value=""/>
 <input type="hidden" name="controller" value="options"/>
 <input type="hidden" name="op_type" value="styles"/>
 <input type="hidden" name="boxchecked" value="0"/>
+
+
+<script>
+    jQuery("#post-body-heading a, #post-body-footer a").click(function(){
+        alert("Product Catalog Settings are disabled in free version. If you need those functionalityes, you need to buy the commercial version.");return false;
+    });
+    
+</script>
+
+
 <?php
 }
