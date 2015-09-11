@@ -4,7 +4,7 @@
 Plugin Name: Huge IT Product Catalog
 Plugin URI: http://huge-it.com/product-catalog
 Description: Let us introduce our Huge-IT Product Catalog incomparable plugin. To begin with, why do we need this plugin and what are the advantages.
-Version: 1.1.9
+Version: 1.2.0
 Author: http://huge-it.com/
 License: GNU/GPLv3 http://www.gnu.org/licenses/gpl-3.0.html
 */
@@ -253,6 +253,10 @@ function huge_it_catalog_options_panel()
     if ( is_plugin_active( 'product-catalog-releated-products/product-catalog-releated-products.php' ) ) {
         $related_products = add_submenu_page('catalogs_huge_it_catalog', 'Related Products', 'Related Products', 'manage_options', 'huge_it_catalog_related_products', 'huge_it_catalog_related_products');
         add_action('admin_print_styles-' . $related_products, 'huge_it_catalog_option_admin_script');
+    }
+    if ( is_plugin_active( 'product-catalog-csv/product-catalog-csv.php' ) ) {
+        $catalog_csv = add_submenu_page('catalogs_huge_it_catalog', 'Export CSV', 'Export CSV', 'manage_options', 'huge_it_catalog_export_csv', 'huge_it_catalog_export_csv');
+        add_action('admin_print_styles-' . $catalog_csv, 'huge_it_catalog_option_admin_script');
     }
     
     $lightbox_options = add_submenu_page('catalogs_huge_it_catalog', 'Image View Options', 'Image View Options', 'manage_options', 'Options_catalog_lightbox_styles', 'Options_catalog_lightbox_styles');    
@@ -2126,13 +2130,13 @@ $table_name = $wpdb->prefix . "huge_it_catalog_rating";
 INSERT INTO 
 
 `" . $table_name . "` (`id`, `value`, `prod_id`, `ip`, `date`) VALUES
-(1, '5', '1', '127.0.0.1', '12.04'),
-(2, '4', '2', '127.0.0.2', '12.04'),
-(3, '5', '3', '127.0.0.3', '12.04'),
-(4, '5', '4', '127.0.0.2', '12.044'),
-(5, '1', '5', '127.0.0.5', '12.04'),
-(6, '2', '6', '127.0.0.4', '12.04'),
-(7, '1', '7', '127.0.0.9', '12.04')";
+(1, '5', '1', '127.0.0.1', '2015/09/10 at 23:45'),
+(2, '4', '2', '127.0.0.2', '2015/09/10 at 12:12'),
+(3, '5', '3', '127.0.0.3', '2015/11/10 at 08:04'),
+(4, '5', '4', '127.0.0.2', '2015/10/10 at 10:45'),
+(5, '1', '5', '127.0.0.5', '2015/12/10 at 16:21'),
+(6, '2', '6', '127.0.0.4', '2015/09/10 at 15:00'),
+(7, '1', '7', '127.0.0.9', '2015/04/10 at 18:00')";
     
     $table_name = $wpdb->prefix . "huge_it_catalog_reviews";
 
@@ -2140,14 +2144,14 @@ INSERT INTO
     $sql_5 = <<<query5
 INSERT INTO `$table_name` (`name`, `content`, `product_id`, `spam`, `ip`, `date`) VALUES
 
-('Daniel', 'Lorem ipsum dolor sit amet', '1', '0', '127.0.0.1', '12.01.2015'),
-('Emily', 'Lorem ipsum dolor sit amet, consectetur adipiscing elit. Aenean aliquet, massa sit amet viverra tristique, urna sapien aliquam massa, sit amet ornare odio erat eleifend quam.', '2', '0', '127.0.0.1', '12.01.2015'),
-('Michael', 'Lorem ipsum dolor sit amet, consectetur adipiscing elit.', '3', '0', '127.0.0.1', '12.01.2015'),
-('Harry', 'Lorem ipsum dolor sit amet, consectetur adipiscing elit. Aenean aliquet, massa sit amet viverra tristique, urna sapien aliquam massa, sit amet ornare odio erat eleifend quam. In hac habitasse platea dictumst.', '4', '0', '127.0.0.1', '12.01.2015'),
-('Jack', 'Lorem ipsum dolor sit amet, consectetur adipiscing elit. Aenean aliquet, massa sit amet viverra tristique, urna sapien aliquam massa, sit amet ornare odio erat eleifend quam. In hac habitasse platea dictumst. Sed tincidunt arcu ut vestibulum lobortis.', '5', '0', '127.0.0.1', '12.01.2015'),
-('Maria', 'Lorem ipsum dolor sit amet, consectetur adipiscing elit. Aenean aliquet, massa sit amet viverra tristique, urna sapien aliquam massa.', '6', '0', '127.0.0.1', '12.01.2015'),
-('Lucia', 'Lorem ipsum dolor sit amet, consectetur adipiscing elit. Aenean aliquet, massa sit amet viverra tristique, urna sapien aliquam massa, sit amet ornare odio erat eleifend quam. In hac habitasse platea dictumst. Sed tincidunt arcu ut vestibulum lobortis. Vestibulum accumsan vulputate sapien. Nulla porta lobortis malesuada. In hac habitasse platea dictumst. Sed accumsan, tellus in dapibus porttitor, nulla velit ullamcorper erat, in hendrerit mauris metus at augue. Nulla congue dolor ac interdum semper. Nulla molestie urna vitae urna vehicula sodales.', '7', '0', '127.0.0.1', '12.01.2015'),
-('Anna', 'Lorem ipsum dolor sit amet, consectetur adipiscing elit. Aenean aliquet, massa sit amet viverra tristique, urna sapien aliquam massa, sit amet ornare odio erat eleifend quam. In hac habitasse platea dictumst. Sed tincidunt arcu ut vestibulum lobortis. Vestibulum accumsan vulputate sapien. Nulla porta lobortis malesuada. In hac habitasse platea dictumst. Sed accumsan, tellus in dapibus porttitor.', '8', '0', '127.0.0.1', '12.01.2015');
+('Daniel', 'Lorem ipsum dolor sit amet', '1', '0', '127.0.0.1', '2015/09/10 at 23:45'),
+('Emily', 'Lorem ipsum dolor sit amet, consectetur adipiscing elit. Aenean aliquet, massa sit amet viverra tristique, urna sapien aliquam massa, sit amet ornare odio erat eleifend quam.', '2', '0', '127.0.0.1', '2015/09/10 at 12:12'),
+('Michael', 'Lorem ipsum dolor sit amet, consectetur adipiscing elit.', '3', '0', '127.0.0.1', '2015/11/10 at 08:04'),
+('Harry', 'Lorem ipsum dolor sit amet, consectetur adipiscing elit. Aenean aliquet, massa sit amet viverra tristique, urna sapien aliquam massa, sit amet ornare odio erat eleifend quam. In hac habitasse platea dictumst.', '4', '0', '127.0.0.1', '2015/10/10 at 10:45'),
+('Jack', 'Lorem ipsum dolor sit amet, consectetur adipiscing elit. Aenean aliquet, massa sit amet viverra tristique, urna sapien aliquam massa, sit amet ornare odio erat eleifend quam. In hac habitasse platea dictumst. Sed tincidunt arcu ut vestibulum lobortis.', '5', '0', '127.0.0.1', '2015/07/10 at 10:59'),
+('Maria', 'Lorem ipsum dolor sit amet, consectetur adipiscing elit. Aenean aliquet, massa sit amet viverra tristique, urna sapien aliquam massa.', '6', '0', '127.0.0.1', '2015/06/05 at 22:33'),
+('Lucia', 'Lorem ipsum dolor sit amet, consectetur adipiscing elit. Aenean aliquet, massa sit amet viverra tristique, urna sapien aliquam massa, sit amet ornare odio erat eleifend quam. In hac habitasse platea dictumst. Sed tincidunt arcu ut vestibulum lobortis. Vestibulum accumsan vulputate sapien. Nulla porta lobortis malesuada. In hac habitasse platea dictumst. Sed accumsan, tellus in dapibus porttitor, nulla velit ullamcorper erat, in hendrerit mauris metus at augue. Nulla congue dolor ac interdum semper. Nulla molestie urna vitae urna vehicula sodales.', '7', '0', '127.0.0.1', '2015/02/04 at 13:25'),
+('Anna', 'Lorem ipsum dolor sit amet, consectetur adipiscing elit. Aenean aliquet, massa sit amet viverra tristique, urna sapien aliquam massa, sit amet ornare odio erat eleifend quam. In hac habitasse platea dictumst. Sed tincidunt arcu ut vestibulum lobortis. Vestibulum accumsan vulputate sapien. Nulla porta lobortis malesuada. In hac habitasse platea dictumst. Sed accumsan, tellus in dapibus porttitor.', '8', '0', '127.0.0.1', '2015/10/10 at 10:45');
 
 query5;
 

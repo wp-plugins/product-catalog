@@ -603,11 +603,21 @@ function front_end_catalog($images, $paramssld, $paramssld3, $catalog)
 //    if($paramssld["ht_view0_sorting_float"] == "top" && $paramssld["ht_view0_filtering_float"] == "top")
 //       { $sorting_block_width ="100%"; $filtering_block_width ="100%"; $left_to_top = "ok"; }
 
-if($catalog[0]->pagination_type == "show_all"){ $myAllImages = count($images); $countIntoPage = $catalog[0]->count_into_page; $pages = ceil($myAllImages / $countIntoPage); $page_index = $_GET["catalog_page_".$catalogID]; $maxCount = $page_index * $countIntoPage; $morePaste = $maxCount - $myAllImages; }
+if($catalog[0]->pagination_type == "show_all"){
+    $myAllImages = count($images);
+    $countIntoPage = $catalog[0]->count_into_page;
+    if($countIntoPage == "" || $countIntoPage < 1){ $countIntoPage = 1; }
+    $pages = ceil($myAllImages / $countIntoPage);
+    if(isset($_GET["catalog_page_".$catalogID])){ $page_index = $_GET["catalog_page_".$catalogID]; }
+    else{ $page_index = 1; }
+    $maxCount = $page_index * $countIntoPage;
+    $morePaste = $maxCount - $myAllImages;
+}
 else{
     if(isset($_GET["catalog_page_".$catalogID])){
             $myAllImages = count($images);
             $countIntoPage = $catalog[0]->count_into_page;
+            if($countIntoPage == "" || $countIntoPage < 1){ $countIntoPage = 1; }
             $pages = ceil($myAllImages / $countIntoPage);
             $page_index = $_GET["catalog_page_".$catalogID];
             $maxCount = $page_index * $countIntoPage;
@@ -640,6 +650,7 @@ else{
         $myAllImages = count($images);
         $page_index = 1;
         $countIntoPage = $catalog[0]->count_into_page;
+        if($countIntoPage == "" || $countIntoPage < 1){ $countIntoPage = 1; }
         $pages = ceil($myAllImages / $countIntoPage);
         $imagesUsefulElements = array();
         for($usefulKeys = 0; $usefulKeys < $countIntoPage; $usefulKeys++){
@@ -1665,15 +1676,17 @@ var defaultBlockWidth=<?php echo $paramssld['ht_view0_block_width']; ?>;
 if($catalog[0]->pagination_type == "show_all"){
     $myAllImages = count($images);
     $countIntoPage = $catalog[0]->count_into_page;
+    if($countIntoPage == "" || $countIntoPage < 1){ $countIntoPage = 1; }
     $pages = ceil($myAllImages / $countIntoPage);
     if(isset($_GET["catalog_page_".$catalogID])){ $page_index = $_GET["catalog_page_".$catalogID]; }
-    else{ $page_index = "catalog_page_".$catalogID; }
+    else{ $page_index = 1; }
     $maxCount = $page_index * $countIntoPage;
     $morePaste = $maxCount - $myAllImages; }
 else{
     if(isset($_GET["catalog_page_".$catalogID])){
             $myAllImages = count($images);
             $countIntoPage = $catalog[0]->count_into_page;
+            if($countIntoPage == "" || $countIntoPage < 1){ $countIntoPage = 1; }
             $pages = ceil($myAllImages / $countIntoPage);
             $page_index = $_GET["catalog_page_".$catalogID];
             $maxCount = $page_index * $countIntoPage;
@@ -1706,6 +1719,7 @@ else{
         $myAllImages = count($images);
         $page_index = 1;
         $countIntoPage = $catalog[0]->count_into_page;
+        if($countIntoPage == "" || $countIntoPage < 1){ $countIntoPage = 1; }
         $pages = ceil($myAllImages / $countIntoPage);
         $imagesUsefulElements = array();
         for($usefulKeys = 0; $usefulKeys < $countIntoPage; $usefulKeys++){
@@ -2685,11 +2699,21 @@ var defaultBlockWidth=<?php echo $paramssld['ht_view1_block_width']; ?>;
 //    if($paramssld["ht_view2_sorting_float"] == "top" && $paramssld["ht_view2_filtering_float"] == "top")
 //       { $sorting_block_width ="100%"; $filtering_block_width ="100%"; $left_to_top = "ok"; }
 
-if($catalog[0]->pagination_type == "show_all"){ $myAllImages = count($images); $countIntoPage = $catalog[0]->count_into_page; $pages = ceil($myAllImages / $countIntoPage); $page_index = $_GET["catalog_page_".$catalogID]; $maxCount = $page_index * $countIntoPage; $morePaste = $maxCount - $myAllImages; }
+if($catalog[0]->pagination_type == "show_all"){
+    $myAllImages = count($images);
+    $countIntoPage = $catalog[0]->count_into_page;
+    if($countIntoPage == "" || $countIntoPage < 1){ $countIntoPage = 1; }
+    $pages = ceil($myAllImages / $countIntoPage);
+    if(isset($_GET["catalog_page_".$catalogID])){ $page_index = $_GET["catalog_page_".$catalogID]; }
+    else{ $page_index = 1; }
+    $maxCount = $page_index * $countIntoPage;
+    $morePaste = $maxCount - $myAllImages;
+}
 else{
     if(isset($_GET["catalog_page_".$catalogID])){
             $myAllImages = count($images);
             $countIntoPage = $catalog[0]->count_into_page;
+            if($countIntoPage == "" || $countIntoPage < 1){ $countIntoPage = 1; }
             $pages = ceil($myAllImages / $countIntoPage);
             $page_index = $_GET["catalog_page_".$catalogID];
             $maxCount = $page_index * $countIntoPage;
@@ -2722,6 +2746,7 @@ else{
         $myAllImages = count($images);
         $page_index = 1;
         $countIntoPage = $catalog[0]->count_into_page;
+        if($countIntoPage == "" || $countIntoPage < 1){ $countIntoPage = 1; }
         $pages = ceil($myAllImages / $countIntoPage);
         $imagesUsefulElements = array();
         for($usefulKeys = 0; $usefulKeys < $countIntoPage; $usefulKeys++){
@@ -3970,11 +3995,21 @@ var defaultBlockHeight=<?php echo $paramssld['ht_view2_element_height']; ?>;
 //    if($paramssld["ht_view3_sorting_float"] == "top" && $paramssld["ht_view3_filtering_float"] == "top")
 //       { $sorting_block_width ="100%"; $filtering_block_width ="100%"; $left_to_top = "ok"; }
 
-if($catalog[0]->pagination_type == "show_all"){ $myAllImages = count($images); $countIntoPage = $catalog[0]->count_into_page; $pages = ceil($myAllImages / $countIntoPage); $page_index = $_GET["catalog_page_".$catalogID]; $maxCount = $page_index * $countIntoPage; $morePaste = $maxCount - $myAllImages; }
+if($catalog[0]->pagination_type == "show_all"){
+    $myAllImages = count($images);
+    $countIntoPage = $catalog[0]->count_into_page;
+    if($countIntoPage == "" || $countIntoPage < 1){ $countIntoPage = 1; }
+    $pages = ceil($myAllImages / $countIntoPage);
+    if(isset($_GET["catalog_page_".$catalogID])){ $page_index = $_GET["catalog_page_".$catalogID]; }
+    else{ $page_index = 1; }
+    $maxCount = $page_index * $countIntoPage;
+    $morePaste = $maxCount - $myAllImages;
+}
 else{
     if(isset($_GET["catalog_page_".$catalogID])){
             $myAllImages = count($images);
             $countIntoPage = $catalog[0]->count_into_page;
+            if($countIntoPage == "" || $countIntoPage < 1){ $countIntoPage = 1; }
             $pages = ceil($myAllImages / $countIntoPage);
             $page_index = $_GET["catalog_page_".$catalogID];
             $maxCount = $page_index * $countIntoPage;
@@ -4007,6 +4042,7 @@ else{
         $myAllImages = count($images);
         $page_index = 1;
         $countIntoPage = $catalog[0]->count_into_page;
+        if($countIntoPage == "" || $countIntoPage < 1){ $countIntoPage = 1; }
         $pages = ceil($myAllImages / $countIntoPage);
         $imagesUsefulElements = array();
         for($usefulKeys = 0; $usefulKeys < $countIntoPage; $usefulKeys++){

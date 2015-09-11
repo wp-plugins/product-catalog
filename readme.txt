@@ -4,7 +4,7 @@ Donate link: http://huge-it.com/product-catalog/
 Tags: catalog, product reviews, catalogs, blog catalog, online store, product tabs, catalogue, products, vote, wp catalog, WP Catalogue, directory, product portfolio, product catalog, shopping cart, product catalogue, store, product feed, digital goods, listing, list, collection, product, attributes, display products, inventory, list products, product gallery, products catalog, catalog of goods, e-commerce, commerce, ecommerce, shop, shopping, wordpress ecommerce, product review, woocommerce catalog, shoping, online shop, ecomerce,e-comerce, wp e-commerce, e-shop, WordPress shopping cart, wordpress store, shipping, sell products, selling, restaurant menu, sales, sell,selling website, product widget, product management, review, catalog mode, post, posts, catalog post, review, widget,
 Requires at least: 3.0.1
 Tested up to: 4.3
-Stable tag: 1.1.9
+Stable tag: 1.2.0
 License: GPLv2 or later
 License URI: http://www.gnu.org/licenses/gpl-2.0.html
 
@@ -122,6 +122,9 @@ Now you can set your Product Catalog options, images and use our Product Catalog
 59.  [WordPress Product Catalog](http://huge-it.com/product-catalog/) - Product Catalog admin page 
 
 == Changelog ==
+
+= 1.2.0 =
+*  Bug fixed product catalog.
 
 = 1.1.9 =
 *  Added Pagination and  Load More functionality.
