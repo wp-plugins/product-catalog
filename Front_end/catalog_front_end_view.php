@@ -1681,7 +1681,8 @@ if($catalog[0]->pagination_type == "show_all"){
     if(isset($_GET["catalog_page_".$catalogID])){ $page_index = $_GET["catalog_page_".$catalogID]; }
     else{ $page_index = 1; }
     $maxCount = $page_index * $countIntoPage;
-    $morePaste = $maxCount - $myAllImages; }
+    $morePaste = $maxCount - $myAllImages;
+}
 else{
     if(isset($_GET["catalog_page_".$catalogID])){
             $myAllImages = count($images);

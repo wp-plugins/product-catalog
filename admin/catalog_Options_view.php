@@ -39,7 +39,7 @@ jQuery(document).ready(function () {
 
 <?php $path_site2 = plugins_url("../images", __FILE__); ?>
 
-<div id="poststuff">
+    <div id="poststuff">
 	<?php $path_site2 = plugins_url("../images/", __FILE__); ?>
         <div style="float: left;">
             <div><a href="http://huge-it.com/wordpress-plugins-product-catalog-user-manual/" target="_blank">User Manual</a></div>
@@ -59,15 +59,58 @@ jQuery(document).ready(function () {
             is expended on constantly improvements of our plugins, making them more professional useful and effective,
             as well as for keeping fast support for every user.
         </div>
-        <div id="post-body-content" class="catalog-options">
-            <div style="margin-left: -20px;" id="poststuff">
-                <div id="post-body-content" class="catalog-options">
-			<img style="width: 100%;" src="<?php echo $path_site2; ?>/options-1.jpg">
-		</div>			
-            </div>			
-	</div>
+            <div id="post-body-content" class="catalog-options">
+                    <div id="post-body-heading">
+                            <h3>Themes Options</h3>
+
+                            <a onclick="document.getElementById('adminForm').submit()" class="save-catalog-options button-primary">Save</a>
+
+                    </div>
+                    <form action="admin.php?page=Options_product_Catalog_styles&task=save" method="post" id="adminForm" name="adminForm">
+                        <div id="catalog-options-list">
+			
+                            <ul id="catalog-view-tabs">
+                                    <li><a href="#catalog-view-options-0">Blocks Toggle Up/Down</a></li>
+                                    <li><a href="#catalog-view-options-1">Full-Height Blocks</a></li>
+                                    <li><a href="#catalog-view-options-2">Catalog/Content-Popup</a></li>
+                                    <li><a href="#catalog-view-options-3">Full-Width Blocks</a></li>
+                                    <li><a href="#catalog-view-options-5">Content Slider</a></li>
+                            </ul>
+                            <ul class="options-block" id="catalog-view-tabs-contents">
+                                 <li id="catalog-view-options-0" style="list-style-type: none;">
+                                    <img src="<?php echo $path_site2; ?>/catalog-options-1.jpg" style="width: 100%;"/>
+                                </li>
+                                <li id="catalog-view-options-1">
+                                    <img src="<?php echo $path_site2; ?>/catalog-options-2.jpg" style="width: 100%;" />
+                                </li>
+                                <li id="catalog-view-options-2">
+                                    <img src="<?php echo $path_site2; ?>/catalog-options-3.jpg" style="width: 100%;" />
+                                </li>
+                                <li id="catalog-view-options-3">
+                                    <img src="<?php echo $path_site2; ?>/catalog-options-4.jpg" style="width: 100%;" />
+                                </li>
+                                <li id="catalog-view-options-5">
+                                    <img src="<?php echo $path_site2; ?>/catalog-options-5.jpg" style="width: 100%;" />
+                                </li>
+                            </ul>
+                                    <div id="post-body-footer">
+                                        <a onclick="document.getElementById('adminForm').submit()" class="save-catalog-options button-primary">Save</a>
+                                        <div class="clear"></div>
+                                </div>
+                            </form>
+                        </div>
+                        
+            </div>
+    </div>
 </div>
-</div>
+
+<script>
+    jQuery("#post-body-heading a, #post-body-footer a").click(function(){
+        alert("Product Catalog Settings are disabled in free version. If you need those functionalityes, you need to buy the commercial version.");return false;
+    });
+    
+</script>
+
 <input type="hidden" name="option" value=""/>
 <input type="hidden" name="task" value=""/>
 <input type="hidden" name="controller" value="options"/>

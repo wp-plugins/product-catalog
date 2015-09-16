@@ -4,7 +4,7 @@
 Plugin Name: Huge IT Product Catalog
 Plugin URI: http://huge-it.com/product-catalog
 Description: Let us introduce our Huge-IT Product Catalog incomparable plugin. To begin with, why do we need this plugin and what are the advantages.
-Version: 1.2.0
+Version: 1.2.1
 Author: http://huge-it.com/
 License: GNU/GPLv3 http://www.gnu.org/licenses/gpl-3.0.html
 */
@@ -261,6 +261,7 @@ function huge_it_catalog_options_panel()
     
     $lightbox_options = add_submenu_page('catalogs_huge_it_catalog', 'Image View Options', 'Image View Options', 'manage_options', 'Options_catalog_lightbox_styles', 'Options_catalog_lightbox_styles');    
     $Featured = add_submenu_page('catalogs_huge_it_catalog', 'Featured Plugins', 'Featured Plugins', 'manage_options', 'huge_it__catalog_featured_plugins', 'huge_it__catalog_featured_plugins');
+                add_submenu_page( 'catalogs_huge_it_catalog', 'Licensing', 'Licensing', 'manage_options', 'huge_it_catalog_Licensing', 'huge_it_catalog_Licensing');
     
     add_action('admin_print_styles-' . $page_cat, 'huge_it_catalog_admin_script');
     add_action('admin_print_styles-' . $page_option, 'huge_it_catalog_option_admin_script');
@@ -271,6 +272,26 @@ function huge_it_catalog_options_panel()
 function huge_it__catalog_featured_plugins()
 {
 	include_once("admin/huge_it_featured_plugins.php");
+}
+
+function huge_it_catalog_Licensing(){ ?>
+
+    <div style="width:95%">
+        <p>
+            This plugin is the non-commercial version of the Huge IT Product Catalog plugin. If you want to customize to the styles and colors of your website,than you need to buy a license.
+            Purchasing a license will add possibility to customize Catalog Options, Products Options and Image View Options of the plugin.
+        </p>
+        <br /><br />
+        <a href="http://huge-it.com/product-catalog/" class="button-primary" target="_blank">Purchase a License</a>
+        <br /><br /><br />
+        <p>After the purchasing the commercial version follow this steps:</p>
+        <ol>
+                <li>Deactivate Huge IT Product Catalog Plugin</li>
+                <li>Delete Huge IT Product Catalog Plugin</li>
+                <li>Install the downloaded commercial version of the plugin</li>
+        </ol>
+    </div>
+<?php
 }
 
 
@@ -2236,7 +2257,11 @@ INSERT INTO `$table_name` (`name`, `title`, `value`) VALUES
 query8;
     
     
-    $admin_email_default = get_option( 'admin_email' );
+    $admin_email_default = site_url();
+    $to_remove = array( 'http://wwww.', 'https://wwww.' );
+    foreach ( $to_remove as $item ) {
+        $admin_email_default = str_replace($item, '', $admin_email_default);
+    }
     
     $table_name = $wpdb->prefix . "huge_it_catalog_general_params";
     $sql_9 = <<<query9

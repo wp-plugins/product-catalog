@@ -78,7 +78,7 @@ jQuery(document).ready(function () {
         
         jQuery("#ht_catalog_zoom_lens_size_fix").change(function(){
             display_sizes();
-        });        
+        });
 });
 jQuery(window).load(function(){
         display_zoom_type();
@@ -109,6 +109,8 @@ jQuery(window).load(function(){
             <div id="post-body-heading"><h3>Image View Options</h3>
                 <a onclick="" onclick="" class="save-catalog-options button-primary">Save</a>
             </div>
+            
+            <form action="admin.php?page=Options_catalog_lightbox_styles&task=save" method="post" id="adminForm" name="adminForm">
             <div id="catalog-options-list">
                 <ul id="catalog-view-tabs">
                     <li><a href="#lightbox-options">Lightbox Options</a></li>
@@ -117,17 +119,17 @@ jQuery(window).load(function(){
 
                 <ul class="options-block" id="catalog-view-tabs-contents">
                     <li id="lightbox-options">
-                                <div id="post-body-content" class="catalog-options" style="width: 100%;">
+                                <!--<div id="post-body-content" class="catalog-options" style="width: 100%;">-->
                                         <img style="width: 100%;" src="<?php echo $path_site2; ?>/options-5.jpg">
-                                </div>			
+                                <!--</div>-->			
                     </li>
 
 
                     <!-- VIEW 1 -->
                     <li id="zoom-options">
-                        <div id="post-body-content" class="catalog-options" style="width: 100%;">
+                        <!--<div id="post-body-content" class="catalog-options" style="width: 100%;">-->
                                 <img style="width: 100%;" src="<?php echo $path_site2; ?>/options-4.jpg">
-                        </div>	
+                        <!--</div>-->	
                     </li>
 
                 </ul>
@@ -137,6 +139,7 @@ jQuery(window).load(function(){
                         <div class="clear"></div>
                 </div>
             </div>
+            </form>
     </div>  
 </div>
 <input type="hidden" name="option" value=""/>

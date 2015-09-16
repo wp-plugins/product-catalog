@@ -440,7 +440,7 @@ a {
 .hc_captcha_input {
         width: 35px !important;
 }
-#hugeit_messages_page #the-comment-list tr{
+#hugeit_messages_page #the-comment-list tr, #hugeit_messages_page #the-comment-list tr td input{
     cursor: pointer;
 }
 #hugeit_messages_page #the-comment-list .read {
