@@ -244,10 +244,10 @@ function front_end_catalog($images, $paramssld, $paramssld3, $catalog)
         $paramssld["ht_catalog_view5_market_price_font_size"] = "15";
         $paramssld["ht_catalog_view5_market_price_font_color"] = "000000";
         $paramssld["ht_catalog_zoom_window_type"] = "window";
-        $paramssld["ht_catalog_zoom_window_width"] = "200";
-        $paramssld["ht_catalog_zoom_window_height"] = "150";
+        $paramssld["ht_catalog_zoom_window_width"] = "300";
+        $paramssld["ht_catalog_zoom_window_height"] = "20";
         $paramssld["ht_catalog_zoom_x_asis"] = "0";
-        $paramssld["ht_catalog_zoom_y_asis"] = "0";
+        $paramssld["ht_catalog_zoom_y_asis"] = "205";
         $paramssld["ht_catalog_zoom_window_position"] = "16";
         $paramssld["ht_catalog_zoom_window_border_size"] = "2";
         $paramssld["ht_catalog_zoom_window_border_color"] = "#000";
@@ -5403,7 +5403,7 @@ jQuery(function(){
         $paramssld["ht_view4_filtering_float"] = "none";
         $paramssld["ht_view5_filtering_float"] = "none";
         $paramssld["ht_view6_filtering_float"] = "none";
-        $paramssld["ht_single_product_allow_lightbox"] = "off";
+        $paramssld["ht_single_product_allow_lightbox"] = "on";
         $paramssld["ht_single_product_allow_zooming"] = "on";
         $paramssld["ht_single_product_border_width"] = "1";
         $paramssld["ht_single_product_border_color"] = "f9f9f9";
@@ -5672,10 +5672,10 @@ jQuery(function(){
         $paramssld2["ht_catalog_view5_market_price_font_size"] = "15";
         $paramssld2["ht_catalog_view5_market_price_font_color"] = "000000";
         $paramssld2["ht_catalog_zoom_window_type"] = "window";
-        $paramssld2["ht_catalog_zoom_window_width"] = "200";
-        $paramssld2["ht_catalog_zoom_window_height"] = "150";
+        $paramssld2["ht_catalog_zoom_window_width"] = "300";
+        $paramssld2["ht_catalog_zoom_window_height"] = "200";
         $paramssld2["ht_catalog_zoom_x_asis"] = "0";
-        $paramssld2["ht_catalog_zoom_y_asis"] = "0";
+        $paramssld2["ht_catalog_zoom_y_asis"] = "205";
         $paramssld2["ht_catalog_zoom_window_position"] = "16";
         $paramssld2["ht_catalog_zoom_window_border_size"] = "2";
         $paramssld2["ht_catalog_zoom_window_border_color"] = "#000";
@@ -7281,7 +7281,7 @@ jQuery(function(){
         border-color: #<?php echo $paramssld4["ht_catalog_related_products_vertical_border_color"]; ?> !important;
     }
     
-    .huge-it-related-carousel li div.RelatedOnHoverHorizontal {
+    .huge-it-related-carousel li div img.RelatedOnHoverHorizontal {
         border-color: #<?php echo $paramssld4["ht_catalog_related_products_horizontal_border_color"]; ?> !important;
     }
     
@@ -7327,7 +7327,7 @@ jQuery(function(){
     
     /* Responsive Slider Images */
     .huge-it-related-carousel.responsive img {
-        padding-right: 10px;
+        /*padding-right: 10px;*/
     }
         /*  <--  pagination block   */
         
@@ -7351,6 +7351,15 @@ jQuery(function(){
       <?php } ?>
     }
         
+    .catalog-related-item-block img{
+        <?php
+            if($paramssld4['ht_catalog_related_products_vertical'] == "false"){ ?>
+                border: <?php echo $paramssld4["ht_catalog_related_products_horizontal_border_size"]; ?>px solid transparent;
+      <?php }else{ ?>
+                border: <?php echo $paramssld4["ht_catalog_related_products_vertical_border_size"]; ?>px solid transparent;
+           <?php } ?>
+    }
+           
     .catalog-related-caption-block{
         <?php
         if($paramssld4['ht_catalog_related_products_vertical'] == "true" ){ ?>
@@ -7398,6 +7407,12 @@ jQuery(function(){
         padding: 0;
         overflow: hidden !important;
         text-overflow: ellipsis;
+        text-align: center;
+    }
+    .catalog-related-caption p:first-child{
+        margin: 0;
+        padding: 0;
+        padding-top: 5px;
     }
     
 </style>
@@ -7668,6 +7683,12 @@ function horizontal_slider_load_function(){
         jQuery(".huge-it-related-carousel li img").height(element_max_height);
         
 //        jQuery(".huge-it-related-carousel li img").css("cssText", "height: " + element_max_height +"px !important;");
+
+        jQuery(".huge-it-related-carousel li img").css("cssText", "height: " + element_max_height +"px !important;");
+        
+        var imageWidth = jQuery(".huge-it-related-carousel li img").width();
+        jQuery(".huge-it-related-carousel li .catalog-related-caption-block").width(imageWidth);
+        
         var caption_and_elem_height = element_max_height + parseInt(<?php echo $paramssld4['ht_catalog_related_products_horizontal_caption_height'] + $paramssld4['ht_catalog_related_products_horizontal_border_size']; ?>);
         jQuery(".huge-it-related-carousel li").height(caption_and_elem_height);
         jQuery(".huge-it-related-carousel").attr("huge-it-carousel-horizontal-li-width", elements_max_width);
@@ -7703,7 +7724,10 @@ function related_horizontal_container_resize(){
         jQuery(li).height(new_li_height);
         var li_minus_caption_height = new_li_height - parseInt(<?php  echo $paramssld4['ht_catalog_related_products_horizontal_caption_height'] + $paramssld4['ht_catalog_related_products_horizontal_border_size']; ?>);
         var elem_new_height = new_li_height - parseInt(<?php  echo $paramssld4['ht_catalog_related_products_horizontal_caption_height'] + $paramssld4['ht_catalog_related_products_horizontal_border_size']; ?>);
-        jQuery(image).height(li_minus_caption_height);
+        //        jQuery(image).height(li_minus_caption_height);
+        jQuery(image).css("cssText", "height: " + li_minus_caption_height +"px !important;");
+        jQuery('.huge-it-related-carousel li .catalog-related-caption-block').width(jQuery(image).width());
+        
         jQuery('.huge-it-related-carousel li .catalog-related-item-block').height(elem_new_height);
 }
 function related_vertical_container_resize(){
@@ -7795,7 +7819,7 @@ function related_carousel_ready_styles(){
         jQuery(this).find(".cycle-prev, .cycle-next").css({"opacity" : "0", "filter" : "alpha(opacity=0)"});
     });
     if(<?php echo $paramssld4['ht_catalog_related_products_vertical']; ?>  == true){
-        if( /Android|webOS|iPhone|iPad|iPod|BlackBerry|IEMobile|Opera Mini/i.test(navigator.userAgent) ){}
+        if( /Android|webOS|iPhone|iPad|iPod|BlackBerry|IEMobile|Opera Mini/i.test(navigator.userAgent) ){  }
         else{
             var arrow_width = jQuery(".huge-it-related-carousel li").width();
             jQuery(".huge-it-related-carousel .cycle-prev, .huge-it-related-carousel .cycle-next").width(arrow_width);
@@ -7813,12 +7837,12 @@ function related_carousel_ready_styles(){
     }
     else{
         jQuery(".huge-it-related-carousel li").each(function(){
-            jQuery(this).find(".catalog-related-item-block").css({"border" : "<?php echo $paramssld4["ht_catalog_related_products_horizontal_border_size"]; ?>px solid transparent"});
+            jQuery(this).find(".catalog-related-item-block-img").css({"border" : "<?php echo $paramssld4["ht_catalog_related_products_horizontal_border_size"]; ?>px solid transparent"});
         });
         jQuery(".huge-it-related-carousel li").hover(function() {
-                jQuery(this).find(".catalog-related-item-block").addClass("RelatedOnHoverHorizontal");
+                jQuery(this).find(".catalog-related-item-block img").addClass("RelatedOnHoverHorizontal");
             },function(){
-                jQuery(this).find(".catalog-related-item-block").removeClass("RelatedOnHoverHorizontal");
+                jQuery(this).find(".catalog-related-item-block img").removeClass("RelatedOnHoverHorizontal");
             });
     }
 }
@@ -8284,10 +8308,10 @@ function album_front_end($paramssld, $paramssld3, $catalogsFromAlbumArray)
         $paramssld["ht_catalog_view5_market_price_font_size"] = "15";
         $paramssld["ht_catalog_view5_market_price_font_color"] = "000000";
         $paramssld["ht_catalog_zoom_window_type"] = "window";
-        $paramssld["ht_catalog_zoom_window_width"] = "200";
-        $paramssld["ht_catalog_zoom_window_height"] = "150";
+        $paramssld["ht_catalog_zoom_window_width"] = "300";
+        $paramssld["ht_catalog_zoom_window_height"] = "200";
         $paramssld["ht_catalog_zoom_x_asis"] = "0";
-        $paramssld["ht_catalog_zoom_y_asis"] = "0";
+        $paramssld["ht_catalog_zoom_y_asis"] = "205";
         $paramssld["ht_catalog_zoom_window_position"] = "16";
         $paramssld["ht_catalog_zoom_window_border_size"] = "2";
         $paramssld["ht_catalog_zoom_window_border_color"] = "#000";
