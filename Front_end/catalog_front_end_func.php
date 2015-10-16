@@ -132,7 +132,7 @@ function showPublishedcatalogs_1($id)
                         <li>
                             <a href="<?php echo $product_page_link; ?>" <?php echo ' target="_blank"'; ?>>
                                 <div class="catalog-related-item-block">
-                                    <img src='<?php echo $related_url[0]; ?>' alt='img' class="catalog-related-item-block-img" />
+                                    <img src='<?php echo $related_url[0]; ?>' alt='img' />
                                 </div>
                                 <div class="catalog-related-caption-block" style="" >
                                     <span class="catalog-related-caption" >
@@ -303,7 +303,7 @@ function show_catalogs_from_album($id)
                         <li>
                             <a href="<?php echo $product_page_link; ?>" <?php echo ' target="_blank"'; ?>>
                                 <div class="catalog-related-item-block">
-                                    <img src='<?php echo $related_url[0]; ?>' alt='img' class="catalog-related-item-block-img" />
+                                    <img src='<?php echo $related_url[0]; ?>' alt='img' />
                                 </div>
                                 <div class="catalog-related-caption-block" style="" >
                                     <span class="catalog-related-caption" >
@@ -429,7 +429,7 @@ function show_catalogs_single_product($id){
                         <li>
                             <a href="<?php echo $product_page_link; ?>" <?php echo ' target="_blank"'; ?>>
                                 <div class="catalog-related-item-block">
-                                    <img src='<?php echo $related_url[0]; ?>' alt='img' class="catalog-related-item-block-img" />
+                                    <img src='<?php echo $related_url[0]; ?>' alt='img' />
                                 </div>
                                 <div class="catalog-related-caption-block" style="" >
                                     <span class="catalog-related-caption" >

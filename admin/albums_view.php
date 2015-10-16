@@ -1,10 +1,10 @@
 <?php
 if (function_exists('current_user_can'))
     if (!current_user_can('manage_options')) {
-        die('Access Denied');
+        die(__('Access Denied',"product-catalog"));
     }
 if (!function_exists('current_user_can')) {
-    die('Access Denied');
+    die(__('Access Denied',"product-catalog"));
 }
 
 function html_show_albums($albumsArray,$catalogsCountsArray) {  //  var_dump($albumsArray);// exit; ?>
@@ -12,16 +12,16 @@ function html_show_albums($albumsArray,$catalogsCountsArray) {  //  var_dump($al
 	<?php //$path_site2 = plugins_url("../images", __FILE__); ?>
 	<div id="poststuff">
             <div id="catalogs-list-page">
-                <h2>Huge-IT Catalog Albums
-                        <a onclick="window.location.href='admin.php?page=huge_it_catalog_albums_page&task=add_album'" class="add-new-h2" >Add New Stand</a>
+                <h2>Huge-IT <?php echo __("Catalog Albums","product-catalog");?>
+                        <a onclick="window.location.href='admin.php?page=huge_it_catalog_albums_page&task=add_album'" class="add-new-h2" ><?php echo __("Add New Stand","product-catalog");?></a>
                 </h2>
                  <table class="wp-list-table widefat fixed pages" style="width:95%">
                     <thead>
                         <tr>
                             <th scope="col" id="id" style="width:30px" ><span>ID</span><span class="sorting-indicator"></span></th>
-                            <th scope="col" id="name" style="width:85px" ><span>Name</span><span class="sorting-indicator"></span></th>
-                            <th scope="col" id="prod_count"  style="width:75px;" ><span>Catalogs</span><span class="sorting-indicator"></span></th>
-                            <th style="width:40px">Delete</th>
+                            <th scope="col" id="name" style="width:85px" ><span><?php echo __("Name","product-catalog");?></span><span class="sorting-indicator"></span></th>
+                            <th scope="col" id="prod_count"  style="width:75px;" ><span><?php echo __("Catalogs","product-catalog");?></span><span class="sorting-indicator"></span></th>
+                            <th style="width:40px"><?php echo __("Delete","product-catalog");?></th>
                         </tr>
                     </thead>
                     <tbody>
@@ -122,7 +122,7 @@ jQuery(function() {
 
 				<div id="post-body">
 					<div id="post-body-heading">
-						<h3>Catalogs</h3>
+						<h3><?php echo __("Catalogs","product-catalog");?></h3>
 							<script>
 jQuery(document).ready(function($){
 
@@ -164,7 +164,7 @@ jQuery(document).ready(function($){
 						<input type="hidden" name="catalogs" id="_unique_name" />
 						<span class="wp-media-buttons-icon"></span>
 						<div class="huge-it-newuploader uploader button button-primary add-new-image">
-						<input type="button" class="button wp-media-buttons-icon album-media-buttons-icon" name="_unique_name_button" id="_unique_name_button" value="Add New Catalog" />
+                                                    <input type="button" class="button wp-media-buttons-icon album-media-buttons-icon" name="_unique_name_button" id="_unique_name_button" value="<?php echo __("Add New Catalog","product-catalog");?>" />
 						</div>
 				
 					</div>
@@ -329,11 +329,11 @@ jQuery(document).ready(function($){
 							<div class="image-options album-image-options">
 								<div class="options-container">
 									<div>
-										<label for="name<?php echo $catalog->catalog_id; ?>">Title:</label>
+										<label for="name<?php echo $catalog->catalog_id; ?>"><?php echo __("Title:","product-catalog");?></label>
 										<input  class="text_area" type="text" id="name<?php echo $catalog->catalog_id; ?>" name="name<?php echo $catalog->catalog_id; ?>" id="name<?php echo $catalog->catalog_id; ?>"  value="<?php echo $catalog->name; ?>">
 									</div>
 									<div class="description-block">
-										<label for="description<?php echo $catalog->catalog_id; ?>">Description:</label>
+										<label for="description<?php echo $catalog->catalog_id; ?>"><?php echo __("Description:","product-catalog");?></label>
 										<textarea id="description<?php echo $catalog->catalog_id; ?>" name="description<?php echo $catalog->catalog_id; ?>" ><?php echo $catalog->description; ?></textarea>
 									</div>
 <!--									<div class="link-block">
@@ -348,8 +348,8 @@ jQuery(document).ready(function($){
 								</div>
                                                                 
 								<div class="remove-image-container">
-									<a class="button remove-image" href="admin.php?page=huge_it_catalog_albums_page&task=apply&removeslide=<?php echo $catalog->catalog_id; ?>&id=<?php echo $row->id; ?>">Remove Catalog</a>
-                                                                        <a class="button remove-image" href="admin.php?page=catalogs_huge_it_catalog&task=edit_cat&id=<?php echo $catalog->catalog_id; ?>">Edit Catalog</a>
+									<a class="button remove-image" href="admin.php?page=huge_it_catalog_albums_page&task=apply&removeslide=<?php echo $catalog->catalog_id; ?>&id=<?php echo $row->id; ?>"><?php echo __("Remove Catalog","product-catalog");?></a>
+                                                                        <a class="button remove-image" href="admin.php?page=catalogs_huge_it_catalog&task=edit_cat&id=<?php echo $catalog->catalog_id; ?>"><?php echo __("Edit Catalog","product-catalog");?></a>
 								</div>
 							</div>
 							<div class="clear"></div>
@@ -364,33 +364,33 @@ jQuery(document).ready(function($){
 			<div id="postbox-container-1" class="postbox-container">
 				<div id="side-sortables" class="meta-box-sortables ui-sortable">
 					<div id="catalog-unique-options" class="postbox">
-					<h3 class="hndle"><span>Select The Album Theme</span></h3>
+					<h3 class="hndle"><span><?php echo __("Select The Album Theme","product-catalog");?></span></h3>
 					<ul id="catalog-unique-options-list">
 						<li>
-							<label for="catalog_album_view_mode">Views</label>
+							<label for="catalog_album_view_mode"><?php echo __("Views","product-catalog");?></label>
 							<select name="catalog_album_view_mode" id="catalog_album_view_mode">
-									<option <?php if($row->catalog_album_view_mode == '0'){ echo 'selected'; } ?>  value="0">Blocks Toggle Up/Down</option>
-									<option <?php if($row->catalog_album_view_mode == '1'){ echo 'selected'; } ?>  value="1">Full-Height Blocks</option>
-									<option <?php if($row->catalog_album_view_mode == '2'){ echo 'selected'; } ?>  value="2">Catalog/Content-Popup</option>
-									<option <?php if($row->catalog_album_view_mode == '3'){ echo 'selected'; } ?>  value="3">Full-Width Blocks</option>
-									<option <?php if($row->catalog_album_view_mode == '5'){ echo 'selected'; } ?>  value="5">Content Slider</option>
+									<option <?php if($row->catalog_album_view_mode == '0'){ echo 'selected'; } ?>  value="0"><?php echo __("Blocks Toggle Up/Down","product-catalog");?></option>
+									<option <?php if($row->catalog_album_view_mode == '1'){ echo 'selected'; } ?>  value="1"><?php echo __("Full-Height Blocks","product-catalog");?></option>
+									<option <?php if($row->catalog_album_view_mode == '2'){ echo 'selected'; } ?>  value="2"><?php echo __("Catalog/Content-Popup","product-catalog");?></option>
+									<option <?php if($row->catalog_album_view_mode == '3'){ echo 'selected'; } ?>  value="3"><?php echo __("Full-Width Blocks","product-catalog");?></option>
+									<option <?php if($row->catalog_album_view_mode == '5'){ echo 'selected'; } ?>  value="5"><?php echo __("Content Slider","product-catalog");?></option>
 							</select>
 						</li>
 
 						<li style="display:none;">
-							<label for="sl_pausetime">Pause time</label>
+							<label for="sl_pausetime"><?php echo __("Pause time","product-catalog");?></label>
 							<input type="text" name="sl_pausetime" id="sl_pausetime" value="<?php echo $row->description; ?>" class="text_area" />
 						</li>
 						<li style="display:none;">
-							<label for="sl_changespeed">Change speed</label>
+							<label for="sl_changespeed"><?php echo __("Change speed","product-catalog");?></label>
 							<input type="text" name="sl_changespeed" id="sl_changespeed" value="<?php echo $row->param; ?>" class="text_area" />
 						</li>
 						<li style="display:none;">
-							<label for="catalog_position">catalog Position</label>
+							<label for="catalog_position"><?php echo __("catalog Position","product-catalog");?></label>
 							<select name="sl_position" id="catalog_position">
-									<option <?php if($row->sl_position == 'left'){ echo 'selected'; } ?>  value="left">Left</option>
-									<option <?php if($row->sl_position == 'right'){ echo 'selected'; } ?>   value="right">Right</option>
-									<option <?php if($row->sl_position == 'center'){ echo 'selected'; } ?>  value="center">Center</option>
+									<option <?php if($row->sl_position == 'left'){ echo 'selected'; } ?>  value="left"><?php echo __("Left","product-catalog");?></option>
+									<option <?php if($row->sl_position == 'right'){ echo 'selected'; } ?>   value="right"><?php echo __("Right","product-catalog");?></option>
+									<option <?php if($row->sl_position == 'center'){ echo 'selected'; } ?>  value="center"><?php echo __("Center","product-catalog");?></option>
 							</select>
 						</li>
 
@@ -406,17 +406,17 @@ jQuery(document).ready(function($){
 					</div>
                                                                         
                                         <div id="catalog-shortcode-box" class="postbox shortcode ms-toggle">
-                                            <h3 class="hndle"><span>Usage</span></h3>
+                                            <h3 class="hndle"><span><?php echo __("Usage","product-catalog");?></span></h3>
                                             <div class="inside">
                                                 <ul>
                                                     <li rel="tab-1" class="selected">
-                                                        <h4>Shortcode</h4>
-                                                        <p>Copy &amp; paste the shortcode directly into any WordPress post or page.</p>
+                                                        <h4><?php echo __("Shortcode","product-catalog");?></h4>
+                                                        <p><?php echo __("Copy","product-catalog");?> &amp; <?php echo __("paste the shortcode directly into any WordPress post or page.","product-catalog");?></p>
                                                         <textarea class="full" readonly="readonly">[huge_it_catalog_album id="<?php echo $row->id; ?>"]</textarea>
                                                     </li>
                                                     <li rel="tab-2">
-                                                        <h4>Template Include</h4>
-                                                        <p>Copy &amp; paste this code into a template file to include the slideshow within your theme.</p>
+                                                        <h4><?php echo __("Template Include","product-catalog");?></h4>
+                                                        <p><?php echo __("Copy","product-catalog");?> &amp; <?php echo __("paste this code into a template file to include the slideshow within your theme.","product-catalog");?></p>
                                                         <textarea class="full" readonly="readonly">&lt;?php echo do_shortcode("[huge_it_catalog_album id='<?php echo $row->id; ?>']"); ?&gt;</textarea>
                                                     </li>
                                                 </ul>

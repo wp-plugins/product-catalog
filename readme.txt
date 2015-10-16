@@ -1,10 +1,10 @@
 === Product Catalog ===
 Contributors: Huge-IT
 Donate link: http://huge-it.com/product-catalog/
-Tags: catalog, product reviews, catalogs, blog catalog, online store, product tabs, catalogue, products, vote, wp catalog, WP Catalogue, directory, product portfolio, product catalog, shopping cart, product catalogue, store, product feed, digital goods, listing, list, collection, product, attributes, display products, inventory, list products, product gallery, products catalog, catalog of goods, e-commerce, commerce, ecommerce, shop, shopping, wordpress ecommerce, product review, woocommerce catalog, shoping, online shop, ecomerce,e-comerce, wp e-commerce, e-shop, WordPress shopping cart, wordpress store, shipping, sell products, selling, restaurant menu, sales, sell,selling website, product widget, product management, review, catalog mode, post, posts, catalog post, review, widget,
+Tags: catalog, product reviews, catalogs, blog catalog, online store, product tabs, catalogue, products, vote, wp catalog, WP Catalogue, directory, product portfolio, product catalog, shopping cart, product catalogue, store, product feed, digital goods, listing, list, collection, product, attributes, display products, inventory, list products, product gallery, products catalog, catalog of goods, e-commerce, commerce, ecommerce, shop, shopping, wordpress ecommerce, product review, woocommerce catalog, shoping, online shop, ecomerce,e-comerce, wp e-commerce, e-shop, WordPress shopping cart, wordpress store, shipping, sell products, selling, restaurant menu, sales, sell,selling website, product widget, product management, review, catalog mode, post, posts, catalog post, review, widget, discount, digital downloads, compact cart, sell digital products, reports, report,
 Requires at least: 3.0.1
-Tested up to: 4.3
-Stable tag: 1.2.2
+Tested up to: 4.3.1
+Stable tag: 1.2.5
 License: GPLv2 or later
 License URI: http://www.gnu.org/licenses/gpl-2.0.html
 
@@ -122,6 +122,15 @@ Now you can set your Product Catalog options, images and use our Product Catalog
 59.  [WordPress Product Catalog](http://huge-it.com/product-catalog/) - Product Catalog admin page 
 
 == Changelog ==
+
+= 1.2.5 =
+*  Translation already available.
+
+= 1.2.4 =
+*  Added new option in product catalog.
+
+= 1.2.3 =
+*  Bug fixed product catalog.
 
 = 1.2.2 =
 *  Bug fixed product catalog.

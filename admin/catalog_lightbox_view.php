@@ -1,10 +1,10 @@
 <?php
 if (function_exists('current_user_can'))
     if (!current_user_can('manage_options')) {
-        die('Access Denied');
+        die(__('Access Denied',"product-catalog"));
     }
 if (!function_exists('current_user_can')) {
-    die('Access Denied');
+    die(__('Access Denied',"product-catalog"));
 }
 
 function      html_showStyles($param_values, $op_type)
@@ -88,33 +88,29 @@ jQuery(window).load(function(){
 <div id="poststuff">
     <?php $path_site2 = plugins_url("../images", __FILE__); ?>
     <div style="float: left;">
-            <div><a href="http://huge-it.com/wordpress-plugins-product-catalog-user-manual/" target="_blank">User Manual</a></div>
-            <div>This section allows you to configure the Product Catalog options. <a href="http://huge-it.com/wordpress-plugins-product-catalog-user-manual/" target="_blank">More...</a></div>
-            <div>This options are disabled in free version. Get full version to customize them. <a href="http://huge-it.com/wordpress-plugins-product-catalog-user-manual/" target="_blank">Get full Version</a></div>
+            <div><a href="http://huge-it.com/wordpress-plugins-product-catalog-user-manual/" target="_blank"><?php echo __("User Manual","product-catalog");?></a></div>
+            <div><?php echo __("This section allows you to configure the Product Catalog options.","product-catalog");?> <a href="http://huge-it.com/wordpress-plugins-product-catalog-user-manual/" target="_blank"><?php echo __("More...","product-catalog");?></a></div>
+            <div><?php echo __("This options are disabled in free version. Get full version to customize them.","product-catalog");?> <a href="http://huge-it.com/wordpress-plugins-product-catalog-user-manual/" target="_blank"><?php echo __("Get full Version","product-catalog");?></a></div>
         </div>
         <div style="float: right;">
                 <a class="header-logo-text" href="http://huge-it.com/product-catalog/" target="_blank">
                         <div><img width="250px" src="<?php echo $path_site2; ?>/huge-it1.png" /></div>
-                        <div>Get the full version</div>
+                        <div><?php echo __("Get full Version","product-catalog");?></div>
                 </a>
         </div>
         <div style="clear:both;"></div>
-        <div style="color: #a00; margin-bottom: 15px;">Dear user. Thank you for your interest in our product.
-            Please be known, that this version is for commercial users, and in order to use options from there,
-            you should have pro license. We please you to be understanding. The money we get for pro license
-            is expended on constantly improvements of our plugins, making them more professional useful and effective,
-            as well as for keeping fast support for every user.
+        <div style="color: #a00; margin-bottom: 15px;"><?php echo __("This options are for commercial users, it includes one of Personal, Multi-Site or Developer versions.Please upgrade to use this section. Please upgrade to use this section.","product-catalog");?>
         </div>
     <div id="post-body-content" class="catalog-options">            
-            <div id="post-body-heading"><h3>Image View Options</h3>
-                <a onclick="" onclick="" class="save-catalog-options button-primary">Save</a>
+            <div id="post-body-heading"><h3><?php echo __("Image View Options","product-catalog");?></h3>
+                <a onclick="document.getElementById('adminForm').submit()" onclick="" class="save-catalog-options button-primary"><?php echo __("Save","product-catalog");?></a>
             </div>
             
             <form action="admin.php?page=Options_catalog_lightbox_styles&task=save" method="post" id="adminForm" name="adminForm">
             <div id="catalog-options-list">
                 <ul id="catalog-view-tabs">
-                    <li><a href="#lightbox-options">Lightbox Options</a></li>
-                    <li><a href="#zoom-options">Zoom Options</a></li>
+                    <li><a href="#lightbox-options"><?php echo __("Lightbox Options","product-catalog");?></a></li>
+                    <li><a href="#zoom-options"><?php echo __("Zoom Options","product-catalog");?></a></li>
                 </ul>
 
                 <ul class="options-block" id="catalog-view-tabs-contents">
@@ -135,7 +131,7 @@ jQuery(window).load(function(){
                 </ul>
 
                 <div id="post-body-footer">
-                        <a onclick="" class="save-catalog-options button-primary">Save</a>
+                        <a onclick="" class="save-catalog-options button-primary"><?php echo __("Save","product-catalog");?></a>
                         <div class="clear"></div>
                 </div>
             </div>
@@ -151,7 +147,7 @@ jQuery(window).load(function(){
 
 <script>
     jQuery("#post-body-heading a, #post-body-footer a").click(function(){
-        alert("Product Catalog Settings are disabled in free version. If you need those functionalityes, you need to buy the commercial version.");return false;
+        alert('<?php echo __("Product Catalog Settings are disabled in free version. If you need those functionalityes, you need to buy the commercial version.","product-catalog");?>');return false;
     });
     
 </script>

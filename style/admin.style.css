@@ -130,8 +130,8 @@
 
 .del_product_link {
     position: absolute;
-    right: 3%;
-    top: 25%;
+    right: 4%;
+    top: 55%;
 }
 
 .del_product_link:hover {
@@ -395,7 +395,7 @@
 #images-list .image-options .options-container label {
 	display: inline-block;
 	float:left;
-	width: 14%;
+	width: 95%;
 	padding: 3px 0px 0px 0px;
 	vertical-align: middle;
 } 
@@ -405,7 +405,7 @@
 #images-list .image-options .options-container input[type='text'],
  #images-list .image-options .options-container select,
 #images-list .image-options .options-container textarea {
-	width: 83%;
+	width: 97%;
 }
 
 #images-list .image-options .options-container .link-block label.long {
@@ -423,7 +423,7 @@
 }
 
 
-#images-list .image-options .options-container textarea {resize:none;}
+#images-list .image-options .options-container textarea {resize:vertical;}
 
 
 

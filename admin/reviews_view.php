@@ -1,39 +1,39 @@
 <?php
 if (function_exists('current_user_can'))
     if (!current_user_can('manage_options')) {
-        die('Access Denied');
+        die(__('Access Denied',"product-catalog"));
     }
 if (!function_exists('current_user_can')) {
-    die('Access Denied');
+    die(__('Access Denied',"product-catalog"));
 }
 
 function html_show_reviews($reviewsArray) { $reviewsArray = array_reverse($reviewsArray, true); $keyForBackground = 1;  //   var_dump($reviewsArray); ?>
 <div class="wrap">
     <?php $path_site2 = plugins_url("../images/", __FILE__); ?>
         <div style="float: left;">
-            <div><a href="http://huge-it.com/wordpress-plugins-product-catalog-user-manual/" target="_blank">User Manual</a></div>
-            <div>This section allows you to configure the Product Catalog options. <a href="http://huge-it.com/wordpress-plugins-product-catalog-user-manual/" target="_blank">More...</a></div>
+            <div><a href="http://huge-it.com/wordpress-plugins-product-catalog-user-manual/" target="_blank"><?php echo __("User Manual","product-catalog");?></a></div>
+            <div><?php echo __("This section allows you to configure the Product Catalog options.","product-catalog");?> <a href="http://huge-it.com/wordpress-plugins-product-catalog-user-manual/" target="_blank"><?php echo __("More...","product-catalog");?></a></div>
         </div>
         <div style="float: right;">
                 <a class="header-logo-text" href="http://huge-it.com/product-catalog/" target="_blank">
                         <div><img width="250px" src="<?php echo $path_site2; ?>/huge-it1.png" /></div>
-                        <div>Get the full version</div>
+                        <div><?php echo __("Get the full version","product-catalog");?></div>
                 </a>
         </div>
         <div style="clear:both;"></div>
     <div id="poststuff">
-<h2>Reviews Manager</h2>
+<h2><?php echo __("Comments Manager","product-catalog"); ?></h2>
 
 <div id="huge_it_catalog_revoews_page">
     <div id="huge_it_catalog_reviews_container">
         <div class="tablenav top">
         <div class="alignleft actions bulkactions">
-            <label for="bulk-action-selector-top" class="screen-reader-text">Select bulk action</label>
+            <label for="bulk-action-selector-top" class="screen-reader-text"><?php echo __("Select bulk action","product-catalog"); ?></label>
             <select name="action" id="bulk-action-selector-top">
-                <option value="-1" selected="selected">Bulk Actions</option>
-                <option value="spam">Mark As Spam</option>
-                <option value="not_spam">Delete From Spams</option>
-                <option value="trash">Move to Trash</option>
+                <option value="-1" selected="selected"><?php echo __("Bulk Actions","product-catalog"); ?></option>
+                <option value="spam"><?php echo __("Mark As Spam","product-catalog"); ?></option>
+                <option value="not_spam"><?php echo __("Delete From Spams","product-catalog"); ?></option>
+                <option value="trash"><?php echo __("Move to Trash","product-catalog"); ?></option>
             </select>
             <input type="submit" name="" id="doaction" class="button action" value="Apply">
         </div>
@@ -43,18 +43,18 @@ function html_show_reviews($reviewsArray) { $reviewsArray = array_reverse($revie
         <thead>
             <tr>
                 <th scope="col" id="cb" class="manage-column column-cb check-column" style="">
-                    <label class="screen-reader-text" for="cb-select-all-1">Select All</label>
+                    <label class="screen-reader-text" for="cb-select-all-1"><?php echo __("Select All","product-catalog"); ?></label>
                     <input id="cb-select-all-1" type="checkbox">
                 </th>
                 <th scope="col" id="author" class="manage-column column-author sorted desc" style="">
                     <a>
-                        <span>Author</span><span class=""></span>
+                        <span><?php echo __("Author","product-catalog"); ?></span><span class=""></span>
                     </a>
                 </th>
-                <th scope="col" id="comment" class="manage-column column-comment" style="">Comment</th>
+                <th scope="col" id="comment" class="manage-column column-comment" style=""><?php echo __("Comment","product-catalog"); ?></th>
                 <th scope="col" id="response" class="manage-column column-response sortable desc" style="">
                     <a>
-                        <span>In Response To</span><span class=""></span>
+                        <span><?php echo __("In Response To","product-catalog"); ?></span><span class=""></span>
                     </a>
                 </th>
             </tr>
@@ -63,18 +63,18 @@ function html_show_reviews($reviewsArray) { $reviewsArray = array_reverse($revie
         <tfoot>
             <tr>
                 <th scope="col" class="manage-column column-cb check-column" style="">
-                    <label class="screen-reader-text" for="cb-select-all-2">Select All</label>
+                    <label class="screen-reader-text" for="cb-select-all-2"><?php echo __("Select All","product-catalog"); ?></label>
                     <input id="cb-select-all-2" type="checkbox">
                 </th>
                 <th scope="col" class="manage-column column-author sorted desc" style="">
                     <a>
-                        <span>Author</span><span class=""></span>
+                        <span><?php echo __("Author","product-catalog"); ?></span><span class=""></span>
                     </a>
                 </th>
-                <th scope="col" class="manage-column column-comment" style="">Comment</th>
+                <th scope="col" class="manage-column column-comment" style=""><?php echo __("Comment","product-catalog"); ?></th>
                 <th scope="col" class="manage-column column-response sortable desc" style="">
                     <a>
-                        <span>In Response To</span><span class=""></span>
+                        <span><?php echo __("In Response To","product-catalog"); ?></span><span class=""></span>
                     </a>
                 </th>
             </tr>
@@ -84,13 +84,13 @@ function html_show_reviews($reviewsArray) { $reviewsArray = array_reverse($revie
         <?php foreach ($reviewsArray as $review) {  ?>
                 <tr id="comment-<?php echo $review->id; ?>" class="comment even thread-even depth-<?php echo $keyForBackground; if($keyForBackground%2 == 0) echo " alt"; ?> ">
                     <th scope="row" class="check-column">
-                        <label class="screen-reader-text" for="cb-select-<?php echo $review->id; ?>">Select comment</label>
+                        <label class="screen-reader-text" for="cb-select-<?php echo $review->id; ?>"><?php echo __("Select comment","product-catalog"); ?></label>
                         <input id="cb-select-<?php echo $keyForBackground; ?>" type="checkbox" name="check_comments" value="<?php echo $review->id; ?>">
                     </th>
                     <td class="author column-author">
                         <input value="<?php echo $review->author_name; ?>" id_for_edit="<?php echo $review->id; ?>" />
                         <br><br>
-                        <p class='spamer' <?php if($review->spam != 1) echo "style= 'display: none'"; ?>>Spam</p>
+                        <p class='spamer' <?php if($review->spam != 1) echo "style= 'display: none'"; ?>><?php echo __("Spam","product-catalog"); ?></p>
                     </td>
                     <td class="comment column-comment">
                         <div class="comment-author">
@@ -100,7 +100,7 @@ function html_show_reviews($reviewsArray) { $reviewsArray = array_reverse($revie
                             <br>
                             <a href="edit-comments.php?s=&amp;mode=detail"></a>
                         </div>
-                        <div class="submitted-on">Submitted on <a><?php echo " ".$review->date; ?></a></div>
+                        <div class="submitted-on"><?php echo __("Submitted on","product-catalog"); ?> <a><?php echo " ".$review->date; ?></a></div>
                         <textarea class="reviews_textarea" id_for_edit="<?php echo $review->id; ?>"><?php echo $review->content; ?></textarea>
                         <div id="inline-1" class="hidden">
                         <textarea class="comment" rows="1" cols="1"><?php echo $review->content; ?></textarea>
@@ -109,10 +109,10 @@ function html_show_reviews($reviewsArray) { $reviewsArray = array_reverse($revie
                         <div class="comment_status">1</div>
                         </div>
                         <div class="row-actions">
-                            <span class="edit" value="<?php echo $review->id; ?>">  | <a title="Edit comment">Edit</a></span>
-                            <span class="spam" value="<?php echo $review->id; ?>" style='<?php if($review->spam == 1) { echo "display: none"; } ?>'>  | <a class="vim-s vim-destructive" title="Mark this comment as spam">Spam</a></span>
-                            <span class="not_spam" value="<?php echo $review->id; ?>" style='<?php if($review->spam != 1) { echo "display: none"; } ?>'>  | <a class="vim-s vim-destructive" title="Reove this comment From spam">Not Spam</a></span>
-                            <span class="trash" value="<?php echo $review->id; ?>"> | <a class="delete vim-d vim-destructive" title="Move this comment to the trash">Trash</a>
+                            <span class="edit" value="<?php echo $review->id; ?>">  | <a title="Edit comment"><?php echo __("Edit","product-catalog"); ?></a></span>
+                            <span class="spam" value="<?php echo $review->id; ?>" style='<?php if($review->spam == 1) { echo "display: none"; } ?>'>  | <a class="vim-s vim-destructive" title="Mark this comment as spam"><?php echo __("Spam","product-catalog"); ?></a></span>
+                            <span class="not_spam" value="<?php echo $review->id; ?>" style='<?php if($review->spam != 1) { echo "display: none"; } ?>'>  | <a class="vim-s vim-destructive" title="Reove this comment From spam"><?php echo __("Not Spam","product-catalog"); ?></a></span>
+                            <span class="trash" value="<?php echo $review->id; ?>"> | <a class="delete vim-d vim-destructive" title="Move this comment to the trash"><?php echo __("Trash","product-catalog"); ?></a>
                             </span>
                         </div>
                     </td>
@@ -128,12 +128,12 @@ function html_show_reviews($reviewsArray) { $reviewsArray = array_reverse($revie
         </tbody>
     </table>
     <div class="alignleft actions bulkactions">
-        <label for="bulk-action-selector-top" class="screen-reader-text">Select bulk action</label>
+        <label for="bulk-action-selector-top" class="screen-reader-text"><?php echo __("Trash","product-catalog"); ?>Select bulk action</label>
         <select name="action" id="bulk-action-selector-top">
-            <option value="-1" selected="selected">Bulk Actions</option>
-            <option value="spam">Mark As Spam</option>
-            <option value="not_spam">Delete From Spams</option>
-            <option value="trash">Move to Trash</option>
+            <option value="-1" selected="selected"><?php echo __("Bulk Actions","product-catalog"); ?></option>
+            <option value="spam"><?php echo __("Mark As Spam","product-catalog"); ?></option>
+            <option value="not_spam"><?php echo __("Delete From Spams","product-catalog"); ?></option>
+            <option value="trash"><?php echo __("Move to Trash","product-catalog"); ?></option>
         </select>
         <input type="submit" name="" id="doaction" class="button action" value="Apply">
     </div>

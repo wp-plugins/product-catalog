@@ -243,13 +243,15 @@ function front_end_catalog($images, $paramssld, $paramssld3, $catalog)
         $paramssld["ht_catalog_view5_price_font_color"] = "0074a2";
         $paramssld["ht_catalog_view5_market_price_font_size"] = "15";
         $paramssld["ht_catalog_view5_market_price_font_color"] = "000000";
+        
+        
         $paramssld["ht_catalog_zoom_window_type"] = "window";
         $paramssld["ht_catalog_zoom_window_width"] = "300";
-        $paramssld["ht_catalog_zoom_window_height"] = "20";
+        $paramssld["ht_catalog_zoom_window_height"] = "200";
         $paramssld["ht_catalog_zoom_x_asis"] = "0";
-        $paramssld["ht_catalog_zoom_y_asis"] = "205";
+        $paramssld["ht_catalog_zoom_y_asis"] = "200";
         $paramssld["ht_catalog_zoom_window_position"] = "16";
-        $paramssld["ht_catalog_zoom_window_border_size"] = "2";
+        $paramssld["ht_catalog_zoom_window_border_size"] = "0";
         $paramssld["ht_catalog_zoom_window_border_color"] = "#000";
         $paramssld["ht_catalog_zoom_window_lens_size"] = "200";
         $paramssld["ht_catalog_zoom_window_fadein"] = "200";
@@ -258,7 +260,7 @@ function front_end_catalog($images, $paramssld, $paramssld3, $catalog)
         $paramssld["ht_catalog_zoom_lens_fadeout"] = "200";
         $paramssld["ht_catalog_zoom_lens_hide"] = "false";
         $paramssld["ht_catalog_zoom_lens_shape"] = "square";
-        $paramssld["ht_catalog_zoom_lens_color"] = "#fff";
+        $paramssld["ht_catalog_zoom_lens_color"] = "fff";
         $paramssld["ht_catalog_zoom_lens_opacity"] = "40";
         $paramssld["ht_catalog_zoom_cursor"] = "crosshair";
         $paramssld["ht_catalog_zoom_scrollzoom"] = "true";
@@ -266,12 +268,13 @@ function front_end_catalog($images, $paramssld, $paramssld3, $catalog)
         $paramssld["ht_catalog_zoom_lens_size_fix"] = "false";
         $paramssld["ht_catalog_zoom_lens_height"] = "100";
         $paramssld["ht_catalog_zoom_lens_width"] = "100";
-        $paramssld["ht_catalog_zoom_tint"] = "true";
+        $paramssld["ht_catalog_zoom_tint"] = "false";
         $paramssld["ht_catalog_zoom_tint_colour"] = "#fff";
         $paramssld["ht_catalog_zoom_tint_opacity"] = "40";
         $paramssld["ht_catalog_zoom_tint_fadein"] = "200";
         $paramssld["ht_catalog_zoom_tint_fadeout"] = "200";
-        $paramssld["ht_view3_allow_lightbox"] = "off";
+        $paramssld['ht_catalog_zoom_lens_hide'] = "false";
+        $paramssld["ht_view3_allow_lightbox"] = "on";
         $paramssld["ht_catalog_zoom_thumbs_zoom"] = "off";
         $paramssld["ht_view3_allow_zooming"] = "on";
 
@@ -292,7 +295,7 @@ function front_end_catalog($images, $paramssld, $paramssld3, $catalog)
         $paramssld["ht_view6_filtering_float"] = "none";
         $paramssld["ht_view0_allow_zooming"] = "off";
         $paramssld["ht_view0_allow_lightbox"] = "on";
-        $paramssld["ht_view1_allow_zooming"] = "off";
+        $paramssld["ht_view1_allow_zooming"] = "on";
         $paramssld["ht_view1_allow_lightbox"] = "on";
         $paramssld["ht_view2_allow_zooming"] = "off";
         $paramssld["ht_view2_allow_lightbox"] = "on";
@@ -360,36 +363,40 @@ function front_end_catalog($images, $paramssld, $paramssld3, $catalog)
             else if("<?php echo $paramssld['ht_catalog_zoom_thumbs_zoom']; ?>" == "off"){
                 for_zoom = ".for_zoom img";
             }
+            var view_num = <?php echo $catalogeffect; ?>;
+            
 //            var catalogThumbsZoom = "<?php echo $paramssld['ht_catalog_zoom_thumbs_zoom'];?>";
             var catalogZoomType = "<?php echo $paramssld['ht_catalog_zoom_window_type'];?>";
-            var catalogWindowWidth = <?php echo $paramssld['ht_catalog_zoom_window_width'];?>;
-            var catalogWindowHeight = <?php echo $paramssld['ht_catalog_zoom_window_height'];?>;
-            var catalogWindowOffetx = <?php echo $paramssld['ht_catalog_zoom_x_asis'];?>;
-            var catalogWindowOffety = <?php echo $paramssld['ht_catalog_zoom_y_asis'];?>;
-            var catalogWindowPosition = <?php echo $paramssld['ht_catalog_zoom_window_position'];?>;
-            var catalogBorderSize = <?php echo $paramssld['ht_catalog_zoom_window_border_size'];?>;
-            var catalogBorderColour = "<?php echo $paramssld['ht_catalog_zoom_window_border_color'];?>";
-            var catalogWindowFadeIn = <?php echo $paramssld['ht_catalog_zoom_window_fadein'];?>;
-            var catalogWindowFadeOut = <?php echo $paramssld['ht_catalog_zoom_window_fadeout'];?>;
-            var catalogLensSize = <?php echo $paramssld['ht_catalog_zoom_window_lens_size'];?>;
-            
-            var catalogLensFadeIn = <?php echo $paramssld['ht_catalog_zoom_lens_fadein'];?>;
-            var catalogLensFadeOut = <?php echo $paramssld['ht_catalog_zoom_lens_fadeout'];?>;
-            var catalogZoomLens = <?php echo $paramssld['ht_catalog_zoom_lens_hide'];?>;
-            var catalogLensShape = "<?php echo $paramssld['ht_catalog_zoom_lens_shape'];?>";
-            var catalogLensColour = "<?php echo $paramssld['ht_catalog_zoom_lens_color'];?>";
-            var catalogLensOpacity = <?php echo $paramssld['ht_catalog_zoom_lens_opacity'];?>/100;
-            var catalogCursor = "<?php echo $paramssld['ht_catalog_zoom_cursor'];?>";
-            
-            var catalogScrollZoom = <?php echo $paramssld['ht_catalog_zoom_scrollzoom'];?>;
-            
-            var catalogEasing = <?php echo $paramssld['ht_catalog_zoom_easing'];?>;
-            var catalogTint = "<?php echo $paramssld['ht_catalog_zoom_tint'];?>";
-            var catalogTintColour = "<?php echo $paramssld['ht_catalog_zoom_tint_colour'];?>";
-            var catalogTintOpacity = <?php echo $paramssld['ht_catalog_zoom_tint_opacity'];?>/100;
-            var catalogZoomTintFadeIn = <?php echo $paramssld['ht_catalog_zoom_tint_fadein'];?>;
-            var catalogZoomTintFadeOut = <?php echo $paramssld['ht_catalog_zoom_tint_fadeout'];?>;
-            var catalogGallery = null;
+		var catalogWindowWidth = <?php echo $paramssld['ht_catalog_zoom_window_width'];?>;
+		var catalogWindowHeight = <?php echo $paramssld['ht_catalog_zoom_window_height'];?>;
+		var catalogWindowOffetx = <?php echo $paramssld['ht_catalog_zoom_x_asis'];?>;
+		var catalogWindowOffety = <?php echo $paramssld['ht_catalog_zoom_y_asis'];?>;
+		var catalogWindowPosition = <?php echo $paramssld['ht_catalog_zoom_window_position'];?>;
+		var catalogBorderSize = <?php echo $paramssld['ht_catalog_zoom_window_border_size'];?>;
+		var catalogBorderColour = "<?php echo $paramssld['ht_catalog_zoom_window_border_color'];?>";
+		var catalogWindowFadeIn = <?php echo $paramssld['ht_catalog_zoom_window_fadein'];?>;
+		var catalogWindowFadeOut = <?php echo $paramssld['ht_catalog_zoom_window_fadeout'];?>;
+		var catalogLensSize = <?php echo $paramssld['ht_catalog_zoom_window_lens_size'];?>;
+
+		var catalogLensFadeIn = <?php echo $paramssld['ht_catalog_zoom_lens_fadein'];?>;
+		var catalogLensFadeOut = <?php echo $paramssld['ht_catalog_zoom_lens_fadeout'];?>;
+		var catalogZoomLens = <?php echo $paramssld['ht_catalog_zoom_lens_hide'];?>;
+		var catalogLensShape = "<?php echo $paramssld['ht_catalog_zoom_lens_shape'];?>";
+		var catalogLensColour = "<?php echo $paramssld['ht_catalog_zoom_lens_color'];?>";
+		var catalogLensOpacity = <?php echo $paramssld['ht_catalog_zoom_lens_opacity'];?>/100;
+		var catalogCursor = "<?php echo $paramssld['ht_catalog_zoom_cursor'];?>";
+                if(catalogZoomType != "inner") { var catalogScrollZoom = <?php echo $paramssld['ht_catalog_zoom_scrollzoom'];?>; }
+                else{ var catalogScrollZoom = false; }
+                                                          
+		var catalogEasing = <?php echo $paramssld['ht_catalog_zoom_easing'];?>;
+
+		var catalogTint = <?php echo $paramssld['ht_catalog_zoom_tint'];?>;
+		var catalogTintColour = "<?php echo $paramssld['ht_catalog_zoom_tint_colour'];?>";
+		var catalogTintOpacity = <?php echo $paramssld['ht_catalog_zoom_tint_opacity'];?>/100;
+		var catalogZoomTintFadeIn = <?php echo $paramssld['ht_catalog_zoom_tint_fadein'];?>;
+		var catalogZoomTintFadeOut = <?php echo $paramssld['ht_catalog_zoom_tint_fadeout'];?>;
+
+		var catalogGallery = null;
             
             var lightbox_transition = '<?php echo $paramssld['light_box_transition'];?>';
             var lightbox_speed = <?php echo $paramssld['light_box_speed'];?>;
@@ -1227,8 +1234,16 @@ else{
                               <div class="default-block_<?php echo $catalogID; ?>">
                                       <div class="image-block_<?php echo $catalogID; ?> for_zoom">
                                               <?php $imgurl=explode(";",$row->image_url); ?>
-                                              <?php 	if($row->image_url != ';'){ ?>
-                                                            <img id="wd-cl-img<?php echo $key; ?>" src="<?php echo $imgurl[0]; ?>" />
+                                              <?php if($row->image_url != ';'){
+                                                        if($paramssld['ht_view0_allow_zooming'] == "off" && $paramssld['ht_view0_allow_lightbox'] == "on"){
+                                              ?>
+                                                            <a href="<?php echo $imgurl[0] ?>" class="catalog_group<?php echo $group_key."_".$catalogID; ?>">
+                                                                <img id="wd-cl-img<?php echo $key; ?>" src="<?php echo $imgurl[0]; ?>" />
+                                                            </a>
+                                              <?php      }else{ ?>
+                                                                <img id="wd-cl-img<?php echo $key; ?>" src="<?php echo $imgurl[0]; ?>" />
+                                                   <?php } ?>
+                                                        
                                               <?php     }else { ?>
                                                             <img id="wd-cl-img<?php echo $key; ?>" src="images/noimage.png" />
                                               <?php } ?>	
@@ -1241,12 +1256,16 @@ else{
 
                               <div class="wd-catalog-panel_<?php echo $catalogID; ?>" id="panel<?php echo $key; ?>">
                               <?php if($paramssld['ht_view0_show_thumbs']=='on' and $paramssld['ht_view0_thumbs_position']=="before")
-                                      {?>
+                                      { ?>
                                               <div class="thumbs-block">
                                                       <ul class="thumbs-list_<?php echo $catalogID; ?>">
                                                               <?php
                                                               $imgurl=explode(";",$row->image_url);
                                                               array_pop($imgurl);
+                                                              
+                                                              if($paramssld['ht_view0_allow_zooming'] == "on" && $paramssld['ht_view0_allow_lightbox'] == "off"){  }
+                                                              else{ array_shift($imgurl); }
+                                                              
                                                               foreach($imgurl as $key1=>$img)
                                                               {
                                                               ?>
@@ -1266,18 +1285,25 @@ else{
                                       <?php }
                                       if($paramssld['ht_view0_show_thumbs']=='on' and $paramssld['ht_view0_thumbs_position']=="after"){?>
                                           <div class="thumbs-block">
-                                              <ul class="thumbs-list_<?php echo $catalogID; ?>">
-                                                <?php
-                                                    $imgurl=explode(";",$row->image_url);
-                                                    array_pop($imgurl);
-                                                    foreach($imgurl as $key=>$img)
-                                                    { ?>
-                                                        <li>
-                                                                <a href="<?php echo $img; ?>" class=""><img src="<?php echo $img; ?>"></a>
-                                                        </li>
-                                              <?php }
-                                                ?>
-                                              </ul>
+                                              <div class="thumbs-block">
+                                                      <ul class="thumbs-list_<?php echo $catalogID; ?>">
+                                                              <?php
+                                                              $imgurl=explode(";",$row->image_url);
+                                                              array_pop($imgurl);
+                                                              if(($paramssld['ht_view1_allow_zooming'] == "on" && $paramssld['ht_view1_allow_lightbox'] == "off") || ($paramssld['ht_view1_allow_zooming'] == "off" && $paramssld['ht_view1_allow_lightbox'] == "off")){  }
+                                                              else{ array_shift($imgurl); }
+                                                              
+                                                              foreach($imgurl as $key1=>$img)
+                                                              {
+                                                              ?>
+                                                              <li>
+                                                                      <a href="<?php echo $img; ?>" class="catalog_group<?php echo $group_key."_".$catalogID; ?>"><img src="<?php echo $img; ?>"></a>
+                                                              </li>
+                                                              <?php
+                                                              }
+                                                              ?>
+                                                      </ul>
+                                              </div>
                                           </div>
                                 <?php } ?>
                                   
@@ -1297,7 +1323,7 @@ else{
                                          else{ $product_page_link = $row->single_product_url_type; }
                                             ?>
                                                 <div class="button-block">
-                                                        <a href="<?php echo $product_page_link; ?>" <?php echo ' target="_blank"'; ?>><?php echo $paramssld3['ht_catalog_general_linkbutton_text']; ?></a>
+                                                        <a href="<?php echo $product_page_link; ?>" <?php if($row->link_target == 'on'){echo ' target="_blank"';} ?>><?php echo $paramssld3['ht_catalog_general_linkbutton_text']; ?></a>
                                                 </div>
                                 <?php } ?>
                               </div>
@@ -1384,7 +1410,7 @@ else{
             elseif($catalog[0]->pagination_type == "load_more"){ $path_site = plugins_url("/../images", __FILE__); ?>
                 <div class="catalog_load_block_<?php echo $catalogID; ?>" >
                     <div class="catalog_load_<?php echo $catalogID; ?>" >
-                        <a href="#" class="load_more_elements_<?php echo $catalogID; ?>">Load More...</a>
+                        <a href="#" class="load_more_elements_<?php echo $catalogID; ?>"><?php echo __("Load More...","product-catalog");?></a>
                         <img src="<?php echo $path_site; ?>/load_more_icon_<?php echo $paramssld['htc_view0_load_more_loading_icon']; ?>.gif" class="load_more_loading_icon" style="display: none"/>
                         <input type="hidden" class="load-more-elements-count" value="<?php echo $countIntoPage; ?>"/>
                     <?php
@@ -1574,7 +1600,7 @@ var defaultBlockWidth=<?php echo $paramssld['ht_view0_block_width']; ?>;
             /*    <--   VIEW 0 ELEMENTS THUMBS CLICK    */
             
             jQuery(".element_<?php echo $catalogID; ?> .thumbs-block ul li a img").click(function(e){
-                var lightbox_is = "<?php echo $paramssld['ht_view0_allow_lightbox']; ?>"
+                var lightbox_is = "<?php echo $paramssld['ht_view0_allow_lightbox']; ?>";
                     if(lightbox_is != "on"){
                         e.preventDefault();
 //                        alert(lightbox_is);
@@ -2262,21 +2288,18 @@ else{
                           <div class="default-block_<?php echo $catalogID; ?>">
                               <div class="image-block_<?php echo $catalogID; ?> for_zoom">
                                       <?php $imgurl=explode(";",$row->image_url); ?>
-                                      <?php    if($row->image_url != ';'){ ?>
-                                          <?php    if($paramssld['ht_view1_show_thumbs']=='off'){ ?>
-                                                         <a href="<?php echo $imgurl[0] ?>" class="catalog_group<?php echo $group_key."_".$catalogID; ?>">
-                                                             <img id="wd-cl-img<?php echo $key; ?>" src="<?php echo $imgurl[0]; ?>" />
-                                                         </a>
-                                             <?php }
-                                                   else{ ?>
-                                                             <img id="wd-cl-img<?php echo $key; ?>" src="<?php echo $imgurl[0]; ?>" />
-                                             <?php } ?>
-
-                                         <?php }
-                                              else { ?>
-                                                <img id="wd-cl-img<?php echo $key; ?>" src="images/noimage.png" />
-                                                <?php
-                                              } ?>	
+                                       <?php  if($row->image_url != ';'){
+                                                  if($paramssld['ht_view1_allow_zooming'] == "off" && $paramssld['ht_view1_allow_lightbox'] == "on"){ ?>
+                                                      <a href="<?php echo $imgurl[0] ?>" class="catalog_group<?php echo $group_key."_".$catalogID; ?>">
+                                                          <img id="wd-cl-img<?php echo $key; ?>" src="<?php echo $imgurl[0]; ?>" />
+                                                      </a>
+                                       <?php      }else{ ?>
+                                                          <img id="wd-cl-img<?php echo $key; ?>" src="<?php echo $imgurl[0]; ?>" />
+                                       <?php      } ?>
+                                                     
+                                       <?php }else { ?>
+                                               <img id="wd-cl-img<?php echo $key; ?>" src="images/noimage.png" />
+                                       <?php } ?>	
                               </div>
                               <div class="title-block_<?php echo $catalogID; ?>">
                                       <h3 class="title"><?php echo $row->name; ?></h3>
@@ -2289,14 +2312,20 @@ else{
                                         <div>
                                             <ul class="thumbs-list_<?php echo $catalogID; ?>">
                                             <?php
-                                                $imgurl=explode(";",$row->image_url);
-                                                array_pop($imgurl);
-                                                    foreach($imgurl as $key=>$img)
-                                                    { ?>
-                                                        <li>
+                                                    $imgurl=explode(";",$row->image_url);
+                                                    array_pop($imgurl);
+                                                    if(($paramssld['ht_view1_allow_zooming'] == "on" && $paramssld['ht_view1_allow_lightbox'] == "off") || ($paramssld['ht_view1_allow_zooming'] == "off" && $paramssld['ht_view1_allow_lightbox'] == "off")){  }
+                                                    else{ array_shift($imgurl); }
+
+                                                    foreach($imgurl as $key1=>$img)
+                                                    {
+                                                    ?>
+                                                    <li>
                                                             <a href="<?php echo $img; ?>" class="catalog_group<?php echo $group_key."_".$catalogID; ?>"><img src="<?php echo $img; ?>"></a>
-                                                        </li>
-                                            <?php } ?>
+                                                    </li>
+                                                    <?php
+                                                    }
+                                            ?>
                                             </ul>
                                         </div>
                               <?php } 
@@ -2308,17 +2337,20 @@ else{
                                       if($paramssld['ht_view1_show_thumbs']=='on' and $paramssld['ht_view1_thumbs_position']=="after"){?>
                                               <div>
                                                       <ul class="thumbs-list_<?php echo $catalogID; ?>">
-                                                              <?php
-                                                              $imgurl=explode(";",$row->image_url);
-                                                              array_pop($imgurl);
-                                                              foreach($imgurl as $key=>$img)
-                                                              {
-                                                              ?>
-                                                              <li>
-                                                                      <a href="<?php echo $img; ?>" class="group1"><img src="<?php echo $img; ?>"></a>
-                                                              </li>
-                                                              <?php
-                                                              }
+                                                            <?php
+                                                                    $imgurl=explode(";",$row->image_url);
+                                                                    array_pop($imgurl);
+                                                                    if(($paramssld['ht_view1_allow_zooming'] == "on" && $paramssld['ht_view1_allow_lightbox'] == "off") || ($paramssld['ht_view1_allow_zooming'] == "off" && $paramssld['ht_view1_allow_lightbox'] == "off")){  }
+                                                                    else{ array_shift($imgurl); }
+
+                                                                    foreach($imgurl as $key1=>$img)
+                                                                    {
+                                                                    ?>
+                                                                    <li>
+                                                                            <a href="<?php echo $img; ?>" class="catalog_group<?php echo $group_key."_".$catalogID; ?>"><img src="<?php echo $img; ?>"></a>
+                                                                    </li>
+                                                                    <?php
+                                                                    }
                                                               ?>
                                                       </ul>
                                               </div>
@@ -2340,7 +2372,7 @@ else{
                                          else{ $product_page_link = $row->single_product_url_type; }
                                          ?>
                                               <div class="button-block">
-                                                      <a href="<?php echo $product_page_link; ?>" <?php echo ' target="_blank"'; ?>><?php echo $paramssld3['ht_catalog_general_linkbutton_text']; ?></a>
+                                                      <a href="<?php echo $product_page_link; ?>" <?php if($row->link_target == 'on'){echo ' target="_blank"';} ?>><?php echo $paramssld3['ht_catalog_general_linkbutton_text']; ?></a>
                                               </div>
                                       <?php } ?>
                               </div>
@@ -2427,7 +2459,7 @@ else{
             elseif($catalog[0]->pagination_type == "load_more"){ $path_site = plugins_url("/../images", __FILE__); ?>
                 <div class="catalog_load_block_<?php echo $catalogID; ?>" >
                     <div class="catalog_load_<?php echo $catalogID; ?>" >
-                        <a href="#" class="load_more_elements_<?php echo $catalogID; ?>">Load More...</a>
+                        <a href="#" class="load_more_elements_<?php echo $catalogID; ?>"><?php echo __("Load","product-catalog");?></a>
                         <img src="<?php echo $path_site; ?>/load_more_icon_<?php echo $paramssld['htc_view1_load_more_loading_icon']; ?>.gif" class="load_more_loading_icon" style="display: none"/>
                         <input type="hidden" class="load-more-elements-count" value="<?php echo $countIntoPage; ?>"/>
                     <?php
@@ -2604,7 +2636,7 @@ var defaultBlockWidth=<?php echo $paramssld['ht_view1_block_width']; ?>;
             /*    <--   VIEW 1 ELEMENTS THUMBS CLICK    */
             
             jQuery(".element_<?php echo $catalogID; ?> .thumbs-list_<?php echo $catalogID; ?> li a img").click(function(e){
-                var lightbox_is = "<?php echo $paramssld['ht_view1_allow_lightbox']; ?>"
+                var lightbox_is = "<?php echo $paramssld['ht_view1_allow_lightbox']; ?>";
                     if(lightbox_is != "on"){
                         e.preventDefault();
 //                        alert(lightbox_is);
@@ -3807,7 +3839,7 @@ var defaultBlockHeight=<?php echo $paramssld['ht_view2_element_height']; ?>;
                                          }
                                          else{ $product_page_link = $row->single_product_url_type; }
                                       ?>
-                                              <div class="button-block"><a href="<?php echo $product_page_link; ?>" <?php echo ' target="_blank"'; ?> ><?php echo $paramssld3["ht_catalog_general_linkbutton_text"]; ?></a></div>
+                                              <div class="button-block"><a href="<?php echo $product_page_link; ?>" <?php if($row->link_target == 'on'){echo ' target="_blank"';} ?> ><?php echo $paramssld3["ht_catalog_general_linkbutton_text"]; ?></a></div>
                                       <?php } ?>
                               </div>
                       </div>	
@@ -3892,7 +3924,7 @@ var defaultBlockHeight=<?php echo $paramssld['ht_view2_element_height']; ?>;
             elseif($catalog[0]->pagination_type == "load_more"){ $path_site = plugins_url("/../images", __FILE__); ?>
                 <div class="catalog_load_block_<?php echo $catalogID; ?>" >
                     <div class="catalog_load_<?php echo $catalogID; ?>" >
-                        <a href="#" class="load_more_elements_<?php echo $catalogID; ?>">Load More...</a>
+                        <a href="#" class="load_more_elements_<?php echo $catalogID; ?>"><?php echo __("Load","product-catalog");?></a>
                         <img src="<?php echo $path_site; ?>/load_more_icon_<?php echo $paramssld['htc_view2_load_more_loading_icon']; ?>.gif" class="load_more_loading_icon" style="display: none"/>
                         <input type="hidden" class="load-more-elements-count" value="<?php echo $countIntoPage; ?>"/>
                     <?php
@@ -3966,7 +3998,7 @@ var defaultBlockHeight=<?php echo $paramssld['ht_view2_element_height']; ?>;
                                          else{ $product_page_link = $row->single_product_url_type; }
                                          ?>
 						<div class="button-block">
-						<a href="<?php echo $product_page_link; ?>"  <?php echo ' target="_blank"'; ?>><?php echo $paramssld3["ht_catalog_general_linkbutton_text"]; ?></a>
+						<a href="<?php echo $product_page_link; ?>"  <?php if($row->link_target == 'on'){echo ' target="_blank"';} ?>><?php echo $paramssld3["ht_catalog_general_linkbutton_text"]; ?></a>
 						</div>
 					<?php } ?>
 					<div style="clear:both;"></div>
@@ -4600,11 +4632,17 @@ else{
                                       <div class="main-image-block_<?php echo $catalogID; ?> for_zoom">
                                            <?php
                                                $imgurl=explode(";",$row->image_url);
-                                               if($row->image_url != ';'){ ?>
-                                                      <a href="" class="catalog_group<?php echo $group_key."_".$catalogID; ?>" onclick="return false;">
-                                                          <img id="wd-cl-img<?php echo $key; ?>"src="<?php echo $imgurl[0]; ?>">
+                                               if($row->image_url != ';'){
+                                                   if($paramssld['ht_view3_allow_zooming'] == "off" && $paramssld['ht_view3_allow_lightbox'] == "on"){ ?>
+                                                      <a href="<?php echo $imgurl[0] ?>" class="catalog_group<?php echo $group_key."_".$catalogID; ?>" >
+                                                          <img id="wd-cl-img<?php echo $key; ?>" src="<?php echo $imgurl[0]; ?>" />
                                                       </a>
-                                         <?php }else{ ?>
+                                           <?php   }else{ ?>
+                                                          <a href="<?php echo $imgurl[0] ?>" class="catalog_group<?php echo $group_key."_".$catalogID; ?>"  <?php if($paramssld['ht_view3_allow_lightbox'] == "off"){ echo "onclick='return false;'"; } ?>>
+                                                              <img id="wd-cl-img<?php echo $key; ?>" src="<?php echo $imgurl[0]; ?>" />
+                                                          </a>
+                                         <?php     } ?>
+                                         <?php } else{ ?>
                                                       <a href="<?php echo $imgurl[0]; ?>"><img id="wd-cl-img<?php echo $key; ?>" src="images/noimage.png"></a>
                                           <?php } ?>
                                       </div>
@@ -4617,7 +4655,10 @@ else{
                                                   <?php
                                                       $imgurl=explode(";",$row->image_url);
                                                       array_pop($imgurl);       //      array_shift($imgurl);
-
+                                                      
+                                                      if(($paramssld['ht_view3_allow_zooming'] == "on" && $paramssld['ht_view3_allow_lightbox'] == "off") || ($paramssld['ht_view3_allow_zooming'] == "off" && $paramssld['ht_view3_allow_lightbox'] == "off")){  }
+                                                      else{ array_shift($imgurl); }
+                                                      
                                                       foreach($imgurl as $key=>$img)
                                                       { ?>
                                                             <li><a href="<?php echo $img;?>" class="catalog_group<?php echo $group_key."_".$catalogID; ?>"><img src="<?php echo $img; ?>"></a></li>
@@ -4655,7 +4696,7 @@ else{
                                          else{ $product_page_link = $row->single_product_url_type; }
                                       ?>
                                           <div class="button-block">
-                                                  <a href="<?php echo $product_page_link; ?>" <?php echo ' target="_blank"'; ?>><?php echo $paramssld3["ht_catalog_general_linkbutton_text"]; ?></a>
+                                                  <a href="<?php echo $product_page_link; ?>" <?php if($row->link_target == 'on'){echo ' target="_blank"';} ?>><?php echo $paramssld3["ht_catalog_general_linkbutton_text"]; ?></a>
                                           </div>
                                       <?php 
                                       } ?>
@@ -4744,7 +4785,7 @@ else{
             elseif($catalog[0]->pagination_type == "load_more"){ $path_site = plugins_url("/../images", __FILE__); ?>
                 <div class="catalog_load_block_<?php echo $catalogID; ?>" >
                     <div class="catalog_load_<?php echo $catalogID; ?>" >
-                        <a href="#" class="load_more_elements_<?php echo $catalogID; ?>">Load More...</a>
+                        <a href="#" class="load_more_elements_<?php echo $catalogID; ?>"><?php echo __("Load","product-catalog");?></a>
                         <img src="<?php echo $path_site; ?>/load_more_icon_<?php echo $paramssld['htc_view3_load_more_loading_icon']; ?>.gif" class="load_more_loading_icon" style="display: none"/>
                         <input type="hidden" class="load-more-elements-count" value="<?php echo $countIntoPage; ?>"/>
                     <?php
@@ -4940,19 +4981,50 @@ jQuery(function(){
            
             /*    <--   VIEW 3 ELEMENTS THUMBS CLICK    */
             
-            jQuery(".element_<?php echo $catalogID; ?> .left-block_<?php echo $catalogID; ?> .thumbs-list_<?php echo $catalogID; ?> li a img").click(function(e){
-                var lightbox_is = "<?php echo $paramssld['ht_view3_allow_lightbox']; ?>"
-                    if(lightbox_is != "on"){
+            var lightbox_is = "<?php echo $paramssld['ht_view3_allow_lightbox']; ?>";
+                if(lightbox_is != "on"){
+                    jQuery(".element_<?php echo $catalogID; ?> .left-block_<?php echo $catalogID; ?> .thumbs-list_<?php echo $catalogID; ?> li a img").click(function(e){
                         e.preventDefault();
 //                        alert(lightbox_is);
                         var new_src = jQuery(this).attr("src");    //    alert(new_src);
-                        var image = jQuery(this).closest(".element_<?php echo $catalogID; ?>").find(".main-image-block_<?php echo $catalogID; ?> a img");
-                            image.attr("src", new_src);
+                        var container = jQuery(this).closest(".element_<?php echo $catalogID; ?>");
+//                        alert(container.html());
+                        var image_block = container.find(".main-image-block_<?php echo $catalogID; ?>");
+                                                
+                        var image_block_height = image_block.height();
+                            image_block.height(image_block_height);
+                            
+                            
+                        var image = image_block.find("a img");
+                        var container_height = container.height();
+                            container.height(container_height);
+                            
+                            container.find('.zoomWrapper img').unwrap();
+                            
+                            container.find(".main-image-block_<?php echo $catalogID; ?> .zoomWrapper").each(function(){
+                                jQuery(this).find("img").unwrap();
+                            });
+                            
+                            zoom_resize();
+                        
+//                          image_block.height("auto");
+                        
+//                          container.height("auto");
+                          
+//                            zoom_resize();
+                        setTimeout(function(){
+                            image.after("<img src='" + new_src + "' style='height: " + image_block.height() + "px !important;' />")
+                            image.remove();
+                        }, 100);
+                        setTimeout(function(){
                             zoom_start();
-                    }
-            });
-            
-            
+//                            jQuery("#huge_it_catalog_container_<?php echo $catalogID; ?>").hugeitmicro( 'reloadItems' ).hugeitmicro({ sortBy: 'original-order' }).hugeitmicro( 'reLayout' );
+                        }, 100);
+                    });
+                }
+                                
+            /*           VIEW 3 ELEMENTS THUMBS CLICK    -->    */
+                                
             /*    <--    VIEW 3 LOAD MORE CLICK    */
             
             jQuery(".load_more_elements_<?php echo $catalogID; ?>").click(function(){
@@ -5261,24 +5333,28 @@ jQuery(function(){
 			<div class="slider-content-wrapper">
 				<div class="image-block_<?php echo $catalogID; ?>  ">
 					<?php 	if($row->image_url != ';'){ ?>
-					<a class="<?php if($paramssld['ht_view5_allow_lightbox'] == "on"){ echo "catalog_slider_group".$catalog_slider_group."_".$catalogID; } ?> for_zoom" href="<?php echo $imgurl[0]; ?>" >
-                                            <img class="main-image" src="<?php echo $imgurl[0]; ?>" alt="" />
-                                        </a>
-					<?php } else { ?>
-					<img class="main-image" src="images/noimage.png" alt="" />
-					<?php
-					} ?>
-
-					<?php if($paramssld["ht_view5_show_thumbs"]){ ?>
-					<div class="thumbs-block">
-                                            <ul class="thumbs-list_<?php echo $catalogID; ?>">
-						<?php
-//						array_pop($imgurl);
-                                                foreach($imgurl as $key=>$img){?>
-                                                        <li><a class="<?php if($paramssld['ht_view5_allow_lightbox'] == "on"){ echo "catalog_slider_group".$catalog_slider_group."_".$catalogID; } ?>" href="<?php echo $img; ?>"><img src="<?php echo $img; ?>"></a></li>
-                                                <?php } ?>
-                                            </ul>
+					<div class="main-image-block_<?php echo $catalogID; ?> for_zoom">
+                                            <a <?php if($paramssld['ht_view5_allow_lightbox'] == "on"){ echo "class='catalog_slider_group".$catalog_slider_group."_".$catalogID."'"; }else{ echo "onclick='return false'"; } ?> href="<?php echo $imgurl[0]; ?>" >
+                                                <img class="main-image" src="<?php echo $imgurl[0]; ?>" alt="" />
+                                            </a>
                                         </div>
+					<?php } else { ?>
+                                                <img class="main-image" src="images/noimage.png" alt="" />
+					<?php } ?>
+
+					<?php if($paramssld["ht_view5_show_thumbs"] == "on"){ ?>
+                                            <div class="thumbs-block">
+                                                <ul class="thumbs-list_<?php echo $catalogID; ?>">
+                                                    <?php
+
+                                                    if(($paramssld['ht_view5_allow_zooming'] == "on" && $paramssld['ht_view5_allow_lightbox'] == "off") || ($paramssld['ht_view5_allow_zooming'] == "off" && $paramssld['ht_view5_allow_lightbox'] == "off")){  }
+                                                    else{ array_shift($imgurl); }
+
+                                                    foreach($imgurl as $key=>$img){?>
+                                                            <li><a class="<?php if($paramssld['ht_view5_allow_lightbox'] == "on"){ echo "catalog_slider_group".$catalog_slider_group."_".$catalogID; } ?>" href="<?php echo $img; ?>"><img src="<?php echo $img; ?>"></a></li>
+                                        <?php       } ?>
+                                                </ul>
+                                            </div>
 					<?php } ?>					
 				</div>
 				<div class="right-block">
@@ -5302,7 +5378,7 @@ jQuery(function(){
                                          else{ $product_page_link = $row->single_product_url_type; }
                                          ?>
 						<div class="button-block">
-							<a class="" href="<?php echo $product_page_link; ?>"  <?php echo ' target="_blank"'; ?>><?php echo $paramssld3["ht_catalog_general_linkbutton_text"]; ?></a>
+							<a class="" href="<?php echo $product_page_link; ?>"  <?php if($row->link_target == 'on'){echo ' target="_blank"';} ?>><?php echo $paramssld3["ht_catalog_general_linkbutton_text"]; ?></a>
 						</div>
 					<?php } ?>
 				</div>
@@ -5324,18 +5400,58 @@ jQuery(function(){
          
          jQuery(document).ready(function(){
              
-            /*    <--   VIEW 3 ELEMENTS THUMBS CLICK    */
+            /*    <--   VIEW 5 ELEMENTS THUMBS CLICK    */
             
             jQuery(".slider-content-wrapper .image-block_<?php echo $catalogID; ?> .thumbs-list_<?php echo $catalogID; ?> li a img").click(function(e){
-                var lightbox_is = "<?php echo $paramssld['ht_view5_allow_lightbox']; ?>"
+                var lightbox_is = "<?php echo $paramssld['ht_view5_allow_lightbox']; ?>";
                     if(lightbox_is != "on"){
                         e.preventDefault();
-//                        alert(lightbox_is);
-                        var new_src = jQuery(this).attr("src");    //    alert(new_src);
-                        var image = jQuery(".slider-content .image-block_<?php echo $catalogID; ?> a .main-image");
+
+                        var new_src = jQuery(this).attr("src");                                                               //       alert(new_src);
+//                        var container = jQuery(this).closest(".slider-content-wrapper");
+//                        var image_block = container.find(".main-image-block_<?php echo $catalogID; ?>");                    //      alert(image_block.html());
+//                        var image = image_block.find("a img.main-image");     //      alert(image.html());
+//                            
+//                        var image_block_height = image_block.height();
+//                            
+//                            container.find('.zoomWrapper img').unwrap();
+//                            container.find(".main-image-block_<?php echo $catalogID; ?> .zoomWrapper").each(function(){
+//                                jQuery(this).find("img").unwrap();
+//                            });
+//                                                        
+//                            setTimeout(function(){
+//                                image.after("<img src='" + new_src + "' style='height: " + image_block.height() + "px !important;' class='main-image' />")
+//                                image.remove();
+//                            }, 100);
+//                            setTimeout(function(){
+//                                zoom_resize();
+//                                zoom_start();
+//                            }, 1000);
+                        var container = jQuery(this).closest(".slider-content-wrapper");
+                        var image_block = container.find(".main-image-block_<?php echo $catalogID; ?>");
+                        var image = image_block.find("a img.main-image");
+                        
+                        var image_block_height = image_block.height();
+                        
+//                        var image = jQuery(".slider-content .image-block_<?php echo $catalogID; ?> a .main-image");
+                            
+//                            image.after("<img src='" + new_src + "' style='height: " + image_block.height() + "px !important;' class='main-image' />")
+//                            image.remove();
                             image.attr("src", new_src);
-                            zoom_start();
+                            
+                            var new_img_height = image.height();
+//                            container.height(new_img_height);
+                            container.find(".zoomWrapper").height(new_img_height);
+                                
+                            zoom_resize();
+                            
+                            setTimeout(function(){
+                                jQuery(".ls-nav-left-arrow").click();
+                                jQuery(".ls-nav-right-arrow").click();
+                            }, 100);
+                            
                     }
+                        
             });
             
             
@@ -5403,7 +5519,7 @@ jQuery(function(){
         $paramssld["ht_view4_filtering_float"] = "none";
         $paramssld["ht_view5_filtering_float"] = "none";
         $paramssld["ht_view6_filtering_float"] = "none";
-        $paramssld["ht_single_product_allow_lightbox"] = "on";
+        $paramssld["ht_single_product_allow_lightbox"] = "off";
         $paramssld["ht_single_product_allow_zooming"] = "on";
         $paramssld["ht_single_product_border_width"] = "1";
         $paramssld["ht_single_product_border_color"] = "f9f9f9";
@@ -5675,18 +5791,18 @@ jQuery(function(){
         $paramssld2["ht_catalog_zoom_window_width"] = "300";
         $paramssld2["ht_catalog_zoom_window_height"] = "200";
         $paramssld2["ht_catalog_zoom_x_asis"] = "0";
-        $paramssld2["ht_catalog_zoom_y_asis"] = "205";
+        $paramssld2["ht_catalog_zoom_y_asis"] = "200";
         $paramssld2["ht_catalog_zoom_window_position"] = "16";
-        $paramssld2["ht_catalog_zoom_window_border_size"] = "2";
+        $paramssld2["ht_catalog_zoom_window_border_size"] = "0";
         $paramssld2["ht_catalog_zoom_window_border_color"] = "#000";
         $paramssld2["ht_catalog_zoom_window_lens_size"] = "200";
         $paramssld2["ht_catalog_zoom_window_fadein"] = "200";
         $paramssld2["ht_catalog_zoom_window_fadeout"] = "200";
         $paramssld2["ht_catalog_zoom_lens_fadein"] = "200";
         $paramssld2["ht_catalog_zoom_lens_fadeout"] = "200";
-        $paramssld2["false"] = "true";
+        $paramssld2["ht_catalog_zoom_lens_hide"] = "false";
         $paramssld2["ht_catalog_zoom_lens_shape"] = "square";
-        $paramssld2["ht_catalog_zoom_lens_color"] = "#fff";
+        $paramssld2["ht_catalog_zoom_lens_color"] = "fff";
         $paramssld2["ht_catalog_zoom_lens_opacity"] = "40";
         $paramssld2["ht_catalog_zoom_cursor"] = "crosshair";
         $paramssld2["ht_catalog_zoom_scrollzoom"] = "true";
@@ -5694,7 +5810,7 @@ jQuery(function(){
         $paramssld2["ht_catalog_zoom_lens_size_fix"] = "false";
         $paramssld2["ht_catalog_zoom_lens_height"] = "100";
         $paramssld2["ht_catalog_zoom_lens_width"] = "100";
-        $paramssld2["ht_catalog_zoom_tint"] = "true";
+        $paramssld2["ht_catalog_zoom_tint"] = "false";
         $paramssld2["ht_catalog_zoom_tint_colour"] = "#fff";
         $paramssld2["ht_catalog_zoom_tint_opacity"] = "40";
         $paramssld2["ht_catalog_zoom_tint_fadein"] = "200";
@@ -5705,14 +5821,14 @@ jQuery(function(){
         $paramssld2["ht_view3_allow_zooming"] = "on";
         $paramssld["ht_view0_allow_zooming"] = "off";
         $paramssld["ht_view0_allow_lightbox"] = "on";
-        $paramssld["ht_view1_allow_zooming"] = "off";
+        $paramssld["ht_view1_allow_zooming"] = "on";
         $paramssld["ht_view1_allow_lightbox"] = "on";
         $paramssld["ht_view2_allow_zooming"] = "off";
         $paramssld["ht_view2_allow_lightbox"] = "on";
         $paramssld["ht_view5_allow_zooming"] = "on";
         $paramssld["ht_view5_allow_lightbox"] = "off";
         $paramssld["ht_single_product_show_asc_seller_button"] = "on";
-        $paramssld["ht_single_product_asc_seller_button_text"] = "Contact To Seller";
+        $paramssld["ht_single_product_asc_seller_button_text"] = "Contact Seller";
         $paramssld["ht_single_product_asc_seller_button_text_size"] = "18";
         $paramssld["ht_single_product_asc_seller_button_text_color"] = "ffffff";
         $paramssld["ht_single_product_asc_seller_button_text_hover_color"] = "ffffff";
@@ -5826,6 +5942,9 @@ jQuery(function(){
 <script>
 	var allowZooming = '<?php echo $paramssld['ht_single_product_allow_zooming'];?>';
 	var allowLightbox = '<?php echo $paramssld['ht_single_product_allow_lightbox'];?>';
+        
+        var view_num = 0;
+        
 	if(allowZooming == "on"){
 		var for_zoom;
 		if("<?php echo $paramssld2['ht_catalog_zoom_thumbs_zoom']; ?>" == "on"){
@@ -6353,6 +6472,9 @@ jQuery(function(){
 .huge_it_catalog_single_product_page .right-block .share_buttons_block ul li {
 	float:left;
 	margin:0px 3px 0px 3px;
+        padding: 0;
+	background: none;
+	list-style: none;
 }
 .huge_it_catalog_single_product_page .right-block .share_buttons_block ul li.mail {margin:0px 7px 0px 0px;}
 
@@ -6542,6 +6664,7 @@ jQuery(function(){
 	float:left;
 	margin:0px 5px 0px 0px;
         list-style-type: none;
+        background: none !important;
 }
 
 .huge_it_catalog_view_tabs  > li > a,.huge_it_catalog_view_tabs  > li > a:link,.huge_it_catalog_view_tabs  > li > a:visited {
@@ -6638,6 +6761,7 @@ jQuery(function(){
 	background:url('<?php echo  plugins_url( '../images/params.bg.png', __FILE__ ); ?>') left bottom repeat-x;
         color: #<?php echo $paramssld['ht_single_product_params_values_font_color']; ?>;
         font-size: 15px;
+        white-space: nowrap;
         overflow: hidden;
         text-overflow: ellipsis;
 }
@@ -6983,7 +7107,7 @@ jQuery(function(){
 			<div class="main-image-block for_zoom">
 				<?php $imgurl=explode(";",$productArray->image_url); ?>
 				<?php 	if($productArray->image_url != ';'){ ?>
-					<a href="<?php echo $imgurl[0]; ?>" class="catalog_single_product_group_<?php echo $productArray->id; ?>"><img id="wd-cl-img<?php echo $productArray->id; ?>"src="<?php echo $imgurl[0]; ?>"></a>
+					<a href="<?php echo $imgurl[0]; ?>" <?php if($paramssld['ht_single_product_allow_lightbox'] == "on"){ echo "class='catalog_single_product_group_".$productArray->id."'"; }else{ echo "onclick='return false'"; } ?> ><img id="wd-cl-img<?php echo $productArray->id; ?>"src="<?php echo $imgurl[0]; ?>"></a>
 				<?php } else { ?>
 					  <a href="<?php echo $imgurl[0]; ?>"><img id="wd-cl-img<?php echo $key; ?>" src="images/noimage.jpg"></a>
 				<?php
@@ -7042,10 +7166,12 @@ jQuery(function(){
 					</div>
 				<?php }
 			}
+			?>
+                        <div class="rating-and-share-blocks">
+                     <?php
 			
                         if($paramssld["ht_single_product_show_rating"] == 'on')
                         {  ?>
-                        <div class="rating-and-share-blocks">
                             <div class="rating-block">
 				<span class="label"><?php echo $paramssld3["ht_single_product_rating_text"]; ?>:</span>
 				<ul class="rating-stars">
@@ -7099,8 +7225,8 @@ jQuery(function(){
                                         </li>
 				</ul>
                             </div>
-                        </div>
                   <?php } ?>
+                            </div>
                                 <?php $product_page_link = get_permalink()."&single_prod_id=$productArray->id&asc_seller"; ?>
                             
                             
@@ -7160,7 +7286,7 @@ jQuery(function(){
             <ul class="huge_it_catalog_view_tabs_contents">
                 <?php if($paramssld["ht_single_product_show_parameters"] == 'on'){ ?>
                     <li id="catalog-view-options-0_<?php echo $productArray->id; ?>" class="active" >
-                        <h4 style="display: none;" class="title_for_mobile">Parameters</h4>
+                        <h4 style="display: none;" class="title_for_mobile"><?php echo $paramssld3["ht_single_product_parameters_text"]; ?></h4>
                             <ul class="params-list">
                             <?php
 //                            var_dump($allParamsAndChildsInArray);exit;
@@ -7196,18 +7322,18 @@ jQuery(function(){
                                         }
                                     }
                                 }
-                                else { echo "<br>No Parameters"; }
+                                else { echo "<br>".__("No Parameters"); }
                             ?>
                             </ul>
                       </li>
                       <?php } ?>
                       <?php if($paramssld["ht_single_product_show_comments"] == 'on'){ ?>
                       <li id="catalog-view-options-1_<?php echo $productArray->id; ?>"  <?php if($paramssld["ht_single_product_show_parameters"] == 'off'){ echo "class='active'"; } ?>>
-                          <h4 style="display: none;" class="title_for_mobile">Comments</h4>
+                          <h4 style="display: none;" class="title_for_mobile"><?php echo __("Comments","product-catalog","product-catalog");?></h4>
                           <div class="reviews-block"><?php
                             if(!empty($reviewsArray)){
                               if($reviewsArray[0]->id == ""){
-                                      echo "<br>No Comments";
+                                      echo "<br>".__("No Comments","product-catalog");
                               }
                               else{
                                       foreach ($reviewsArray as $review) { ?>
@@ -7281,7 +7407,7 @@ jQuery(function(){
         border-color: #<?php echo $paramssld4["ht_catalog_related_products_vertical_border_color"]; ?> !important;
     }
     
-    .huge-it-related-carousel li div img.RelatedOnHoverHorizontal {
+    .huge-it-related-carousel li div.RelatedOnHoverHorizontal {
         border-color: #<?php echo $paramssld4["ht_catalog_related_products_horizontal_border_color"]; ?> !important;
     }
     
@@ -7327,7 +7453,7 @@ jQuery(function(){
     
     /* Responsive Slider Images */
     .huge-it-related-carousel.responsive img {
-        /*padding-right: 10px;*/
+        padding-right: 10px;
     }
         /*  <--  pagination block   */
         
@@ -7351,15 +7477,6 @@ jQuery(function(){
       <?php } ?>
     }
         
-    .catalog-related-item-block img{
-        <?php
-            if($paramssld4['ht_catalog_related_products_vertical'] == "false"){ ?>
-                border: <?php echo $paramssld4["ht_catalog_related_products_horizontal_border_size"]; ?>px solid transparent;
-      <?php }else{ ?>
-                border: <?php echo $paramssld4["ht_catalog_related_products_vertical_border_size"]; ?>px solid transparent;
-           <?php } ?>
-    }
-           
     .catalog-related-caption-block{
         <?php
         if($paramssld4['ht_catalog_related_products_vertical'] == "true" ){ ?>
@@ -7407,12 +7524,6 @@ jQuery(function(){
         padding: 0;
         overflow: hidden !important;
         text-overflow: ellipsis;
-        text-align: center;
-    }
-    .catalog-related-caption p:first-child{
-        margin: 0;
-        padding: 0;
-        padding-top: 5px;
     }
     
 </style>
@@ -7683,12 +7794,6 @@ function horizontal_slider_load_function(){
         jQuery(".huge-it-related-carousel li img").height(element_max_height);
         
 //        jQuery(".huge-it-related-carousel li img").css("cssText", "height: " + element_max_height +"px !important;");
-
-        jQuery(".huge-it-related-carousel li img").css("cssText", "height: " + element_max_height +"px !important;");
-        
-        var imageWidth = jQuery(".huge-it-related-carousel li img").width();
-        jQuery(".huge-it-related-carousel li .catalog-related-caption-block").width(imageWidth);
-        
         var caption_and_elem_height = element_max_height + parseInt(<?php echo $paramssld4['ht_catalog_related_products_horizontal_caption_height'] + $paramssld4['ht_catalog_related_products_horizontal_border_size']; ?>);
         jQuery(".huge-it-related-carousel li").height(caption_and_elem_height);
         jQuery(".huge-it-related-carousel").attr("huge-it-carousel-horizontal-li-width", elements_max_width);
@@ -7724,10 +7829,7 @@ function related_horizontal_container_resize(){
         jQuery(li).height(new_li_height);
         var li_minus_caption_height = new_li_height - parseInt(<?php  echo $paramssld4['ht_catalog_related_products_horizontal_caption_height'] + $paramssld4['ht_catalog_related_products_horizontal_border_size']; ?>);
         var elem_new_height = new_li_height - parseInt(<?php  echo $paramssld4['ht_catalog_related_products_horizontal_caption_height'] + $paramssld4['ht_catalog_related_products_horizontal_border_size']; ?>);
-        //        jQuery(image).height(li_minus_caption_height);
-        jQuery(image).css("cssText", "height: " + li_minus_caption_height +"px !important;");
-        jQuery('.huge-it-related-carousel li .catalog-related-caption-block').width(jQuery(image).width());
-        
+        jQuery(image).height(li_minus_caption_height);
         jQuery('.huge-it-related-carousel li .catalog-related-item-block').height(elem_new_height);
 }
 function related_vertical_container_resize(){
@@ -7819,7 +7921,7 @@ function related_carousel_ready_styles(){
         jQuery(this).find(".cycle-prev, .cycle-next").css({"opacity" : "0", "filter" : "alpha(opacity=0)"});
     });
     if(<?php echo $paramssld4['ht_catalog_related_products_vertical']; ?>  == true){
-        if( /Android|webOS|iPhone|iPad|iPod|BlackBerry|IEMobile|Opera Mini/i.test(navigator.userAgent) ){  }
+        if( /Android|webOS|iPhone|iPad|iPod|BlackBerry|IEMobile|Opera Mini/i.test(navigator.userAgent) ){}
         else{
             var arrow_width = jQuery(".huge-it-related-carousel li").width();
             jQuery(".huge-it-related-carousel .cycle-prev, .huge-it-related-carousel .cycle-next").width(arrow_width);
@@ -7837,14 +7939,38 @@ function related_carousel_ready_styles(){
     }
     else{
         jQuery(".huge-it-related-carousel li").each(function(){
-            jQuery(this).find(".catalog-related-item-block-img").css({"border" : "<?php echo $paramssld4["ht_catalog_related_products_horizontal_border_size"]; ?>px solid transparent"});
+            jQuery(this).find(".catalog-related-item-block").css({"border" : "<?php echo $paramssld4["ht_catalog_related_products_horizontal_border_size"]; ?>px solid transparent"});
         });
         jQuery(".huge-it-related-carousel li").hover(function() {
-                jQuery(this).find(".catalog-related-item-block img").addClass("RelatedOnHoverHorizontal");
+                jQuery(this).find(".catalog-related-item-block").addClass("RelatedOnHoverHorizontal");
             },function(){
-                jQuery(this).find(".catalog-related-item-block img").removeClass("RelatedOnHoverHorizontal");
+                jQuery(this).find(".catalog-related-item-block").removeClass("RelatedOnHoverHorizontal");
             });
     }
+}
+
+function product_thumbs_click(){
+            
+var lightbox_is = allowLightbox;
+    if(lightbox_is != "on"){
+        jQuery(".huge_it_catalog_container .left-block .thumbs-block .thumbs-list li a img").click(function(e){
+            e.preventDefault();
+//                        alert(lightbox_is);
+            var new_src = jQuery(this).attr("src");    //    alert(new_src);
+            var container = jQuery(this).closest(".huge_it_catalog_container");
+            var image_block = container.find(".left-block .main-image-block");
+            var image = image_block.find("a img");
+
+                image.attr("src", new_src);
+
+                var new_img_height = image.height();
+//                            container.height(new_img_height);
+                container.find(".zoomWrapper").height(new_img_height);
+
+                zoom_resize();
+        });
+    }
+                                
 }
 
         // bind filter on select change
@@ -7868,6 +7994,8 @@ jQuery(document).ready(function($) {
 //        }
 //        return false;
 //    });
+
+    product_thumbs_click();
 });
   
 jQuery(document).ready(function () {
@@ -8307,13 +8435,15 @@ function album_front_end($paramssld, $paramssld3, $catalogsFromAlbumArray)
         $paramssld["ht_catalog_view5_price_font_color"] = "0074a2";
         $paramssld["ht_catalog_view5_market_price_font_size"] = "15";
         $paramssld["ht_catalog_view5_market_price_font_color"] = "000000";
+        
+        
         $paramssld["ht_catalog_zoom_window_type"] = "window";
         $paramssld["ht_catalog_zoom_window_width"] = "300";
         $paramssld["ht_catalog_zoom_window_height"] = "200";
         $paramssld["ht_catalog_zoom_x_asis"] = "0";
-        $paramssld["ht_catalog_zoom_y_asis"] = "205";
+        $paramssld["ht_catalog_zoom_y_asis"] = "200";
         $paramssld["ht_catalog_zoom_window_position"] = "16";
-        $paramssld["ht_catalog_zoom_window_border_size"] = "2";
+        $paramssld["ht_catalog_zoom_window_border_size"] = "0";
         $paramssld["ht_catalog_zoom_window_border_color"] = "#000";
         $paramssld["ht_catalog_zoom_window_lens_size"] = "200";
         $paramssld["ht_catalog_zoom_window_fadein"] = "200";
@@ -8322,7 +8452,7 @@ function album_front_end($paramssld, $paramssld3, $catalogsFromAlbumArray)
         $paramssld["ht_catalog_zoom_lens_fadeout"] = "200";
         $paramssld["ht_catalog_zoom_lens_hide"] = "false";
         $paramssld["ht_catalog_zoom_lens_shape"] = "square";
-        $paramssld["ht_catalog_zoom_lens_color"] = "#fff";
+        $paramssld["ht_catalog_zoom_lens_color"] = "fff";
         $paramssld["ht_catalog_zoom_lens_opacity"] = "40";
         $paramssld["ht_catalog_zoom_cursor"] = "crosshair";
         $paramssld["ht_catalog_zoom_scrollzoom"] = "true";
@@ -8330,14 +8460,16 @@ function album_front_end($paramssld, $paramssld3, $catalogsFromAlbumArray)
         $paramssld["ht_catalog_zoom_lens_size_fix"] = "false";
         $paramssld["ht_catalog_zoom_lens_height"] = "100";
         $paramssld["ht_catalog_zoom_lens_width"] = "100";
-        $paramssld["ht_catalog_zoom_tint"] = "true";
+        $paramssld["ht_catalog_zoom_tint"] = "false";
         $paramssld["ht_catalog_zoom_tint_colour"] = "#fff";
         $paramssld["ht_catalog_zoom_tint_opacity"] = "40";
         $paramssld["ht_catalog_zoom_tint_fadein"] = "200";
         $paramssld["ht_catalog_zoom_tint_fadeout"] = "200";
-        $paramssld["ht_view3_allow_lightbox"] = "off";
+        $paramssld['ht_catalog_zoom_lens_hide'] = "false";
+        $paramssld["ht_view3_allow_lightbox"] = "on";
         $paramssld["ht_catalog_zoom_thumbs_zoom"] = "off";
         $paramssld["ht_view3_allow_zooming"] = "on";
+        
 
         $paramssld["ht_view0_sorting_float"] = "none";
         $paramssld["ht_view1_sorting_float"] = "none";
@@ -8356,7 +8488,7 @@ function album_front_end($paramssld, $paramssld3, $catalogsFromAlbumArray)
         $paramssld["ht_view6_filtering_float"] = "none";
         $paramssld["ht_view0_allow_zooming"] = "off";
         $paramssld["ht_view0_allow_lightbox"] = "on";
-        $paramssld["ht_view1_allow_zooming"] = "off";
+        $paramssld["ht_view1_allow_zooming"] = "on";
         $paramssld["ht_view1_allow_lightbox"] = "on";
         $paramssld["ht_view2_allow_zooming"] = "off";
         $paramssld["ht_view2_allow_lightbox"] = "on";
@@ -8418,45 +8550,46 @@ function album_front_end($paramssld, $paramssld3, $catalogsFromAlbumArray)
         var allowZooming = '<?php echo $paramssld['ht_view3_allow_zooming'];?>';
         var allowLightbox = '<?php echo $paramssld['ht_view3_allow_lightbox'];?>';
         if(allowZooming == "on"){
-            var for_zoom;
-            if("<?php echo $paramssld['ht_catalog_zoom_thumbs_zoom']; ?>" == "on"){
-                for_zoom = ".for_zoom img, .thumbs-block img";
-            }
-            else if("<?php echo $paramssld['ht_catalog_zoom_thumbs_zoom']; ?>" == "off"){
-                for_zoom = ".for_zoom img";
-            }
+		var for_zoom;
+		if("<?php echo $paramssld['ht_catalog_zoom_thumbs_zoom']; ?>" == "on"){
+			for_zoom = ".for_zoom img, .thumbs-block img";
+		}
+		else if("<?php echo $paramssld['ht_catalog_zoom_thumbs_zoom']; ?>" == "off"){
+			for_zoom = ".for_zoom img";
+		}
 //            var catalogThumbsZoom = "<?php echo $paramssld['ht_catalog_zoom_thumbs_zoom'];?>";
-            var catalogZoomType = "<?php echo $paramssld['ht_catalog_zoom_window_type'];?>";
-            var catalogWindowWidth = <?php echo $paramssld['ht_catalog_zoom_window_width'];?>;
-            var catalogWindowHeight = <?php echo $paramssld['ht_catalog_zoom_window_height'];?>;
-            var catalogWindowOffetx = <?php echo $paramssld['ht_catalog_zoom_x_asis'];?>;
-            var catalogWindowOffety = <?php echo $paramssld['ht_catalog_zoom_y_asis'];?>;
-            var catalogWindowPosition = <?php echo $paramssld['ht_catalog_zoom_window_position'];?>;
-            var catalogBorderSize = <?php echo $paramssld['ht_catalog_zoom_window_border_size'];?>;
-            var catalogBorderColour = "<?php echo $paramssld['ht_catalog_zoom_window_border_color'];?>";
-            var catalogWindowFadeIn = <?php echo $paramssld['ht_catalog_zoom_window_fadein'];?>;
-            var catalogWindowFadeOut = <?php echo $paramssld['ht_catalog_zoom_window_fadeout'];?>;
-            var catalogLensSize = <?php echo $paramssld['ht_catalog_zoom_window_lens_size'];?>;
+		var catalogZoomType = "<?php echo $paramssld['ht_catalog_zoom_window_type'];?>";
+		var catalogWindowWidth = <?php echo $paramssld['ht_catalog_zoom_window_width'];?>;
+		var catalogWindowHeight = <?php echo $paramssld['ht_catalog_zoom_window_height'];?>;
+		var catalogWindowOffetx = <?php echo $paramssld['ht_catalog_zoom_x_asis'];?>;
+		var catalogWindowOffety = <?php echo $paramssld['ht_catalog_zoom_y_asis'];?>;
+		var catalogWindowPosition = <?php echo $paramssld['ht_catalog_zoom_window_position'];?>;
+		var catalogBorderSize = <?php echo $paramssld['ht_catalog_zoom_window_border_size'];?>;
+		var catalogBorderColour = "<?php echo $paramssld['ht_catalog_zoom_window_border_color'];?>";
+		var catalogWindowFadeIn = <?php echo $paramssld['ht_catalog_zoom_window_fadein'];?>;
+		var catalogWindowFadeOut = <?php echo $paramssld['ht_catalog_zoom_window_fadeout'];?>;
+		var catalogLensSize = <?php echo $paramssld['ht_catalog_zoom_window_lens_size'];?>;
 
-            var catalogLensFadeIn = <?php echo $paramssld['ht_catalog_zoom_lens_fadein'];?>;
-            var catalogLensFadeOut = <?php echo $paramssld['ht_catalog_zoom_lens_fadeout'];?>;
-            var catalogZoomLens = <?php echo $paramssld['ht_catalog_zoom_lens_hide'];?>;
-            var catalogLensShape = "<?php echo $paramssld['ht_catalog_zoom_lens_shape'];?>";
-            var catalogLensColour = "<?php echo $paramssld['ht_catalog_zoom_lens_color'];?>";
-            var catalogLensOpacity = <?php echo $paramssld['ht_catalog_zoom_lens_opacity'];?>/100;
-            var catalogCursor = "<?php echo $paramssld['ht_catalog_zoom_cursor'];?>";
-            
-            var catalogScrollZoom = <?php echo $paramssld['ht_catalog_zoom_scrollzoom'];?>;
-            
-            var catalogEasing = <?php echo $paramssld['ht_catalog_zoom_easing'];?>;
-            var catalogTint = "<?php echo $paramssld['ht_catalog_zoom_tint'];?>";
-            var catalogTintColour = "<?php echo $paramssld['ht_catalog_zoom_tint_colour'];?>";
-            var catalogTintOpacity = <?php echo $paramssld['ht_catalog_zoom_tint_opacity'];?>/100;
-            var catalogZoomTintFadeIn = <?php echo $paramssld['ht_catalog_zoom_tint_fadein'];?>;
-            var catalogZoomTintFadeOut = <?php echo $paramssld['ht_catalog_zoom_tint_fadeout'];?>;
+		var catalogLensFadeIn = <?php echo $paramssld['ht_catalog_zoom_lens_fadein'];?>;
+		var catalogLensFadeOut = <?php echo $paramssld['ht_catalog_zoom_lens_fadeout'];?>;
+		var catalogZoomLens = <?php echo $paramssld['ht_catalog_zoom_lens_hide'];?>;
+		var catalogLensShape = "<?php echo $paramssld['ht_catalog_zoom_lens_shape'];?>";
+		var catalogLensColour = "<?php echo $paramssld['ht_catalog_zoom_lens_color'];?>";
+		var catalogLensOpacity = <?php echo $paramssld['ht_catalog_zoom_lens_opacity'];?>/100;
+		var catalogCursor = "<?php echo $paramssld['ht_catalog_zoom_cursor'];?>";
+                if(catalogZoomType != "inner") { var catalogScrollZoom = <?php echo $paramssld['ht_catalog_zoom_scrollzoom'];?>; }
+                else{ var catalogScrollZoom = false; }
+                                                          
+		var catalogEasing = <?php echo $paramssld['ht_catalog_zoom_easing'];?>;
 
-            var catalogGallery = null;
-            }
+		var catalogTint = <?php echo $paramssld['ht_catalog_zoom_tint'];?>;
+		var catalogTintColour = "<?php echo $paramssld['ht_catalog_zoom_tint_colour'];?>";
+		var catalogTintOpacity = <?php echo $paramssld['ht_catalog_zoom_tint_opacity'];?>/100;
+		var catalogZoomTintFadeIn = <?php echo $paramssld['ht_catalog_zoom_tint_fadein'];?>;
+		var catalogZoomTintFadeOut = <?php echo $paramssld['ht_catalog_zoom_tint_fadeout'];?>;
+
+		var catalogGallery = null;
+	}
         if(allowLightbox == "on"){
             var lightbox_transition = '<?php echo $paramssld['light_box_transition'];?>';
             var lightbox_speed = <?php echo $paramssld['light_box_speed'];?>;

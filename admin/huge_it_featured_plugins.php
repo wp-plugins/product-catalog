@@ -145,11 +145,11 @@
 	<div class="right-block">
 		<div class="title-block"><h3>Wordpress Slider</h3></div>
 		<div class="description-block">
-			<p>Huge-IT slider is an awesome WordPress slider plugin with a lot of nice features. Just install and build sliders in a few minutes.</p>
-			<p>Huge-IT Slider is a quick and easy way to add custom sliders to the WordPress websites (both to templates and posts/pages). The slider allows having unlimited amount of images with their titles and descriptions.</p>
+			<p><?php echo __("Huge-IT slider is an awesome WordPress slider plugin with a lot of nice features. Just install and build sliders in a few minutes.","product-catalog");?></p>
+			<p><?php echo __("Huge-IT Slider is a quick and easy way to add custom sliders to the WordPress websites (both to templates and posts/pages). The slider allows having unlimited amount of images with their titles and descriptions.","product-catalog");?></p>
 		</div>			  				
 		<div class="button-block">
-			<a href="http://huge-it.com/slider/" target="_blank">View Plugin</a>
+			<a href="http://huge-it.com/slider/" target="_blank"><?php echo __("View Plugin","product-catalog");?></a>
 		</div>
 	</div>
 </div>
@@ -162,10 +162,10 @@
 	<div class="right-block">
 		<div class="title-block"><h3>Wordpress Portfolio/Gallery</h3></div>
 		<div class="description-block">
-			<p>Portfolio Gallery is perfect for using for creating various portfolios or gallery within various views. The product allows adding descriptions and titles for each portfolio gallery. It is rather useful whever using with various pages and posts, as well as within custom location.</p>
+			<p><?php echo __("Portfolio Gallery is perfect for using for creating various portfolios or gallery within various views. The product allows adding descriptions and titles for each portfolio gallery. It is rather useful whever using with various pages and posts, as well as within custom location.","product-catalog");?></p>
 		</div>			  				
 		<div class="button-block">
-			<a href="http://huge-it.com/portfolio-gallery/" target="_blank">View Plugin</a>
+			<a href="http://huge-it.com/portfolio-gallery/" target="_blank"><?php echo __("View Plugin","product-catalog");?></a>
 		</div>
 	</div>
 </div>
@@ -178,10 +178,10 @@
 	<div class="right-block">
 		<div class="title-block"><h3>Wordpress Image Gallery</h3></div>
 		<div class="description-block">
-			<p>Huge-IT Gallery images is perfect for using for creating various galleries within various views, to creating various sliders with plenty of styles, beautiful lightboxes with it’s options for any taste. The product allows adding descriptions and titles for each image of the Gallery. It is rather useful wherever using with various pages and posts, as well as within custom location.</p>
+			<p><?php echo __("Huge-IT Gallery images is perfect for using for creating various galleries within various views, to creating various sliders with plenty of styles, beautiful lightboxes with it’s options for any taste. The product allows adding descriptions and titles for each image of the Gallery. It is rather useful wherever using with various pages and posts, as well as within custom location.","product-catalog");?></p>
 		</div>			  				
 		<div class="button-block">
-			<a href="http://huge-it.com/wordpress-gallery/" target="_blank">View Plugin</a>
+			<a href="http://huge-it.com/wordpress-gallery/" target="_blank"><?php echo __("View Plugin","product-catalog");?></a>
 		</div>
 	</div>
 </div>
@@ -194,10 +194,10 @@
 	<div class="right-block">
 		<div class="title-block"><h3>Wordpress Lightbox</h3></div>
 		<div class="description-block">
-			<p>Lightbox is a perfect tool for viewing photos. It is created especially for simplification of using, permits you to view larger version of images and giving an interesting design. With the help of slideshow and various styles, betray a unique image to your website.</p>
+			<p><?php echo __("Lightbox is a perfect tool for viewing photos. It is created especially for simplification of using, permits you to view larger version of images and giving an interesting design. With the help of slideshow and various styles, betray a unique image to your website.","product-catalog");?></p>
 		</div>			  				
 		<div class="button-block">
-			<a href="http://huge-it.com/lightbox/" target="_blank">View Plugin</a>
+			<a href="http://huge-it.com/lightbox/" target="_blank"><?php echo __("View Plugin","product-catalog");?></a>
 		</div>
 	</div>
 </div>
@@ -210,10 +210,10 @@
 	<div class="right-block">
 		<div class="title-block"><h3>Wordpress Video Gallery</h3></div>
 		<div class="description-block">
-			<p>Video Gallery plugin was created and specifically designed to show your video files in unusual splendid ways. It has 5 good-looking views. Each are made in different taste so that you can choose any of them, according to the style of your website.</p>
+			<p><?php echo __("Video Gallery plugin was created and specifically designed to show your video files in unusual splendid ways. It has 5 good-looking views. Each are made in different taste so that you can choose any of them, according to the style of your website.","product-catalog");?></p>
 		</div>			  				
 		<div class="button-block">
-			<a href="http://huge-it.com/video-gallery/" target="_blank">View Plugin</a>
+			<a href="http://huge-it.com/video-gallery/" target="_blank"><?php echo __("View Plugin","product-catalog");?></a>
 		</div>
 	</div>
 </div>
@@ -225,11 +225,11 @@
 	</div>
 	<div class="right-block">
 		<div class="title-block"><h3>Wordpress Share Buttons</h3></div>
-			<p>Social network is one of the popular places where people get information about everything in the world. Adding social share buttons into your blog or website page is very necessary and useful element for "socialization" of the project.</p>
+			<p><?php echo __('Social network is one of the popular places where people get information about everything in the world. Adding social share buttons into your blog or website page is very necessary and useful element for "socialization" of the project.');?></p>
 		<div class="description-block">
 		</div>			  				
 		<div class="button-block">
-			<a href="http://huge-it.com/share-buttons/" target="_blank">View Plugin</a>
+			<a href="http://huge-it.com/share-buttons/" target="_blank"><?php echo __("View Plugin","product-catalog");?></a>
 		</div>
 	</div>
 </div>
@@ -241,11 +241,11 @@
 	</div>
 	<div class="right-block">
 		<div class="title-block"><h3>Wordpress Google Map</h3></div>
-			<p>Huge-IT Google Map. One more perfect tool from Huge-IT. Improved Google Map, where we have our special contribution. Most simple and effective tool for rapid creation of individual Google Map in posts and pages.</p>
+			<p><?php echo __("Huge-IT Google Map. One more perfect tool from Huge-IT. Improved Google Map, where we have our special contribution. Most simple and effective tool for rapid creation of individual Google Map in posts and pages.","product-catalog");?></p>
 		<div class="description-block">
 		</div>			  				
 		<div class="button-block">
-			<a href="http://huge-it.com/google-map/" target="_blank">View Plugin</a>
+			<a href="http://huge-it.com/google-map/" target="_blank"><?php echo __("View Plugin","product-catalog");?></a>
 		</div>
 	</div>
 </div>
@@ -257,11 +257,11 @@
 	</div>
 	<div class="right-block">
 		<div class="title-block"><h3>Wordpress Colorbox</h3></div>
-			<p>Huge-It Colorbox is the most spellbinding plugin in WordPress that implement Lightbox-effect look of the images and videos (when you click on the thumbnail of the image/video it nicely opens and increases in the same window with a beautiful effect).</p>
+			<p><?php echo __("Huge-It Colorbox is the most spellbinding plugin in WordPress that implement Lightbox-effect look of the images and videos (when you click on the thumbnail of the image/video it nicely opens and increases in the same window with a beautiful effect).","product-catalog");?></p>
 		<div class="description-block">
 		</div>			  				
 		<div class="button-block">
-			<a href="http://huge-it.com/colorbox/" target="_blank">View Plugin</a>
+			<a href="http://huge-it.com/colorbox/" target="_blank"><?php echo __("View Plugin","product-catalog");?></a>
 		</div>
 	</div>
 </div>
@@ -273,11 +273,11 @@
 	</div>
 	<div class="right-block">
 		<div class="title-block"><h3>Wordpress Video Player</h3></div>
-			<p>Inserting video on a page is a perfect way to supplement website with media content and expand the userвЂ™s interest in your site. Huge-IT Video Player is extremely necessary video tool for your sites, which provides a wide range of different file formats.</p>
+			<p><?php echo __("Inserting video on a page is a perfect way to supplement website with media content and expand the userвЂ™s interest in your site. Huge-IT Video Player is extremely necessary video tool for your sites, which provides a wide range of different file formats.","product-catalog");?></p>
 		<div class="description-block">
 		</div>			  				
 		<div class="button-block">
-			<a href="http://huge-it.com/video-player/" target="_blank">View Plugin</a>
+			<a href="http://huge-it.com/video-player/" target="_blank"><?php echo __("View Plugin","product-catalog");?></a>
 		</div>
 	</div>
 

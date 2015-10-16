@@ -1,10 +1,10 @@
 <?php
 if (function_exists('current_user_can'))
     if (!current_user_can('manage_options')) {
-        die('Access Denied');
+        die(__('Access Denied',"product-catalog"));
     }
 if (!function_exists('current_user_can')) {
-    die('Access Denied');
+    die(__('Access Denied',"product-catalog"));
 }
 
 function html_show_submitions($submitionsArray, $submitionsCount) { $keyForBackground = 1;  //   var_dump($submitionsArray); var_dump($submitionsCount->all_count); ?>
@@ -24,13 +24,13 @@ else{ $visible_submitions = "1-50"; } ?>
 <div class="wrap">
      <?php $path_site2 = plugins_url("../images/", __FILE__); ?>
     <div style="float: left;">
-        <div><a href="http://huge-it.com/wordpress-plugins-product-catalog-user-manual/" target="_blank">User Manual</a></div>
-        <div>This section allows you to configure the Product Catalog options. <a href="http://huge-it.com/wordpress-plugins-product-catalog-user-manual/" target="_blank">More...</a></div>
+        <div><a href="http://huge-it.com/wordpress-plugins-product-catalog-user-manual/" target="_blank"><?php echo __("User Manual","product-catalog");?></a></div>
+        <div><?php echo __("This section allows you to configure the Product Catalog options.","product-catalog");?> <a href="http://huge-it.com/wordpress-plugins-product-catalog-user-manual/" target="_blank"><?php echo __("More...","product-catalog");?></a></div>
     </div>
     <div style="float: right;">
             <a class="header-logo-text" href="http://huge-it.com/product-catalog/" target="_blank">
                     <div><img width="250px" src="<?php echo $path_site2; ?>/huge-it1.png" /></div>
-                    <div>Get the full version</div>
+                    <div><?php echo __("Get the full version","product-catalog");?></div>
             </a>
     </div>
     <div style="clear:both;"></div>
@@ -47,23 +47,23 @@ else{ $visible_submitions = "1-50"; } ?>
                         <li class="select">
                                 <input type="checkbox" name="all" />
                                 <select class="">
-                                        <option value="none">None</option>
+                                        <option value="none"><?php echo __("None","product-catalog");?></option>
                                         <!--<option value="all">All</option>-->
-                                        <option value="read">Read</option>
-                                        <option value="unread">Unread</option>
+                                        <option value="read"><?php echo __("Read","product-catalog");?></option>
+                                        <option value="unread"><?php echo __("Unread","product-catalog");?></option>
 
                                 </select>
                         </li>
-                        <li class="spam"><a href="#" title="Mark as spam">Spam</a></li>
-                        <li class="trash"><a href="#">Trash</a></li>
-                        <li class="refrash"><a href="#" onclick="window.location.reload();" >Refrash</a></li>
+                        <li class="spam"><a href="#" title="Mark as spam"><?php echo __("Spam","product-catalog");?></a></li>
+                        <li class="trash"><a href="#"><?php echo __("Trash","product-catalog");?></a></li>
+                        <li class="refrash"><a href="#" onclick="window.location.reload();" ><?php echo __("Refrash","product-catalog");?></a></li>
                 </ul>
                 <div class="page-navigation">
                         <span class="count"><?php if($submitionsCount[0]->all_count < 51 ){ echo "1-".$submitionsCount[0]->all_count." From ".$submitionsCount[0]->all_count; } else { echo $visible_submitions." From ".$submitionsCount[0]->all_count; } ?></span>
                         <div class="buttons">
                             <form action="admin.php?page=huge_it_catalog_submitions_page" method="POST">
-                                <a href="#prev" class="prev" value="-1" >Prev</a>
-                                <a href="#next" class="next" value="1" >Next</a>
+                                <a href="#prev" class="prev" value="-1" ><?php echo __("Prev","product-catalog");?></a>
+                                <a href="#next" class="next" value="1" ><?php echo __("Next","product-catalog");?></a>
                                 <input type="hidden" name="page_number" class="page_number" value="<?php if(isset($_POST["page_number"])) echo $_POST["page_number"];else echo 1; ?>" />
                             </form>
                         </div>
@@ -73,11 +73,11 @@ else{ $visible_submitions = "1-50"; } ?>
                 <thead>
                      <tr>
                         <th scope="col" id="id" style="width:5%" ><span></span><span class="sorting-indicator"></span></th>
-                        <th scope="col" id="name" style="width:24%" ><span>Customer Name</span><span class="sorting-indicator"></span></th>
-                        <th scope="col" id="name" style="width:24%" ><span>Customer Message</span><span class="sorting-indicator"></span></th>
-                        <th scope="col" id="prod_count"  style="width:24%;" ><span>Customer Email</span><span class="sorting-indicator"></span></th>
-                        <th scope="col" id="prod_count"  style="width:24%;" ><span>Customer Phone</span><span class="sorting-indicator"></span></th>
-                        <th style="width:15%" class="manage-column column-date sorted asc"><a href=""><span>Product Name</span></a></th>
+                        <th scope="col" id="name" style="width:24%" ><span><?php echo __("Customer Name","product-catalog");?></span><span class="sorting-indicator"></span></th>
+                        <th scope="col" id="name" style="width:24%" ><span><?php echo __("None","product-catalog");?></span><span class="sorting-indicator"></span></th>
+                        <th scope="col" id="prod_count"  style="width:24%;" ><span><?php echo __("Customer Email","product-catalog");?></span><span class="sorting-indicator"></span></th>
+                        <th scope="col" id="prod_count"  style="width:24%;" ><span><?php echo __("Customer Phone","product-catalog");?></span><span class="sorting-indicator"></span></th>
+                        <th style="width:15%" class="manage-column column-date sorted asc"><a href=""><span><?php echo __("Product Name","product-catalog");?></span></a></th>
                      </tr>
                 </thead>
 <!--				<tbody>
@@ -87,12 +87,12 @@ else{ $visible_submitions = "1-50"; } ?>
 <?php foreach ($submitionsArray as $submition) { ?>
     <tr id="comment-<?php echo $submition->id; ?>" class="comment even thread-even <?php if($submition->read_or_not == 1){ echo "read"; } else { echo "unread"; } ?> depth-<?php echo $keyForBackground; if($keyForBackground%2 == 0) echo " alt"; ?> ">
         <th scope="row" class="check-column">
-            <label class="screen-reader-text" for="cb-select-<?php echo $submition->id; ?>">Select Submission</label>
+            <label class="screen-reader-text" for="cb-select-<?php echo $submition->id; ?>"><?php echo __("Select Submission","product-catalog");?></label>
             <input id="cb-select-<?php echo $keyForBackground; ?>" type="checkbox" name="check_comments" value="<?php echo $submition->id; ?>">
         </th>
         <td class="author column-author user-name">
             <input value="<?php echo $submition->user_name; ?>" id_for_edit="<?php echo $submition->id; ?>" readonly="readonly" />
-            <p class='spamer' <?php  if($submition->spam != 1) echo "style= 'display: none'"; ?>>Spam</p>
+            <p class='spamer' <?php  if($submition->spam != 1) echo "style= 'display: none'"; ?>><?php echo __("None","product-catalog");?>Spam</p>
         </td>
         <td class="comment column-comment">
             <div class="comment-author">
@@ -101,7 +101,7 @@ else{ $visible_submitions = "1-50"; } ?>
                 </strong>
                 <a href="#"></a>
             </div>
-            <div class="submitted-on">Submitted on <a><?php echo "  ".$submition->date; ?></a></div>
+            <div class="submitted-on"><?php echo __("Submitted on","product-catalog");?> <a><?php echo "  ".$submition->date; ?></a></div>
                 <div class="submition_message" id_for_edit="<?php echo $submition->id; ?>" readonly >
                     <?php
                       echo $submition->user_massage;
@@ -114,15 +114,15 @@ else{ $visible_submitions = "1-50"; } ?>
             <div class="comment_status">1</div>
             </div>
             <div class="row-actions">
-                <span class="edit" value="<?php echo $submition->id; ?>">  | <a href="admin.php?page=huge_it_catalog_submitions_page&id=<?php echo $submition->id; ?>&task=show_message">Edit</a></span>
+                <span class="edit" value="<?php echo $submition->id; ?>">  | <a href="admin.php?page=huge_it_catalog_submitions_page&id=<?php echo $submition->id; ?>&task=show_message"><?php echo __("Edit","product-catalog");?></a></span>
                 <span class="spam" value="<?php echo $submition->id; ?>" style='<?php  if($submition->spam == 1) { echo "display: none"; } ?>'>  | 
-                    <a class="vim-s vim-destructive" title="Mark this comment as spam">Spam</a>
+                    <a class="vim-s vim-destructive" title="Mark this comment as spam"><?php echo __("Spam","product-catalog");?></a>
                 </span>
                 <span class="not_spam" value="<?php echo $submition->id; ?>" style='<?php  if($submition->spam != 1) { echo "display: none"; } ?>'>  | 
-                    <a class="vim-s vim-destructive" title="Reove this comment From spam">Not Spam</a>
+                    <a class="vim-s vim-destructive" title="Reove this comment From spam"><?php echo __("Not Spam","product-catalog");?></a>
                 </span>
                 <span class="trash" value="<?php echo $submition->id; ?>"> | 
-                    <a class="delete vim-d vim-destructive" title="Move this comment to the trash">Trash</a>
+                    <a class="delete vim-d vim-destructive" title="Move this comment to the trash"><?php echo __("Trash","product-catalog");?></a>
                 </span>
             </div>
         </td>
@@ -209,13 +209,13 @@ function html_huge_it_catalog_show_message($messageInArray, $submitionsCount){  
 <div class="wrap">
     <div id="poststuff">
         <div id="hugeit_messages_page">
-            <h2>Customer Ascing You About <i>"<?php echo $messageInArray[0]->product_name; ?>"</i></h2>
+            <h2><?php echo __("Customer Ascing You About","product-catalog");?> <i>"<?php echo $messageInArray[0]->product_name; ?>"</i></h2>
             <!--<form method="post"  onkeypress="doNothing()" action="admin.php?page=hugeit_contacts_huge_it_contact" id="admin_form" name="admin_form">-->
             <div id="hugeit_top_controls">
                 <ul class="controls-list" style="overflow: hidden;margin: 3px 0;">
-                        <li class="back"><a href="admin.php?page=huge_it_catalog_submitions_page" title="Mark as spam">Spam</a></li>
-                        <li class="spam" value="<?php echo $messageInArray[0]->id; ?>" need_to_reload="yes" ><a href="#" title="Mark as spam">Spam</a></li>
-                        <li class="trash" value="<?php echo $messageInArray[0]->id; ?>" need_to_reload="yes" ><a href="#">Trash</a></li>
+                        <li class="back"><a href="admin.php?page=huge_it_catalog_submitions_page" title="Mark as spam"><?php echo __("Spam","product-catalog");?></a></li>
+                        <li class="spam" value="<?php echo $messageInArray[0]->id; ?>" need_to_reload="yes" ><a href="#" title="Mark as spam"><?php echo __("Spam","product-catalog");?></a></li>
+                        <li class="trash" value="<?php echo $messageInArray[0]->id; ?>" need_to_reload="yes" ><a href="#"><?php echo __("Trash","product-catalog");?></a></li>
                 </ul>
                 <div class="page-navigation">
                         <span class="count"><?php echo "Submition ". $myNum . " Of " . $max_count; ?></span>
@@ -224,11 +224,11 @@ function html_huge_it_catalog_show_message($messageInArray, $submitionsCount){  
 //                                var_dump($previous_page_url)." ";
 //                                var_dump($next_page_url)." ";
                                     if($myNum > 1){
-                                        echo "<a href='".$previous_page_url."' class='prev_message' >Prev</a>";
+                                        echo "<a href='".$previous_page_url."' class='prev_message' >".__('Prev')."</a>";
                                     }
 //                                  
                                     if($myNum < $max_count){
-                                        echo "<a href='".$next_page_url."' class='next_message' >Next</a>";
+                                        echo "<a href='".$next_page_url."' class='next_message' >".__('Next')."</a>";
                                     }
                                 ?>
                         </div>
@@ -741,5 +741,5 @@ jQuery( document ).ready(function(){
     
 </script>
 <div id="huge-catalog-dialog-confirm" title="Delete Submition(s) ?" style="display: none;">
-  Are You Sure ?
+  ՙ<?php echo __("Are You Sure ?","product-catalog");?>
 </div>

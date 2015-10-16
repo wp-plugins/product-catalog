@@ -1,10 +1,10 @@
 <?php	
 if(function_exists('current_user_can'))
 if(!current_user_can('delete_pages')) {
-die('Access Denied');
+die(__("Access Denied","product-catalog"));
 }	
 if(!function_exists('current_user_can')){
-	die('Access Denied');
+	die(__("Access Denied","product-catalog"));
 }
 
 function html_showcatalogs( $rows,  $pageNav,$sort,$cat_row){
@@ -50,33 +50,33 @@ function html_showcatalogs( $rows,  $pageNav,$sort,$cat_row){
 <div class="wrap">
     <?php $path_site2 = plugins_url("../images", __FILE__); ?>
         <div style="float: left;">
-            <div><a href="http://huge-it.com/wordpress-plugins-product-catalog-user-manual/" target="_blank">User Manual</a></div>
-            <div>This section allows you to configure the Product Catalog options. <a href="http://huge-it.com/wordpress-plugins-product-catalog-user-manual/" target="_blank">More...</a></div>
+            <div><a href="http://huge-it.com/wordpress-plugins-product-catalog-user-manual/" target="_blank"><?php echo __("User Manual","product-catalog");?></a></div>
+            <div><?php echo __("This section allows you to configure the Product Catalog options.","product-catalog");?> <a href="http://huge-it.com/wordpress-plugins-product-catalog-user-manual/" target="_blank"><?php echo __("More...","product-catalog");?></a></div>
         </div>
         <div style="float: right;">
                 <a class="header-logo-text" href="http://huge-it.com/product-catalog/" target="_blank">
                         <div><img width="250px" src="<?php echo $path_site2; ?>/huge-it1.png" /></div>
-                        <div>Get the full version</div>
+                        <div><?php echo __("Get the full version","product-catalog");?></div>
                 </a>
         </div>
         <div style="clear:both;"></div>
 	<div id="poststuff">
 		<div id="catalogs-list-page">
 			<form method="post"  onkeypress="doNothing()" action="admin.php?page=catalogs_huge_it_catalog" id="admin_form" name="admin_form">
-			<h2>Huge-IT Catalogs
-				<a onclick="window.location.href='admin.php?page=catalogs_huge_it_catalog&task=add_cat'" class="add-new-h2" >Add New Catalog</a>
+			<h2><?php echo __("Huge-IT Catalogs","product-catalog");?>
+				<a onclick="window.location.href='admin.php?page=catalogs_huge_it_catalog&task=add_cat'" class="add-new-h2" ><?php echo __("Add New Catalog","product-catalog");?></a>
 			</h2>
 			<?php
 			$serch_value='';
 			if(isset($_POST['serch_or_not'])) {if($_POST['serch_or_not']=="search"){ $serch_value=esc_html(stripslashes($_POST['search_events_by_title'])); }else{$serch_value="";}} 
 			$serch_fields='<div class="alignleft actions"">
-				<label for="search_events_by_title" style="font-size:14px">Filter: </label>
+				<label for="search_events_by_title" style="font-size:14px">'.__("Filter","product-catalog").': </label>
 					<input type="text" name="search_events_by_title" value="'.$serch_value.'" id="search_events_by_title" onchange="clear_serch_texts()">
 			</div>
 			<div class="alignleft actions">
 				<input type="button" value="Search" onclick="document.getElementById(\'page_number\').value=\'1\'; document.getElementById(\'serch_or_not\').value=\'search\';
 				 document.getElementById(\'admin_form\').submit();" class="button-secondary action">
-				 <input type="button" value="Reset" onclick="window.location.href=\'admin.php?page=catalogs_huge_it_catalog\'" class="button-secondary action">
+				 <input type="button" value="'.__("Reset","product-catalog").'" onclick="window.location.href=\'admin.php?page=catalogs_huge_it_catalog\'" class="button-secondary action">
 			</div>';
 
 			 print_html_nav($pageNav['total'],$pageNav['limit'],$serch_fields);
@@ -85,9 +85,9 @@ function html_showcatalogs( $rows,  $pageNav,$sort,$cat_row){
 				<thead>
 				 <tr>
 					<th scope="col" id="id" style="width:30px" ><span>ID</span><span class="sorting-indicator"></span></th>
-					<th scope="col" id="name" style="width:85px" ><span>Name</span><span class="sorting-indicator"></span></th>
-					<th scope="col" id="prod_count"  style="width:75px;" ><span>Images</span><span class="sorting-indicator"></span></th>
-					<th style="width:40px">Delete</th>
+					<th scope="col" id="name" style="width:85px" ><span><?php echo __("Name","product-catalog");?></span><span class="sorting-indicator"></span></th>
+					<th scope="col" id="prod_count"  style="width:75px;" ><span><?php echo __("Images","product-catalog");?></span><span class="sorting-indicator"></span></th>
+					<th style="width:40px"><?php echo __("Delete","product-catalog");?></th>
 				 </tr>
 				</thead>
 				<tbody>
@@ -255,13 +255,13 @@ jQuery(function() {
 <?php $path_site2 = plugins_url("../images", __FILE__); ?>
     <div style="float: left;">
             <div><a href="http://huge-it.com/wordpress-plugins-product-catalog-user-manual/" target="_blank">User Manual</a></div>
-            <div>This section allows you to configure the Product Catalog options. <a href="http://huge-it.com/wordpress-plugins-product-catalog-user-manual/" target="_blank">More...</a></div>
-            <div><a href="http://huge-it.com/product-catalog/" target="_blank">Get full Version</a></div>
+            <div><?php echo __("This section allows you to configure the Product Catalog options.","product-catalog");?> <a href="http://huge-it.com/wordpress-plugins-product-catalog-user-manual/" target="_blank">More...</a></div>
+            <div><a href="http://huge-it.com/product-catalog/" target="_blank"><?php echo __("Get full Version","product-catalog");?></a></div>
     </div>
     <div style="float: right;">
             <a class="header-logo-text" href="http://huge-it.com/product-catalog/" target="_blank">
                     <div><img width="250px" src="<?php echo $path_site2; ?>/huge-it1.png" /></div>
-                    <div>Get the full version</div>
+                    <div><?php echo __("Get full Version","product-catalog");?></div>
             </a>
     </div>
     <div style="clear:both;"></div>
@@ -301,7 +301,7 @@ jQuery(function() {
 
 				<div id="post-body">
 					<div id="post-body-heading">
-						<h3>Products</h3>
+						<h3><?php echo __("Products","product-catalog");?></h3>
 							<script>
 jQuery(document).ready(function($){
 
@@ -372,7 +372,7 @@ jQuery(document).ready(function($){
 										<li class="editthisimage<?php echo $key; ?> <?php if($i==0){echo 'first';} ?>">
 											<img src="<?php echo $img; ?>" />
 											<input type="button" class="edit-image"  id="" value="Edit" />
-											<a href="#remove" class="remove-image">remove</a>	
+											<a href="#remove" class="remove-image"><?php echo __("remove","product-catalog");?></a>	
 										</li>
 									<?php $i++; } ?>
                                                                         <?php // var_dump($rowimages->id); ?>
@@ -512,26 +512,32 @@ jQuery(document).ready(function($){
 							<div class="image-options">
 								<div class="options-container">
 									<div>
-										<label for="titleimage<?php echo $rowimages->id; ?>">Title:</label>
+										<label for="titleimage<?php echo $rowimages->id; ?>"><?php echo __("Title","product-catalog");?>:</label>
 										<input  class="text_area" type="text" id="titleimage<?php echo $rowimages->id; ?>" name="titleimage<?php echo $rowimages->id; ?>" id="titleimage<?php echo $rowimages->id; ?>"  value="<?php echo $rowimages->name; ?>">
 									</div>
                                                                         <div>
-										<label for="price<?php echo $rowimages->id; ?>">Price:</label>
+										<label for="price<?php echo $rowimages->id; ?>"><?php echo __("Price","product-catalog");?>:</label>
 										<input  class="text_area" type="text" id="price<?php echo $rowimages->id; ?>" name="price<?php echo $rowimages->id; ?>" id="price<?php echo $rowimages->id; ?>"  value="<?php echo $rowimages->price; ?>">
 									</div>
                                                                         <div>
-										<label for="market_price<?php echo $rowimages->id; ?>">Discount Price:</label>
+										<label for="market_price<?php echo $rowimages->id; ?>"><?php echo __("Discount Price","product-catalog");?>:</label>
 										<input  class="text_area" type="text" id="market_price<?php echo $rowimages->id; ?>" name="market_price<?php echo $rowimages->id; ?>" style="margin-top: 1%;" id="market_price<?php echo $rowimages->id; ?>"  value="<?php echo $rowimages->market_price; ?>">
 									</div>
+                                                                        
                                                                         <div>
-                                                                                <label for="single_product_url_type<?php echo $rowimages->id; ?>">Product Page Custom Link:</label>
-                                                                                <div style="position: relative;">
+                                                                                <div style="position: relative;float:left;width:65%;">
+                                                                                    <label for="single_product_url_type<?php echo $rowimages->id; ?>">Product Page Custom Link:</label>
                                                                                     <input class="text_area product_url_select" type="text" id="single_product_url_type<?php echo $rowimages->id; ?>" name="single_product_url_type<?php echo $rowimages->id; ?>" value="<?php echo $rowimages->single_product_url_type; ?>">
                                                                                     <img src="<?php echo $path_site2; ?>/close.gif" width="14" height="16" value="a" class="del_product_link">
                                                                                 </div>
+                                                                            <div style="float:left;width:25%;">
+                                                                                    <label for="view_link_open_type<?php echo $rowimages->id; ?>">Product page new tab</label>
+                                                                                    <input type="hidden" value="off" name="view_link_open_type<?php echo $rowimages->id; ?>" />
+                                                                                    <input type="checkbox" id="view_link_open_type<?php echo $rowimages->id; ?>" name="view_link_open_type<?php echo $rowimages->id; ?>" <?php if($rowimages->link_target == 'on') echo 'checked="checked"';?> value="on">
+                                                                                </div>
                                                                         </div>
 									<div class="description-block">
-										<label for="im_description<?php echo $rowimages->id; ?>">Description:</label>
+										<label for="im_description<?php echo $rowimages->id; ?>"><?php echo __("Description","product-catalog");?>:</label>
 										<textarea id="im_description<?php echo $rowimages->id; ?>" name="im_description<?php echo $rowimages->id; ?>" ><?php echo $rowimages->description; ?></textarea>
 									</div>
                                                                         
@@ -597,9 +603,9 @@ jQuery(document).ready(function($){
                                                                 
 								<div class="remove-image-container">
                                                                         <!--<a class="button remove-image" href="admin.php?page=catalogs_huge_it_catalog&id=<?php echo $row->id; ?>&task=apply&removeslide=<?php echo $rowimages->id; ?>">-->
-                                                                    <a class="button remove-image" href="admin.php?page=catalogs_huge_it_catalog&id=<?php echo $row->id; ?>&task=apply&removeslide=<?php echo $rowimages->id; ?>">Remove Product</a>
-                                                                    <a href="admin.php?page=catalogs_huge_it_catalog&id=<?php echo $row->id; ?>&task=ratings&prod_id=<?php echo $rowimages->id; ?>&TB_iframe=1" class="remove-image button thickbox">View Ratings</a>
-                                                                    <a href="admin.php?page=catalogs_huge_it_catalog&id=<?php echo $row->id; ?>&task=reviews&prod_id=<?php echo $rowimages->id; ?>&TB_iframe=1" class="remove-image button thickbox">View Comments</a>
+                                                                    <a class="button remove-image" href="admin.php?page=catalogs_huge_it_catalog&id=<?php echo $row->id; ?>&task=apply&removeslide=<?php echo $rowimages->id; ?>"><?php echo __("Remove Product","product-catalog");?></a>
+                                                                    <a href="admin.php?page=catalogs_huge_it_catalog&id=<?php echo $row->id; ?>&task=ratings&prod_id=<?php echo $rowimages->id; ?>&TB_iframe=1" class="remove-image button thickbox"><?php echo __("View Ratings","product-catalog");?></a>
+                                                                    <a href="admin.php?page=catalogs_huge_it_catalog&id=<?php echo $row->id; ?>&task=reviews&prod_id=<?php echo $rowimages->id; ?>&TB_iframe=1" class="remove-image button thickbox"><?php echo __("View Comments","product-catalog");?></a>
 								</div>
 							</div>
                                                         <input type="hidden" name="parameter<?php echo $rowimages->id; ?>" class="parameters" value="<?php echo $rowimages->parameters; ?>">
@@ -894,13 +900,20 @@ jQuery(document).ready(function($){
                                    /*   <--    IF VIEW IS A CONTENT SLIDER,ADDING NONE DISPLAY TO PAGINATIO OPTIONS    */
                                    jQuery(document).on('change', '#catalog_effects_list', function (e){
                                         var active_view = jQuery(this).val();
-                                        if(active_view == 5){ jQuery("#pagination_type").parent().css({ "display" : "none" }); jQuery("#count_into_page").parent().css({ "display" : "none" }); }
-                                        else{ jQuery("#pagination_type").parent().css({ "display" : "" }); jQuery("#count_into_page").parent().css({ "display" : "" }); }
+                                        var pagination_type = jQuery("#pagination_type").val();
+                                        if(active_view == 5){
+                                            jQuery("#pagination_type").parent().css({ "display" : "none" }); jQuery("#count_into_page").parent().css({ "display" : "none" });
+                                        }
+                                        else{
+                                            jQuery("#pagination_type").parent().css({ "display" : "" });
+                                            if(pagination_type != "show_all"){ jQuery("#count_into_page").parent().css({ "display" : "" }); }
+                                        }
                                    });
                                    
                                    jQuery(window).load(function(){
                                        var active_view = <?php echo $row->catalog_list_effects_s; ?>;
                                        if(active_view == 5){ jQuery("#pagination_type").parent().css({ "display" : "none" }); jQuery("#count_into_page").parent().css({ "display" : "none" }); }
+                                       
                                    });
     
                         </script>
@@ -909,60 +922,60 @@ jQuery(document).ready(function($){
 			<div id="postbox-container-1" class="postbox-container">
 				<div id="side-sortables" class="meta-box-sortables ui-sortable">
 					<div id="catalog-unique-options" class="postbox">
-					<h3 class="hndle"><span>Select The Catalog Theme</span></h3>
+					<h3 class="hndle"><span><?php echo __("Select The Catalog Theme","product-catalog");?></span></h3>
 					<ul id="catalog-unique-options-list">
 						<li style="display:none;">
-							<label for="sl_width">Width</label>
+							<label for="sl_width"><?php echo __("Width","product-catalog");?></label>
 							<input type="text" name="sl_width" id="sl_width" value="<?php echo $row->sl_width; ?>" class="text_area" />
 						</li>
 						<li style="display:none;">
-							<label for="sl_height">Height</label>
+							<label for="sl_height"><?php echo __("Height","product-catalog");?></label>
 							<input type="text" name="sl_height" id="sl_height" value="<?php echo $row->sl_height; ?>" class="text_area" />
 						</li>
 						<li style="display:none;">
-							<label for="pause_on_hover">Pause on hover</label>
+							<label for="pause_on_hover"><?php echo __("Pause on hover","product-catalog");?></label>
 							<input type="hidden" value="off" name="pause_on_hover" />					
 							<input type="checkbox" name="pause_on_hover"  value="on" id="pause_on_hover"  <?php if($row->pause_on_hover  == 'on'){ echo 'checked="checked"'; } ?> />
 						</li>
                                                 
                                                 <li>
-							<label for="huge_it_catalog_name">Catalog Name</label>
+							<label for="huge_it_catalog_name"><?php echo __("Catalog Name","product-catalog");?></label>
 							<input type = "text" name="name" id="huge_it_catalog_name" value="<?php echo esc_html(stripslashes($row->name));?>" onkeyup = "name_changeRight(this)">
 						</li>
                                                
 						<li>
-							<label for="catalog_effects_list">Select The View</label>
+							<label for="catalog_effects_list"><?php echo __("Select The View","product-catalog");?></label>
 							<select name="catalog_effects_list" id="catalog_effects_list">
-									<option <?php if($row->catalog_list_effects_s == '0'){ echo 'selected'; } ?>  value="0">Blocks Toggle Up/Down</option>
-									<option <?php if($row->catalog_list_effects_s == '1'){ echo 'selected'; } ?>  value="1">Full-Height Blocks</option>
-									<option <?php if($row->catalog_list_effects_s == '2'){ echo 'selected'; } ?>  value="2">Catalog/Content-Popup</option>
-									<option <?php if($row->catalog_list_effects_s == '3'){ echo 'selected'; } ?>  value="3">Full-Width Blocks</option>
-									<option <?php if($row->catalog_list_effects_s == '5'){ echo 'selected'; } ?>  value="5">Content Slider</option>
+									<option <?php if($row->catalog_list_effects_s == '0'){ echo 'selected'; } ?>  value="0"><?php echo __("Blocks Toggle Up/Down","product-catalog");?></option>
+									<option <?php if($row->catalog_list_effects_s == '1'){ echo 'selected'; } ?>  value="1"><?php echo __("Full-Height Blocks","product-catalog");?></option>
+									<option <?php if($row->catalog_list_effects_s == '2'){ echo 'selected'; } ?>  value="2"><?php echo __("Catalog/Content-Popup","product-catalog");?></option>
+									<option <?php if($row->catalog_list_effects_s == '3'){ echo 'selected'; } ?>  value="3"><?php echo __("Full-Width Blocks","product-catalog");?></option>
+									<option <?php if($row->catalog_list_effects_s == '5'){ echo 'selected'; } ?>  value="5"><?php echo __("Content Slider","product-catalog");?></option>
 							</select>
 						</li>
                                                 
                                                 <li style="">
-							<label for="pagination_type">Displaying Content</label>
+							<label for="pagination_type"><?php echo __("Displaying Content","product-catalog");?></label>
 							<select name="pagination_type" id="pagination_type">
-                                                            <option <?php if($row->pagination_type == 'show_all'){ echo 'selected'; } ?>   value="show_all">Show All</option>
-                                                            <option <?php if($row->pagination_type == 'pagination'){ echo 'selected'; } ?> value="pagination">Paginatiion</option>
-                                                            <option <?php if($row->pagination_type == 'load_more'){ echo 'selected'; } ?>  value="load_more">Load More</option>
+                                                            <option <?php if($row->pagination_type == 'show_all'){ echo 'selected'; } ?>   value="show_all"><?php echo __("Show All","product-catalog");?></option>
+                                                            <option <?php if($row->pagination_type == 'pagination'){ echo 'selected'; } ?> value="pagination"><?php echo __("Paginatiion","product-catalog");?></option>
+                                                            <option <?php if($row->pagination_type == 'load_more'){ echo 'selected'; } ?>  value="load_more"><?php echo __("Load More","product-catalog");?></option>
 							</select>
 						</li>
                                                 
                                                 <li style=" <?php if($row->pagination_type == 'show_all'){echo "display:none;"; } ?>">
-							<label for="count_into_page">Content Per Page</label>
+							<label for="count_into_page"><?php echo __("Content Per Page","product-catalog");?></label>
 							<input type="text" name="count_into_page" id="count_into_page" value="<?php echo $row->count_into_page; ?>" class="text_area" />
 						</li>
 						<li style="display:none;">
-							<label for="sl_changespeed">Change speed</label>
+							<label for="sl_changespeed"><?php echo __("Change speed","product-catalog");?></label>
 							<input type="text" name="sl_changespeed" id="sl_changespeed" value="<?php echo $row->param; ?>" class="text_area" />
 						</li>
 
 					</ul>
 						<div id="major-publishing-actions">
 							<div id="publishing-action">
-								<input type="button" onclick="submitbutton('apply')" value="Save Catalog" id="save-buttom" class="button button-primary button-large">
+                                                            <input type="button" onclick="submitbutton('apply')" value="<?php echo __("Save Catalog","product-catalog");?>" id="save-buttom" class="button button-primary button-large">
 							</div>
 							<div class="clear"></div>
 							<!--<input type="button" onclick="window.location.href='admin.php?page=catalogs_huge_it_catalog'" value="Cancel" class="button-secondary action">-->
@@ -973,12 +986,12 @@ jQuery(document).ready(function($){
                                             <div class="inside2">
                                                 <ul>
                                                     <li class="allowIsotope">
-                                                        Show Sorting Buttons :
+                                                        <?php echo __("Show Sorting Buttons","product-catalog");?> :
                                                         <input type="hidden" value="off" name="ht_show_sorting" />
 							<input type="checkbox" id="ht_show_sorting"  <?php if($row->ht_show_sorting  == 'on'){ echo 'checked="checked"'; } ?>  name="ht_show_sorting" value="on" />
                                                     </li>
                                                     <li class="allowIsotope">
-                                                        Show Categorie Buttons :
+                                                        <?php echo __("Show Categorie Buttons","product-catalog");?> :
                                                         <input type="hidden" value="off" name="ht_show_filtering" />
 							<input type="checkbox" id="ht_show_filtering"  <?php if($row->ht_show_filtering  == 'on'){ echo 'checked="checked"'; } ?>  name="ht_show_filtering" value="on" />
                                                     </li>
@@ -987,7 +1000,7 @@ jQuery(document).ready(function($){
                                         </div>
                                     
                                     <div class="postbox">
-                                            <h3 class="hndle"><span>Parameters</span></h3>
+                                            <h3 class="hndle"><span><?php echo __("Parameters","product-catalog");?></span></h3>
                                             <div class="inside params_inside">
                                                 <ul>
                                                 <?php
@@ -1017,7 +1030,7 @@ jQuery(document).ready(function($){
                                                     <input type="hidden" value="<?php if (strpos($row->categories,',,') !== false)  { $row->categories = str_replace(",,",",",$row->categories); } echo $row->categories; ?>" id="allCategories" name="allCategories">
                                                     <li id="add_cat_input" style="">
                                                         <input type="text" size="11">
-                                                        <a style="" id="add_new_cat_button">+ Add New Parameter	</a>
+                                                        <a style="" id="add_new_cat_button">+ <?php echo __("Add New Parameter","product-catalog");?>	</a>
                                                     </li>
                                                 </ul>
                                                 <input type="hidden" value="" id="changing_val">
@@ -1025,7 +1038,7 @@ jQuery(document).ready(function($){
                                         </div>
                                         
                                         <div class="postbox" style="display: none;">
-                                            <h3 class="hndle"><span>Select Album</span></h3>
+                                            <h3 class="hndle"><span><?php echo __("Select Album","product-catalog");?></span></h3>
                                             <div class="inside">
                                                 <div class="categories_select">
                                                     <input type="hidden" name="catalog_old_cats" id="catalog_old_cats" value="<?php foreach($catalogAlbumIdesArray as $catalogAlbumId) { echo $catalogAlbumId->album_id.","; } ?>"/>
@@ -1041,7 +1054,7 @@ jQuery(document).ready(function($){
                                         </div>
                                         
                                         <div class="postbox" style="display: none;">
-                                            <h3 class="hndle"><span>Catalog Thumbnail</span></h3>
+                                            <h3 class="hndle"><span><?php echo __("Catalog Thumbnail","product-catalog");?></span></h3>
                                             <div class="inside">
                                                 <div style="width: 200px; height: 160px;margin: 10px auto;">
                                                     <img src="<?php echo esc_html(stripslashes(str_replace(";;;", "", $row->cat_thumb))); ?>" style="width: 200px; height: 150px;margin: 0px auto;" />
@@ -1055,17 +1068,17 @@ jQuery(document).ready(function($){
                                         </div>                                        
                                         
                                         <div id="catalog-shortcode-box" class="postbox shortcode ms-toggle">
-                                            <h3 class="hndle"><span>Usage</span></h3>
+                                            <h3 class="hndle"><span><?php echo __("Usage","product-catalog");?></span></h3>
                                             <div class="inside">
                                                 <ul>
                                                     <li rel="tab-1" class="selected">
-                                                        <h4>Shortcode</h4>
-                                                        <p>Copy &amp; paste the shortcode directly into any WordPress post or page.</p>
+                                                        <h4><?php echo __("Shortcode","product-catalog");?></h4>
+                                                        <p><?php echo __("Copy &amp; paste the shortcode directly into any WordPress post or page.","product-catalog");?></p>
                                                         <textarea class="full" readonly="readonly">[huge_it_catalog id="<?php echo $row->id; ?>"]</textarea>
                                                     </li>
                                                     <li rel="tab-2">
-                                                        <h4>Template Include</h4>
-                                                        <p>Copy &amp; paste this code into a template file to include the slideshow within your theme.</p>
+                                                        <h4><?php echo __("Template Include","product-catalog");?></h4>
+                                                        <p><?php echo __("Copy &amp; paste this code into a template file to include the slideshow within your theme.","product-catalog");?></p>
                                                         <textarea class="full" readonly="readonly">&lt;?php echo do_shortcode("[huge_it_catalog id='<?php echo $row->id; ?>']"); ?&gt;</textarea>
                                                     </li>
                                                 </ul>
@@ -1231,11 +1244,11 @@ function html_catalog_reviews(){
 	</script>
 	 <div id="huge_it_view_reviews">
 		<div id="huge_it_view_reviews_wrap">
-			<h2>Product Comments</h2>
-                        <a class="manager-link button view_all_reviews">All Comments Manager</a>
+			<h2><?php echo __("Product","product-catalog");?></h2>
+                        <a class="manager-link button view_all_reviews"><?php echo __("All Comments Manager","product-catalog");?></a>
                             <div class="huge_it_prod_reviews_container">
                                 <table>
-                                    <tr><th><input type="checkbox" id="check_all_reviews"/></th><th>Name</th><th>Comment</th><th class="del_few_reviews"><a class="">Delete</a></th></tr>
+                                    <tr><th><input type="checkbox" id="check_all_reviews"/></th><th><?php echo __("Name","product-catalog");?></th><th><?php echo __("Comment","product-catalog");?></th><th class="del_few_reviews"><a class=""></a></th></tr>
                                 </table>
                                 <table style="border-collapse: collapse;">
                                         <?php
@@ -1245,7 +1258,7 @@ function html_catalog_reviews(){
                                                     <td><input type="checkbox" class="del_one_review <?php echo $reviews->id; ?>" value="<?php echo $reviews->id; ?>" name="values_for_delete" /></td>
                                                     <td><input type="text" value="<?php echo $reviews->name; ?>" style="text-align: center; border: none;" class="edit_com_name" /></td>
                                                     <td><input type="text" value="<?php echo $reviews->content; ?>" style="text-align: center; border: none;" class="edit_com_content" /></td>
-                                                    <td class="del_review"><a href="admin.php?page=catalogs_huge_it_catalog&id=<?php echo $_GET['id']; ?>&task=reviews&prod_id=<?php echo $reviews->product_id; ?>&del_id=<?php echo $reviews->id; ?>">Delete</a></td>
+                                                    <td class="del_review"><a href="admin.php?page=catalogs_huge_it_catalog&id=<?php echo $_GET['id']; ?>&task=reviews&prod_id=<?php echo $reviews->product_id; ?>&del_id=<?php echo $reviews->id; ?>"><?php echo __("Delete","product-catalog");?></a></td>
                                                 </tr>
                                         <?php } ?>
                                 </table>
@@ -1375,11 +1388,11 @@ function Html_catalog_ratings(){
 </script>
 	 <div id="huge_it_view_ratings">
 		<div id="huge_it_view_ratings_wrap">
-			<h2>Product Ratings</h2>
-                        <a class="manager-link button">All Ratings Manager</a>
+			<h2><?php echo __("Product Ratings","product-catalog");?></h2>
+                        <a class="manager-link button"><?php echo __("All Ratings Manager","product-catalog");?></a>
                             <div class="huge_it_prod_ratings_container">
                                 <table>
-                                    <tr><th><input type="checkbox" id="check_all_ratings"/></th><th>IP Adress</th><th>Value</th><th class="del_few_ratings"><a class="">Delete</a></th></tr>
+                                    <tr><th><input type="checkbox" id="check_all_ratings"/></th><th>IP <?php echo __("Adress","product-catalog");?></th><th><?php echo __("Value","product-catalog");?></th><th class="del_few_ratings"><a class=""><?php echo __("Delete","product-catalog");?></a></th></tr>
                                 </table>
                                 <table style="border-collapse: collapse;">
                                         <?php
@@ -1389,7 +1402,7 @@ function Html_catalog_ratings(){
                                                     <td><input type="checkbox" class="del_one_rating <?php echo $rating->id; ?>" value="<?php echo $rating->id; ?>" name="rating_values_for_delete" /></td>
                                                     <td><input type="text" value="<?php echo $rating->ip; ?>" style="text-align: center; border: none;" class="edit_rating_ip" /></td>
                                                     <td><input type="text" value="<?php echo $rating->value; ?>" style="text-align: center; border: none;" class="edit_rating_value" /></td>
-                                                    <td class="del_rating"><a href="admin.php?page=catalogs_huge_it_catalog&id=<?php echo $_GET['id']; ?>&task=ratings&prod_id=<?php echo $rating->prod_id; ?>&del_id=<?php echo $rating->id; ?>">Delete</a></td>
+                                                    <td class="del_rating"><a href="admin.php?page=catalogs_huge_it_catalog&id=<?php echo $_GET['id']; ?>&task=ratings&prod_id=<?php echo $rating->prod_id; ?>&del_id=<?php echo $rating->id; ?>"><?php echo __("Delete","product-catalog");?></a></td>
                                                 </tr>
                                         <?php } ?>
                                         

@@ -11,20 +11,20 @@ function html_show_general_options($param_values){  //  var_dump($param_values);
 <div id="poststuff">
 		<?php $path_site2 = plugins_url("../images/", __FILE__); ?>
                 <div style="float: left;">
-                    <div><a href="http://huge-it.com/wordpress-plugins-product-catalog-user-manual/" target="_blank">User Manual</a></div>
-                    <div>This section allows you to configure the Product Catalog options. <a href="http://huge-it.com/wordpress-plugins-product-catalog-user-manual/" target="_blank">More...</a></div>
+                    <div><a href="http://huge-it.com/wordpress-plugins-product-catalog-user-manual/" target="_blank"><?php echo __("User Manual","product-catalog");?></a></div>
+                    <div> <?php echo __("This section allows you to configure the Product Catalog options.","product-catalog");?><a href="http://huge-it.com/wordpress-plugins-product-catalog-user-manual/" target="_blank"><?php echo __("More...","product-catalog");?></a></div>
                 </div>
                 <div style="float: right;">
                         <a class="header-logo-text" href="http://huge-it.com/product-catalog/" target="_blank">
                                 <div><img width="250px" src="<?php echo $path_site2; ?>/huge-it1.png" /></div>
-                                <div>Get the full version</div>
+                                <div><?php echo __("Get the full version","product-catalog");?></div>
                         </a>
                 </div>
                 <div style="clear:both;"></div>
 		<div id="post-body-content" class="catalog-options">
 			<div id="post-body-heading">
-				<h3>General Options</h3>
-				<a onclick="document.getElementById('adminForm').submit()" class="save-catalog-options button-primary">Save</a>
+				<h3><?php echo __("General Options","product-catalog"); ?></h3>
+				<a onclick="document.getElementById('adminForm').submit()" class="save-catalog-options button-primary"><?php echo __("Save","product-catalog");?></a>
 		
 			</div>
 		<form action="admin.php?page=huge_it_catalog_general_options_page&task=save" method="post" id="adminForm" name="adminForm">
@@ -37,107 +37,107 @@ function html_show_general_options($param_values){  //  var_dump($param_values);
 					                                    
 					
                                         <div style="">
-                                            <h3>Translations</h3>
+                                            <h3><?php echo __("Translations","product-catalog"); ?></h3>
 						<div class="has-background" style="padding-bottom: 6px;">
-                                                        <label for="ht_single_product_price_text">Price Block Text</label>
+                                                        <label for="ht_single_product_price_text"><?php echo __("Price Block Text","product-catalog"); ?></label>
 							<input type="text" name="params[ht_single_product_price_text]" id="ht_single_product_price_text" value="<?php echo $param_values['ht_single_product_price_text']; ?>" class="text" />
                                                 </div>
                                                 <div class="" style="padding-bottom: 6px;">
-                                                        <label for="ht_single_product_share_text">Share Block Text</label>
+                                                        <label for="ht_single_product_share_text"><?php echo __("Share Block Text","product-catalog"); ?></label>
 							<input type="text" name="params[ht_single_product_share_text]" id="ht_single_product_share_text" value="<?php echo $param_values['ht_single_product_share_text']; ?>" class="text" />
 						</div>
                                                 <div class="has-background" style="padding-bottom: 6px;">
-                                                        <label for="ht_single_product_rating_text">Rating Block Text</label>
+                                                        <label for="ht_single_product_rating_text"><?php echo __("Rating Block Text","product-catalog"); ?></label>
 							<input type="text" name="params[ht_single_product_rating_text]" id="ht_single_product_rating_text" value="<?php echo $param_values['ht_single_product_rating_text']; ?>" class="text" />
 						</div>
                                                  <div class="" style="padding-bottom: 6px;">
-                                                        <label for="ht_single_product_parameters_text">Parameters Tab Title Text</label>
+                                                        <label for="ht_single_product_parameters_text"><?php echo __("Parameters Tab Title Text","product-catalog"); ?></label>
 							<input type="text" name="params[ht_single_product_parameters_text]" id="ht_single_product_parameters_text" value="<?php echo $param_values['ht_single_product_parameters_text']; ?>" class="text" />
 						</div>
                                                 <div class="has-background" style="padding-bottom: 6px;">
-                                                        <label for="ht_single_product_comments_text">Comments Tab Title Text</label>
+                                                        <label for="ht_single_product_comments_text"><?php echo __("Comments Tab Title Text","product-catalog"); ?></label>
 							<input type="text" name="params[ht_single_product_comments_text]" id="ht_single_product_comments_text" value="<?php echo $param_values['ht_single_product_comments_text']; ?>" class="text" />
 						</div>
                                                
                                                 <div class="" style="padding-bottom: 6px;">
-                                                        <label for="ht_single_product_your_name_text">Name Label Text</label>
+                                                        <label for="ht_single_product_your_name_text"><?php echo __("Name Label Text","product-catalog"); ?></label>
 							<input type="text" name="params[ht_single_product_your_name_text]" id="ht_single_product_your_name_text" value="<?php echo $param_values['ht_single_product_your_name_text']; ?>" class="text" />
 						</div>
                                                 <div class="has-background" style="padding-bottom: 6px;">
-                                                        <label for="ht_single_product_your_Comment_text">Comment Label Text</label>
+                                                        <label for="ht_single_product_your_Comment_text"><?php echo __("Comment Label Text","product-catalog"); ?></label>
 							<input type="text" name="params[ht_single_product_your_Comment_text]" id="ht_single_product_your_Comment_text" value="<?php echo $param_values['ht_single_product_your_Comment_text']; ?>" class="text" />
 						</div>
                                                 <div class="" style="padding-bottom: 6px;">
-                                                        <label for="ht_single_product_captcha_text">Captcha Label Text</label>
+                                                        <label for="ht_single_product_captcha_text"><?php echo __("Captcha Label Text","product-catalog"); ?></label>
 							<input type="text" name="params[ht_single_product_captcha_text]" id="ht_single_product_captcha_text" value="<?php echo $param_values['ht_single_product_captcha_text']; ?>" class="text" />
 						</div>
                                                 <div class="has-background" style="padding-bottom: 6px;">
-                                                        <label for="ht_single_product_invalid_captcha_text">Captcha Error Message Text</label>
+                                                        <label for="ht_single_product_invalid_captcha_text"><?php echo __("Captcha Error Message Text","product-catalog"); ?></label>
 							<input type="text" name="params[ht_single_product_invalid_captcha_text]" id="ht_single_product_invalid_captcha_text" value="<?php echo $param_values['ht_single_product_invalid_captcha_text']; ?>" class="text" />
 						</div>
 
                                                 <div class="" style="padding-bottom: 6px;">
-                                                        <label for="ht_single_product_asc_to_seller_text">Order Popup Title</label>
+                                                        <label for="ht_single_product_asc_to_seller_text"><?php echo __("Order Popup Title","product-catalog"); ?></label>
 							<input type="text" name="params[ht_single_product_asc_to_seller_text]" id="ht_single_product_asc_to_seller_text" value="<?php echo $param_values['ht_single_product_asc_to_seller_text']; ?>" class="text" />
 						</div>
-                                                <div class="has-background" style="padding-bottom: 6px;">
-                                                        <label for="ht_single_product_your_mail_text">E-mail Input Text</label>
+                                                <div class="has-background">
+                                                        <label for="ht_single_product_your_mail_text"><?php echo __("E-mail Input Text","product-catalog"); ?></label>
 							<input type="text" name="params[ht_single_product_your_mail_text]" id="ht_single_product_your_mail_text" value="<?php echo $param_values['ht_single_product_your_mail_text']; ?>" class="text" />
 						</div>
                                                 <div class="" style="padding-bottom: 6px;">
-                                                        <label for="ht_single_product_invalid_mail_text">E-mail Error Message Text</label>
+                                                        <label for="ht_single_product_invalid_mail_text"><?php echo __("E-mail Error Message Text","product-catalog"); ?></label>
 							<input type="text" name="params[ht_single_product_invalid_mail_text]" id="ht_single_product_invalid_mail_text" value="<?php echo $param_values['ht_single_product_invalid_mail_text']; ?>" class="text" />
 						</div>
                                                 <div class="has-background" style="padding-bottom: 6px;">
-                                                        <label for="ht_single_product_your_phone_text">Phone Input Text</label>
+                                                        <label for="ht_single_product_your_phone_text"><?php echo __("Phone Input Text","product-catalog"); ?></label>
 							<input type="text" name="params[ht_single_product_your_phone_text]" id="ht_single_product_your_phone_text" value="<?php echo $param_values['ht_single_product_your_phone_text']; ?>" class="text" />
 						</div>
                                                 <div class="" style="padding-bottom: 6px;">
-                                                        <label for="ht_single_product_your_message_text">Message Input Text</label>
+                                                        <label for="ht_single_product_your_message_text"><?php echo __("Message Input Text","product-catalog"); ?></label>
 							<input type="text" name="params[ht_single_product_your_message_text]" id="ht_single_product_your_message_text" value="<?php echo $param_values['ht_single_product_your_message_text']; ?>" class="text" />
 						</div>
                                                 <div class="has-background" style="padding-bottom: 6px;">
-                                                        <label for="ht_catalog_general_linkbutton_text">Product Button Text</label>
+                                                        <label for="ht_catalog_general_linkbutton_text"><?php echo __("Product Button Text","product-catalog"); ?></label>
 							<input type="text" name="params[ht_catalog_general_linkbutton_text]" id="ht_catalog_general_linkbutton_text" value="<?php echo $param_values['ht_catalog_general_linkbutton_text']; ?>" class="text" />
 						</div>
                                                 <div class="" style="padding-bottom: 6px;">
-                                                        <label for="ht_single_product_asc_seller_button_text">Order Button Text</label>
+                                                        <label for="ht_single_product_asc_seller_button_text"><?php echo __("Order Button Text","product-catalog"); ?></label>
 							<input type="text" name="params[ht_single_product_asc_seller_button_text]" id="ht_single_product_asc_seller_button_text" value="<?php echo $param_values['ht_single_product_asc_seller_button_text']; ?>" class="text" />
 						</div>
                                                 <div class="has-background" style="padding-bottom: 6px;">
-                                                        <label for="ht_single_product_comments_submit_button_text">Comments Submit Button Text</label>
+                                                        <label for="ht_single_product_comments_submit_button_text"><?php echo __("Comments Submit Button Text","product-catalog"); ?></label>
 							<input type="text" name="params[ht_single_product_comments_submit_button_text]" id="ht_single_product_comments_submit_button_text" value="<?php echo $param_values['ht_single_product_comments_submit_button_text']; ?>" class="text" />
 						</div>
                                                 <div class="" style="padding-bottom: 6px;">
-                                                        <label for="ht_single_product_asc_seller_popup_button_text">Order Popup Button Text</label>
+                                                        <label for="ht_single_product_asc_seller_popup_button_text"><?php echo __("Order Popup Button Text","product-catalog"); ?></label>
 							<input type="text" name="params[ht_single_product_asc_seller_popup_button_text]" id="ht_single_product_asc_seller_popup_button_text" value="<?php echo $param_values['ht_single_product_asc_seller_popup_button_text']; ?>" class="text" />
 						</div>
 					</div>
                                     
                                         <div>
-						<h3>Email To Administrator</h3>
+						<h3><?php echo __("Email To Administrator","product-catalog"); ?></h3>
 						<div class="has-background">
-							<label for="ht_catalog_general_message_to_admin">Send Message To Administrator After Each Submission</label>
+							<label for="ht_catalog_general_message_to_admin"><?php echo __("Send Message To Administrator After Each Submission","product-catalog"); ?></label>
 							<input type="hidden" value="off" name="params[ht_catalog_general_message_to_admin]" />
 							<input type="checkbox" id="ht_catalog_general_message_to_admin"  <?php  if($param_values['ht_catalog_general_message_to_admin']  == 'on'){ echo 'checked="checked"'; } ?>  name="params[ht_catalog_general_message_to_admin]" value="on" />
 						</div>
                                                 <div class="">
-							<label for="ht_catalog_general_admin_email">Administrator E-mail</label>
+							<label for="ht_catalog_general_admin_email"><?php echo __("Administrator E-mail","product-catalog"); ?></label>
 							<input name="params[ht_catalog_general_admin_email]" type="text" class="color" id="ht_catalog_general_admin_email" value="<?php echo $param_values['ht_catalog_general_admin_email']; ?>" size="10" />
 							
 						</div>
 						<div class="has-background">
-							<label for="ht_catalog_general_admin_email_subject">Message Subject</label>
+							<label for="ht_catalog_general_admin_email_subject"><?php echo __("Message Subject","product-catalog"); ?></label>
 							<input name="params[ht_catalog_general_admin_email_subject]" type="text" class="color" id="ht_catalog_general_admin_email_subject" value="<?php echo $param_values['ht_catalog_general_admin_email_subject']; ?>" size="10" />
 							
 						</div>
                                                 <div>
-							<label for="ht_catalog_general_admin_from_text">From</label>
+							<label for="ht_catalog_general_admin_from_text"><?php echo __("From","product-catalog"); ?></label>
 							<input name="params[ht_catalog_general_admin_from_text]" type="text" class="color" id="ht_catalog_general_admin_from_text" value="<?php echo $param_values['ht_catalog_general_admin_from_text']; ?>" size="10" />
 							
 						</div>
 						<div style="height: auto;" class="has-background">
-							<label for="form_adminstrator_message">Message</label>
+							<label for="form_adminstrator_message"><?php echo __("Message","product-catalog"); ?></label>
 							<?php
 //								function wptiny($initArray){
 //									$initArray['height'] = '250px';
@@ -151,20 +151,20 @@ function html_show_general_options($param_values){  //  var_dump($param_values);
 					</div>
                                     
                                         <div style="//margin-top: -70px;">
-						<h3>Email To User</h3>
+						<h3><?php echo __("Email To User","product-catalog"); ?></h3>
 						<div class="has-background">
-							<label for="ht_catalog_general_message_to_user">Send Confirming Message To Users After Submitting</label>
+							<label for="ht_catalog_general_message_to_user"><?php echo __("Send Confirming Message To Users After Submitting","product-catalog");?></label>
 							<input type="hidden" value="off" name="params[ht_catalog_general_message_to_user]" />
 							<input type="checkbox" id="ht_catalog_general_message_to_user"  <?php if($param_values['ht_catalog_general_message_to_user']  == 'on'){ echo 'checked="checked"'; } ?>  name="params[ht_catalog_general_message_to_user]" value="on" />
 						</div>
 						
 						<div class="">
-							<label for="ht_catalog_general_user_subject">Message Subject</label>
+							<label for="ht_catalog_general_user_subject"><?php echo __("Message Subject","product-catalog"); ?></label>
 							<input name="params[ht_catalog_general_user_subject]" type="text" class="color" id="ht_catalog_general_user_subject" value="<?php echo $param_values['ht_catalog_general_user_subject']; ?>" size="10" />
 							
 						</div>
 						<div style="height: auto;" class="has-background" >
-							<label for="form_adminstrator_message">Message</label>
+							<label for="form_adminstrator_message"><?php echo __("Message","product-catalog"); ?></label>
 							<?php
 //								function wptiny($initArray){
 //									$initArray['height'] = '250px';
@@ -177,9 +177,9 @@ function html_show_general_options($param_values){  //  var_dump($param_values);
 						</div>
 					</div>
                                     <div style="/*margin-top: -355px*/">
-                                        <h3>Contact Seller Button</h3>
+                                        <h3><?php echo __("Contact Seller Button","product-catalog"); ?></h3>
                                         <div class="has-background">
-                                                <label for="ht_single_product_show_asc_seller_button">Show Contact Seller Button</label>
+                                                <label for="ht_single_product_show_asc_seller_button"><?php echo __("Show Contact Seller Button","product-catalog"); ?></label>
                                                 <input type="hidden" value="off" name="params[ht_single_product_show_asc_seller_button]" />
                                                 <input type="checkbox" id="ht_single_product_show_asc_seller_button"  <?php if($param_values['ht_single_product_show_asc_seller_button']  == 'on'){ echo 'checked="checked"'; } ?>  name="params[ht_single_product_show_asc_seller_button]" value="on" />
                                         </div>
@@ -189,7 +189,7 @@ function html_show_general_options($param_values){  //  var_dump($param_values);
 			</ul>
 
 		<div id="post-body-footer">
-			<a onclick="document.getElementById('adminForm').submit()" class="save-catalog-options button-primary">Save</a>
+			<a onclick="document.getElementById('adminForm').submit()" class="save-catalog-options button-primary"><?php echo __("Save","product-catalog"); ?></a>
 			<div class="clear"></div>
 		</div>
 		</form>

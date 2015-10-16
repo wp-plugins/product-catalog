@@ -1,48 +1,48 @@
 <?php
 if (function_exists('current_user_can'))
     if (!current_user_can('manage_options')) {
-        die('Access Denied');
+        die(__('Access Denied',"product-catalog"));
     }
 if (!function_exists('current_user_can')) {
-    die('Access Denied');
+    die(__('Access Denied',"product-catalog"));
 }
 
 function html_show_ratings($ratingsArray){ $ratingsArray = array_reverse($ratingsArray, true); $keyForBackground = 1;  //  var_dump($ratingsArray);exit; ?>
 <div class="wrap">
     <?php $path_site2 = plugins_url("../images/", __FILE__); ?>
         <div style="float: left;">
-            <div><a href="http://huge-it.com/wordpress-plugins-product-catalog-user-manual/" target="_blank">User Manual</a></div>
-            <div>This section allows you to configure the Product Catalog options. <a href="http://huge-it.com/wordpress-plugins-product-catalog-user-manual/" target="_blank">More...</a></div>
+            <div><a href="http://huge-it.com/wordpress-plugins-product-catalog-user-manual/" target="_blank"><?php echo __("User Manual","product-catalog");?></a></div>
+            <div><?php echo __("This section allows you to configure the Product Catalog options.","product-catalog");?> <a href="http://huge-it.com/wordpress-plugins-product-catalog-user-manual/" target="_blank"><?php echo __("More...","product-catalog");?></a></div>
         </div>
         <div style="float: right;">
                 <a class="header-logo-text" href="http://huge-it.com/product-catalog/" target="_blank">
                         <div><img width="250px" src="<?php echo $path_site2; ?>/huge-it1.png" /></div>
-                        <div>Get the full version</div>
+                        <div><?php echo __("Get the full version","product-catalog");?></div>
                 </a>
         </div>
         <div style="clear:both;"></div>
     <div id="poststuff">
         <div id="catalogs-list-page">
-            <h2>Huge-IT Catalog Ratings</h2>
+            <h2><?php echo __("Huge-IT Catalog Ratings","product-catalog");?></h2>
             <div id="huge_it_catalog_ratings_page">
             <div id="huge_it_catalog_reviews_container">
                 <table class="widefat fixed comments">
                         <thead>
                             <tr>
                                 <th scope="col" id="cb" class="manage-column column-cb check-column" style="">
-                                    <label class="screen-reader-text" for="cb-select-all-<?php  ?>">Select All</label>
+                                    <label class="screen-reader-text" for="cb-select-all-<?php  ?>"><?php echo __("Select All","product-catalog");?></label>
                                     <input id="cb-select-all-<?php  ?>" type="checkbox">
                                 </th>
                                 <th >
-                                    <span>Product Name</span><span class="sorting-indicator"></span>
+                                    <span><?php echo __("Product Name","product-catalog");?></span><span class="sorting-indicator"></span>
                                 </th>
-                                <th >Rating</th>
+                                <th ><?php echo __("Rating","product-catalog");?></th>
                                 <th >
-                                    <span>Author IP</span><span class="sorting-indicator"></span>
+                                    <span><?php echo __("Author","product-catalog");?> IP</span><span class="sorting-indicator"></span>
                                 </th>
-                                <th >Submited On</th>
-                                <th >Edit</th>
-                                <th ><a id="doaction" >Delete</a></th>
+                                <th ><?php echo __("Submited On","product-catalog");?></th>
+                                <th ><?php echo __("Edit","product-catalog");?></th>
+                                <th ><a id="doaction" ><?php echo __("Delete","product-catalog");?></a></th>
 
                             </tr>
                         </thead>
@@ -51,7 +51,7 @@ function html_show_ratings($ratingsArray){ $ratingsArray = array_reverse($rating
                         <?php foreach ($ratingsArray as $rating) {  ?>
                                 <tr id="comment-<?php echo $rating->id; ?>" class="comment even thread-even depth-<?php echo $keyForBackground; if($keyForBackground%2 == 0) echo " alt"; ?> ">
                                     <th scope="row" class="check-column">
-                                        <label class="screen-reader-text" for="cb-select-<?php echo $rating->id; ?>">Select comment</label>
+                                        <label class="screen-reader-text" for="cb-select-<?php echo $rating->id; ?>"><?php echo __("Select comment","product-catalog");?></label>
                                         <input id="cb-select-<?php echo $keyForBackground; ?>" type="checkbox" name="check_comments" value="<?php echo $rating->id; ?>">
                                     </th>
                                     <td class="response column-response">
@@ -89,8 +89,8 @@ function html_show_ratings($ratingsArray){ $ratingsArray = array_reverse($rating
                                     </td>
 
                                     <td><?php echo " ".$rating->date; ?></td>
-                                    <td><span class="edit" value="<?php echo $rating->id; ?>"> <a>Edit</a></td>
-                                    <td><span class="trash" value="<?php echo $rating->id; ?>"> <a>Delete</a></td>
+                                    <td><span class="edit" value="<?php echo $rating->id; ?>"> <a><?php echo __("Edit","product-catalog");?></a></td>
+                                    <td><span class="trash" value="<?php echo $rating->id; ?>"> <a><?php echo __("Delete","product-catalog");?></a></td>
                                 </tr>
                         <?php $keyForBackground++; } ?>
                         </tbody>

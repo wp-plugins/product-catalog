@@ -4,9 +4,10 @@
 Plugin Name: Huge IT Product Catalog
 Plugin URI: http://huge-it.com/product-catalog
 Description: Let us introduce our Huge-IT Product Catalog incomparable plugin. To begin with, why do we need this plugin and what are the advantages.
-Version: 1.2.2
+Version: 1.2.5
 Author: http://huge-it.com/
 License: GNU/GPLv3 http://www.gnu.org/licenses/gpl-3.0.html
+Text Domain: product-catalog
 */
 
 
@@ -22,9 +23,9 @@ function add_my_custom_button_for_catalog($context) {
   $title = 'Select Catalog IT Slider To insert Into Post';
 
   $context .= '<a class="button thickbox" title="Select Catalog To Insert Into Post"    href="?page=catalogs_huge_it_catalog&task=catalog_add_shortcode_popup&TB_iframe=1&width=400&inlineId='.$container_id.'">
-		<span class="wp-media-buttons-icon" style="background: url('.$img.'); background-repeat: no-repeat; background-position: left bottom;"></span>
-	Add Catalog
-	</a>';
+		<span class="wp-media-buttons-icon" style="background: url('.$img.'); background-repeat: no-repeat; background-position: left bottom;"></span>'.
+	__('Add Catalog','product-catalog').
+	'</a>';
 
   return $context;
 }
@@ -40,7 +41,7 @@ add_action('init', 'product_catalog_lang_load');
 
 function product_catalog_lang_load()
 {
-    load_plugin_textdomain('sp_catalog', false, basename(dirname(__FILE__)) . '/Languages');
+    load_plugin_textdomain('product-catalog', false, basename(dirname(__FILE__)) . '/languages');
 
 }
 
@@ -277,18 +278,16 @@ function huge_it__catalog_featured_plugins()
 function huge_it_catalog_Licensing(){ ?>
 
     <div style="width:95%">
-        <p>
-            This plugin is the non-commercial version of the Huge IT Product Catalog plugin. If you want to customize to the styles and colors of your website,than you need to buy a license.
-            Purchasing a license will add possibility to customize Catalog Options, Products Options and Image View Options of the plugin.
-        </p>
+        <p><?php echo __("This plugin is the non-commercial version of the Huge IT Product Catalog plugin. If you want to customize to the styles and colors of your website,than you need to buy a license.
+            Purchasing a license will add possibility to customize Catalog Options, Products Options and Image View Options of the plugin.");?></p>
         <br /><br />
-        <a href="http://huge-it.com/product-catalog/" class="button-primary" target="_blank">Purchase a License</a>
+        <a href="http://huge-it.com/product-catalog/" class="button-primary" target="_blank"><?php echo __("Purchase a License","product-catalog");?></a>
         <br /><br /><br />
-        <p>After the purchasing the commercial version follow this steps:</p>
+        <p><?php echo __("After the purchasing the commercial version follow this steps:");?></p>
         <ol>
-                <li>Deactivate Huge IT Product Catalog Plugin</li>
-                <li>Delete Huge IT Product Catalog Plugin</li>
-                <li>Install the downloaded commercial version of the plugin</li>
+                <li><?php echo __("Deactivate Huge IT Product Catalog Plugin","product-catalog");?></li>
+                <li><?php echo __("Delete Huge IT Product Catalog Plugin","product-catalog");?></li>
+                <li><?php echo __("Install the downloaded commercial version of the plugin","product-catalog");?></li>
         </ol>
     </div>
 <?php
@@ -636,10 +635,10 @@ class Huge_it_catalog_Widget extends WP_Widget {
 		<p>
 			
 				<p>
-					<label for="<?php echo $this->get_field_id( 'title' ); ?>"><?php _e( 'Title:' ); ?></label> 
+					<label for="<?php echo $this->get_field_id( 'title' ); ?>"><?php echo __( 'Title:' ); ?></label> 
 					<input class="widefat" id="<?php echo $this->get_field_id( 'title' ); ?>" name="<?php echo $this->get_field_name( 'title' ); ?>" type="text" value="<?php echo esc_attr( $title ); ?>" />
 				</p>
-				<label for="<?php echo $this->get_field_id('catalog_id'); ?>"><?php _e('Select Catalog:', 'huge_it_catalog'); ?></label> 
+				<label for="<?php echo $this->get_field_id('catalog_id'); ?>"><?php echo __('Select Catalog:',"product-catalog"); ?></label> 
 				<select id="<?php echo $this->get_field_id('catalog_id'); ?>" name="<?php echo $this->get_field_name('catalog_id'); ?>">
 				
 				<?php
@@ -2491,6 +2490,15 @@ query9;
     };
     
     
+    $table_name = $wpdb->prefix . "huge_it_catalog_general_params";
+    $sql_update_catalog_6 = "UPDATE `$table_name` SET value = 'Contact Seller' WHERE name='ht_single_product_asc_to_seller_text'";
+    $wpdb->query($sql_update_catalog_6);
+    
+    $table_name = $wpdb->prefix . "huge_it_catalog_general_params";
+    $sql_update_catalog_7 = "UPDATE `$table_name` SET value = 'Contact Seller' WHERE name='ht_single_product_asc_seller_button_text'";
+    $wpdb->query($sql_update_catalog_7);
+            
+    
     
     
     $needToUpdateProductLink = 0;
@@ -2529,7 +2537,11 @@ query9;
 
 
 register_activation_hook(__FILE__, 'huge_it_catalog_activate');
-
+require_once( ABSPATH . 'wp-admin/includes/plugin.php' );
+$plugin_info = get_plugin_data( ABSPATH . 'wp-content/plugins/product-catalog/product-catalog.php' );
+if($plugin_info['Version'] > '1.2.1'){
+	huge_it_catalog_activate();
+}
 
 function catalog_add_shortcode_popup()
 {
@@ -3082,8 +3094,8 @@ h3 {
 		<div id="huge_it_slider_add_posts_wrap">
 			<ul id="slider-posts-tabs">
 				<!--<li  class="active"><a href="#slider-posts-tabs-content-0">Albums</a></li>-->
-				<li class="active" ><a href="#slider-posts-tabs-content-1">Catalogs</a></li>
-                                <li><a href="#slider-posts-tabs-content-2">Products</a></li>
+				<li class="active" ><a href="#slider-posts-tabs-content-1"><?php echo __("Catalogs"); ?></a></li>
+                                <li><a href="#slider-posts-tabs-content-2"><?php echo __("Products","product-catalog"); ?></a></li>
 			</ul>
 			<ul id="slider-posts-tabs-contents">
 <!--				<li id="slider-posts-tabs-content-0"  class="active">
@@ -3128,10 +3140,10 @@ h3 {
 				<li id="slider-posts-tabs-content-1"  class="active">
 					<!-- STATIC POSTS -->
 					<div class="control-panel">
-						<button class='save-slider-options button-primary huge-it-insert-post-button' id='huge-it-insert-post-button-top'>Insert Posts</button>
+						<button class='save-slider-options button-primary huge-it-insert-post-button' id='huge-it-insert-post-button-top'><?php echo __("Insert Posts"); ?></button>
 						<div class="view-type-block">
-							<a class="view-type list active" href="#list">View List</a>
-							<a class="view-type thumbs" href="#thumbs">View List</a>
+							<a class="view-type list active" href="#list"><?php echo __("View List","product-catalog"); ?></a>
+							<a class="view-type thumbs" href="#thumbs"><?php echo __("View List","product-catalog"); ?></a>
 						</div>
 					</div>
 					<div style="clear:both;"></div>
@@ -3180,7 +3192,7 @@ h3 {
 					</ul>
 					<input id="huge-it-add-posts-params-1" type="hidden" name="popupposts" value="" />
 					<div class="clear"></div>
-					<button class='save-slider-options button-primary huge-it-insert-post-button' id='huge-it-insert-post-button-bottom'>Insert Posts</button>
+					<button class='save-slider-options button-primary huge-it-insert-post-button' id='huge-it-insert-post-button-bottom'><?php echo __("Insert Posts","product-catalog"); ?></button>
 				</li>
                                 
                                 <li id="slider-posts-tabs-content-2" class="recent-post-options">
@@ -3228,15 +3240,15 @@ h3 {
                                                       echo "</select>";
                                                   }
                                                   else {
-                                                          echo "No Products Found";
+                                                          echo __("No Products Found","product-catalog");
                                                   }
                                                   
                                           ?>
                                             </form>
-						<button class='save-slider-options button-primary huge-it-insert-post-button' id='huge-it-insert-post-button-top'>Insert Posts</button>
+						<button class='save-slider-options button-primary huge-it-insert-post-button' id='huge-it-insert-post-button-top'><?php echo __("Insert Posts");?></button>
 						<div class="view-type-block">
-							<a class="view-type list active" href="#list">View List</a>
-							<a class="view-type thumbs" href="#thumbs">View List</a>
+							<a class="view-type list active" href="#list"><?php echo __("View List","product-catalog"); ?></a>
+							<a class="view-type thumbs" href="#thumbs"><?php echo __("View List","product-catalog"); ?></a>
 						</div>
 					</div>
 					<div style="clear:both;"></div>
@@ -3275,7 +3287,7 @@ h3 {
 					</ul>
 					<input id="huge-it-add-posts-params-2" type="hidden" name="popupposts" value="" />
 					<div class="clear"></div>
-					<button class='save-slider-options button-primary huge-it-insert-post-button' id='huge-it-insert-post-button-bottom'>Insert Posts</button>
+					<button class='save-slider-options button-primary huge-it-insert-post-button' id='huge-it-insert-post-button-bottom'><?php echo __("Insert Posts","product-catalog");?></button>
                             </li>
 		</div>
 	</div>

@@ -265,8 +265,8 @@ function add_catalog()
     $sql_2 = "
 INSERT INTO 
 
-`" . $table_name . "` ( `name`, `sl_height`, `sl_width`, `pause_on_hover`, `catalog_list_effects_s`, `description`, `param`, `sl_position`, `ordering`, `published`, `categories`, `ht_show_sorting`, `ht_show_filtering`) VALUES
-( 'New Catalog', '375', '600', 'on', 'cubeH', '4000', '1000', 'center', '1', '300', 'param1,param2,', 'off', 'off')";
+`" . $table_name . "` ( `name`, `sl_height`, `sl_width`, `pause_on_hover`, `catalog_list_effects_s`, `description`, `param`, `sl_position`, `ordering`, `published`, `categories`, `ht_show_sorting`, `ht_show_filtering`,`link_target`) VALUES
+( 'New Catalog', '375', '600', 'on', 'cubeH', '4000', '1000', 'center', '1', '300', 'param1,param2,', 'off', 'off','on')";
 
       $wpdb->query($sql_2);
 
@@ -535,6 +535,10 @@ function apply_cat($id)
                     $wpdb->query($wpdb->prepare("UPDATE ".$wpdb->prefix."huge_it_catalog_products SET  image_url = '%s'  WHERE ID = %d ", $_POST["imagess".$rowimages->id.""], $rowimages->id));
                     $wpdb->query($wpdb->prepare("UPDATE ".$wpdb->prefix."huge_it_catalog_products SET  price = '%s'  WHERE ID = %d ", $_POST["price".$rowimages->id.""], $rowimages->id));
                     $wpdb->query($wpdb->prepare("UPDATE ".$wpdb->prefix."huge_it_catalog_products SET  market_price = '%s'  WHERE ID = %d ", $_POST["market_price".$rowimages->id.""], $rowimages->id));
+                    
+                    //view_link_open_type////////Update Product New Tab
+                    $wpdb->query($wpdb->prepare("UPDATE ".$wpdb->prefix."huge_it_catalog_products SET  link_target = '%s'  WHERE ID = %d ", $_POST["view_link_open_type".$rowimages->id.""], $rowimages->id));
+                    
                     $wpdb->query($wpdb->prepare("UPDATE ".$wpdb->prefix."huge_it_catalog_products SET  parameters = '%s'  WHERE ID = %d ", $parameters, $rowimages->id));
                     $wpdb->query($wpdb->prepare("UPDATE ".$wpdb->prefix."huge_it_catalog_products SET  single_product_url_type = '%s' WHERE ID = %d ", $_POST["single_product_url_type".$rowimages->id.""], $rowimages->id));
 //                    $wpdb->query($wpdb->prepare("UPDATE ".$wpdb->prefix."huge_it_catalog_products SET  single_product_url = '%s'  WHERE ID = %d ",$_POST["single_product_url".$rowimages->id.""], $rowimages->id));
@@ -595,8 +599,8 @@ if (isset($_POST['params'])) {
             $sql_2 = "
 INSERT INTO 
 
-`" . $table_name . "` ( `name`, `catalog_id`, `description`, `image_url`, `sl_url`, `ordering`, `published`, `published_in_sl_width`, `price`, `market_price`, `parameters`, `single_product_url_type`) VALUES
-( '', '".$row->id."', '', '".$imagesnewupload.";', '', 'par_TV', 2, '1', '', '', '".$paramsStringForAddingInNewProduct."', 'default')";
+`" . $table_name . "` ( `name`, `catalog_id`, `description`, `image_url`, `sl_url`, `ordering`, `published`, `published_in_sl_width`, `price`, `market_price`, `parameters`, `single_product_url_type`,`link_target`) VALUES
+( '', '".$row->id."', '', '".$imagesnewupload.";', '', 'par_TV', 2, '1', '', '', '".$paramsStringForAddingInNewProduct."', 'default','on')";
 
 //            $sql_2 = $wpdb->query($wpdb->prepare("INSERT INTO `".$table_name."`"
 //                    . "( `name`, `catalog_id`, `description`, `image_url`, `sl_url`, `ordering`, `published`, `published_in_sl_width`, `price`, `market_price`, `parameters` ) VALUES"
