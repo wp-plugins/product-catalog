@@ -4,7 +4,7 @@ Donate link: http://huge-it.com/product-catalog/
 Tags: catalog, product reviews, catalogs, blog catalog, online store, product tabs, catalogue, products, vote, wp catalog, WP Catalogue, directory, product portfolio, product catalog, shopping cart, product catalogue, store, product feed, digital goods, listing, list, collection, product, attributes, display products, inventory, list products, product gallery, products catalog, catalog of goods, e-commerce, commerce, ecommerce, shop, shopping, wordpress ecommerce, product review, woocommerce catalog, shoping, online shop, ecomerce,e-comerce, wp e-commerce, e-shop, WordPress shopping cart, wordpress store, shipping, sell products, selling, restaurant menu, sales, sell,selling website, product widget, product management, review, catalog mode, post, posts, catalog post, review, widget, discount, digital downloads, compact cart, sell digital products, reports, report, page, pages,
 Requires at least: 3.0.1
 Tested up to: 4.3.1
-Stable tag: 1.2.5
+Stable tag: 1.2.7
 License: GPLv2 or later
 License URI: http://www.gnu.org/licenses/gpl-2.0.html
 
@@ -16,8 +16,8 @@ Let us introduce our Huge-IT Product Catalog incomparable plugin. To begin with,
 
 * [Wordpress Product Catalog](http://huge-it.com/product-catalog/)
 * [Demo Product Catalog](http://huge-it.com/wordpress-plugins-product-catalog-demo/)
-* [Demo Product Catalog Admin](http://huge-it.com/wordpress-plugins-product-catalog-demo-admin/)
-* [User Product Catalog Manual](http://huge-it.com/wordpress-plugins-product-catalog-user-manual/)
+* [FAQ Product Catalog](http://huge-it.com/wordpress-product-catalog-faq/)
+* [User Product Catalog Manual](http://huge-it.com/wordpress-product-catalog-user-manual/)
 
 Let us introduce our Huge-IT Product Catalog incomparable plugin. To begin with, why do we need this plugin and what are the advantages.
 The plugin is made for demonstration, sale, advertisements for your products.In fact its gives you ability to create own online store for your wordpress website. Imagine a stand with a variety of catalogs with a specific product category. To imagine is not difficult, to use is even easier. The zooming options, price,discount price parameters and comment blocks with many other features will make your online store look like professional and advanced e-commerce website.
@@ -69,13 +69,15 @@ Upgrade to [WordPress Product Catalog Pro](http://huge-it.com/product-catalog) t
 >
 >[Blocks Toggle Up/Down Product Catalog Demo](http://huge-it.com/wordpress-plugins-product-catalog-demo/)
 >
->[Full-Width Blocks Product Catalog Demo](http://huge-it.com/wordpress-plugins-product-catalog-demo-2full-width-block/)
+>[Full-Width Blocks Product Catalog Demo](http://huge-it.com/wordpress-product-catalog-demo-2-full-width-block/)
 >
->[Full-Height Blocks Product Catalog Demo](http://huge-it.com/wordpress-plugins-product-catalog-demo-3-full-height-blocks/)
+>[Full-Height Blocks Product Catalog Demo](http://huge-it.com/wordpress-product-catalog-demo-3-content-popup/)
 >
->[Catalog Content Popup Product Catalog Demo](http://huge-it.com/wordpress-plugins-product-catalog-demo-4-catalog-content-popup/)
+>[Catalog Content Popup Product Catalog Demo](http://huge-it.com/wordpress-product-catalog-demo-4-full-height-blocks/)
 >
->[Demo Product Catalog Admin](http://huge-it.com/wordpress-plugins-product-catalog-demo-admin/)
+>[Catalog Content Slider Product Catalog Demo](http://huge-it.com/wordpress-product-catalog-demo-5-content-slider/)
+>
+>[FAQ Product Catalog](http://huge-it.com/wordpress-product-catalog-faq/)
 
 
 ### If you think, that you found a bug in our [WordPress Product Catalog](http://huge-it.com/product-catalog) plugin or have any question contact us at [info@huge-it.com](mailto:info@huge-it.com).
@@ -122,6 +124,12 @@ Now you can set your Product Catalog options, images and use our Product Catalog
 59.  [WordPress Product Catalog](http://huge-it.com/product-catalog/) - Product Catalog admin page 
 
 == Changelog ==
+
+= 1.2.7 =
+*  Added some features.
+
+= 1.2.6 =
+*  Bug fixed product catalog.
 
 = 1.2.5 =
 *  Translation already available.

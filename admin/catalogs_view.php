@@ -50,8 +50,8 @@ function html_showcatalogs( $rows,  $pageNav,$sort,$cat_row){
 <div class="wrap">
     <?php $path_site2 = plugins_url("../images", __FILE__); ?>
         <div style="float: left;">
-            <div><a href="http://huge-it.com/wordpress-plugins-product-catalog-user-manual/" target="_blank"><?php echo __("User Manual","product-catalog");?></a></div>
-            <div><?php echo __("This section allows you to configure the Product Catalog options.","product-catalog");?> <a href="http://huge-it.com/wordpress-plugins-product-catalog-user-manual/" target="_blank"><?php echo __("More...","product-catalog");?></a></div>
+            <div><a href="http://huge-it.com/wordpress-product-catalog-user-manual/" target="_blank"><?php echo __("User Manual","product-catalog");?></a></div>
+            <div><?php echo __("This section allows you to configure the Product Catalog options.","product-catalog");?> <a href="http://huge-it.com/wordpress-product-catalog-user-manual/" target="_blank"><?php echo __("More...","product-catalog");?></a></div>
         </div>
         <div style="float: right;">
                 <a class="header-logo-text" href="http://huge-it.com/product-catalog/" target="_blank">
@@ -254,8 +254,8 @@ jQuery(function() {
 <div class="wrap">
 <?php $path_site2 = plugins_url("../images", __FILE__); ?>
     <div style="float: left;">
-            <div><a href="http://huge-it.com/wordpress-plugins-product-catalog-user-manual/" target="_blank">User Manual</a></div>
-            <div><?php echo __("This section allows you to configure the Product Catalog options.","product-catalog");?> <a href="http://huge-it.com/wordpress-plugins-product-catalog-user-manual/" target="_blank">More...</a></div>
+            <div><a href="http://huge-it.com/wordpress-product-catalog-user-manual/" target="_blank">User Manual</a></div>
+            <div><?php echo __("This section allows you to configure the Product Catalog options.","product-catalog");?> <a href="http://huge-it.com/wordpress-product-catalog-user-manual/" target="_blank">More...</a></div>
             <div><a href="http://huge-it.com/product-catalog/" target="_blank"><?php echo __("Get full Version","product-catalog");?></a></div>
     </div>
     <div style="float: right;">

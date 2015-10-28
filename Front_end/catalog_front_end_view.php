@@ -3029,9 +3029,50 @@ var defaultBlockHeight=<?php echo $paramssld['ht_view2_element_height']; ?>;
             });
             
             /*           VIEW 2 LOAD MORE CLICK    -->    */
-            
+            /*      <-- POPUP LEFT CLICK -->        */
+        jQuery("#huge_it_catalog_popup_list_<?php echo $catalogID; ?> .heading-navigation_<?php echo $catalogID; ?> .left-change").click(function(){
+        	//var strid = jQuery(this).closest(".pupup-element").prev(".pupup-element").find('a').data('popupid').replace('#','');
+        	var height = jQuery(window).height();
+        	//jQuery('#huge_it_gallery_pupup_element_'+strid).css({height:height*0.7});
+            var num = jQuery(this).find("a").attr("href").replace('#', '');
+            if(num >= 1){
+            	var strid = jQuery(this).closest(".pupup-element").prev(".pupup-element").find('a').data('popupid').replace('#','');
+            	jQuery('#huge_it_catalog_pupup_element_'+strid).css({height:height*0.7});
+                jQuery(this).closest(".pupup-element").removeClass("active");
+                jQuery(this).closest(".pupup-element").prev(".pupup-element").addClass("active");
+            }else{
+            	var strid = jQuery("#huge_it_catalog_popup_list_<?php echo $catalogID; ?>").find(".pupup-element").last().find('a').data('popupid').replace('#','');
+            	jQuery('#huge_it_catalog_pupup_element_'+strid).css({height:height*0.7});
+                jQuery(this).closest(".pupup-element").removeClass("active");
+                jQuery("#huge_it_catalog_popup_list_<?php echo $catalogID; ?>").find(".pupup-element").last().addClass("active");
+            }
             
         });
+            
+        /*      <-- POPUP RIGHT CLICK -->        */
+        jQuery("#huge_it_catalog_popup_list_<?php echo $catalogID; ?> .heading-navigation_<?php echo $catalogID; ?> .right-change").click(function(){
+        	var height = jQuery(window).height();
+            var num = jQuery(this).find("a").attr("href").replace('#', '');
+            var cnt = 0;
+            jQuery("#huge_it_catalog_popup_list_<?php echo $catalogID; ?>").find(".pupup-element").each(function(){
+                cnt++;
+        });
+//            alert(num+" "+cnt);
+            if(num <= cnt){
+            	var strid = jQuery(this).closest(".pupup-element").next(".pupup-element").find('a').data('popupid').replace('#','');
+	        	jQuery('#huge_it_catalog_pupup_element_'+strid).css({height:height*0.7});
+                jQuery(this).closest(".pupup-element").removeClass("active");
+                jQuery(this).closest(".pupup-element").next(".pupup-element").addClass("active");
+            }else{
+            	var strid = jQuery("#huge_it_catalog_popup_list_<?php echo $catalogID; ?>").find(".pupup-element:first-child a").data('popupid').replace('#','');	        	
+	        	jQuery('#huge_it_catalog_pupup_element_'+strid).css({height:height*0.7});
+                jQuery(this).closest(".pupup-element").removeClass("active");
+                jQuery("#huge_it_catalog_popup_list_<?php echo $catalogID; ?>").find(".pupup-element:first-child").addClass("active");
+            }
+        });
+	//////
+
+  });
 
   });
   jQuery(document).ready(function(){
@@ -3770,6 +3811,47 @@ var defaultBlockHeight=<?php echo $paramssld['ht_view2_element_height']; ?>;
 .catalog_load_<?php echo $catalogID; ?> a:focus{
     outline: none;
 }
+#huge_it_catalog_popup_list_<?php echo $catalogID; ?> .heading-navigation_<?php echo $catalogID; ?> .left-change, #huge_it_catalog_popup_list_<?php echo $catalogID; ?> .heading-navigation_<?php echo $catalogID; ?> .right-change{
+    width: 40px;
+    height: 39px;
+    font-size: 25px;
+    display: inline-block;
+    text-align: center;
+    border: 1px solid #eee;
+    border-bottom: none;
+    border-top: none;
+}
+#huge_it_catalog_popup_list_<?php echo $catalogID; ?> .heading-navigation_<?php echo $catalogID; ?> .right-change{
+	margin-left: -6px;
+}
+#huge_it_catalog_popup_list_<?php echo $catalogID; ?> .heading-navigation_<?php echo $catalogID; ?> .right-change:hover, #huge_it_catalog_popup_list_<?php echo $catalogID; ?> .heading-navigation_<?php echo $catalogID; ?> .left-change:hover{
+    background: #ddd;
+    border-color: #ccc;
+    color: #000 !important;
+    cursor: pointer;
+}
+#huge_it_catalog_popup_list_<?php echo $catalogID; ?> .heading-navigation_<?php echo $catalogID; ?> .right-change a:hover, #huge_it_catalog_popup_list_<?php echo $catalogID; ?> .heading-navigation_<?php echo $catalogID; ?> .left-change a:hover{
+    color: #000 !important;
+}
+#huge_it_catalog_popup_list_<?php echo $catalogID; ?> .heading-navigation_<?php echo $catalogID; ?> .right-change a:active, #huge_it_catalog_popup_list_<?php echo $catalogID; ?> .heading-navigation_<?php echo $catalogID; ?> .left-change a:active{
+    outline:none;
+    border:none;
+}
+#huge_it_catalog_popup_list_<?php echo $catalogID; ?> .heading-navigation_<?php echo $catalogID; ?> .right-change a:visited, #huge_it_catalog_popup_list_<?php echo $catalogID; ?> .heading-navigation_<?php echo $catalogID; ?> .left-change a:visited{
+    color:#000 !important;
+}
+
+#huge_it_catalog_popup_list_<?php echo $catalogID; ?> .heading-navigation_<?php echo $catalogID; ?> .right-change a, #huge_it_catalog_popup_list_<?php echo $catalogID; ?> .heading-navigation_<?php echo $catalogID; ?> .left-change a{
+    color: #777;
+    text-decoration: none;
+    width: 12px;
+    height: 17px;
+    display: inline-block;
+}
+#huge_it_catalog_popup_list_<?php echo $catalogID; ?> .heading-navigation_<?php echo $catalogID; ?> a{
+    border:none;
+    text-decoration: none;
+}
 
 </style>
     
@@ -3937,6 +4019,7 @@ var defaultBlockHeight=<?php echo $paramssld['ht_view2_element_height']; ?>;
 </section>
 <ul id="huge_it_catalog_popup_list_<?php echo $catalogID; ?>">
 	<?php
+        $changePopup=1;
 	foreach($images as $key=>$row)
 	{
 		$imgurl=explode(";",$row->image_url);array_pop($imgurl);
@@ -3946,6 +4029,11 @@ var defaultBlockHeight=<?php echo $paramssld['ht_view2_element_height']; ?>;
 		?>
 		<li class="pupup-element" id="huge_it_catalog_pupup_element_<?php echo $row->id; ?>">
 			<div class="heading-navigation_<?php echo $catalogID; ?>">
+                            <div style="display: inline-block; float: left;">
+                            <div class="left-change" ><a href="#<?php echo $changePopup - 1; ?>" data-popupid="#<?php echo $row->id; ?>"><</a></div>
+                            <div class="right-change" ><a href="#<?php echo $changePopup + 1; ?>" data-popupid="#<?php echo $row->id; ?>">></a></div>
+                        </div>
+                            <?php $changePopup=$changePopup+1; ?>
 				<a href="#close" class="close"></a>
 				<div style="clear:both;"></div>
 			</div>
@@ -6518,7 +6606,7 @@ jQuery(function(){
     margin: 3px 0 5px 0;
 }
 
-.huge_it_catalog_single_product_page .order_button a {
+.huge_it_catalog_single_product_page .order_button {
   display: inline-block;
   /*width: 100%;*/
   text-decoration: none;
@@ -6533,7 +6621,7 @@ jQuery(function(){
   background: #<?php echo $paramssld['ht_single_product_asc_seller_button_background_color']; ?>;
 }
 
-.huge_it_catalog_single_product_page .order_button a:hover {
+.huge_it_catalog_single_product_page .order_button:hover {
   color: #<?php echo $paramssld['ht_single_product_asc_seller_button_text_hover_color']; ?>;
   background: #<?php echo $paramssld['ht_single_product_asc_seller_button_background_hover_color']; ?>;
 }
@@ -6570,6 +6658,10 @@ jQuery(function(){
 .order_popup_submit_close{
     display: block;
     text-decoration: none;
+    width:98%;
+}
+.order_popup_submit_close input{
+    width: 100% !important;
 }
 #catalog-order-popup-1 #order_popup_submit {
     font-size: <?php echo $paramssld["ht_single_product_asc_seller_popup_button_text_size"]; ?>px !important;
@@ -7235,13 +7327,12 @@ jQuery(function(){
                             <?php
                                  if($paramssld["ht_single_product_show_asc_seller_button"] == 'on'){ ?>
                                      <div class="contact-seller-block">
-                                        <div class="order_button" style="">
-                                            <a href="#catalog-order-popup-1" style=""><span class="label"><?php echo $paramssld['ht_single_product_asc_seller_button_text']; ?></span></a>
+                                        <div class="order_button" style="cursor:pointer"><span class="label"><?php echo $paramssld3['ht_single_product_asc_seller_button_text']; ?></span>
                                         </div>
 
                                         <div id="catalog-order-popup-1" class="modalDialog">
                                             <div>
-                                                    <a href="#catalog-order-popup-close" title="Close" class="catalog-order-popup-close">X</a>
+                                                    <div title="Close" class="catalog-order-popup-close" style="cursor:pointer">X</div>
                                                     <h2><?php echo $paramssld3['ht_single_product_asc_to_seller_text']; ?></h2>
                                                     <label><input type="text" name="asc_seller_name" class="asc_seller_name" placeholder="<?php echo $paramssld3["ht_single_product_your_name_text"]; ?>" /></label>
                                                     <label><input type="text" name="asc_seller_mail" class="asc_seller_mail" placeholder="<?php echo $paramssld3["ht_single_product_your_mail_text"]; ?>"  /></label>
@@ -7256,7 +7347,7 @@ jQuery(function(){
                                                     <input type="hidden" name="asc_seller_product_id" class="asc_seller_product_id" value="<?php echo $productArray->id; ?>" />
                                                     <input type="hidden" name="asc_seller_spam" class="asc_seller_spam" value="<?php echo $spam; ?>" />
                                                     <input type="hidden" name="asc_seller_ip" class="huge_it_catalog_product_ip" value="<?php echo $_SERVER['SERVER_ADDR']; ?>" />
-                                                    <a href="#catalog-order-popup-close" title="Close" class="order_popup_submit_close">
+                                                    <a href="#1" title="Close" class="order_popup_submit_close">
                                                         <input type="submit" name="order_popup_submit" id="order_popup_submit" value="<?php echo $paramssld3["ht_single_product_asc_seller_popup_button_text"];?>" />
                                                     </a>
                                             </div>
@@ -8009,8 +8100,11 @@ jQuery(document).ready(function () {
                 return false;
 	});
         
-        jQuery(".order_button a").click(function(){
-//            jQuery(".modalDialog").css({ opacity: 1 });
+        jQuery(".order_button").click(function(){
+            jQuery(".modalDialog").css({ 'opacity': '1','pointer-events':'auto' });
+	});
+        jQuery(".catalog-order-popup-close").click(function(){
+            jQuery(".modalDialog").css({ 'opacity': '0','pointer-events':'none' });
 	});
         
         jQuery('#comments_submit').click(function(){
@@ -8134,6 +8228,7 @@ jQuery(document).ready(function () {
                         
                     }
                 }
+                jQuery(".modalDialog").css({ 'opacity': '0','pointer-events':'none' });
                         
         });
             

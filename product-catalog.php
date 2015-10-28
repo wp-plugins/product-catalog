@@ -4,7 +4,7 @@
 Plugin Name: Huge IT Product Catalog
 Plugin URI: http://huge-it.com/product-catalog
 Description: Let us introduce our Huge-IT Product Catalog incomparable plugin. To begin with, why do we need this plugin and what are the advantages.
-Version: 1.2.5
+Version: 1.2.7
 Author: http://huge-it.com/
 License: GNU/GPLv3 http://www.gnu.org/licenses/gpl-3.0.html
 Text Domain: product-catalog
@@ -2275,7 +2275,7 @@ INSERT INTO `$table_name` (`name`, `title`, `value`) VALUES
 ('ht_single_product_your_Comment_text', 'ht_single_product_your_Comment_text', 'Your Comment'),
 ('ht_single_product_captcha_text', 'ht_single_product_captcha_text', 'Captcha'),
 ('ht_single_product_invalid_captcha_text', 'ht_single_product_invalid_captcha_text', 'Invalid Captcha'),
-('ht_single_product_asc_to_seller_text', 'ht_single_product_asc_to_seller_text', 'Ask Seller'),
+('ht_single_product_asc_to_seller_text', 'ht_single_product_asc_to_seller_text', 'Contact Seller'),
 ('ht_single_product_your_mail_text', 'Your E-mail', 'Your E-mail'),
 ('ht_single_product_your_phone_text', 'Your Phone', 'Your Phone'),
 ('ht_single_product_your_message_text', 'Your Message', 'Your Message'),
@@ -2490,15 +2490,19 @@ query9;
     };
     
     
-    $table_name = $wpdb->prefix . "huge_it_catalog_general_params";
-    $sql_update_catalog_6 = "UPDATE `$table_name` SET value = 'Contact Seller' WHERE name='ht_single_product_asc_to_seller_text'";
-    $wpdb->query($sql_update_catalog_6);
+     $table_name = $wpdb->prefix . "huge_it_catalog_general_params";
+    $seller_title = $wpdb->get_row("SELECT value FROM '$table_name' WHERE name='ht_single_product_asc_to_seller_text'");
+    if($seller_title == 'Asc Seller'){
+        $sql_update_catalog_6 = "UPDATE `$table_name` SET value = 'Contact Seller' WHERE name='ht_single_product_asc_to_seller_text'";
+        $wpdb->query($sql_update_catalog_6);}
+    
     
     $table_name = $wpdb->prefix . "huge_it_catalog_general_params";
-    $sql_update_catalog_7 = "UPDATE `$table_name` SET value = 'Contact Seller' WHERE name='ht_single_product_asc_seller_button_text'";
-    $wpdb->query($sql_update_catalog_7);
+    $seller_text = $wpdb->get_row("SELECT value FROM '$table_name' WHERE name='ht_single_product_asc_seller_button_text'");
+    if($seller_text == 'Contact to Seller'){
+        $sql_update_catalog_7 = "UPDATE `$table_name` SET value = 'Contact Seller' WHERE name='ht_single_product_asc_seller_button_text'";
+        $wpdb->query($sql_update_catalog_7);}
             
-    
     
     
     $needToUpdateProductLink = 0;
