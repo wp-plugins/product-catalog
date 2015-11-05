@@ -19,6 +19,8 @@ Let us introduce our Huge-IT Product Catalog incomparable plugin. To begin with,
 * [FAQ Product Catalog](http://huge-it.com/wordpress-product-catalog-faq/)
 * [User Product Catalog Manual](http://huge-it.com/wordpress-product-catalog-user-manual/)
 
+https://www.youtube.com/watch?v=OapAJ5lHUcU
+
 Let us introduce our Huge-IT Product Catalog incomparable plugin. To begin with, why do we need this plugin and what are the advantages.
 The plugin is made for demonstration, sale, advertisements for your products.In fact its gives you ability to create own online store for your wordpress website. Imagine a stand with a variety of catalogs with a specific product category. To imagine is not difficult, to use is even easier. The zooming options, price,discount price parameters and comment blocks with many other features will make your online store look like professional and advanced e-commerce website.
 
