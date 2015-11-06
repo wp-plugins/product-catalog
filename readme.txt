@@ -78,6 +78,8 @@ Upgrade to [WordPress Product Catalog Pro](http://huge-it.com/product-catalog) t
 >[Catalog Content Popup Product Catalog Demo](http://huge-it.com/wordpress-product-catalog-demo-4-full-height-blocks/)
 >
 >[Catalog Content Slider Product Catalog Demo](http://huge-it.com/wordpress-product-catalog-demo-5-content-slider/)
+
+> #### Product Catalog FAQ 
 >
 >[FAQ Product Catalog](http://huge-it.com/wordpress-product-catalog-faq/)
 
