@@ -8171,6 +8171,7 @@ jQuery(document).ready(function () {
                 var user_product_id = jQuery("#catalog-order-popup-1 .asc_seller_product_id").val();
                 var user_spam       = jQuery("#catalog-order-popup-1 .asc_seller_spam").val();
                 var captcha_val     = jQuery("#catalog-order-popup-1 .captchaInputValue").val();
+                var product_name    = jQuery(".right-block .title-block h2").text();
                 var user_ip         = jQuery("#catalog-order-popup-1 .huge_it_catalog_product_ip").val();
                 var emailCheck=/^[a-z0-9!#$%&'*+/=?^_`{|}~-]+(?:\.[a-z0-9!#$%&'*+/=?^_`{|}~-]+)*@(?:[a-z0-9](?:[a-z0-9-]*[a-z0-9])?\.)+[a-z0-9](?:[a-z0-9-]*[a-z0-9])?$/i;
                     if(user_name == "" || user_mail == ""  || user_phone == ""  || user_massage == ""  || user_product_id == "" || captcha_val == ""){
@@ -8201,7 +8202,8 @@ jQuery(document).ready(function () {
                             user_massage: user_massage,
                             user_spam: user_spam,
                             user_ip: user_ip,
-                            captcha_val: captcha_val
+                            captcha_val: captcha_val,
+                            product_name: product_name
                         };
 
                         jQuery.post("<?php echo admin_url('admin-ajax.php'); ?>", data, function(response) {    //    alert(response);

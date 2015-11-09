@@ -4,7 +4,7 @@
 Plugin Name: Huge IT Product Catalog
 Plugin URI: http://huge-it.com/product-catalog
 Description: Let us introduce our Huge-IT Product Catalog incomparable plugin. To begin with, why do we need this plugin and what are the advantages.
-Version: 1.2.8
+Version: 1.2.9
 Author: http://huge-it.com/
 License: GNU/GPLv3 http://www.gnu.org/licenses/gpl-3.0.html
 Text Domain: product-catalog
@@ -882,6 +882,7 @@ function huge_it_catalog_my_action_callback_frontend() {
             if(isset($_POST["user_product_id"])) { $product_id = $_POST["user_product_id"];  $product_id  = sanitize_text_field($product_id);  }
             if(isset($_POST["user_spam"]))       { $spam = $_POST["user_spam"];              $spam = sanitize_text_field($spam);               }
             if(isset($_POST["captcha_val"]))     { $captcha_val = $_POST['captcha_val'];     $captcha_val = sanitize_text_field($captcha_val); }
+            if(isset($_POST["product_name"]))    { $product_name = $_POST['product_name'];                                                     }
                                 
             $getAllParams = $wpdb->get_results("SELECT name,value FROM ".$wpdb->prefix."huge_it_catalog_general_params");
             foreach($getAllParams AS $allParams){
@@ -904,6 +905,9 @@ function huge_it_catalog_my_action_callback_frontend() {
                                 </tr>
                                 <tr>
                                     <td width='1000'><strong>Phone: </strong> ".$phone."</td>
+                                </tr>
+                                <tr>
+                                    <td width='1000'><strong>Product Name: </strong> ".$product_name."</td>
                                 </tr>
                                 <tr>
                                     <td width='1000'><strong>IP Adress: </strong> ".$user_ip." </td>
