@@ -240,7 +240,7 @@
 		</div>
 	</div>
 	<div class="right-block">
-		<div class="title-block"><h3>Wordpress Google Map</h3></div>
+		<div class="title-block"><h3>Wordpress Google Maps</h3></div>
 			<p><?php echo __("Huge-IT Google Map. One more perfect tool from Huge-IT. Improved Google Map, where we have our special contribution. Most simple and effective tool for rapid creation of individual Google Map in posts and pages.","product-catalog");?></p>
 		<div class="description-block">
 		</div>			  				
