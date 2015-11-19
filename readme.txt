@@ -129,6 +129,32 @@ Now you can set your Product Catalog options, images and use our Product Catalog
 58.  [WordPress Product Catalog](http://huge-it.com/product-catalog/) - Product Catalog admin page 
 59.  [WordPress Product Catalog](http://huge-it.com/product-catalog/) - Product Catalog admin page 
 
+== Frequently Asked Questions ==
+
+### Video Gallery
+
+**Is the payment for Catalog Plugin one-time of per month,year..?**
+The payment for Pro license is one-time and for life
+
+
+**How to install the PRO version of Catalog?**
+In order to install pro version of the plugin, simply follow these steps: 1) delete your free version of plugin 2) install the zip file | Plugins > add new > upload plugin3) clean your cache files |ctrl+f5| Don’t be afraid of deleting free version, because you will NOT lose your created catalogs
+
+
+**How to get a copy of most recent version?**
+Pro users can get update versions contacting us by info@huge-it.com. Free version users will find update notification in their wordpress admin panel.
+
+
+**I’ve bought the commercial license of the plugin installed the file but the Plugin seems to be still in free version, what to do?**
+After installation of pro version, in General Options all your changes will be saved! If you still see “free version” notification after installation of pro version
+
+
+**I want to click on catalog image main image and be directed to my product page, is it possible?**
+If something is not provided in Product Catalog plugin, this is additional customization, for that just contact info@huge-it.com, ask for the conditions and our developers will help you with it.
+
+
+### If you think, that you found a bug in our [WordPress Video Gallery](http://huge-it.com/wordpress-video-gallery/) plugin or have any question contact us at [info@huge-it.com](mailto:info@huge-it.com).
+
 == Changelog ==
 
 = 1.3.0 =
