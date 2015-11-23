@@ -153,6 +153,22 @@ After installation of pro version, in General Options all your changes will be s
 If something is not provided in Product Catalog plugin, this is additional customization, for that just contact info@huge-it.com, ask for the conditions and our developers will help you with it.
 
 
+**I have paid for pro version and didn’t get the link or file to update. **
+If you made purchase and didn’t get the plugin pro license file, or file was corrupt, contact us by info@huge-it.com and send order number, we will check and send you the file as soon as possible.
+
+
+**Have purchased pro version of Product Catalog plugin but still get the announcement to buy the commercial version to change settings. What to do ?**
+This can happen because of your browser’s cache files. Press ctrl+f5 (Chrome, FF) in order to clean them, if you use safari, etc., clean from browser settings. If nothing helps, just reinstall the plugin again
+
+
+**Will I lose all my changes that I made in free version, if I update to pro version of product catalog?**
+Menu > Main Menu > page > Select > choose our Slider > Save.
+
+
+**How to have more columns?**
+The number of columns in product catalog depends on the size of your theme container. In order to fit one more column you should make element size of catalog view a bit smaller. If you are free user and can not make element size smaller, you need to buy the pro version of product catalog plugin or ask the developers for help info@huge-it.com
+
+
 ### If you think, that you found a bug in our [WordPress Video Gallery](http://huge-it.com/wordpress-video-gallery/) plugin or have any question contact us at [info@huge-it.com](mailto:info@huge-it.com).
 
 == Changelog ==
