@@ -169,6 +169,14 @@ Menu > Main Menu > page > Select > choose our Slider > Save.
 The number of columns in product catalog depends on the size of your theme container. In order to fit one more column you should make element size of catalog view a bit smaller. If you are free user and can not make element size smaller, you need to buy the pro version of product catalog plugin or ask the developers for help info@huge-it.com
 
 
+**I have bought the commercial license, installed the file but the Plugin seems to be still in free version, what to do?**
+After installation of pro version, in pro options all your changes will be saved! If you still see “free version” notification after installation of pro version 1) try to clean your cache files, if this will not help 2) delete, and install the plugin again.
+
+
+**I have already purchased Multi Site version, how do I upgrade it to Developer version, without buying it again?**
+If you have any pro version of our products and want to upgrade it, you do not need to buy the new one again, you only need to pay the difference price. For example, if you have personal version and need to upgrade to Multi Site, just buy one more personal, and contact us by info@huge-it.com, send the receipt and we will send Multi Site version, from Multi Site to Developer, just buy one personal, and ask us for Developer version.
+
+
 ### If you think, that you found a bug in our [WordPress Video Gallery](http://huge-it.com/wordpress-video-gallery/) plugin or have any question contact us at [info@huge-it.com](mailto:info@huge-it.com).
 
 == Changelog ==
